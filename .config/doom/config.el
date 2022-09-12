@@ -89,7 +89,7 @@ Open buffer list    (SPC b i)\
 Open the vterm      (SPC o t)\
 \nOpen dired file manager (SPC d d)   \
 List of keybindings (SPC h b b)")
-  (setq dashboard-startup-banner "~/.config/doom.d/doom-emacs-dash.png")
+  (setq dashboard-startup-banner "~/.config/doom/doom-emacs-dash.png")
   (setq dashboard-center-content nil)
   (setq dashboard-items '((recents . 5)
                           (bookmarks . 5)
