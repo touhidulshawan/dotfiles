@@ -1,0 +1,8 @@
+require("shawan.maps.generalmap")
+require("shawan.maps.fugitive")
+require("shawan.maps.telescope")
+require("shawan.maps.hopmap")
+require("shawan.maps.glow")
+require("shawan.maps.nvimTree")
+require("shawan.maps.gitsign")
+require("shawan.maps.format")

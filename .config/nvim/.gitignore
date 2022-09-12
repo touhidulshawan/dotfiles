@@ -1,0 +1,3 @@
+plugin/
+lua-language-server/
+.luarc.json
