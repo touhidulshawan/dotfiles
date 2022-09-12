@@ -1,0 +1,12 @@
+configuration {
+	font:				"Roboto Regular 11";
+	show-icons:         true;
+}
+inputbar {
+  children: [entry];
+}
+
+listview {
+   columns:                        2;
+   lines:	                       2;
+}

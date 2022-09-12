@@ -1,0 +1,8 @@
+#+title: Instruction for scripts file
+#+author: Touhidul Shawan
+
++ copy scripts executable file in to `$HOME/.local/bin`
+
+  #+begin_SRC bash
+  cp scriptname ~/.local/bin/
+  #+end_SRC
