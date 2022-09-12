@@ -1,0 +1,41 @@
+* Awesome Window Manager
+
+  [[2022-01-15_00-35][https://user-images.githubusercontent.com/37136490/149567791-3af8f591-768b-4034-9aa1-7a5438fdcf62.png]]
+
+** Installation
+open a terminal & type
+
+#+begin_SRC sh :results output
+cd ~/.config
+git clone https://github.com/touhidulShawan/dotfiles.git
+cp dotfiles/.config/awesome ~/.config/
+#+end_SRC
+
+*** Dependencies
+Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awesome-freedesktop][freedesktop]]
+
+*For me:* I have installed two packages ~lain-git~ & ~awesome-freedesktop-git~ from AUR
+
+** Themes
+*** Gruvbox
+
+[[2022-01-15_00-35][https://user-images.githubusercontent.com/37136490/149567791-3af8f591-768b-4034-9aa1-7a5438fdcf62.png]]
+
+
+[[https://user-images.githubusercontent.com/37136490/149569559-09fc3844-3b51-4111-ae72-f3b1d5d22cb5.png]]
+
+
+[[https://user-images.githubusercontent.com/37136490/149569583-b56dba40-375b-4efa-bf9e-834f65ec37fb.png]]
+
+
+*** Dracula
+
+[[https://user-images.githubusercontent.com/37136490/178268493-cf498b1d-e1ee-4010-9a26-aaae5b8d4fa7.png]]
+
+
+[[https://user-images.githubusercontent.com/37136490/178268522-64597f7d-ed43-416b-8f3d-ac59edb543b4.png]]
+
+*** Use the configuration if you want. Thank You 😻
+
+* Credits
+[[https://github.com/lcpz/awesome-copycats/tree/master/themes/multicolor][multicolor]] theme from [[https://github.com/lcpz/awesome-copycats][awesome-copycats]]
