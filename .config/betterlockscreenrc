@@ -1,0 +1,37 @@
+# ~/.config/betterlockscreenrc
+
+# default options
+display_on=0
+span_image=false
+lock_timeout=300
+fx_list=(dim blur dimblur pixel dimpixel color)
+dim_level=40
+blur_level=1
+pixel_scale=10,1000
+solid_color=#1d2021
+wallpaper_cmd="feh --bg-fill"
+quiet=false
+# i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
+
+# default theme
+loginbox=#282828
+loginshadow=00000000
+locktext="Do You Own Me? Prove It !"
+font="Hack Nerd Font"
+ringcolor=#1d2021
+insidecolor=#282828
+separatorcolor=#1d2021
+ringvercolor=#fabd2f
+insidevercolor=#282828
+ringwrongcolor=#fb4934
+insidewrongcolor=#fb4934
+timecolor=#ebdbb2
+time_format="%l:%M:%S:%p"
+greetercolor=#b8bb26
+layoutcolor=#8ec07c
+keyhlcolor=#d3869b
+bshlcolor=#d3869b
+verifcolor=#ebdbb2
+wrongcolor=#fb4934
+modifcolor=#fabd2f
+bgcolor=#282828
