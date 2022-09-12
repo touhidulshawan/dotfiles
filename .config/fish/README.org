@@ -1,0 +1,15 @@
+* 🐟 fish shell
+** Plugin Manager that I use: [[https://github.com/jorgebucaran/fisher][Fisher]]
+
+*** Plugins that I use
+
+- [[https://github.com/jorgebucaran/nvm.fish][jorgebucaran/nvm.fish]]
+- [[https://github.com/jethrokuan/z][jethrokuan/z]]
+- [[https://github.com/joseluisq/gitnow][joseluisq/gitnow@2.10.0]]
+- [[https://github.com/PatrickF1/fzf.fish][PatrickF1/fzf.fish]]
+- [[https://github.com/jorgebucaran/autopair.fish][jorgebucaran/autopair.fish]]
+- [[https://github.com/oh-my-fish/plugin-pbcopy][oh-my-fish/plugin-pbcopy]]
+- [[https://github.com/jorgebucaran/replay.fish][jorgebucaran/replay.fish]]
+- [[https://github.com/danhper/fish-ssh-agent][danhper/fish-ssh-agent]]
+- [[https://github.com/touhidulShawan/fish-gruvbox][touhidulshawan/fish-gruvbox]]
+- [[https://github.com/touhidulShawan/exthearchive][touhidulshawan/exthearchive]]
