@@ -28,7 +28,7 @@ doomemacs
 
 *** Dracula
 [[.screenshots/dracula-home.png]]
-[[./screenshots/dracula2.png]]
+[[.screenshots/dracula2.png]]
 
 *** Use the configuration if you want. Thank You 😻
 
