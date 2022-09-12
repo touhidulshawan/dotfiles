@@ -18,16 +18,20 @@ Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awes
 
 ** Themes
 *** Gruvbox
+
 [[.screenshots/home.png]]
 
 mpd & ncmpcpp
+
 [[.screenshots/mpd.png]]
 
 doomemacs
+
 [[.screenshots/doomemacs.png]]
 
 *** Dracula
 [[.screenshots/dracula-home.png]]
+
 [[.screenshots/dracula2.png]]
 
 *** Use the configuration if you want. Thank You 😻
