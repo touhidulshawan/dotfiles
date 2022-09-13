@@ -6,7 +6,6 @@
 open a terminal & type
 
 #+begin_SRC sh :results output
-cd ~/.config
 git clone https://github.com/touhidulShawan/dotfiles.git
 cp dotfiles/.config/awesome ~/.config/
 #+end_SRC
