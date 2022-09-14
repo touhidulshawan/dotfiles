@@ -104,6 +104,4 @@ alias unlock="sudo rm /var/lib/pacman/db.lck"    # remove pacman lock
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
 
 alias config=/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME
-
-colorscript random
 eval "$(starship init bash)"

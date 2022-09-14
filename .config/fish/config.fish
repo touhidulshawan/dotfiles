@@ -126,5 +126,4 @@ alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
-colorscript random
 starship init fish | source
