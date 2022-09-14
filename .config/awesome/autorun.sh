@@ -8,9 +8,8 @@ run() {
 
 lxsession &
 picom --experimental-backends &
-emote &
-# nitrogen --set-zoom-fill --restore &
-feh --bg-fill --randomize ~/Pictures/Anime/*
+nitrogen --set-zoom-fill --restore &
+# feh --bg-fill --randomize ~/Pictures/Anime/*
 /usr/bin/emacs --daemon &
 nm-applet &
 copyq &
