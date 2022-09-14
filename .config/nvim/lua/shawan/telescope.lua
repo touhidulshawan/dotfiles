@@ -12,6 +12,7 @@ telescope.setup({
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
+		preview = false,
 
 		mappings = {
 			i = {
@@ -82,4 +83,3 @@ telescope.setup({
 	extensions = {
 	},
 })
-

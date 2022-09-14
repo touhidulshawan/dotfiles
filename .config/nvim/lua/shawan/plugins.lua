@@ -44,6 +44,7 @@ return packer.startup(function(use)
 	-- Essentials
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/popup.nvim")
+	use("BurntSushi/ripgrep")
 	use("kyazdani42/nvim-web-devicons")
 
 	-- lsp
