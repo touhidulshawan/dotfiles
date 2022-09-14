@@ -108,6 +108,10 @@ alias yta-mp3 'yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --emb
 alias yt 'yt-dlp --merge-output-format mkv --split-chapters --write-subs'
 alias ytb 'yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
 
+# alias to travel directory
+alias drama='cd /run/media/shawan/Stuff/Entertainment/Drama'
+alias anime='cd /run/media/shawan/My\ Drive/Entertainment/Animes'
+
 # [bat as MANPAGER]
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
