@@ -12,3 +12,4 @@ fisher install jorgebucaran/replay.fish
 fisher install danhper/fish-ssh-agent
 fisher install touhidulshawan/exthearchive
 fisher install touhidulshawan/fish-gruvbox
+fisher install meaningful-ooo/sponge

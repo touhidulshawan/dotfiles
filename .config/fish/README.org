@@ -13,3 +13,4 @@
 - [[https://github.com/danhper/fish-ssh-agent][danhper/fish-ssh-agent]]
 - [[https://github.com/touhidulShawan/fish-gruvbox][touhidulshawan/fish-gruvbox]]
 - [[https://github.com/touhidulShawan/exthearchive][touhidulshawan/exthearchive]]
+- [[https://github.com/meaningful-ooo/sponge][meaningful-ooo/sponge]]
