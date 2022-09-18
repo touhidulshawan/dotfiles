@@ -99,27 +99,6 @@ awful.util.tagnames = {
 }
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	-- awful.layout.suit.floating,
-	-- awful.layout.suit.tile.left,
-	-- awful.layout.suit.tile.bottom,
-	-- awful.layout.suit.tile.top,
-	-- awful.layout.suit.fair,
-	-- awful.layout.suit.fair.horizontal,
-	-- awful.layout.suit.spiral,
-	-- awful.layout.suit.spiral.dwindle,
-	-- awful.layout.suit.max,
-	-- awful.layout.suit.max.fullscreen,
-	-- awful.layout.suit.magnifier,
-	-- awful.layout.suit.corner.nw,
-	-- awful.layout.suit.corner.ne,
-	-- awful.layout.suit.corner.sw,
-	-- awful.layout.suit.corner.se,
-	-- lain.layout.cascade,
-	-- lain.layout.cascade.tile,
-	-- lain.layout.centerwork,
-	-- lain.layout.centerwork.horizontal,
-	-- lain.layout.termfair,
-	-- lain.layout.termfair.center
 }
 
 lain.layout.termfair.nmaster = 3
@@ -456,10 +435,6 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey, controlkey }, "l", function()
 		awful.util.spawn("betterlockscreen -l")
 	end, { description = "Lockscreen", group = "lockscreen" }),
-	-- launch emoji
-	awful.key({ modkey }, ".", function()
-		awful.util.spawn("emote")
-	end, { description = "launch emoji", group = "emoji" }),
 	-- launch copyq window
 	awful.key({ modkey }, "a", function()
 		awful.util.spawn("copyq toggle")
