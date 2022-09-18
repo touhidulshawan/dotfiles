@@ -163,6 +163,3 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
-
-;; haskell server
-(setq lsp-haskell-server-path "/usr/bin/haskell-language-server")
