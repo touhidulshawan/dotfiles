@@ -1,5 +1,6 @@
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $HOME/.local/share/gem/ruby/3.0.0/bin $HOME/.rbenv/bin $HOME/.rbenv/shims $fish_user_paths
+
 # Export
 set fish_greeting
 fish_vi_key_bindings

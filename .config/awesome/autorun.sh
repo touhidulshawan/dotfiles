@@ -14,3 +14,4 @@ nitrogen --set-zoom-fill --restore &
 nm-applet &
 copyq &
 pa-applet &
+thunar --daemon &
