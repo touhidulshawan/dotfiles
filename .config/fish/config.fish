@@ -4,7 +4,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.local/share/gem/ruby/3.0.0/bin $H
 # Export
 set fish_greeting
 fish_vi_key_bindings
-set TERM "xterm-256color"
+set TERM "xterm-256color" 
 set BROWSER firefox
 set EDITOR "emacsclient -t -a ''"
 set VISUAL "emacsclient -c -a emacs"
@@ -39,6 +39,7 @@ abbr berry 'yarn set version berry'
 abbr gpkg 'npm install -g eslint prettier prettier-plugin-toml yarn'
 abbr st startx
 abbr del "rm -rf"
+abbr cn config
 
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
