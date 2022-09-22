@@ -203,7 +203,6 @@ function theme.at_screen_connect(s)
 			memory.widget,
 			baticon,
 			bat.widget,
-			spacing = 5,
 			mytextclock,
 		},
 	})
