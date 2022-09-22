@@ -1,4 +1,4 @@
-require'nvim-tree'.setup {
+require 'nvim-tree'.setup {
   auto_reload_on_write = true,
   create_in_closed_folder = false,
   disable_netrw = false,
@@ -16,7 +16,6 @@ require'nvim-tree'.setup {
   view = {
     adaptive_size = false,
     width = 30,
-    height = 30,
     hide_root_folder = false,
     side = "right",
     preserve_window_proportions = false,
