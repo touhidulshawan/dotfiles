@@ -47,7 +47,7 @@ alias stop_wifi='nmcli radio wifi off'
 
 # alias to change wallpaper randomly from folders
 alias wall='feh --bg-fill --randomize ~/Pictures/Anime/*'
-alias wall2='nitrogen --set-zoom-fill --random ~/Pictures/wallpapers'
+alias wall2='feh --bg-fill --randomize ~/Pictures/wallpapers/Gruvbox/*'
 
 # navigation
 alias ..='cd ..'
