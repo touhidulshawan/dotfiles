@@ -64,6 +64,11 @@ alias ll='exa -l --icons --color=always --group-directories-first'
 alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 
+# fetch cheat.sh about various utilities
+function cheat
+    curl cheat.sh/$argv | bat
+end
+
 #alias for copy
 alias cp='cp -r -g -i'
 alias mv='mv -i -g'
