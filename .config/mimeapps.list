@@ -1,6 +1,6 @@
 [Added Associations]
 image/jpeg=userapp-feh -g 1024x576  -. *-54QCS1.desktop;gimp.desktop;org.nomacs.ImageLounge.desktop;
-image/png=userapp-feh -g 1024x576 -. *-M6Z2R1.desktop;gimp.desktop;org.nomacs.ImageLounge.desktop;
+image/png=gimp.desktop;userapp-feh -g 1024x576 -. *-M6Z2R1.desktop;org.nomacs.ImageLounge.desktop;
 inode/directory=mpv.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
