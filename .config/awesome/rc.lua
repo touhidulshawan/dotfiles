@@ -415,10 +415,10 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey, shiftkey }, "b", function()
 		awful.util.spawn("brave --force-device-scale-factor=1")
 	end, { description = "launch brave browser", group = "browser" }),
-	-- Launch thunar file manager
+	-- Launch file manager
 	awful.key({ modkey }, "e", function()
-		awful.util.spawn("thunar")
-	end, { description = "launch thunar file manager", group = "file manager" }),
+		awful.util.spawn("pcmanfm")
+	end, { description = "launch file manager", group = "file manager" }),
 	-- ScreenShot
 	awful.key({}, "Print", function()
 		awful.util.spawn("sh /home/shawan/.local/bin/screenshot")
