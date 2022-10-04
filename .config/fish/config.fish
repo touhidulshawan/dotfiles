@@ -14,7 +14,7 @@ set GIT_EDITOR "emacsclient -t -a ''"
 set --export PIPENV_VENV_IN_PROJECT 1
 
 # set default node version
-set --universal nvm_default_version v18.8.0
+set --universal nvm_default_version v18.10.0
 
 fzf_configure_bindings --directory=\cf
 set fzf_preview_dir_cmd exa --all --color=always --icons
