@@ -112,8 +112,7 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # yt-dlp
 alias yta-best 'yt-dlp --extract-audio --audio-format best --embed-thumbnail '
 alias yta-mp3 'yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --embed-thumbnail '
-alias yt 'yt-dlp --merge-output-format mkv --split-chapters --write-subs'
-alias ytb 'yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
+alias ytv 'yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
 
 # alias to travel directory
 alias drama='cd /run/media/shawan/Stuff/Entertainment/Drama'
