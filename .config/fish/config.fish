@@ -4,7 +4,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.local/share/gem/ruby/3.0.0/bin $f
 # Export
 set fish_greeting
 fish_vi_key_bindings
-set TERM "xterm-256color" 
+set TERM xterm-256color
 set BROWSER firefox
 set EDITOR "emacsclient -t -a ''"
 set VISUAL "emacsclient -c -a emacs"
@@ -110,8 +110,8 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # yt-dlp
-alias yta-best 'yt-dlp --extract-audio --audio-format best --embed-thumbnail '
-alias yta-mp3 'yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --embed-thumbnail '
+alias yta-best 'yt-dlp --extract-audio --audio-format best --split-chapters'
+alias yta-mp3 'yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
 alias ytv 'yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
 
 # alias to travel directory
