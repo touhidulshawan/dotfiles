@@ -27,7 +27,7 @@ theme.wallpaper = theme.confdir .. "/arch.png"
 theme.font = "Hack Nerd Font Bold 9"
 
 theme.bg_normal = black
-theme.bg_focus = blue
+theme.bg_focus = cyan
 theme.bg_urgent = red
 theme.fg_normal = white
 theme.fg_focus = black
