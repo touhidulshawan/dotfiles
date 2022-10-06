@@ -85,6 +85,7 @@ local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-c
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
 local browser = "firefox"
+local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
 awful.util.tagnames = {
@@ -340,10 +341,10 @@ globalkeys = mytable.join(-- Destroy all notifications
 	end, { description = "show calendar", group = "widgets" }),
 	-- Screen brightness
 	awful.key({}, "XF86MonBrightnessUp", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/changebrightness up")
+		awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness up")
 	end, { description = "+5%", group = "hotkeys" }),
 	awful.key({}, "XF86MonBrightnessDown", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/changebrightness down")
+		awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
 	end, { description = "-5%", group = "hotkeys" }),
 	awful.key({ modkey }, "c", function()
 		awful.spawn.with_shell("xsel | xsel -i -b")
@@ -405,7 +406,7 @@ globalkeys = mytable.join(-- Destroy all notifications
 	end, { description = "launch rofi to navigate active window", group = "launcher" }),
 	-- launch power menu
 	awful.key({ modkey, altkey }, "space", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/powermenu")
+		awful.util.spawn("sh " .. home .. "/.local/bin/powermenu")
 	end, { description = "launch power menu in rofi", group = "launcher" }),
 	-- launch Firefox
 	awful.key({ modkey }, "b", function()
@@ -421,15 +422,15 @@ globalkeys = mytable.join(-- Destroy all notifications
 	end, { description = "launch file manager", group = "file manager" }),
 	-- ScreenShot
 	awful.key({}, "Print", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/screenshot")
+		awful.util.spawn("sh " .. home .. "/.local/bin/screenshot")
 	end, { description = "take screenshots", group = "screenshot" }),
 	-- Screenshots by selecting area
 	awful.key({ shiftkey }, "Print", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/screenshot select")
+		awful.util.spawn("sh " .. home .. "/.local/bin/screenshot select")
 	end, { description = "take screenshots by selecting area", group = "screenshot" }),
 	-- Screenshot of focused window
 	awful.key({ controlkey }, "Print", function()
-		awful.util.spawn("sh /home/shawan/.local/bin/screenshot window")
+		awful.util.spawn("sh " .. home .. "/.local/bin/screenshot window")
 	end, { description = "take screenshot focused window", group = "screenshot" }),
 	-- lockscreen
 	awful.key({ modkey, controlkey }, "l", function()
