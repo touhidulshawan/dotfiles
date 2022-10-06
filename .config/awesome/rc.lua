@@ -340,11 +340,11 @@ globalkeys = mytable.join(-- Destroy all notifications
 	end, { description = "show calendar", group = "widgets" }),
 	-- Screen brightness
 	awful.key({}, "XF86MonBrightnessUp", function()
-		os.execute("xbacklight -inc 10")
-	end, { description = "+10%", group = "hotkeys" }),
+		awful.util.spawn("sh /home/shawan/.local/bin/changebrightness up")
+	end, { description = "+5%", group = "hotkeys" }),
 	awful.key({}, "XF86MonBrightnessDown", function()
-		os.execute("xbacklight -dec 10")
-	end, { description = "-10%", group = "hotkeys" }),
+		awful.util.spawn("sh /home/shawan/.local/bin/changebrightness down")
+	end, { description = "-5%", group = "hotkeys" }),
 	awful.key({ modkey }, "c", function()
 		awful.spawn.with_shell("xsel | xsel -i -b")
 	end, { description = "copy terminal to gtk", group = "hotkeys" }),
