@@ -598,15 +598,15 @@ awful.rules.rules = {
 	}, -- Add titlebars to normal clients and dialogs
 	{
 		rule_any = { type = { "normal", "dialog" } },
-		properties = { titlebars_enabled = true },
+		properties = { titlebars_enabled = false },
 	},
 	{
 		rule_any = { class = { "librewolf", "firefox", "Google-chrome", "Chromium", "Brave-browser" } },
-		properties = { screen = 1, tag = "    " },
+		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
 		rule_any = { class = { "Code", "Atom", "VSCodium", "jetbrains-studio", "Emacs" } },
-		properties = { screen = 1, tag = "    " },
+		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
 		rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk" } },
@@ -622,7 +622,7 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "burp-StartBurp", "Wireshark", "Ettercap" } },
-		properties = { screen = 1, tag = "    " }
+		properties = { screen = 1, tag = "    ", switchtotag = true }
 	},
 	{
 		rule_any = {
@@ -644,7 +644,7 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "mpv" } },
-		properties = { screen = 1, tag = "    ", fullscreen = true },
+		properties = { screen = 1, tag = "    ", fullscreen = true, switchtotag = true },
 	},
 	{
 		rule_any = { class = { "Xarchiver", "Gedit", "Catfish" } },
@@ -652,11 +652,11 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
-		properties = { screen = 1, tag = "    " },
+		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
-		rule_any = { class = { "Xfce4-appfinder" } },
-		properties = { screen = 1, floating = true },
+		rule = { name = "Picture-in-Picture" },
+		properties = { sticky = true }
 	},
 }
 
