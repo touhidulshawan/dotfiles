@@ -412,10 +412,6 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey }, "b", function()
 		awful.util.spawn(browser)
 	end, { description = "launch Firefox browser", group = "browser" }),
-	-- launch Brave Browser
-	awful.key({ modkey, shiftkey }, "b", function()
-		awful.util.spawn("brave --force-device-scale-factor=1")
-	end, { description = "launch brave browser", group = "browser" }),
 	-- Launch file manager
 	awful.key({ modkey }, "e", function()
 		awful.util.spawn("pcmanfm")
