@@ -89,7 +89,7 @@ visualizer_in_stereo = "yes"
 ## visualization and audio.
 ##
 #
-#visualizer_sync_interval = 0
+# visualizer_sync_interval = 30
 #
 ##
 ## Note: To enable spectrum frequency visualization you need to compile ncmpcpp
@@ -106,11 +106,11 @@ visualizer_autoscale = "yes"
 
 visualizer_look = "●▮"
 
-visualizer_color = blue, cyan, green, yellow, magenta, red
+# visualizer_color = blue, cyan, green, yellow, magenta, red
 
 ## Alternative subset of 256 colors for terminals that support it.
 ##
-#visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
+# visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
 #
 ##
 ## Note: The next few visualization options apply to the spectrum visualizer.
