@@ -8,7 +8,7 @@ set TERM xterm-256color
 set BROWSER firefox
 set EDITOR "emacsclient -t -a ''"
 set VISUAL "emacsclient -c -a emacs"
-set GIT_EDITOR "emacsclient -t -a ''"
+set GIT_EDITOR "nvim"
 
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
@@ -110,13 +110,8 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # yt-dlp
-alias yta-best 'yt-dlp --extract-audio --audio-format best --split-chapters'
 alias yta-mp3 'yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
 alias ytv 'yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
-
-# alias to travel directory
-alias drama='cd /run/media/shawan/Stuff/Entertainment/Drama'
-alias anime='cd /run/media/shawan/My\ Drive/Entertainment/Animes'
 
 # [bat as MANPAGER]
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
