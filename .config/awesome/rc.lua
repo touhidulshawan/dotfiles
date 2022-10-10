@@ -414,7 +414,7 @@ globalkeys = mytable.join(-- Destroy all notifications
 	end, { description = "launch Firefox browser", group = "browser" }),
 	-- Launch file manager
 	awful.key({ modkey }, "e", function()
-		awful.util.spawn("pcmanfm")
+		awful.util.spawn("thunar")
 	end, { description = "launch file manager", group = "file manager" }),
 	-- ScreenShot
 	awful.key({}, "Print", function()

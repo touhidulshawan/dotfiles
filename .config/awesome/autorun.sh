@@ -14,3 +14,4 @@ feh --bg-fill --randomize ~/Pictures/Anime/* &
 nm-applet &
 copyq &
 pa-applet &
+thunar --daemon &
