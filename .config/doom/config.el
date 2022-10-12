@@ -66,17 +66,6 @@
 (setq delete-by-moving-to-trash t
       trash-directory "~/.local/share/Trash/files/")
 
-;;neotree
-(after! neotree
-  (setq neo-smart-open t
-        neo-window-fixed-size nil
-        neo-window-position 'right))
-(after! doom-themes
-  (setq doom-neotree-enable-variable-pitch t))
-(map! :leader
-      :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
-      :desc "Open directory in neotree" "d n" #'neotree-dir)
-
 ;; dashboard
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
