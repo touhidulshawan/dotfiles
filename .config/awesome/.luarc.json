@@ -6,6 +6,8 @@
         "client",
         "screen",
         "globalkeys",
-        "clientkeys"
+        "clientkeys",
+        "root",
+        "clientbuttons"
     ]
 }
