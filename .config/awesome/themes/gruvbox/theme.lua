@@ -8,14 +8,14 @@ local os = os
 
 --colors
 local black = "#282828"
-local red = "#fb4934"
-local green = "#b8bb26"
-local yellow = "#fabd2f"
-local blue = "#83a598"
-local magenta = "#d3869b"
-local cyan = "#8ec07c"
-local white = "#ebdbb2"
-
+local red = '#cc241d'
+local green = '#98971a'
+local yellow = '#d79921'
+local blue = '#458588'
+local magenta = '#b16286'
+local cyan = '#689d6a'
+local orange = "#d65d0e"
+local white = '#d5c4a1'
 
 -- Bright Colors
 local lightblack2 = "#928374"
@@ -62,7 +62,7 @@ local markup = lain.util.markup
 os.setlocale(os.getenv("LANG"))
 
 local mytextclock = wibox.widget.textclock(
-	markup(blue, "%l:%M:%p") .. markup(lightblack2, " || ") .. markup(green, "%d-%b-%a ")
+	markup(blue, "%l:%M:%p") .. markup(lightblack2, " || ") .. markup(orange, "%d-%b-%a ")
 )
 mytextclock.font = theme.font
 
@@ -144,7 +144,7 @@ theme.mpd = lain.widget.mpd({
 			mpdicon:emit_signal("widget::redraw_needed")
 			mpdicon:emit_signal("widget::layout_changed")
 		end
-		widget:set_markup(markup.fontfg(theme.font, magenta, artist) .. markup.fontfg(theme.font, blue, title))
+		widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, blue, title))
 	end
 })
 
