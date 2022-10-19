@@ -17,10 +17,6 @@ local cyan = '#689d6a'
 local orange = "#d65d0e"
 local white = '#d5c4a1'
 
--- Bright Colors
-local lightblack2 = "#928374"
-local lightblack = "#32302f"
-
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox"
 theme.wallpaper = theme.confdir .. "/arch.png"
@@ -32,7 +28,7 @@ theme.bg_urgent = red
 theme.fg_normal = white
 theme.fg_focus = black
 theme.fg_urgent = black
-theme.bg_systray = lightblack
+theme.bg_systray = black
 theme.border_width = dpi(2)
 theme.border_normal = black
 theme.border_focus = magenta
@@ -62,7 +58,7 @@ local markup = lain.util.markup
 os.setlocale(os.getenv("LANG"))
 
 local mytextclock = wibox.widget.textclock(
-	markup(blue, "%l:%M:%p") .. markup(lightblack2, " || ") .. markup(orange, "%d-%b-%a ")
+	markup(blue, "%l:%M:%p") .. markup(green, " || ") .. markup(orange, "%d-%b-%a ")
 )
 mytextclock.font = theme.font
 
