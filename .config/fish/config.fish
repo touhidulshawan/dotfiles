@@ -35,7 +35,6 @@ abbr down "sudo ip link set dev wlan0 down"
 abbr berry 'yarn set version berry'
 abbr gpkg 'npm install -g eslint prettier prettier-plugin-toml yarn'
 abbr st startx
-abbr del "rm -rf"
 abbr cn config
 
 # alias for wifi on/OFF
@@ -67,9 +66,10 @@ function cheat
 end
 
 #alias for copy
-alias cp='cp -r -g -i'
-alias mv='mv -i -g'
-alias rm='rm -i'
+alias cp='cp -r -g -i -v'
+alias mv='mv -i -g -v'
+alias rm='rm -i -v'
+alias del="rm -rf -v"
 
 # aliash for feh
 alias fh='feh -g 1024x576 -. *'
