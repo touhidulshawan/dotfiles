@@ -28,7 +28,6 @@ abbr e exit
 abbr cl clear
 abbr bt btop
 abbr wl wall
-abbr wll wall2
 abbr n nvim
 abbr up "sudo ip link set dev wlan0 up"
 abbr down "sudo ip link set dev wlan0 down"
@@ -41,9 +40,8 @@ abbr cn config
 alias start_wifi='nmcli radio wifi on'
 alias stop_wifi='nmcli radio wifi off'
 
-# alias to change wallpaper randomly from folders
-alias wall='feh --bg-fill --randomize ~/Pictures/Anime/*'
-alias wall2='feh --bg-fill --randomize ~/Pictures/wallpapers/*'
+# alias to change wallpaper randomly from wallpapers
+alias wall='feh --bg-fill --randomize ~/Pictures/wallpapers/*'
 
 # navigation
 alias ..='cd ..'
