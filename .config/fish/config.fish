@@ -129,5 +129,5 @@ alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 starship init fish | source
 
 # alias to fix tryhackme machine website issues
-alias nm_fix="sudo ip link set dev nm-bridge mtu 1200"
-alias tun_fix="sudo ip link set dev tun0 mtu 1200"
+alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
+alias tunfix="sudo ip link set dev tun0 mtu 1200"
