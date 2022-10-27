@@ -131,3 +131,4 @@ starship init fish | source
 # alias to fix tryhackme machine website issues
 alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
 alias tunfix="sudo ip link set dev tun0 mtu 1200"
+alias tunshow="sudo ip link show dev tun0"
