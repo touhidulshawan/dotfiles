@@ -408,10 +408,18 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey, altkey }, "space", function()
 		awful.util.spawn("sh " .. home .. "/.local/bin/powermenu")
 	end, { description = "launch power menu in rofi", group = "launcher" }),
-	-- launch Firefox
+	-- launch Firefox with Master Profile (default)
 	awful.key({ modkey }, "b", function()
 		awful.util.spawn(browser)
-	end, { description = "launch Firefox browser", group = "browser" }),
+	end, { description = "launch Firefox browser with Master Profile", group = "browser" }),
+	-- launch Firefox with Entertainment Profile
+	awful.key({ modkey, shiftkey }, "e", function()
+		awful.util.spawn(browser .. " -P Entertainment")
+	end, { description = "launch Firefox browser with Entertainment Profile", group = "browser" }),
+	-- launch Firefox with Hack Profile
+	awful.key({ modkey, shiftkey }, "c", function()
+		awful.util.spawn(browser .. " -P Hack")
+	end, { description = "launch Firefox browser with Hack Profile", group = "browser" }),
 	-- launch Firefox private window
 	awful.key({ modkey, shiftkey }, "b", function()
 		awful.util.spawn(browser .. " --private-window")
