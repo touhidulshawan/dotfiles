@@ -114,14 +114,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-# pacman and yay
-alias pacsyu='sudo pacman -Syu'
-alias pacsyyu='sudo pacman -Syyu'
-alias yaysua='yay -Sua --noconfirm'
-alias yaysyu='yay -Syu --noconfirm'
-alias search='yay -Ss'
+# pacman
 alias unlock="sudo rm /var/lib/pacman/db.lck"
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
