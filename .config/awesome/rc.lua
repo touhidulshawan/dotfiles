@@ -56,20 +56,20 @@ local function run_once(cmd_arr)
 end
 
 -- Notification configuration
-naughty.config.defaults["icon_size"] = 100
-naughty.config.padding = 4
-naughty.config.spacing = 1
-
 naughty.config.defaults = {
-	timeout = 5,
+	timeout = 3,
 	text = "",
 	screen = 1,
 	ontop = true,
 	margin = "5",
-	border_width = "2",
+	border_width = 2,
 	position = "top_right",
 	width = 400,
 	max_width = 400,
+	border_color = "#458588",
+	icon_size = 100,
+	padding = 4,
+	spacing = 2
 }
 
 -- {{{ Variable definitions
