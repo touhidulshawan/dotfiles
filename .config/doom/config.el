@@ -1,4 +1,8 @@
 (beacon-mode 1)
+
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
 (add-hook 'after-init-hook 'global-company-mode)
 (keychain-refresh-environment)
 
@@ -12,8 +16,8 @@
 (define-globalized-minor-mode global-rainbow-mode rainbow-mode
   (lambda ()
     (when (not (memq major-mode
-                (list 'org-agenda-mode)))
-     (rainbow-mode 1))))
+                     (list 'org-agenda-mode)))
+      (rainbow-mode 1))))
 (global-rainbow-mode 1 )
 
 (map! :leader
@@ -21,9 +25,9 @@
        :desc "Open dired" "d" #'dired
        :desc "Dired jump to current" "j" #'dired-jump)
       (:after dired
-       (:map dired-mode-map
-        :desc "Peep-dired image previews" "d p" #'peep-dired
-        :desc "Dired view file" "d v" #'dired-view-file)))
+              (:map dired-mode-map
+               :desc "Peep-dired image previews" "d p" #'peep-dired
+               :desc "Dired view file" "d v" #'dired-view-file)))
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
@@ -152,3 +156,4 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
+
