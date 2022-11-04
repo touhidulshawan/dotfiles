@@ -8,7 +8,7 @@ set TERM xterm-256color
 set BROWSER firefox
 set EDITOR "emacsclient -t -a ''"
 set VISUAL "emacsclient -c -a emacs"
-set GIT_EDITOR "nvim"
+set GIT_EDITOR "emacsclient -t -a="
 
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
