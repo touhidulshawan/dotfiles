@@ -75,7 +75,7 @@ alias fh='feh -g 1024x576 -. *'
 alias cat='bat'
 
 # alias for emacs
-alias em='/usr/bin/emacs -nw'
+alias em='emacsclient -t -a='
 alias emacs="emacsclient -c -a 'emacs'"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
