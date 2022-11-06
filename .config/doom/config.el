@@ -157,3 +157,5 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
+(setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
+(setq-hook! 'lua-mode-hook +format-with '/usr/bin/stylua)
