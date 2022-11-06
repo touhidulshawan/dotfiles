@@ -69,7 +69,7 @@ naughty.config.defaults = {
 	border_color = "#458588",
 	icon_size = 100,
 	padding = 4,
-	spacing = 2
+	spacing = 2,
 }
 
 -- {{{ Variable definitions
@@ -348,43 +348,33 @@ globalkeys = mytable.join(-- Destroy all notifications
 		awful.spawn.with_shell("xsel -b | xsel")
 	end, { description = "copy gtk to terminal", group = "hotkeys" }),
 	-- MPD control
-	awful.key({ altkey, "Control" }, "Up",
-		function()
-			os.execute("mpc toggle")
-			beautiful.mpd.update()
-		end,
-		{ description = "mpc toggle", group = "widgets" }),
-	awful.key({ altkey, "Control" }, "Down",
-		function()
-			os.execute("mpc stop")
-			beautiful.mpd.update()
-		end,
-		{ description = "mpc stop", group = "widgets" }),
-	awful.key({ altkey, "Control" }, "Left",
-		function()
-			os.execute("mpc prev")
-			beautiful.mpd.update()
-		end,
-		{ description = "mpc prev", group = "widgets" }),
-	awful.key({ altkey, "Control" }, "Right",
-		function()
-			os.execute("mpc next")
-			beautiful.mpd.update()
-		end,
-		{ description = "mpc next", group = "widgets" }),
-	awful.key({ altkey }, "0",
-		function()
-			local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
-			if beautiful.mpd.timer.started then
-				beautiful.mpd.timer:stop()
-				common.text = common.text .. lain.util.markup.bold("OFF")
-			else
-				beautiful.mpd.timer:start()
-				common.text = common.text .. lain.util.markup.bold("ON")
-			end
-			naughty.notify(common)
-		end,
-		{ description = "mpc on/off", group = "widgets" }),
+	awful.key({ altkey, "Control" }, "Up", function()
+		os.execute("mpc toggle")
+		beautiful.mpd.update()
+	end, { description = "mpc toggle", group = "widgets" }),
+	awful.key({ altkey, "Control" }, "Down", function()
+		os.execute("mpc stop")
+		beautiful.mpd.update()
+	end, { description = "mpc stop", group = "widgets" }),
+	awful.key({ altkey, "Control" }, "Left", function()
+		os.execute("mpc prev")
+		beautiful.mpd.update()
+	end, { description = "mpc prev", group = "widgets" }),
+	awful.key({ altkey, "Control" }, "Right", function()
+		os.execute("mpc next")
+		beautiful.mpd.update()
+	end, { description = "mpc next", group = "widgets" }),
+	awful.key({ altkey }, "0", function()
+		local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
+		if beautiful.mpd.timer.started then
+			beautiful.mpd.timer:stop()
+			common.text = common.text .. lain.util.markup.bold("OFF")
+		else
+			beautiful.mpd.timer:start()
+			common.text = common.text .. lain.util.markup.bold("ON")
+		end
+		naughty.notify(common)
+	end, { description = "mpc on/off", group = "widgets" }),
 	-- User programs
 	-- launch emoji
 	awful.key({ modkey }, ".", function()
@@ -624,11 +614,11 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "zoom " } },
-		properties = { screen = 1, tag = "    " }
+		properties = { screen = 1, tag = "    " },
 	},
 	{
 		rule_any = { class = { "burp-StartBurp", "Wireshark", "Ettercap" } },
-		properties = { screen = 1, tag = "    ", switchtotag = true }
+		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
 		rule_any = {
@@ -662,7 +652,7 @@ awful.rules.rules = {
 	},
 	{
 		rule = { name = "Picture-in-Picture" },
-		properties = { sticky = true }
+		properties = { sticky = true },
 	},
 }
 
