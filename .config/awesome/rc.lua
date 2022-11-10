@@ -454,6 +454,10 @@ clientkeys = mytable.join(
 		description = "toggle floating",
 		group = "client",
 	}),
+	awful.key({ modkey, shiftkey }, "y", awful.placement.centered, {
+		description = "centered floating window",
+		group = "client"
+	}),
 	awful.key({ modkey, controlkey }, "Return", function(c)
 		c:swap(awful.client.getmaster())
 	end, { description = "move to master", group = "client" }),
@@ -590,7 +594,7 @@ awful.rules.rules = {
 				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
-		properties = { floating = true },
+		properties = { floating = true, placement = awful.placement.centered },
 	}, -- Add titlebars to normal clients and dialogs
 	{
 		rule_any = { type = { "normal", "dialog" } },
@@ -635,8 +639,8 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "    " },
 	},
 	{
-		rule_any = { class = { "Image Lounge", "xdman-Main", "feh" } },
-		properties = { floating = true },
+		rule_any = { class = { "Image Lounge", "feh" } },
+		properties = { floating = true, placement = awful.placement.centered },
 	},
 	{
 		rule_any = { class = { "mpv" } },
@@ -644,7 +648,7 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "Xarchiver", "Gedit", "Catfish" } },
-		properties = { screen = 1, tag = "    ", floating = true },
+		properties = { screen = 1, tag = "    ", floating = true, placement = awful.placement.centered },
 	},
 	{
 		rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
