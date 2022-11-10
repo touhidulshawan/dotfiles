@@ -41,7 +41,7 @@ alias start_wifi='nmcli radio wifi on'
 alias stop_wifi='nmcli radio wifi off'
 
 # alias to change wallpaper randomly from wallpapers
-alias wall='feh --bg-fill --randomize ~/Pictures/wallpapers/*'
+alias wall='feh --recursive --bg-fill --randomize ~/Pictures/wallpapers/*'
 
 # navigation
 alias ..='cd ..'
