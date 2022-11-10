@@ -376,6 +376,10 @@ globalkeys = mytable.join(-- Destroy all notifications
 		naughty.notify(common)
 	end, { description = "mpc on/off", group = "widgets" }),
 	-- User programs
+	-- Random wallpapers
+	awful.key({ modkey, shiftkey }, "w", function()
+		awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper")
+	end, { description = "launch emoji", group = "emoji" }),
 	-- launch emoji
 	awful.key({ modkey }, ".", function()
 		awful.util.spawn("emote")
