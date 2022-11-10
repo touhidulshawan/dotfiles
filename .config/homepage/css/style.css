@@ -7,6 +7,7 @@
   --magenta: #d3869b;
   --cyan: #8ec07c;
   --white: #ebdbb2;
+  --lightdark: #3c3836;
 }
 * {
   margin: 0;
@@ -27,8 +28,8 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: repeat(7, 1fr);
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 25px;
+  column-gap: 15px;
 }
 
 .link-wrapper > a {
@@ -38,6 +39,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--lightdark);
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.link-wrapper > a:hover {
+  background: var(--lightdark);
 }
 
 .link-wrapper > a > i {
@@ -83,8 +92,8 @@
 .torrent > i {
   color: var(--cyan);
 }
-.foodpanda > i {
-  color: var(--red);
+.gmail > i {
+  color: var(--blue);
 }
 .fiverr > i {
   color: var(--green);
