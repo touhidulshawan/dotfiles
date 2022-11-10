@@ -82,7 +82,7 @@ Open buffer list    (SPC b i)\
 Open the vterm      (SPC o t)\
 \nOpen dired file manager (SPC d d)   \
 List of keybindings (SPC h b b)")
-  (setq dashboard-startup-banner "~/.config/doom/doom-emacs-dash.png")
+  (setq dashboard-startup-banner "~/.config/doom/cover.png")
   (setq dashboard-center-content nil)
   (setq dashboard-items '((recents . 5)
                           (bookmarks . 5)
@@ -110,7 +110,8 @@ List of keybindings (SPC h b b)")
       :desc "Vterm popup toggle" "v t" #'+vterm/toggle)
 
 ;; Theme
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-gruvbox
+      doom-themes-treemacs-enable-variable-pitch nil)
 (setq doom-gruvbox-dark-variant "hard")
 (setq doom-themes-enable-bold t)
 
@@ -152,9 +153,13 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 
 ;; pyright
 (use-package lsp-pyright
-  :ensure t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
 (setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
+
+(setq projectile-project-search-path '("~/Repositories/")
+      treemacs-position 'right
+      treemacs-width    25
+      )
