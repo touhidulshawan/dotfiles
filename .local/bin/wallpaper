@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# set random wallpaper
+feh --recursive --bg-fill --randomize ~/Pictures/wallpapers/*
