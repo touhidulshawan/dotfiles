@@ -159,7 +159,7 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 
 (setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
 
-(setq projectile-project-search-path '("~/Repositories/")
+(setq projectile-project-search-path '("~/Repositories/" "~/Code/")
       treemacs-position 'right
       treemacs-width    25
       )
