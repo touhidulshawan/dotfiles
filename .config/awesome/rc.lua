@@ -81,6 +81,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
+local fileManger = "thunar"
 local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
@@ -412,6 +413,10 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey, shiftkey }, "b", function()
 		awful.util.spawn(browser .. " --private-window")
 	end, { description = "launch Firefox with private window", group = "browser" }),
+	-- Launch file manager
+	awful.key({ modkey }, "e", function()
+		awful.util.spawn(fileManger)
+	end, { description = "launch file manager", group = "file manager" }),
 	-- ScreenShot
 	awful.key({}, "Print", function()
 		awful.util.spawn("sh " .. home .. "/.local/bin/screenshot")
