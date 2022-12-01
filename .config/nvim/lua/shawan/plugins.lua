@@ -65,6 +65,9 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
 
+	-- code formatter
+	use ('sbdchd/neoformat')
+
 	-- other plugins
 	use("tpope/vim-fugitive")
 	use("phaazon/hop.nvim")
