@@ -8,6 +8,7 @@
   --cyan: #8ec07c;
   --white: #ebdbb2;
   --lightdark: #3c3836;
+  --shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 * {
   margin: 0;
@@ -25,9 +26,10 @@
 }
 
 .wrapper {
+  width: 60%;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(7, 1fr);
   row-gap: 25px;
   column-gap: 15px;
 }
@@ -39,14 +41,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--lightdark);
-  border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top: 1px solid var(--white);
+  border-left: 2px solid var(--white);
+  border-bottom: 4px solid var(--white);
+  border-right: 5px solid var(--white);
+  border-radius: 2px;
+  box-shadow: var(--shadow);
   transition: all 0.3s ease-in-out;
 }
 
-.link-wrapper > a:hover {
-  background: var(--lightdark);
+.link-wrapper > a:hover,
+.link-wrapper > a:focus,
+.link-wrapper > a:active {
+  transform: translateY(5px);
 }
 
 .link-wrapper > a > i {
@@ -87,17 +94,17 @@
   color: var(--blue);
 }
 .drama > i {
-  color: var(--yellow);
+  color: var(--magenta);
 }
 .torrent > i {
   color: var(--cyan);
-}
-.gmail > i {
-  color: var(--blue);
 }
 .fiverr > i {
   color: var(--green);
 }
 .dashboard > i {
   color: var(--red);
+}
+.notion > i {
+  color: var(--yellow);
 }
