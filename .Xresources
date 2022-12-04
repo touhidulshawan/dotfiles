@@ -70,3 +70,5 @@ XTerm*color15: #ebdbb2
 Sxiv.foreground: #ebdbb2
 Sxiv.background: #1d2021
 Sxiv.font: Roboto:style=bold:size=9
+
+Xcursor.theme:Colloid-dark-cursors
