@@ -410,7 +410,7 @@ globalkeys = mytable.join(-- Destroy all notifications
 		awful.util.spawn(browser .. " -P Hack")
 	end, { description = "launch Firefox browser with Hack Profile", group = "browser" }),
 	-- launch Firefox private window
-	awful.key({ modkey, shiftkey }, "b", function()
+	awful.key({ modkey, shiftkey }, "i", function()
 		awful.util.spawn(browser .. " --private-window")
 	end, { description = "launch Firefox with private window", group = "browser" }),
 	-- Launch file manager
