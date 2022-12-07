@@ -379,8 +379,12 @@ globalkeys = mytable.join(-- Destroy all notifications
 	-- User programs
 	-- Random wallpapers
 	awful.key({ modkey, shiftkey }, "w", function()
-		awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper")
-	end, { description = "launch emoji", group = "emoji" }),
+		awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper random")
+	end, { description = "set wallpaper randomly", group = "misc" }),
+	-- select wallpapers
+	awful.key({ modkey, shiftkey }, "s", function()
+		awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper show")
+	end, { description = "view and set wallpaper", group = "misc" }),
 	-- launch emoji
 	awful.key({ modkey }, ".", function()
 		awful.util.spawn("emote")
@@ -617,7 +621,7 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
-		rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk" } },
+		rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk", "qBittorrent" } },
 		properties = { screen = 1, tag = "    " },
 	},
 	{
