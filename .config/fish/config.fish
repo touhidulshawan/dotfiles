@@ -54,10 +54,6 @@ alias ll='exa -l --icons --color=always --group-directories-first'
 alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 
-# fetch cheat.sh about various utilities
-function cheat
-    curl cheat.sh/$argv | bat
-end
 
 #alias for copy
 alias cp='cp -r -g -i -v'
@@ -113,12 +109,28 @@ alias jctl="journalctl -p 3 -xb"
 # pacman
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
-
-starship init fish | source
-
 # alias to fix tryhackme machine website issues
 alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
 alias tunfix="sudo ip link set dev tun0 mtu 1200"
 alias tunshow="sudo ip link show dev tun0"
+
+# bare git repo alias for dotfiles
+alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+
+alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
+
+# search and go to that directory
+function fcd
+    cd (find -type d | fzf)
+end
+
+function open
+    xdg-open (find -type f | fzf)
+end
+
+# fetch cheat.sh about various utilities
+function cheat
+    curl cheat.sh/$argv | bat
+end
+
+starship init fish | source
