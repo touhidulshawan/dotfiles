@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# set random wallpaper
-feh --recursive --bg-fill --randomize ~/Pictures/wallpapers/*
+all_image_path="$HOME/Pictures/wallpapers/*"
+anime_path="$HOME/Pictures/wallpapers/Anime/*"
+
+case "$1" in
+    "show") sxiv -tro $anime_path | xargs feh --bg-fill || exit ;;
+    "random") feh --recursive --bg-fill --randomize "$all_image_path" ;;
+esac
