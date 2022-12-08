@@ -131,8 +131,8 @@ end
 # select file and delete
 function del
     set fileName (find -type f | fzf)
-    if set -q $fileName
-        rm $fileName
+    if string length -q -- $fileName
+        rm -iv $fileName
     end
 end
 
