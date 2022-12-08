@@ -56,10 +56,9 @@ alias lt='exa -aT --icons --color=always --group-directories-first'
 
 
 #alias for copy
-alias cp='cp -r -g -i -v'
-alias mv='mv -i -g -v'
-alias rm='rm -i -v'
-alias del="rm -rf -v"
+alias cp='cp -rivg '
+alias mv='mv -ivg'
+alias rmf="rm -rfv"
 
 # aliash for feh
 alias fh='feh -g 1024x576 -. *'
@@ -124,8 +123,17 @@ function fcd
     cd (find -type d | fzf)
 end
 
+# open file
 function open
     xdg-open (find -type f | fzf)
+end
+
+# select file and delete
+function del
+    set fileName (find -type f | fzf)
+    if set -q $fileName
+        rm $fileName
+    end
 end
 
 # fetch cheat.sh about various utilities
