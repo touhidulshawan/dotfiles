@@ -116,23 +116,23 @@ alias tunshow="sudo ip link show dev tun0"
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
-alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
+alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
 # search and go to that directory
 function fcd
-    cd (find -type d | fzf)
+    cd (find . -type d | fzf) || exit
 end
 
 # open file
 function open
-    xdg-open (find -type f | fzf)
+    xdg-open (find . -type f | fzf) || exit
 end
 
 # select file and delete
 function del
-    set fileName (find -type f | fzf)
+    set fileName (find . -type f | fzf)
     if string length -q -- $fileName
-        rm -iv $fileName
+        rm -iv $fileName || exit
     end
 end
 

@@ -1,52 +1,24 @@
+#!/bin/bash
+
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-  *) return ;;
+*i*) ;;
+*) return ;;
 esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
 ### PATH
 if [ -d "$HOME/.bin" ]; then
-  PATH="$HOME/.bin:$PATH"
+	PATH="$HOME/.bin:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
-
-### ARCHIVE EXTRACTION
-# usage: extract <file>
-extract() {
-  if [ -f $1 ]; then
-    case $1 in
-      *.tar.bz2) tar xjf $1 ;;
-      *.tar.gz) tar xzf $1 ;;
-      *.bz2) bunzip2 $1 ;;
-      *.rar) unrar x $1 ;;
-      *.gz) gunzip $1 ;;
-      *.tar) tar xf $1 ;;
-      *.tbz2) tar xjf $1 ;;
-      *.tgz) tar xzf $1 ;;
-      *.zip) unzip $1 ;;
-      *.Z) uncompress $1 ;;
-      *.7z) 7z x $1 ;;
-      *.deb) ar x $1 ;;
-      *.tar.xz) tar xf $1 ;;
-      *.tar.zst) unzstd $1 ;;
-      *) echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-# alias for wifi on/OFF
-alias start_wifi='nmcli radio wifi on'
-alias stop_wifi='nmcli radio wifi off'
 
 # navigation
 alias ..='cd ..'
@@ -56,11 +28,6 @@ alias .4='cd ../../..'
 alias .5='cd ../../../..'
 alias .6='cd ../../../../..'
 
-# Colorize grep output (good for log files)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
 # alias for my exa command replace for ls
 alias la='exa -al --icons --sort=name --color=always --group-directories-first'
 alias ls='exa -a --icons --sort=name --group-directories-first'
@@ -68,8 +35,20 @@ alias ll='exa -l --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
-alias cat='bat'
+#alias for advanced copy
+alias cp='cp -rg'
+alias mv='mv -ivg'
+alias rmf="rm -rfv"
 
+# aliash for feh
+alias fh='feh -g 1024x576 -. *'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias cat='bat'
 # [bat as MANPAGER]
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -79,27 +58,66 @@ alias e='exit'
 #alias for clear
 alias cl='clear'
 
-# alias for rm
-alias del='sudo rm -r'
+# alias for emacs
+alias em='emacsclient -t -a='
+alias emacs="emacsclient -c -a 'emacs'"
+alias doomsync="~/.emacs.d/bin/doom sync"
+alias doomdoctor="~/.emacs.d/bin/doom doctor"
+alias doomupgrade="~/.emacs.d/bin/doom upgrade"
+alias doompurge="~/.emacs.d/bin/doom purge"
 
-#alias for advanced copy
-alias cp='cp -r -g'
+# alias for neovim
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
-# alias for reboot and shutdown
-alias reboot='sudo reboot'
-alias fuck='sudo shutdown'
+# yt-dlp
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
+alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
 
-# alias pacman
-# alias for update package
-alias update='sudo pacman -Syyu'
-# alias to install pacman packages
-alias install='sudo pacman -S'
-# alias search package
-alias search='sudo pacman -Ss'
-# alias to uninstall packages
-alias uninstall='sudo pacman -Rns'
-alias unlock="sudo rm /var/lib/pacman/db.lck"    # remove pacman lock
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
+# remove pacman lock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
 
-alias config=/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME
+alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
+
+### ARCHIVE EXTRACTION
+extract() {
+	if [ -f "$1" ]; then
+		case $1 in
+		*.tar.bz2) tar xjf "$1" ;;
+		*.tar.gz) tar xzf "$1" ;;
+		*.bz2) bunzip2 "$1" ;;
+		*.rar) unrar x "$1" ;;
+		*.gz) gunzip "$1" ;;
+		*.tar) tar xf "$1" ;;
+		*.tbz2) tar xjf "$1" ;;
+		*.tgz) tar xzf "$1" ;;
+		*.zip) unzip "$1" ;;
+		*.Z) uncompress "$1" ;;
+		*.7z) 7z x "$1" ;;
+		*.deb) ar x "$1" ;;
+		*.tar.xz) tar xf "$1" ;;
+		*.tar.zst) unzstd "$1" ;;
+		*) echo "'$1' cannot be extracted via ex()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+# search and go that directory
+fcd() {
+	cd "$(find . -type d | fzf)" || exit
+}
+
+# open file
+open() {
+	xdg-open "$(find . -type f | fzf)"
+}
+
+del() {
+	filename=$(find . -type f | fzf)
+	if [[ -n "$filename" ]]; then
+		rm -iv "$filename"
+	fi
+}
 eval "$(starship init bash)"
