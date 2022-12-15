@@ -49,8 +49,8 @@ return packer.startup(function(use)
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
-	use("nvim-lua/lsp-status.nvim") -- will remove
-	use("onsails/lspkind-nvim") -- will remove
+	use("nvim-lua/lsp-status.nvim")
+	use("onsails/lspkind-nvim")
 	use("williamboman/nvim-lsp-installer")
 	use("tamago324/nlsp-settings.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -66,7 +66,7 @@ return packer.startup(function(use)
 	use("rafamadriz/friendly-snippets")
 
 	-- code formatter
-	use ('sbdchd/neoformat')
+	use("sbdchd/neoformat")
 
 	-- other plugins
 	use("tpope/vim-fugitive")
