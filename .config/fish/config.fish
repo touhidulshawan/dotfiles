@@ -114,7 +114,7 @@ alias tunfix="sudo ip link set dev tun0 mtu 1200"
 alias tunshow="sudo ip link show dev tun0"
 
 # bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
