@@ -10,11 +10,11 @@ HISTCONTROL=ignoreboth
 
 ### PATH
 if [ -d "$HOME/.bin" ]; then
-	PATH="$HOME/.bin:$PATH"
+    PATH="$HOME/.bin:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
-	PATH="$HOME/.local/bin:$PATH"
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 #ignore upper and lowercase when TAB completion
@@ -82,42 +82,48 @@ alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selectio
 
 ### ARCHIVE EXTRACTION
 extract() {
-	if [ -f "$1" ]; then
-		case $1 in
-		*.tar.bz2) tar xjf "$1" ;;
-		*.tar.gz) tar xzf "$1" ;;
-		*.bz2) bunzip2 "$1" ;;
-		*.rar) unrar x "$1" ;;
-		*.gz) gunzip "$1" ;;
-		*.tar) tar xf "$1" ;;
-		*.tbz2) tar xjf "$1" ;;
-		*.tgz) tar xzf "$1" ;;
-		*.zip) unzip "$1" ;;
-		*.Z) uncompress "$1" ;;
-		*.7z) 7z x "$1" ;;
-		*.deb) ar x "$1" ;;
-		*.tar.xz) tar xf "$1" ;;
-		*.tar.zst) unzstd "$1" ;;
-		*) echo "'$1' cannot be extracted via ex()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+    if [ -f "$1" ]; then
+        case $1 in
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz) tar xzf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.rar) unrar x "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar xf "$1" ;;
+        *.tbz2) tar xjf "$1" ;;
+        *.tgz) tar xzf "$1" ;;
+        *.zip) unzip "$1" ;;
+        *.Z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        *.deb) ar x "$1" ;;
+        *.tar.xz) tar xf "$1" ;;
+        *.tar.zst) unzstd "$1" ;;
+        *) echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 # search and go that directory
 fcd() {
-	cd "$(find . -type d | fzf)" || exit
+    filename=$(find . -type d | fzf)
+    if [[ -n "$filename" ]]; then
+        cd "$filename" || return
+    fi
 }
 
 # open file
 open() {
-	xdg-open "$(find . -type f | fzf)"
+    filename=$(find . -type f | fzf)
+    if [[ -n "$filename" ]]; then
+        xdg-open "$filename"
+    fi
 }
 
 del() {
-	filename=$(find . -type f | fzf)
-	if [[ -n "$filename" ]]; then
-		rm -iv "$filename"
-	fi
+    filename=$(find . -type f | fzf)
+    if [[ -n "$filename" ]]; then
+        rm -iv "$filename"
+    fi
 }
 eval "$(starship init bash)"

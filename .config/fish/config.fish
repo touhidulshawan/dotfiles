@@ -120,12 +120,18 @@ alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -select
 
 # search and go to that directory
 function fcd
-    cd (find . -type d | fzf) || exit
+    set fileName (find . -type d | fzf)
+    if string length -q -- $fileName
+        cd $fileName
+    end
 end
 
 # open file
 function open
-    xdg-open (find . -type f | fzf) || exit
+    set fileName (find . -type f | fzf)
+    if string length -q -- $fileName
+        xdg-open $fileName
+    end
 end
 
 # select file and delete
