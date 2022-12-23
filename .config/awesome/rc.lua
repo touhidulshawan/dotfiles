@@ -437,7 +437,7 @@ globalkeys = mytable.join(-- Destroy all notifications
 		awful.util.spawn("copyq toggle")
 	end, { description = "open copyq window", group = "clipboard" }),
 	-- launch emacs
-	awful.key({ modkey }, "o", function()
+	awful.key({ modkey }, "e", function()
 		awful.util.spawn("emacsclient -c -a 'emacs'")
 	end, { description = "open emacs", group = "editor" })
 )
