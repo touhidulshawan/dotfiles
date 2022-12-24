@@ -106,7 +106,7 @@ extract() {
 }
 # search and go that directory
 fcd() {
-    filename=$(find . -type d | fzf)
+    filename=$(fd . -t d | fzf)
     if [[ -n "$filename" ]]; then
         cd "$filename" || return
     fi
@@ -114,14 +114,14 @@ fcd() {
 
 # open file
 open() {
-    filename=$(find . -type f | fzf)
+    filename=$(fd . -t f | fzf)
     if [[ -n "$filename" ]]; then
         xdg-open "$filename"
     fi
 }
 
 del() {
-    filename=$(find . -type f | fzf)
+    filename=$(fd . -t f | fzf)
     if [[ -n "$filename" ]]; then
         rm -iv "$filename"
     fi
