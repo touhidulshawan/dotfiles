@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-*i*) ;;
-*) return ;;
+    *i*) ;;
+    *) return ;;
 esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -80,25 +80,28 @@ alias unlock="sudo rm /var/lib/pacman/db.lck"
 
 alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--layout=reverse --border --ansi"
+
 ### ARCHIVE EXTRACTION
 extract() {
     if [ -f "$1" ]; then
         case $1 in
-        *.tar.bz2) tar xjf "$1" ;;
-        *.tar.gz) tar xzf "$1" ;;
-        *.bz2) bunzip2 "$1" ;;
-        *.rar) unrar x "$1" ;;
-        *.gz) gunzip "$1" ;;
-        *.tar) tar xf "$1" ;;
-        *.tbz2) tar xjf "$1" ;;
-        *.tgz) tar xzf "$1" ;;
-        *.zip) unzip "$1" ;;
-        *.Z) uncompress "$1" ;;
-        *.7z) 7z x "$1" ;;
-        *.deb) ar x "$1" ;;
-        *.tar.xz) tar xf "$1" ;;
-        *.tar.zst) unzstd "$1" ;;
-        *) echo "'$1' cannot be extracted via ex()" ;;
+            *.tar.bz2) tar xjf "$1" ;;
+            *.tar.gz) tar xzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xf "$1" ;;
+            *.tbz2) tar xjf "$1" ;;
+            *.tgz) tar xzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.Z) uncompress "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *.deb) ar x "$1" ;;
+            *.tar.xz) tar xf "$1" ;;
+            *.tar.zst) unzstd "$1" ;;
+            *) echo "'$1' cannot be extracted via ex()" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -106,7 +109,7 @@ extract() {
 }
 # search and go that directory
 fcd() {
-    filename=$(fd . -t d | fzf)
+    filename=$(fd . -Ht d --color=always | fzf)
     if [[ -n "$filename" ]]; then
         cd "$filename" || return
     fi
@@ -114,14 +117,14 @@ fcd() {
 
 # open file
 open() {
-    filename=$(fd . -t f | fzf)
+    filename=$(fd . -Ht f --color=always | fzf)
     if [[ -n "$filename" ]]; then
         xdg-open "$filename"
     fi
 }
 
 del() {
-    filename=$(fd . -t f | fzf)
+    filename=$(fd . -Ht f --color=always | fzf)
     if [[ -n "$filename" ]]; then
         rm -iv "$filename"
     fi

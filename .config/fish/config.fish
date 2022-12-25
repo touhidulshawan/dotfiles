@@ -113,6 +113,9 @@ alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
 alias tunfix="sudo ip link set dev tun0 mtu 1200"
 alias tunshow="sudo ip link show dev tun0"
 
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--layout=reverse --border --ansi"
+
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
@@ -120,7 +123,7 @@ alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -select
 
 # search and go to that directory
 function fcd
-    set fileName (fd . -t d | fzf)
+    set fileName (fd . -Ht d --color=always | fzf)
     if string length -q -- $fileName
         cd $fileName
     end
@@ -128,7 +131,7 @@ end
 
 # open file
 function open
-    set fileName (fd . -t f | fzf)
+    set fileName (fd . -Ht f --color=always | fzf)
     if string length -q -- $fileName
         xdg-open $fileName
     end
@@ -136,7 +139,7 @@ end
 
 # select file and delete
 function del
-    set fileName (fd . -t f | fzf)
+    set fileName (fd . -Ht f --color=always | fzf)
     if string length -q -- $fileName
         rm -iv $fileName || exit
     end
