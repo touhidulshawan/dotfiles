@@ -118,7 +118,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --border --ansi"
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
+alias getpath="fd . -aHt f | fzf | xclip -selection c"
 
 # search and go to that directory
 function fcd
@@ -141,6 +141,14 @@ function del
     set folderName (fd . -Ht d --color=always | fzf)
     if string length -q -- $folderName
         rm -rfv $folderName || exit
+    end
+end
+
+# select file and delete
+function rmf
+    set filename (fd . -Ht f --color=always | fzf)
+    if string length -q -- $filename
+        rm -rfv $filename || exit
     end
 end
 
