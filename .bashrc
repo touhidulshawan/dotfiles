@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-    *) return ;;
+*i*) ;;
+*) return ;;
 esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -38,7 +38,6 @@ alias l.='exa -a | egrep "^\."'
 #alias for advanced copy
 alias cp='cp -rg'
 alias mv='mv -ivg'
-alias rmf="rm -rfv"
 
 # aliash for feh
 alias fh='feh -g 1024x576 -. *'
@@ -87,21 +86,21 @@ export FZF_DEFAULT_OPTS="--layout=reverse --border --ansi"
 extract() {
     if [ -f "$1" ]; then
         case $1 in
-            *.tar.bz2) tar xjf "$1" ;;
-            *.tar.gz) tar xzf "$1" ;;
-            *.bz2) bunzip2 "$1" ;;
-            *.rar) unrar x "$1" ;;
-            *.gz) gunzip "$1" ;;
-            *.tar) tar xf "$1" ;;
-            *.tbz2) tar xjf "$1" ;;
-            *.tgz) tar xzf "$1" ;;
-            *.zip) unzip "$1" ;;
-            *.Z) uncompress "$1" ;;
-            *.7z) 7z x "$1" ;;
-            *.deb) ar x "$1" ;;
-            *.tar.xz) tar xf "$1" ;;
-            *.tar.zst) unzstd "$1" ;;
-            *) echo "'$1' cannot be extracted via ex()" ;;
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz) tar xzf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.rar) unrar x "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar xf "$1" ;;
+        *.tbz2) tar xjf "$1" ;;
+        *.tgz) tar xzf "$1" ;;
+        *.zip) unzip "$1" ;;
+        *.Z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        *.deb) ar x "$1" ;;
+        *.tar.xz) tar xf "$1" ;;
+        *.tar.zst) unzstd "$1" ;;
+        *) echo "'$1' cannot be extracted via ex()" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -109,9 +108,9 @@ extract() {
 }
 # search and go that directory
 fcd() {
-    filename=$(fd . -Ht d --color=always | fzf)
-    if [[ -n "$filename" ]]; then
-        cd "$filename" || return
+    folderName=$(fd . -Ht d --color=always | fzf)
+    if [[ -n "$folderName" ]]; then
+        cd "$folderName" || return
     fi
 }
 
@@ -124,9 +123,9 @@ open() {
 }
 
 del() {
-    filename=$(fd . -Ht f --color=always | fzf)
-    if [[ -n "$filename" ]]; then
-        rm -iv "$filename"
+    folderName=$(fd . -Ht d --color=always | fzf)
+    if [[ -n "$folderName" ]]; then
+        rm -rfv "$folderName"
     fi
 }
 eval "$(starship init bash)"

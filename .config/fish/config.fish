@@ -58,7 +58,6 @@ alias lt='exa -aT --icons --color=always --group-directories-first'
 #alias for copy
 alias cp='cp -rivg '
 alias mv='mv -ivg'
-alias rmf="rm -rfv"
 
 # aliash for feh
 alias fh='feh -g 1024x576 -. *'
@@ -123,9 +122,9 @@ alias getpath="find . -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -select
 
 # search and go to that directory
 function fcd
-    set fileName (fd . -Ht d --color=always | fzf)
-    if string length -q -- $fileName
-        cd $fileName
+    set folderName (fd . -Ht d --color=always | fzf)
+    if string length -q -- $folderName
+        cd $folderName
     end
 end
 
@@ -137,11 +136,11 @@ function open
     end
 end
 
-# select file and delete
+# select folder and delete
 function del
-    set fileName (fd . -Ht f --color=always | fzf)
-    if string length -q -- $fileName
-        rm -iv $fileName || exit
+    set folderName (fd . -Ht d --color=always | fzf)
+    if string length -q -- $folderName
+        rm -rfv $folderName || exit
     end
 end
 
