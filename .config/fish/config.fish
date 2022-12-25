@@ -73,7 +73,7 @@ alias doomupgrade="~/.emacs.d/bin/doom upgrade"
 alias doompurge="~/.emacs.d/bin/doom purge"
 
 # alias for neovim
-alias v='nvim'
+alias v='fd -t f | fzf | xargs nvim'
 alias vi='nvim'
 alias vim='nvim'
 
