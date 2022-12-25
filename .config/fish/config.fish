@@ -114,9 +114,7 @@ alias tunfix="sudo ip link set dev tun0 mtu 1200"
 alias tunshow="sudo ip link show dev tun0"
 
 export FZF_DEFAULT_COMMAND="fd --type file --color=always"
-export FZF_DEFAULT_OPTS="--color=bg+:#3c3836,bg:#1d2021,spinner:#8ec07c,hl:#83a598
---color=fg:#bdae93,header:#83a598,info:#fabd2f,pointer:#8ec07c
---color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598 --layout=reverse --border --ansi"
+export FZF_DEFAULT_OPTS="--layout=reverse --border --ansi"
 
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
