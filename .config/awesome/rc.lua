@@ -439,7 +439,11 @@ globalkeys = mytable.join(-- Destroy all notifications
 	-- launch emacs
 	awful.key({ modkey }, "e", function()
 		awful.util.spawn("emacsclient -c -a 'emacs'")
-	end, { description = "open emacs", group = "editor" })
+	end, { description = "open emacs", group = "editor" }),
+	-- launch zathura
+	awful.key({ modkey }, "p", function()
+		awful.util.spawn("zathura")
+	end, { description = "open zathura", group = "reader" })
 )
 
 clientkeys = mytable.join(
@@ -619,7 +623,7 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "    " },
 	},
 	{
-		rule_any = { class = { "Gimp-2.10", "obs", "Evince", "Inkscape" } },
+		rule_any = { class = { "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
 		properties = { screen = 1, tag = "    " },
 	},
 	{
