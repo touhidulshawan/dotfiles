@@ -34,6 +34,9 @@ abbr berry 'yarn set version berry'
 abbr gpkg 'npm install -g eslint prettier prettier-plugin-toml yarn'
 abbr st startx
 abbr cn config
+abbr tl trash-list
+abbr rr trash-restore
+abbr td trash-empty
 
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
@@ -136,19 +139,25 @@ function open
     end
 end
 
-# select folder and delete
+# select folder/folders and trash
 function del
-    set folderName (fd . -Ht d --color=always | fzf)
-    if string length -q -- $folderName
-        rm -rfv $folderName || exit
+    set folderNames (fd . -Ht d --color=always | fzf -m)
+    if string length -q -- $folderNames
+        for item in $folderNames
+            trash-put $item
+            echo "$item moved to trash" || exit
+        end
     end
 end
 
-# select file and delete
+# select file/files and trash
 function rmf
-    set filename (fd . -Ht f --color=always | fzf)
-    if string length -q -- $filename
-        rm -rfv $filename || exit
+    set fileNames (fd . -Ht f --color=always | fzf -m)
+    if string length -q -- $fileNames
+        for item in $fileNames
+            trash-put $item
+            echo "$item moved to trash" || exit
+        end
     end
 end
 
