@@ -122,10 +122,4 @@ open() {
     fi
 }
 
-del() {
-    folderName=$(fd . -Ht d --color=always | fzf)
-    if [[ -n "$folderName" ]]; then
-        rm -rfv "$folderName"
-    fi
-}
 eval "$(starship init bash)"
