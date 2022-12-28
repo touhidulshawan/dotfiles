@@ -139,22 +139,11 @@ function open
     end
 end
 
-# select folder/folders and trash
+# select file/s||/folder/s and trash
 function del
-    set folderNames (fd . -Ht d --color=always | fzf -m)
+    set folderNames (fd . -H --color=always | fzf -m)
     if string length -q -- $folderNames
         for item in $folderNames
-            trash-put $item
-            echo "$item moved to trash" || exit
-        end
-    end
-end
-
-# select file/files and trash
-function rmf
-    set fileNames (fd . -Ht f --color=always | fzf -m)
-    if string length -q -- $fileNames
-        for item in $fileNames
             trash-put $item
             echo "$item moved to trash" || exit
         end
