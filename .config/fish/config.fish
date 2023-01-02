@@ -125,7 +125,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias getpath="fd . -aHt f | fzf | xclip -selection c"
 
 # search and go to that directory
-function fcd
+function ff
     set folderName (fd . -Ht d | fzf)
     if string length -q -- $folderName
         cd $folderName
