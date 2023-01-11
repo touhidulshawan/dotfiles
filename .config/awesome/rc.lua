@@ -81,6 +81,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
+local filemanager = "pcmanfm"
 local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
@@ -440,8 +441,12 @@ globalkeys = mytable.join(-- Destroy all notifications
 	awful.key({ modkey }, "a", function()
 		awful.util.spawn("copyq toggle")
 	end, { description = "open copyq window", group = "clipboard" }),
-	-- launch emacs
+	-- launch filemanager
 	awful.key({ modkey }, "e", function()
+		awful.util.spawn(filemanager)
+	end, { description = "open filemanager", group = "tools" }),
+	-- launch emacs
+	awful.key({ modkey }, "o", function()
 		awful.util.spawn("emacsclient -c -a 'emacs'")
 	end, { description = "open emacs", group = "editor" }),
 	-- launch zathura
