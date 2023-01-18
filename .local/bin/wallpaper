@@ -2,8 +2,9 @@
 
 all_image_path="$HOME/Pictures/wallpapers/*"
 anime_path="$HOME/Pictures/wallpapers/Anime/*"
+gruvbox_path="$HOME/Pictures/wallpapers/Gruvbox/*"
 
 case "$1" in
-"show") sxiv -tro $anime_path | xargs feh --bg-fill || exit ;;
-"random") feh --recursive --bg-fill --randomize $all_image_path ;;
+    "show") sxiv -tro $anime_path $gruvbox_path | xargs feh --bg-fill || exit ;;
+    "random") feh --recursive --bg-fill --randomize $all_image_path ;;
 esac
