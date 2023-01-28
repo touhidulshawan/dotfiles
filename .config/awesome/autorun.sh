@@ -8,7 +8,7 @@ run() {
 
 lxsession &
 picom --experimental-backends &
-feh --bg-fill --randomize ~/Pictures/wallpapers/Anime/* &
+feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 /usr/bin/emacs --daemon &
 nm-applet &
 copyq &
