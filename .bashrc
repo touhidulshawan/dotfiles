@@ -107,7 +107,7 @@ extract() {
     fi
 }
 # search and go that directory
-fcd() {
+ff() {
     folderName=$(fd . -Ht d --color=always | fzf)
     if [[ -n "$folderName" ]]; then
         cd "$folderName" || return
