@@ -1,7 +1,12 @@
-(beacon-mode 1)
+;; user information
+(setq user-full-name "Touhidul Shawan"
+      user-mail-address "touhidulshawan@gmail.com")
 
+(beacon-mode 1)
 (global-auto-revert-mode 1)
+(global-subword-mode 1)
 (setq global-auto-revert-non-file-buffers t)
+(setq browse-url-firefox-program "firefox")
 
 (add-hook 'after-init-hook 'global-company-mode)
 (keychain-refresh-environment)
@@ -13,13 +18,14 @@
 ;; enable gravatars on magit
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
-(define-globalized-minor-mode global-rainbow-mode rainbow-mode
-  (lambda ()
-    (when (not (memq major-mode
-                     (list 'org-agenda-mode)))
-      (rainbow-mode 1))))
-(global-rainbow-mode 1 )
+(add-hook! 'rainbow-mode-hook
+  (hl-line-mode (if rainbow-mode -1 +1)))
 
+
+;; sensible line breaking
+(add-hook 'text-mode-hook 'visual-line-mode)
+
+;; dired
 (map! :leader
       (:prefix ("d" . "dired")
        :desc "Open dired" "d" #'dired
@@ -88,10 +94,13 @@
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
+;; auto completion
 (use-package company
   :config
-  (setq company-idle-delay 0.2
-        company-minimum-prefix-length 3))
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 3
+        company-selection-wrap-around t))
+(global-company-mode)
 
 (setq shell-file-name "/bin/fish"
       vterm-max-scrollback 5000)
@@ -99,23 +108,24 @@
 (map! :leader
       :desc "Vterm popup toggle" "v t" #'+vterm/toggle)
 
-;; Theme
+;; theme
 (setq doom-theme 'doom-gruvbox
       doom-themes-treemacs-enable-variable-pitch nil)
 (setq doom-gruvbox-dark-variant "hard")
 (setq doom-themes-enable-bold t)
+(doom-themes-treemacs-config)
 
-;; Enable flashing mode-line on errors
+;; enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 (setq all-the-icons-scale-factor 1)
 
 
-;; Font
+;; font
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 17 :weight 'regular)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 17 :weight 'regular))
 doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'regular)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
+;; this determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
@@ -130,8 +140,6 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-
-;; treemacs
 
 ;; Custom Keymaps
 (map! :leader
@@ -150,6 +158,38 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 (setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
 
 (setq projectile-project-search-path '("~/Repositories/" "~/Code/")
+      treemacs-show-hidden-files nil
+      treemacs-hide-dot-git-directory t
       treemacs-position 'right
       treemacs-width    25
       )
+
+;; Improve org mode looks
+(setq org-startup-indented t
+      org-pretty-entities t
+      org-hide-emphasis-markers t
+      org-startup-with-inline-images t
+      org-image-actual-width '(300))
+
+(use-package org-superstar
+  :config
+  (setq org-superstar-special-todo-items t)
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
+
+(setq yas-triggers-in-field t)
+
+;; lsp tweaks
+(after! lsp-mode
+  (setq lsp-idle-delay 1.0
+        lsp-log-io nil
+        gc-cons-threshold (* 1024 1024 100)) ;; 100MiB
+  (setq lsp-lens-enable t
+        lsp-semantic-tokens-enable t ;; hide unreachable ifdefs
+        lsp-enable-symbol-highlighting t
+        lsp-headerline-breadcrumb-enable nil
+        ;; LSP UI related tweaks
+        lsp-ui-sideline-enable nil
+        lsp-ui-sideline-show-hover nil
+        lsp-ui-sideline-show-symbol nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-ui-sideline-show-code-actions nil))
