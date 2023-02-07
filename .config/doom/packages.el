@@ -11,5 +11,3 @@
 (package! python-pytest)
 (package! python-pylint)
 (package! pyvenv-auto)
-(package! rainbow-mode)
-(package! keychain-environment)

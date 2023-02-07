@@ -9,18 +9,16 @@
 (setq browse-url-firefox-program "firefox")
 
 (add-hook 'after-init-hook 'global-company-mode)
-(keychain-refresh-environment)
 
 ;; jj to escape from insert mode
 (setq-default evil-escape-key-sequence "jj")
-(setq-default evil-escape-delay 0.2)
+;; (setq-default evil-escape-delay 0.2)
 
 ;; enable gravatars on magit
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
 (add-hook! 'rainbow-mode-hook
   (hl-line-mode (if rainbow-mode -1 +1)))
-
 
 ;; sensible line breaking
 (add-hook 'text-mode-hook 'visual-line-mode)
@@ -66,9 +64,9 @@
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 ;; With dired-open plugin, you can launch external programs for certain extensions
 ;; For example, I set all .png files to open in 'nomacs' and all .mp4 files to open in 'mpv'
-(setq dired-open-extensions '(("gif" . "nomacs")
-                              ("jpg" . "nomacs")
-                              ("png" . "nomacs")
+(setq dired-open-extensions '(("gif" . "feh")
+                              ("jpg" . "feh")
+                              ("png" . "feh")
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
 
@@ -164,11 +162,11 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
       treemacs-width    25
       )
 
+(setq inhibit-compacting-font-caches t)
 ;; Improve org mode looks
 (setq org-startup-indented t
       org-pretty-entities t
       org-hide-emphasis-markers t
-      org-startup-with-inline-images t
       org-image-actual-width '(300))
 
 (use-package org-superstar
