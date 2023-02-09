@@ -12,7 +12,7 @@
 
 ;; jj to escape from insert mode
 (setq-default evil-escape-key-sequence "jj")
-;; (setq-default evil-escape-delay 0.2)
+(setq-default evil-escape-delay 0.2)
 
 ;; enable gravatars on magit
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
@@ -108,10 +108,8 @@
 
 ;; theme
 (setq doom-theme 'doom-gruvbox
-      doom-themes-treemacs-enable-variable-pitch nil)
-(setq doom-gruvbox-dark-variant "hard")
-(setq doom-themes-enable-bold t)
-(doom-themes-treemacs-config)
+      doom-gruvbox-dark-variant "hard"
+      doom-themes-enable-bold t)
 
 ;; enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
@@ -155,12 +153,7 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 
 (setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
 
-(setq projectile-project-search-path '("~/Repositories/" "~/Code/")
-      treemacs-show-hidden-files nil
-      treemacs-hide-dot-git-directory t
-      treemacs-position 'right
-      treemacs-width    25
-      )
+(setq projectile-project-search-path '("~/Repositories/" "~/Code/"))
 
 (setq inhibit-compacting-font-caches t)
 ;; Improve org mode looks
