@@ -1,3 +1,8 @@
-plugin/
-lua-language-server/
-.luarc.json
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
