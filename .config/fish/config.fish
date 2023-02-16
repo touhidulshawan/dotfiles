@@ -30,7 +30,6 @@ abbr bt btop
 abbr n nvim
 abbr up "sudo ip link set dev wlan0 up"
 abbr down "sudo ip link set dev wlan0 down"
-abbr berry 'yarn set version berry'
 abbr gpkg 'npm install -g eslint prettier prettier-plugin-toml yarn'
 abbr st startx
 abbr cn config
