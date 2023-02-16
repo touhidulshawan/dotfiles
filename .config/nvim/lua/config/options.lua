@@ -51,4 +51,5 @@ opt.conceallevel = 0
 opt.pumheight = 10
 
 vim.cmd("autocmd InsertEnter * norm zz")
+vim.cmd([[set mouse=]])
 vim.g.python3_host_prog = "/home/shawan/.virtualenvs/myPy/bin/python"
