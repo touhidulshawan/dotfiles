@@ -10,10 +10,6 @@ return {
 	   \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/
   ]]
 
-    local function footer()
-      return "TOUHIDUL SHAWAN"
-    end
-
     opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
     opts.section.buttons.val = {
       opts.button("f", "  Find file", ":Telescope find_files <CR>"),
@@ -23,6 +19,5 @@ return {
       opts.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
       opts.button("q", "  Quit Neovim", ":qa<CR>"),
     }
-    opts.section.footer.val = footer()
   end,
 }
