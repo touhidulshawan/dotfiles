@@ -81,7 +81,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
-local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
 local browser = "firefox"
@@ -150,7 +150,7 @@ awful.util.tasklist_buttons = mytable.join(
 		awful.client.focus.byidx(1)
 	end),
 	awful.button({}, 5, function()
-		awful.client.focus.byidx( -1)
+		awful.client.focus.byidx(-1)
 	end)
 )
 
@@ -209,7 +209,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
 	awful.key({ altkey }, "k", function()
-		awful.client.focus.byidx( -1)
+		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }), -- By-direction client focus
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.global_bydirection("down")
@@ -239,13 +239,13 @@ globalkeys = mytable.join( -- Destroy all notifications
 		awful.client.swap.byidx(1)
 	end, { description = "swap with next client by index", group = "client" }),
 	awful.key({ modkey, shiftkey }, "k", function()
-		awful.client.swap.byidx( -1)
+		awful.client.swap.byidx(-1)
 	end, { description = "swap with previous client by index", group = "client" }),
 	awful.key({ modkey, controlkey }, "j", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
 	awful.key({ modkey, controlkey }, "k", function()
-		awful.screen.focus_relative( -1)
+		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
 	awful.key({ modkey }, "u", awful.client.urgent.jumpto,
 		{ description = "jump to urgent client", group = "client" }),
@@ -253,7 +253,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 		if cycle_prev then
 			awful.client.focus.history.previous()
 		else
-			awful.client.focus.byidx( -1)
+			awful.client.focus.byidx(-1)
 		end
 		if client.focus then
 			client.focus:raise()
@@ -273,7 +273,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 		lain.util.useless_gaps_resize(1)
 	end, { description = "increment useless gaps", group = "tag" }),
 	awful.key({ altkey, controlkey }, "-", function()
-		lain.util.useless_gaps_resize( -1)
+		lain.util.useless_gaps_resize(-1)
 	end, { description = "decrement useless gaps", group = "tag" }),
 	-- Dynamic tagging
 	awful.key({ modkey, shiftkey }, "n", function()
@@ -283,7 +283,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 		lain.util.rename_tag()
 	end, { description = "rename tag", group = "tag" }),
 	awful.key({ modkey, shiftkey }, "Left", function()
-		lain.util.move_tag( -1)
+		lain.util.move_tag(-1)
 	end, { description = "move tag to the left", group = "tag" }),
 	awful.key({ modkey, shiftkey }, "Right", function()
 		lain.util.move_tag(1)
@@ -301,25 +301,25 @@ globalkeys = mytable.join( -- Destroy all notifications
 		awful.tag.incmwfact(0.05)
 	end, { description = "increase master width factor", group = "layout" }),
 	awful.key({ modkey, altkey }, "h", function()
-		awful.tag.incmwfact( -0.05)
+		awful.tag.incmwfact(-0.05)
 	end, { description = "decrease master width factor", group = "layout" }),
 	awful.key({ modkey, shiftkey }, "h", function()
 		awful.tag.incnmaster(1, nil, true)
 	end, { description = "increase the number of master clients", group = "layout" }),
 	awful.key({ modkey, shiftkey }, "l", function()
-		awful.tag.incnmaster( -1, nil, true)
+		awful.tag.incnmaster(-1, nil, true)
 	end, { description = "decrease the number of master clients", group = "layout" }),
 	awful.key({ modkey, controlkey }, "h", function()
 		awful.tag.incncol(1, nil, true)
 	end, { description = "increase the number of columns", group = "layout" }),
 	awful.key({ modkey, controlkey }, "l", function()
-		awful.tag.incncol( -1, nil, true)
+		awful.tag.incncol(-1, nil, true)
 	end, { description = "decrease the number of columns", group = "layout" }),
 	awful.key({ modkey }, "space", function()
 		awful.layout.inc(1)
 	end, { description = "select next", group = "layout" }),
 	awful.key({ modkey, shiftkey }, "space", function()
-		awful.layout.inc( -1)
+		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
 	awful.key({ modkey, controlkey }, "n", function()
 		local c = awful.client.restore()
