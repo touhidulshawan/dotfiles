@@ -6,36 +6,33 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local os = os
 
+--colors
+local black = "#282a36"
+local red = "#ff5555"
+local green = "#50fa7b"
+local yellow = "#f1fa8c"
+local blue = "#6272a4"
+local magenta = "#ff79c6"
+local cyan = "#8be9fd"
+local orange = "#ffb86c"
+local white = "#f8f8f2"
+
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/dracula"
 theme.wallpaper = theme.confdir .. "/arch.png"
 theme.font = "Hack Nerd Font Bold 9"
 
--- default colors
-theme.black = "#282a36"
-theme.red = "#ff5555"
-theme.green = "#50fa7b"
-theme.cyan = "#8be9fd"
-theme.pink = "#ff79c6"
-theme.white = "#f8f8f2"
-theme.yellow = "#f1fa8c"
-theme.orange = "#ffb86c"
-theme.purple = "#bd93f9"
-theme.selection = "#44475a"
-theme.comment = "#6272a4"
-
-
-theme.bg_normal = theme.black
-theme.bg_focus = theme.selection
-theme.bg_urgent = theme.red
-theme.fg_normal = theme.white
-theme.fg_focus = theme.green
-theme.fg_urgent = theme.black
-theme.bg_systray = theme.black
+theme.bg_normal = black
+theme.bg_focus = orange
+theme.bg_urgent = red
+theme.fg_normal = white
+theme.fg_focus = black
+theme.fg_urgent = black
+theme.bg_systray = black
 theme.border_width = dpi(2)
-theme.border_normal = theme.purple
-theme.border_focus = theme.pink
-theme.border_marked = theme.cyan
+theme.border_normal = black
+theme.border_focus = magenta
+theme.border_marked = cyan
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu = theme.confdir .. "/icons/cpu.png"
@@ -59,9 +56,9 @@ theme.useless_gap = dpi(4)
 local markup = lain.util.markup
 
 os.setlocale(os.getenv("LANG"))
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
+
 local mytextclock = wibox.widget.textclock(
-	markup(theme.orange, "%l:%M:%p") .. markup(theme.yellow, " / ") .. markup(theme.red, "%d-%b-%a ")
+	markup(blue, "%l:%M:%p") .. markup(green, " || ") .. markup(orange, "%d-%b-%a ")
 )
 mytextclock.font = theme.font
 
@@ -70,8 +67,8 @@ theme.cal = lain.widget.cal({
 	attach_to = { mytextclock },
 	notification_preset = {
 		font = theme.font,
-		fg = theme.pink,
-		bg = theme.bg_normal,
+		fg = green,
+		bg = black,
 	},
 })
 
@@ -85,17 +82,17 @@ local bat = lain.widget.bat({
 			perc = perc .. " plug"
 		end
 
-		widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+		widget:set_markup(markup.fontfg(theme.font, magenta, perc .. " "))
 	end,
 })
+
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
 	settings = function()
-		widget:set_markup(markup.fontfg(theme.font, theme.green, mem_now.used .. "M"))
+		widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M"))
 	end,
 })
-
 -- tasklist buttons
 local tasklist_buttons = gears.table.join(
 	awful.button({}, 1, function(c)
@@ -143,7 +140,7 @@ theme.mpd = lain.widget.mpd({
 			mpdicon:emit_signal("widget::redraw_needed")
 			mpdicon:emit_signal("widget::layout_changed")
 		end
-		widget:set_markup(markup.fontfg(theme.font, magenta, artist) .. markup.fontfg(theme.font, blue, title))
+		widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, blue, title))
 	end
 })
 
@@ -186,15 +183,16 @@ function theme.at_screen_connect(s)
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
 		{
-		-- Left widgets
+			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			-- s.mylayoutbox,
 			s.mytaglist,
 			s.mypromptbox,
 		},
 		s.mytasklist, -- Middle widget
+		-- nil,
 		{
-		        -- Right widgets
+			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mpdicon,
 			theme.mpd.widget,
