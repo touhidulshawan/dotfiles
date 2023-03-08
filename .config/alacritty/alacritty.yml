@@ -182,7 +182,7 @@ schemes:
 # *dracula
 # *gruvbox-dark
 
-colors: *gruvbox-dark
+colors: *dracula
 
 bell:
   animation: EaseOutExpo
