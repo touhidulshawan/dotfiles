@@ -58,7 +58,7 @@ local markup = lain.util.markup
 os.setlocale(os.getenv("LANG"))
 
 local mytextclock = wibox.widget.textclock(
-	markup(blue, "%l:%M:%p") .. markup(green, " || ") .. markup(orange, "%d-%b-%a ")
+	markup(green, "%l:%M:%p") .. markup(blue, " || ") .. markup(orange, "%d-%b-%a ")
 )
 mytextclock.font = theme.font
 
