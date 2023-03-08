@@ -1,3 +1,4 @@
+fish_config theme choose "Dracula Official"
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $HOME/.local/share/gem/ruby/3.0.0/bin $fish_user_paths
 
@@ -116,7 +117,8 @@ alias tunshow="sudo ip link show dev tun0"
 
 export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_DEFAULT_OPTS="--layout=reverse-list --border=bold --ansi"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
