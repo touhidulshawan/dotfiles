@@ -8,6 +8,7 @@ local naughty = require("naughty")
 local lain = require("lain")
 -- local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local dpi = require("beautiful.xresources").apply_dpi
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table
 
@@ -56,21 +57,24 @@ local function run_once(cmd_arr)
 end
 
 -- Notification configuration
-naughty.config.defaults = {
-	timeout = 3,
-	text = "",
-	screen = 1,
-	ontop = true,
-	margin = "5",
-	border_width = 2,
-	position = "top_right",
-	width = 400,
-	max_width = 400,
-	border_color = "#458588",
-	icon_size = 100,
-	padding = 4,
-	spacing = 2,
+naughty.config.defaults.ontop = true
+naughty.config.defaults.icon_size = dpi(32)
+naughty.config.defaults.timeout = 10
+naughty.config.defaults.hover_timeout = 300
+naughty.config.defaults.title = 'System Notification Title'
+naughty.config.defaults.margin = dpi(16)
+naughty.config.defaults.border_width = 0
+naughty.config.defaults.position = 'top_right'
+
+naughty.config.padding = dpi(8)
+naughty.config.spacing = dpi(8)
+naughty.config.icon_dirs = {
+	'/usr/share/icons/Papirus-Dark/',
+	'/usr/share/icons/Tela',
+	'/usr/share/icons/Tela-blue-dark',
+	'/usr/share/icons/la-capitaine/'
 }
+naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 
 -- {{{ Variable definitions
 local themes = { "gruvbox", "dracula" }
@@ -85,6 +89,7 @@ local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
 local browser = "firefox"
+local filemanager = "pcmanfm"
 local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
@@ -401,6 +406,10 @@ globalkeys = mytable.join( -- Destroy all notifications
 	awful.key({ modkey, altkey }, "space", function()
 		awful.util.spawn("sh " .. home .. "/.local/bin/powermenu")
 	end, { description = "launch power menu in rofi", group = "launcher" }),
+	-- launch gui filemanager
+	awful.key({ modkey }, "e", function()
+		awful.util.spawn(filemanager)
+	end, { description = "launch gui filemanager", group = "application" }),
 	-- launch Firefox with Master Profile (default)
 	awful.key({ modkey }, "b", function()
 		awful.util.spawn(browser)
