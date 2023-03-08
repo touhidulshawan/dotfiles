@@ -61,7 +61,7 @@ naughty.config.defaults.ontop = true
 naughty.config.defaults.icon_size = dpi(32)
 naughty.config.defaults.timeout = 10
 naughty.config.defaults.hover_timeout = 300
-naughty.config.defaults.title = 'System Notification Title'
+-- naughty.config.defaults.title = 'System Notification Title'
 naughty.config.defaults.margin = dpi(16)
 naughty.config.defaults.border_width = 0
 naughty.config.defaults.position = 'top_right'
@@ -79,7 +79,7 @@ naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 -- {{{ Variable definitions
 local themes = { "gruvbox", "dracula" }
 
-local chosen_theme = themes[1]
+local chosen_theme = themes[2]
 local modkey = "Mod4"
 local altkey = "Mod1"
 local controlkey = "Control"
