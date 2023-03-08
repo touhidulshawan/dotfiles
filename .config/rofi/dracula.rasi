@@ -1,6 +1,6 @@
 configuration {
 	modi:               "drun";
-	font:				"SFMono Nerd Font Mono Medium 11";
+	font:		        "JetBrainsMono Nerd Font 10";
 	show-icons:         true;
 	icon-theme: 	    "Papirus Dark";
 	display-drun: 		"";
@@ -22,9 +22,9 @@ configuration {
 }
 
 window {
-	border-radius:      4px;
-	width:			    45%;
-	padding: 			15px;
+	border-radius:      5px;
+	width:			    48%;
+	padding: 			2px;
     border:             3;
 }
 
@@ -32,7 +32,7 @@ prompt {
 	background-color:	@button;
 	enabled:			true;
 	padding:			0.5% 32px 0% -0.5%;
-	font:				"Iosevka Medium 13";
+	font:				"JetBrainsMono Nerd Font 10";
 }
 
 entry {
@@ -47,7 +47,7 @@ inputbar {
 	children:			[ prompt, entry ];
     background-color:   @button;
     expand:             false;
-    border-radius:      6px;
+    border-radius:      5px;
     margin:             0%;
     padding:            10px;
 }
@@ -68,12 +68,13 @@ mainbox {
 
 element {
     	orientation:                    vertical;
-    	padding:                        2% 0% 2% 0%;
+    	padding:                        10px;
+        margin:                         5px;
 }
 
 element-icon {
     	size:                           48px;
-    	horizontal-align:	 	0.5;
+    	horizontal-align:	 	        0.5;
 }
 
 element-text {
