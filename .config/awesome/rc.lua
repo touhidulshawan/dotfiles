@@ -57,15 +57,19 @@ local function run_once(cmd_arr)
 end
 
 -- Notification configuration
-naughty.config.defaults.ontop = true
-naughty.config.defaults.icon_size = dpi(32)
-naughty.config.defaults.timeout = 10
-naughty.config.defaults.hover_timeout = 300
--- naughty.config.defaults.title = 'System Notification Title'
-naughty.config.defaults.margin = dpi(16)
-naughty.config.defaults.border_width = 0
-naughty.config.defaults.position = 'top_right'
-
+naughty.config.defaults = {
+	timeout = 10,
+	hover_timeout = 300,
+	text = "",
+	screen = 1,
+	ontop = true,
+	margin = dpi(16),
+	border_width = 0,
+	position = "top_right",
+	width = 400,
+	max_width = 400,
+	icon_size = dpi(45),
+}
 naughty.config.padding = dpi(8)
 naughty.config.spacing = dpi(8)
 naughty.config.icon_dirs = {
