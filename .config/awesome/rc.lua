@@ -400,11 +400,11 @@ globalkeys = mytable.join( -- Destroy all notifications
 	end, { description = "launch emoji", group = "emoji" }),
 	--  run rofi
 	awful.key({ altkey }, "space", function()
-		awful.util.spawn(" rofi -show drun")
+		awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
 	end, { description = "launch rofi", group = "launcher" }),
 	--  run rofi to navigate all active window
 	awful.key({ altkey, shiftkey }, "space", function()
-		awful.util.spawn("rofi -show window -icon-theme 'Papirus' -show-icons")
+		awful.util.spawn('rofi -show window -icon-theme "Papirus-Dark" -show-icons')
 	end, { description = "launch rofi to navigate active window", group = "launcher" }),
 	-- launch power menu
 	awful.key({ modkey, altkey }, "space", function()
