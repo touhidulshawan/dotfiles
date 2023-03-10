@@ -21,10 +21,13 @@
 ;; sensible line breaking
 (add-hook 'text-mode-hook 'visual-line-mode)
 
-;; active rainbow mode on programming mode and org mode
-(add-hook! org-mode 'rainbow-mode)
-(add-hook! prog-mode 'rainbow-mode)
-
+;; active rainbow on all mode
+(define-globalized-minor-mode global-rainbow-mode rainbow-mode
+  (lambda ()
+    (when (not (memq major-mode
+                (list 'org-agenda-mode)))
+     (rainbow-mode 1))))
+(global-rainbow-mode 1 )
 
 ;; dired
 (map! :leader
