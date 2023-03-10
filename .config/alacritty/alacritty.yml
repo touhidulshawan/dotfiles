@@ -55,7 +55,7 @@ font:
 # gruvbox
 
 import:
-  - "~/.config/alacritty/colorschemes/dracula.yml"
+  - "~/.config/alacritty/colorschemes/gruvbox.yml"
 
 bell:
   animation: EaseOutExpo
