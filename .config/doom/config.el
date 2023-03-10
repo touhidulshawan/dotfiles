@@ -4,7 +4,6 @@
 
 (beacon-mode 1)
 (global-auto-revert-mode 1)
-(global-rainbow-mode 1 )
 (global-subword-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 (setq browse-url-firefox-program "firefox")
@@ -21,6 +20,11 @@
 
 ;; sensible line breaking
 (add-hook 'text-mode-hook 'visual-line-mode)
+
+;; active rainbow mode on programming mode and org mode
+(add-hook! org-mode 'rainbow-mode)
+(add-hook! prog-mode 'rainbow-mode)
+
 
 ;; dired
 (map! :leader
