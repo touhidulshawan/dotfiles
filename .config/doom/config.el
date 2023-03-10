@@ -79,7 +79,7 @@
   :init      ;; tweak dashboard config before loading it
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
-  (setq dashboard-startup-banner "~/.config/doom/dracula.png")
+  (setq dashboard-startup-banner "~/.config/doom/gruvbox.png")
   (setq dashboard-center-content nil)
   (setq dashboard-items '((recents . 8)))
   :config
@@ -107,9 +107,9 @@
       :desc "Vterm popup toggle" "v t" #'+vterm/toggle)
 
 ;; theme
-(setq doom-theme 'doom-dracula)
-      ;; doom-gruvbox-dark-variant "hard"
-      ;; doom-themes-enable-bold t)
+(setq doom-theme 'doom-gruvbox
+      doom-gruvbox-dark-variant "hard"
+      doom-themes-enable-bold t)
 
 ;; enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
