@@ -74,16 +74,13 @@ naughty.config.padding = dpi(8)
 naughty.config.spacing = dpi(8)
 naughty.config.icon_dirs = {
 	'/usr/share/icons/Papirus-Dark/',
-	'/usr/share/icons/Tela',
-	'/usr/share/icons/Tela-blue-dark',
-	'/usr/share/icons/la-capitaine/'
 }
 naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 
 -- {{{ Variable definitions
 local themes = { "gruvbox", "dracula" }
 
-local chosen_theme = themes[2]
+local chosen_theme = themes[1]
 local modkey = "Mod4"
 local altkey = "Mod1"
 local controlkey = "Control"
