@@ -67,7 +67,7 @@ naughty.config.defaults = {
 	border_width = 0,
 	position = "top_right",
 	width = 400,
-	max_width = 400,
+	max_width = 800,
 	icon_size = dpi(75),
 }
 naughty.config.padding = dpi(8)
