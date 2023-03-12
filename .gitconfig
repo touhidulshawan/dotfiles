@@ -4,9 +4,18 @@
     signingkey = touhidulshawan@gmail.com
 [core]
 	editor = emacsclient -t -a=
+    pager = delta
 [init]
 	defaultBranch = main
-
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    light = false
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
 [commit]
     gpgsign = true
 
