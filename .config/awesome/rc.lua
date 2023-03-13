@@ -67,11 +67,11 @@ naughty.config.defaults = {
 	border_width = 0,
 	position = "top_right",
 	width = 400,
-	max_width = 800,
+	max_width = 400,
 	icon_size = dpi(75),
 }
-naughty.config.padding = dpi(8)
-naughty.config.spacing = dpi(8)
+naughty.config.padding = dpi(4)
+naughty.config.spacing = dpi(4)
 naughty.config.icon_dirs = {
 	'/usr/share/icons/Papirus-Dark/',
 }
