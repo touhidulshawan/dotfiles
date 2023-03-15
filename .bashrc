@@ -125,3 +125,4 @@ open() {
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+source /usr/share/nvm/init-nvm.sh
