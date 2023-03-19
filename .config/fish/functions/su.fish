@@ -1,6 +1,5 @@
 #!/usr/bin/fish
 
-# Author: Touhidul Shawan
 # Date Created: 20-03-2023
 # Date Modified: 20-03-2023
 
