@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-	*i*) ;;
-	*) return ;;
+*i*) ;;
+*) return ;;
 esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -137,10 +137,10 @@ _fzf_comprun() {
 	shift
 
 	case "$command" in
-		cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
-		export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
-		ssh) fzf --preview 'dig {}' "$@" ;;
-		*) fzf --preview 'bat -n --color=always {}' "$@" ;;
+	cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
+	export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+	ssh) fzf --preview 'dig {}' "$@" ;;
+	*) fzf --preview 'bat -n --color=always {}' "$@" ;;
 	esac
 }
 
@@ -159,21 +159,21 @@ alias cn=config
 extract() {
 	if [ -f "$1" ]; then
 		case $1 in
-			*.tar.bz2) tar xjf "$1" ;;
-			*.tar.gz) tar xzf "$1" ;;
-			*.bz2) bunzip2 "$1" ;;
-			*.rar) unrar x "$1" ;;
-			*.gz) gunzip "$1" ;;
-			*.tar) tar xf "$1" ;;
-			*.tbz2) tar xjf "$1" ;;
-			*.tgz) tar xzf "$1" ;;
-			*.zip) unzip "$1" ;;
-			*.Z) uncompress "$1" ;;
-			*.7z) 7z x "$1" ;;
-			*.deb) ar x "$1" ;;
-			*.tar.xz) tar xf "$1" ;;
-			*.tar.zst) unzstd "$1" ;;
-			*) echo "'$1' cannot be extracted via ex()" ;;
+		*.tar.bz2) tar xjf "$1" ;;
+		*.tar.gz) tar xzf "$1" ;;
+		*.bz2) bunzip2 "$1" ;;
+		*.rar) unrar x "$1" ;;
+		*.gz) gunzip "$1" ;;
+		*.tar) tar xf "$1" ;;
+		*.tbz2) tar xjf "$1" ;;
+		*.tgz) tar xzf "$1" ;;
+		*.zip) unzip "$1" ;;
+		*.Z) uncompress "$1" ;;
+		*.7z) 7z x "$1" ;;
+		*.deb) ar x "$1" ;;
+		*.tar.xz) tar xf "$1" ;;
+		*.tar.zst) unzstd "$1" ;;
+		*) echo "'$1' cannot be extracted via ex()" ;;
 		esac
 	else
 		echo "'$1' is not a valid file"
@@ -197,4 +197,4 @@ open() {
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
-source /usr/share/nvm/init-nvm.sh
+eval "$(fnm env --use-on-cd)"
