@@ -1,6 +1,6 @@
 colors:
   primary:
-    background: "#282828" # hard: #1d2021
+    background: "#1d2021" # medium: #282828
     foreground: "#ebdbb2"
     bright_foreground: "#fbf1c7"
     dim_foreground: "#a89984"
