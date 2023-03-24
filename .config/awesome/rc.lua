@@ -90,7 +90,7 @@ local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
 local browser = "firefox"
-local filemanager = "pcmanfm"
+local filemanager = "thunar"
 local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
