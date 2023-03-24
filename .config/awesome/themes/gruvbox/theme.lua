@@ -182,7 +182,8 @@ function theme.at_screen_connect(s)
 	-- Add widgets to the wibox
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
-		{ -- Left widgets
+		{
+		-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			-- s.mylayoutbox,
 			s.mytaglist,
@@ -190,7 +191,8 @@ function theme.at_screen_connect(s)
 		},
 		s.mytasklist, -- Middle widget
 		-- nil,
-		{ -- Right widgets
+		{
+		        -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mpdicon,
 			theme.mpd.widget,
