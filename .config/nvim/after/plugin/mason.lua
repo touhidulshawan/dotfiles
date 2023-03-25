@@ -1,2 +1,2 @@
 local option = {noremap = true, silent = true}
-vim.keymap.set("n", "<leader>ll", vim.cmd.Mason, option)
+vim.keymap.set("n", "<leader>mm", vim.cmd.Mason, option)
