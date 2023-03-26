@@ -2,23 +2,13 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
+lsp.nvim_workspace()
+
 lsp.ensure_installed({
   'tsserver',
   'pyright',
   'gopls'
 })
-
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
