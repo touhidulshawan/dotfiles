@@ -12,8 +12,8 @@ local red = '#cc241d'
 local green = '#98971a'
 local yellow = '#d79921'
 local blue = '#458588'
-local magenta = '#b16286'
-local cyan = '#689d6a'
+local purple = '#b16286'
+local aqua = '#689d6a'
 local orange = "#d65d0e"
 local white = '#d5c4a1'
 
@@ -23,7 +23,7 @@ theme.wallpaper = theme.confdir .. "/arch.png"
 theme.font = "Hack Nerd Font Bold 9"
 
 theme.bg_normal = black
-theme.bg_focus = cyan
+theme.bg_focus = aqua
 theme.bg_urgent = red
 theme.fg_normal = white
 theme.fg_focus = black
@@ -31,8 +31,8 @@ theme.fg_urgent = black
 theme.bg_systray = black
 theme.border_width = dpi(2)
 theme.border_normal = black
-theme.border_focus = magenta
-theme.border_marked = cyan
+theme.border_focus = purple
+theme.border_marked = aqua
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu = theme.confdir .. "/icons/cpu.png"
@@ -82,7 +82,7 @@ local bat = lain.widget.bat({
 			perc = perc .. " plug"
 		end
 
-		widget:set_markup(markup.fontfg(theme.font, magenta, perc .. " "))
+		widget:set_markup(markup.fontfg(theme.font, purple, perc .. " "))
 	end,
 })
 
@@ -183,7 +183,7 @@ function theme.at_screen_connect(s)
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
 		{
-		-- Left widgets
+			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			-- s.mylayoutbox,
 			s.mytaglist,
@@ -192,7 +192,7 @@ function theme.at_screen_connect(s)
 		s.mytasklist, -- Middle widget
 		-- nil,
 		{
-		        -- Right widgets
+			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mpdicon,
 			theme.mpd.widget,
