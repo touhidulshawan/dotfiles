@@ -642,7 +642,7 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "    " },
 	},
 	{
-		rule_any = { class = { "burp-StartBurp", "Wireshark", "Ettercap" } },
+		rule_any = { class = { "burp-StartBurp", "Wireshark", "Ettercap", "org-zaproxy-zap-ZAP" } },
 		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
