@@ -41,6 +41,9 @@ abbr td trash-empty
 alias start_wifi='nmcli radio wifi on'
 alias stop_wifi='nmcli radio wifi off'
 
+# alias for ip
+alias ip="ip -c"
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
