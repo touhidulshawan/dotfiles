@@ -3,7 +3,7 @@
 	email = touhidulshawan@gmail.com
     signingkey = touhidulshawan@gmail.com
 [core]
-	editor = emacsclient -t -a=
+	editor = nvim 
     pager = delta
 [init]
 	defaultBranch = main

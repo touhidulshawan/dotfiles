@@ -20,6 +20,12 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+# export
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+export GIT_EDITOR=/usr/bin/nvim
+export SUDO_EDITOR=/usr/bin/nvim
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'

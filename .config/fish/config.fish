@@ -6,9 +6,10 @@ set fish_greeting
 fish_vi_key_bindings
 set TERM xterm-256color
 set BROWSER firefox
-set EDITOR "emacsclient -t -a ''"
-set VISUAL "emacsclient -c -a emacs"
-set GIT_EDITOR "emacsclient -t -a="
+set -x EDITOR "/usr/bin/nvim"
+set -x VISUAL "/usr/bin/nvim"
+set -x GIT_EDITOR "/usr/bin/nvim"
+set -x SUDO_EDITOR "/usr/bin/nvim" 
 
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
@@ -72,10 +73,9 @@ alias cat='bat'
 # alias for emacs
 alias em='emacsclient -t -a='
 alias emacs="emacsclient -c -a 'emacs'"
-alias doomsync="~/.emacs.d/bin/doom sync"
-alias doomdoctor="~/.emacs.d/bin/doom doctor"
-alias doomupgrade="~/.emacs.d/bin/doom upgrade"
-alias doompurge="~/.emacs.d/bin/doom purge"
+alias doomsync="~/.config/emacs/bin/doom sync"
+alias doomdoctor="~/.config/emacs/bin/doom doctor"
+alias doomupgrade="~/.config/emacs/bin/doom upgrade"
 
 # alias for neovim
 alias v='fd -Ht f | fzf | xargs nvim'
