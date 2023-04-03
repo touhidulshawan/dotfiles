@@ -8,6 +8,9 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
+# auto cd
+shopt -s autocd
+
 ### PATH
 if [ -d "$HOME/.bin" ]; then
 	PATH="$HOME/.bin:$PATH"
