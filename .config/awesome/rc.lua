@@ -626,6 +626,10 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
 	{
+		rule = { class = "firefox", name = "Library" },
+		properties = { floating = true, placement = awful.placement.centered }
+	},
+	{
 		rule_any = { class = { "Code", "Atom", "VSCodium", "jetbrains-studio", "Emacs" } },
 		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
