@@ -94,8 +94,6 @@ local filemanager = "thunar"
 local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
--- awful.util.tagnames = { "home", "net", "code", "repo", "files", "tool", "virt", "setting" }
--- awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8" }
 awful.util.tagnames = {
 	"    ",
 	"    ",
