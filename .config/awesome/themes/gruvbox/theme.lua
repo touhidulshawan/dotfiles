@@ -8,6 +8,7 @@ local os = os
 
 --colors
 local black = "#282828"
+local black2 = "#1d2021"
 local red = '#cc241d'
 local green = '#98971a'
 local yellow = '#d79921'
@@ -15,7 +16,8 @@ local blue = '#458588'
 local purple = '#b16286'
 local aqua = '#689d6a'
 local orange = "#d65d0e"
-local white = '#d5c4a1'
+local white = '#ebdbb2'
+local white2 = "#fbf1c7"
 
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox"
@@ -26,11 +28,11 @@ theme.bg_normal = black
 theme.bg_focus = aqua
 theme.bg_urgent = red
 theme.fg_normal = white
-theme.fg_focus = black
+theme.fg_focus = black2
 theme.fg_urgent = black
 theme.bg_systray = black
-theme.border_width = dpi(2)
-theme.border_normal = black
+theme.border_width = 2
+theme.border_normal = black2
 theme.border_focus = purple
 theme.border_marked = aqua
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
@@ -47,11 +49,11 @@ theme.widget_mail = theme.confdir .. "/icons/mail.png"
 theme.widget_batt = theme.confdir .. "/icons/bat.png"
 theme.widget_clock = theme.confdir .. "/icons/clock.png"
 theme.widget_vol = theme.confdir .. "/icons/spkr.png"
-theme.taglist_squares_sel = theme.confdir .. "/icons/square_a.png"
-theme.taglist_squares_unsel = theme.confdir .. "/icons/square_b.png"
+theme.taglist_squares_sel = theme.confdir .. "/taglist/linefw.png"
+theme.taglist_squares_unsel = theme.confdir .. "/taglist/linew.png"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
-theme.useless_gap = dpi(4)
+theme.useless_gap = dpi(5)
 
 local markup = lain.util.markup
 
@@ -161,13 +163,36 @@ function theme.at_screen_connect(s)
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
 	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+	s.mytaglist = awful.widget.taglist {
+		screen  = s,
+		filter  = awful.widget.taglist.filter.all,
+		buttons = awful.util.taglist_buttons
+	}
 
-	-- Create tasklist widget.
+	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist {
-		screen = s,
-		filter = awful.widget.tasklist.filter.currenttags,
-		buttons = tasklist_buttons
+		screen  = s,
+		filter  = awful.widget.tasklist.filter.currenttags,
+		buttons = tasklist_buttons,
+		style   = {
+			shape_border_width = 1,
+			shape_border_color = black2,
+			shape              = gears.shape.rounded_rect,
+		},
+		layout  = {
+			spacing        = 20,
+			spacing_widget = {
+				{
+					forced_width = 5,
+					shape        = gears.shape.circle,
+					widget       = wibox.widget.separator
+				},
+				valign = 'center',
+				halign = 'center',
+				widget = wibox.container.place,
+			},
+			layout         = wibox.layout.flex.horizontal
+		},
 	}
 
 	-- Create the wibox
