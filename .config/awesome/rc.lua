@@ -630,6 +630,10 @@ awful.rules.rules = {
 		properties = { floating = true, placement = awful.placement.centered }
 	},
 	{
+		rule = { class = "burp-StartBurp", name = "Settings" },
+		properties = { floating = true, placement = awful.placement.centered }
+	},
+	{
 		rule_any = { class = { "Code", "Atom", "VSCodium", "jetbrains-studio", "Emacs" } },
 		properties = { screen = 1, tag = "    ", switchtotag = true },
 	},
