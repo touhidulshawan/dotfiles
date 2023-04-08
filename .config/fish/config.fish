@@ -6,10 +6,10 @@ set fish_greeting
 fish_vi_key_bindings
 set TERM xterm-256color
 set BROWSER firefox
-set -x EDITOR "/usr/bin/nvim"
-set -x VISUAL "/usr/bin/nvim"
-set -x GIT_EDITOR "/usr/bin/nvim"
-set -x SUDO_EDITOR "/usr/bin/nvim" 
+set -x EDITOR /usr/bin/nvim
+set -x VISUAL /usr/bin/nvim
+set -x GIT_EDITOR /usr/bin/nvim
+set -x SUDO_EDITOR /usr/bin/nvim
 
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
