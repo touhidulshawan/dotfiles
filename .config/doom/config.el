@@ -162,16 +162,14 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 (setq projectile-project-search-path '("~/Repositories/" "~/Code/"))
 
 (setq inhibit-compacting-font-caches t)
-;; Improve org mode looks
-(setq org-startup-indented t
-      org-pretty-entities t
-      org-hide-emphasis-markers t
-      org-image-actual-width '(300))
 
-(use-package org-superstar
+;; replace +pretty with org-modern
+
+(use-package! org-modern
+  :hook (org-mode . global-org-modern-mode)
   :config
-  (setq org-superstar-special-todo-items t)
-  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
+  (setq org-modern-label-border 0.3))
+
 
 (setq yas-triggers-in-field t)
 
