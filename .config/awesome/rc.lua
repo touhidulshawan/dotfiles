@@ -603,6 +603,7 @@ awful.rules.rules = {
 				"Gcr-prompter",
 				"Lxpolkit",
 				"Emote",
+				"Sxiv",
 			},
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
 			-- and the name shown there might not match defined rules here.
@@ -631,6 +632,10 @@ awful.rules.rules = {
 	},
 	{
 		rule = { class = "burp-StartBurp", name = "Settings" },
+		properties = { floating = true, placement = awful.placement.centered }
+	},
+	{
+		rule = { class = "Sxiv" },
 		properties = { floating = true, placement = awful.placement.centered }
 	},
 	{
