@@ -65,8 +65,11 @@ alias lt='exa -aT --icons --color=always --group-directories-first'
 alias cp='cp -rivg '
 alias mv='mv -ivg'
 
-# aliash for feh
+# alias for feh
 alias fh='feh -g 1024x576 -. *'
+
+# alias for sxiv
+alias sx="sxiv -t -g 1280x720 *"
 
 alias cat='bat'
 
