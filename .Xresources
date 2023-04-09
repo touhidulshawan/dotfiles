@@ -67,7 +67,7 @@ XTerm*color14: #8ec07c
 XTerm*color7:  #a89984
 XTerm*color15: #ebdbb2
 
-Sxiv.foreground: #ebdbb2
+Sxiv.foreground: #bdae93
 Sxiv.background: #1d2021
 Sxiv.font: Roboto:style=bold:size=9
 
