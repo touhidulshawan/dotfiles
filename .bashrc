@@ -166,6 +166,13 @@ alias vaup='vagrant up --provider=libvirt'
 # bare git repo alias for dotfiles
 alias config='/usr/bin/git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}'
 alias cn=config
+alias config=dotbare
+
+# manage bare repository
+source ~/.dotbare/dotbare.plugin.bash
+
+export DOTBARE_DIR="$HOME/.dotfiles"
+export DOTBARE_TREE="$HOME"
 
 ### ARCHIVE EXTRACTION
 extract() {
