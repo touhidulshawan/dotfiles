@@ -133,6 +133,11 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#ebdbb2,bg:#282828,hl:#b16
 
 # bare git repo alias for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+# setup dotbare to make manage bare repo easy
+alias dotbare="$HOME/.dotbare/dotbare"
+alias config=dotbare
+set -x DOTBARE_DIR "$HOME/.dotfiles"
+set -x DOTBARE_TREE "$HOME"
 
 alias getpath="fd . -aHt f | fzf | xclip -selection c"
 
