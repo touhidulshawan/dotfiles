@@ -76,19 +76,18 @@ return packer.startup(function(use)
 	    }
 	}
 
-	-- other plugins
-	use("tpope/vim-fugitive")
-	use("phaazon/hop.nvim")
-
-	use("windwp/nvim-autopairs")
-	use("numToStr/Comment.nvim")
-        use("JoosepAlviste/nvim-ts-context-commentstring")
-	use("norcalli/nvim-colorizer.lua")
-
+	-- code formatter 
+	use ("mhartington/formatter.nvim")
 	-- colorscheme
 	use("gruvbox-community/gruvbox")
 
 	-- other plugins
+	use("windwp/nvim-autopairs")
+	use("numToStr/Comment.nvim")
+        use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("norcalli/nvim-colorizer.lua")
+	use("tpope/vim-fugitive")
+	use("phaazon/hop.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use("folke/trouble.nvim")
 	use {
