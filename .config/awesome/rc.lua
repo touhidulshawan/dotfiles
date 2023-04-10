@@ -73,9 +73,9 @@ naughty.config.defaults = {
 naughty.config.padding = dpi(4)
 naughty.config.spacing = dpi(4)
 naughty.config.icon_dirs = {
-	'/usr/share/icons/Papirus-Dark/',
+	"/usr/share/icons/Papirus-Dark/",
 }
-naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
+naughty.config.icon_formats = { "svg", "png", "jpg", "gif" }
 
 -- {{{ Variable definitions
 local themes = { "gruvbox", "dracula" }
@@ -86,7 +86,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
-local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "emacs"
 local browser = "firefox"
@@ -253,8 +253,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 	awful.key({ modkey, controlkey }, "k", function()
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
-	awful.key({ modkey }, "u", awful.client.urgent.jumpto,
-		{ description = "jump to urgent client", group = "client" }),
+	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
 	awful.key({ modkey }, "Tab", function()
 		if cycle_prev then
 			awful.client.focus.history.previous()
@@ -628,15 +627,15 @@ awful.rules.rules = {
 	},
 	{
 		rule = { class = "firefox", name = "Library" },
-		properties = { floating = true, placement = awful.placement.centered }
+		properties = { floating = true, placement = awful.placement.centered },
 	},
 	{
 		rule = { class = "burp-StartBurp", name = "Settings" },
-		properties = { floating = true, placement = awful.placement.centered }
+		properties = { floating = true, placement = awful.placement.centered },
 	},
 	{
 		rule = { class = "Sxiv" },
-		properties = { floating = true, placement = awful.placement.centered }
+		properties = { floating = true, placement = awful.placement.centered },
 	},
 	{
 		rule_any = { class = { "Code", "Atom", "VSCodium", "jetbrains-studio", "Emacs" } },
