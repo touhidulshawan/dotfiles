@@ -6,6 +6,6 @@ anime_gruvbox_path="$HOME/Pictures/wallpapers/anime-gruvbox/*"
 dracula_path="$HOME/Pictures/wallpapers/dracula/*"
 
 case "$1" in
-    "show") sxiv -tro $anime_path $gruvbox_path $anime_gruvbox_path $dracula_path | xargs feh --bg-fill || exit ;;
+    "show") sxiv -g 1338x719 -tro $anime_path $gruvbox_path $anime_gruvbox_path $dracula_path | xargs feh --bg-fill || exit ;;
     "random") feh --recursive --bg-fill --randomize $anime_path ;;
 esac

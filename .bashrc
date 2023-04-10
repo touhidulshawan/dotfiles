@@ -53,7 +53,7 @@ alias rm='rm -iv'
 alias fh='feh -g 1024x576 -. *'
 
 # alias for sxiv
-alias sx="sxiv -t -g 1280x720 *"
+alias sx="sxiv -t -g 1338x719 *"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
