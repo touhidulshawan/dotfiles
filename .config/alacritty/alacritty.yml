@@ -1,3 +1,7 @@
+import:
+  - "~/.config/alacritty/colorschemes/gruvbox.yml"
+  - "~/.config/alacritty/font.yml"
+
 env:
   TERM: xterm-256color
 window:
@@ -11,51 +15,6 @@ scrolling:
   history: 10000
 
 draw_bold_text_with_bright_colors: true
-
-font:
-  normal:
-    # family: Hack Nerd Font
-    # family: SFMono Nerd Font Mono
-    family: JetBrainsMono Nerd Font
-    style: Regular
-
-  bold:
-    # family: Hack Nerd Font
-    # family: SFMono Nerd Font Mono
-    family: JetBrainsMono Nerd Font
-    style: Bold
-
-  italic:
-    # family: Hack Nerd Font
-    # family: SFMono Nerd Font Mono
-    family: JetBrainsMono Nerd Font
-    style: Italic
-
-  bold_italic:
-    # family: Hack Nerd Font
-    # family: SFMono Nerd Font Mono
-    family: JetBrainsMono Nerd Font
-    style: Bold Italic
-
-  size: 11
-
-  offset:
-    x: 0
-    y: 2
-  glyph_offset:
-    x: 0
-    y: 0
-
-##########################
-##  CHANGE COLORSCHEME  ##
-##########################
-## Available themes are:||
-#=========================
-# dracula
-# gruvbox
-
-import:
-  - "~/.config/alacritty/colorschemes/gruvbox.yml"
 
 bell:
   animation: EaseOutExpo
