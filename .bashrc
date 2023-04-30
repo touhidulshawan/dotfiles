@@ -119,7 +119,7 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
 export FZF_DEFAULT_COMMAND="fd --type f --color=never"
-export FZF_DEFAULT_OPTS=" --height 80% --layout=reverse --border --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f"
+export FZF_DEFAULT_OPTS=" --height 100% --layout=reverse --border --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 
 # Use ~~ as the trigger sequence instead of the default **
