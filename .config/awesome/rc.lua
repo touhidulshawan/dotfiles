@@ -101,7 +101,7 @@ awful.util.tagnames = {
 	"    ",
 	"    ",
 	"    ",
-	"    ",
+	"  󰍹  ",
 	"    ",
 }
 awful.layout.layouts = {
@@ -685,7 +685,7 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
-		properties = { screen = 1, tag = "    ", switchtotag = true },
+		properties = { screen = 1, tag = "  󰍹  ", switchtotag = true },
 	},
 	{
 		rule = { name = "Picture-in-Picture" },
