@@ -9,8 +9,8 @@ run() {
 lxsession &
 picom --experimental-backends &
 feh --bg-fill --randomize ~/Pictures/wallpapers/anime/* &
-/usr/bin/emacs --daemon &
 nm-applet &
 copyq &
 pa-applet &
 xfce4-power-manager &
+emacs --daemon &
