@@ -76,10 +76,8 @@ return packer.startup(function(use)
 	    }
 	}
 
-	-- code formatter 
-	use ("mhartington/formatter.nvim")
 	-- colorscheme
-	use("gruvbox-community/gruvbox")
+	use("morhetz/gruvbox")
 
 	-- other plugins
 	use("windwp/nvim-autopairs")
