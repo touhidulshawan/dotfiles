@@ -6,7 +6,7 @@ lsp.nvim_workspace()
 
 lsp.ensure_installed({
 	"tsserver",
-	"pyright",
+	"pylsp",
 	"gopls",
 })
 
