@@ -151,12 +151,6 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 ;; location of lua-language-server
 (setq lsp-clients-lua-language-server-bin "/usr/bin/lua-language-server")
 
-;; pyright
-(use-package lsp-pyright
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))  ; or lsp-deferred
-
 (setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
 
 (setq projectile-project-search-path '("~/Repositories/" "~/Code/"))
@@ -172,19 +166,3 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
 
 
 (setq yas-triggers-in-field t)
-
-;; lsp tweaks
-(after! lsp-mode
-  (setq lsp-idle-delay 1.0
-        lsp-log-io nil
-        gc-cons-threshold (* 1024 1024 100)) ;; 100MiB
-  (setq lsp-lens-enable t
-        lsp-semantic-tokens-enable t ;; hide unreachable ifdefs
-        lsp-enable-symbol-highlighting t
-        lsp-headerline-breadcrumb-enable nil
-        ;; LSP UI related tweaks
-        lsp-ui-sideline-enable nil
-        lsp-ui-sideline-show-hover nil
-        lsp-ui-sideline-show-symbol nil
-        lsp-ui-sideline-show-diagnostics nil
-        lsp-ui-sideline-show-code-actions nil))
