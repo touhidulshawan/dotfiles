@@ -1,9 +1,18 @@
 -- For Gruvbox Colorscheme
 vim.o.background = "dark"
-vim.g.gruvbox_contrast_dark = "hard"
--- vim.g.gruvbox_transparent_bg = 0
+--[[ vim.g.gruvbox_transparent_bg = 0 ]]
+--[[ vim.g.gruvbox_contrast_dark = "hard" ]]
+-- config for gruvbox-material
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_foreground = "original" -- available value: ['material', 'mix']
+vim.g.gruvbox_material_disable_italic_comment = 1
+vim.g.gruvbox_material_enable_bold = 1
+vim.g.gruvbox_material_transparent_background = 0 -- to enable set 1
+vim.g.gruvbox_material_visual =  "reverse"
+vim.g.gruvbox_material_diagnostic_text_highlight =  1
 
-local colorscheme = "gruvbox"
+local colorscheme = "gruvbox-material"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
