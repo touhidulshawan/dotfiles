@@ -148,10 +148,7 @@ doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'reg
       :desc "Go To word" "j" #'avy-goto-word-0
       :desc "Go to line" "l" #'avy-goto-line)
 
-;; location of lua-language-server
-(setq lsp-clients-lua-language-server-bin "/usr/bin/lua-language-server")
-
-(setq-hook! 'web-mode-hook +format-with '/usr/bin/prettier)
+(setq-hook! 'python-mode-hook +format-with '/usr/bin/black)
 
 (setq projectile-project-search-path '("~/Repositories/" "~/Code/"))
 

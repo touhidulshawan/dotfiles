@@ -137,16 +137,16 @@
        ;; (haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       json               ; At least it ain't XML
+       ;; json               ; At least it ain't XML
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       ;; (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
-       (lua +lsp)                ; one-based indices? one-based indices
-       (markdown +grip)          ; writing docs for people to ignore
+       ;; (lua +lsp)                ; one-based indices? one-based indices
+       ;; (markdown +grip)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -164,13 +164,13 @@
        ;; (rust +lsp)             ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
-       (sh +fish +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
+       ;; (sh +fish +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
-       (yaml +lsp)             ; JSON, but readable
+       ;; web               ; the tubes
+       ;; (yaml +lsp)             ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
