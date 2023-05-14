@@ -5,7 +5,7 @@ vim.o.background = "dark"
 -- config for gruvbox-material
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_better_performance = 1
-vim.g.gruvbox_material_foreground = "original" -- available value: ['material', 'mix']
+vim.g.gruvbox_material_foreground = "original" -- available value: ['material', 'mix', 'original']
 vim.g.gruvbox_material_disable_italic_comment = 1
 vim.g.gruvbox_material_enable_bold = 1
 vim.g.gruvbox_material_transparent_background = 0 -- to enable set 1
