@@ -8,8 +8,7 @@ run() {
 
 lxsession &
 picom --experimental-backends &
-# feh --bg-fill --randomize ~/Pictures/wallpapers/anime/* &
-~/.fehbg &
+feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 nm-applet &
 copyq &
 pa-applet &
