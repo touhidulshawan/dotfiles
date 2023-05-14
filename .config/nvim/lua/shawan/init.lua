@@ -1,4 +1,4 @@
-require("shawan.plugins")
+require("shawan.packer")
 require("shawan.generalSettings")
 require("shawan.remap")
 
