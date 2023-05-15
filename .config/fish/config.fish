@@ -103,8 +103,8 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # yt-dlp
-alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
-alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
+alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --write-subs'
 
 # [bat as MANPAGER]
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
