@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Author: Touhidul Shawan
+# Date Created: 19-05-2023
+# Date Modified: 19-05-2023
+
+# Description
+# Remove all commit histroy from a git repo and reduce the size of the repo
+
+# Usages
+# Clone target repo
+# Cd to target repo
+# Run this script
+
+git checkout --orphan last
+git add -A
+
+# take latest commit
+echo "Enter commit message: "
+read -r commit_message
+git commit -am "${commit_message}"
+
+# delete main branch
+git branch -D main
+
+# merge last branch with main
+git branch -m main
+
+# push changes to origin
+git push -f origin main
+
+git gc --aggressive --prune=all
+
