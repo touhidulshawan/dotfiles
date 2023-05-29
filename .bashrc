@@ -106,8 +106,8 @@ alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-
 alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
 
 # search package and install from pacman
-alias add="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
-alias remove="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+alias add="yay -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
+alias remove="yay -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
 
 # remove pacman lock
 alias unlock="sudo rm /var/lib/pacman/db.lck"

@@ -115,8 +115,8 @@ alias jctl="journalctl -p 3 -xb"
 # unlock pacman
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 # search package and install from pacman
-alias add="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
-alias remove="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+alias add="yay -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
+alias remove="yay -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
 
 # alias to fix tryhackme machine website issues
 alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
