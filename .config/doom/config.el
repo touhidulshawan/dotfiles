@@ -11,15 +11,8 @@
       display-line-numbers 'relative
       yas-triggers-in-field t
       org-directory "~/org/"
-      org-auto-align-tags nil
-      org-tags-column 0
-      org-catch-invisible-edits 'show-and-error
-      org-special-ctrl-a/e t
-      org-insert-heading-respect-content t
-      ;; Org styling, hide markup etc.
       org-hide-emphasis-markers t
       org-pretty-entities t
-      org-ellipsis "…"
       ;; Agenda styling
       org-agenda-tags-column 0
       org-agenda-block-separator ?─
@@ -45,15 +38,8 @@
         :config
         (dashboard-setup-startup-hook)
         (dashboard-modify-heading-icons '((recents . "file-text"))))
-(setq initial-buffer-choice (lambda ()(get-buffer-create "*dashboard"))
-      doom-fallback-buffer-name "*dashboard")
-
-;; org-modern
-(use-package! org-modern
-  :hook (org-mode . global-org-modern-mode)
-  :config
-  (setq org-modern-label-border 0.3))
-
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+(setq doom-fallback-buffer-name "*dashboard*")
 
 ;; custom keys
 (map! :leader
