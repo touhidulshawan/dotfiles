@@ -37,6 +37,7 @@ abbr cn config
 abbr tl trash-list
 abbr rr trash-restore
 abbr td trash-empty
+abbr dcom docker-compose
 
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
@@ -179,6 +180,13 @@ end
 # fetch cheat.sh about various utilities
 function cheat
     curl cheat.sh/$argv | bat
+end
+
+# grab ip address of running docker container
+function dockerip
+    echo "[?] Container ID: "
+    set container_ID (read)
+    docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_ID
 end
 
 starship init fish | source
