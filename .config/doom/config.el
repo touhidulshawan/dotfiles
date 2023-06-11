@@ -10,9 +10,8 @@
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'regular)
       display-line-numbers 'relative
       yas-triggers-in-field t
+      org-startup-with-inline-images t
       org-directory "~/org/"
-      org-hide-emphasis-markers t
-      org-pretty-entities t
       ;; Agenda styling
       org-agenda-tags-column 0
       org-agenda-block-separator ?─
@@ -45,3 +44,7 @@
 (map! :leader
       :desc "Go to word" "j" #'avy-goto-word-0
       :desc "Go to line" "l" #'avy-goto-line)
+
+;; enable org-modern mode per buffer
+(add-hook 'org-mode-hook #'org-modern-mode)
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
