@@ -9,8 +9,10 @@
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 17 :weight 'regular)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24 :weight 'regular)
       display-line-numbers 'relative
-      yas-triggers-in-field t
+      org-src-fontify-natively t
       org-startup-with-inline-images t
+      ;; org-hide-emphasis-markers t
+      ;; org-pretty-entities t
       org-directory "~/org/"
       ;; Agenda styling
       org-agenda-tags-column 0
