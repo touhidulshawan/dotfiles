@@ -21,7 +21,7 @@ local white = '#ebdbb2'
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox"
 theme.wallpaper = theme.confdir .. "/arch.png"
-theme.font = "Hack Nerd Font Bold 11"
+theme.font = "Hack Nerd Font Bold 9"
 
 theme.bg_normal = black
 theme.bg_focus = aqua
