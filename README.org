@@ -1,39 +1,59 @@
-* Awesome Window Manager
+* Introduction
+This repository is being used to store configuration files of my system.
 
-[[.screenshots/home.png]]
+** System Info
+[[./.screenshots/sysinfo.png]]
+
+* Window Manager
+I use [[https://awesomewm.org/][Awesome Window Manger]] in my [[https://www.archlinux.org][Arch Linux]] main working machine
+
+[[./.screenshots/home.png]]
 
 ** Installation
-open a terminal & type
+You can ~clone~ the repository and use one of each configuration or use as bare repository
 
+*** For one of each
+open a terminal & type
 #+begin_SRC sh :results output
 git clone https://github.com/touhidulShawan/dotfiles.git
+
+# suppose only need awesomewm config files
 cp dotfiles/.config/awesome ~/.config/
 #+end_SRC
 
-*** Dependencies
+*** As git bare repository
+#+begin_src sh :results :output
+
+mkdir "$HOME/.dotfiles"
+
+git clone --bare git@github.com:touhidulshawan/dotfiles.git "$HOME/.dotfiles"
+
+config() {
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
+
+config checkout
+config config status.showUntrackedFiles no
+
+#+end_src
+
+*** Dependencies for AwesomeWM
 Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awesome-freedesktop][freedesktop]]
 
 *For me:* I have installed two packages ~lain-git~ & ~awesome-freedesktop-git~ from AUR
 
-** Themes
+** Themes for AwesomeWM
+[[https://github.com/lcpz/awesome-copycats/tree/master/themes/multicolor][multicolor]] theme from [[https://github.com/lcpz/awesome-copycats][awesome-copycats]] with some modification and [[https://github.com/morhetz/gruvbox][Gruvbox Dark]] colorscheme according to my taste.
+
 *** Gruvbox
+[[./.screenshots/home2.png]]
 
-[[.screenshots/home.png]]
+- mpd & ncmpcpp
+  [[./.screenshots/mpd.png]]
 
-mpd & ncmpcpp
-
-[[.screenshots/mpd.png]]
-
-doomemacs
-
-[[.screenshots/doomemacs.png]]
-
-*** Dracula
-[[.screenshots/dracula-home.png]]
-
-[[.screenshots/dracula2.png]]
-
-*** Use the configuration if you want. Thank You 😻
-
-* Credits
-[[https://github.com/lcpz/awesome-copycats/tree/master/themes/multicolor][multicolor]] theme from [[https://github.com/lcpz/awesome-copycats][awesome-copycats]]
+- doomemacs
+  [[./.screenshots/doomemacs.png]]
+*
+#+begin_quote
+Use the configuration if you want. Thank You 🫰
+#+end_quote

@@ -21,16 +21,17 @@ local white = '#ebdbb2'
 local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox"
 theme.wallpaper = theme.confdir .. "/arch.png"
-theme.font = "Hack Nerd Font Bold 9"
+theme.font = "Hack Nerd Font Mono Bold 9"
+theme.taglist_font = "Symbols Nerd Font Mono 9"
 
 theme.bg_normal = black
-theme.bg_focus = aqua
+theme.bg_focus = blue
 theme.bg_urgent = red
 theme.fg_normal = white
-theme.fg_focus = black2
+theme.fg_focus = black
 theme.fg_urgent = black
 theme.bg_systray = black
-theme.border_width = dpi(2)
+theme.border_width = 2
 theme.border_normal = black2
 theme.border_focus = purple
 theme.border_marked = aqua
@@ -52,7 +53,7 @@ theme.taglist_squares_sel = theme.confdir .. "/taglist/linefw.png"
 theme.taglist_squares_unsel = theme.confdir .. "/taglist/linew.png"
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
-theme.useless_gap = dpi(5)
+theme.useless_gap = dpi(4)
 
 local markup = lain.util.markup
 
@@ -198,7 +199,7 @@ function theme.at_screen_connect(s)
     s.mywibox = awful.wibar({
         position = "top",
         screen = s,
-        height = dpi(18),
+        height = 22,
         bg = theme.bg_normal,
         fg = theme.fg_normal,
     })
