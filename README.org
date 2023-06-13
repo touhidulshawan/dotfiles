@@ -2,6 +2,7 @@
 This repository is being used to store configuration files of my system.
 
 ** System Info
+
 [[./.screenshots/sysinfo.png]]
 
 * Window Manager
@@ -42,16 +43,19 @@ Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awes
 
 *For me:* I have installed two packages ~lain-git~ & ~awesome-freedesktop-git~ from AUR
 
-** Themes for AwesomeWM
+** Theme for AwesomeWM
 [[https://github.com/lcpz/awesome-copycats/tree/master/themes/multicolor][multicolor]] theme from [[https://github.com/lcpz/awesome-copycats][awesome-copycats]] with some modification and [[https://github.com/morhetz/gruvbox][Gruvbox Dark]] colorscheme according to my taste.
 
 *** Gruvbox
+
 [[./.screenshots/home2.png]]
 
 - mpd & ncmpcpp
+
   [[./.screenshots/mpd.png]]
 
 - doomemacs
+
   [[./.screenshots/doomemacs.png]]
 *
 #+begin_quote
