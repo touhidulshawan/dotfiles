@@ -25,7 +25,7 @@ theme.font = "Hack Nerd Font Mono Bold 9"
 theme.taglist_font = "Symbols Nerd Font Mono 9"
 
 theme.bg_normal = black
-theme.bg_focus = blue
+theme.bg_focus = green
 theme.bg_urgent = red
 theme.fg_normal = white
 theme.fg_focus = black
@@ -33,7 +33,7 @@ theme.fg_urgent = black
 theme.bg_systray = black
 theme.border_width = 2
 theme.border_normal = black2
-theme.border_focus = purple
+theme.border_focus = blue
 theme.border_marked = aqua
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime = theme.confdir .. "/icons/ac.png"
@@ -142,7 +142,7 @@ theme.mpd = lain.widget.mpd({
             mpdicon:emit_signal("widget::redraw_needed")
             mpdicon:emit_signal("widget::layout_changed")
         end
-        widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, blue, title))
+        widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, aqua, title))
     end
 })
 
