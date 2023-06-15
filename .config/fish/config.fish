@@ -23,7 +23,8 @@ abbr ncm ncmpcpp
 abbr pbc pbcopy
 abbr pbp pbpaste
 abbr py python
-abbr bl bluetoothctl
+abbr blt bluetoothctl
+abbr bl bluetooth
 abbr bm bashmount
 abbr e exit
 abbr cl clear
