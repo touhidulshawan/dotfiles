@@ -1,12 +1,48 @@
 configuration {
-	font:				"Hack Nerd Font 11";
+	font:				"Symbols Nerd Font Mono 16";
 	show-icons:         true;
 }
+
+window{
+    width: 35%;
+    padding: 5px;
+    border: 4px;
+    border-color: #504945;
+}
+
 inputbar {
   children: [entry];
+  border-color: #458588;
+  border: 6px;
+  border-radius: 4px;
 }
 
 listview {
    columns:                        2;
    lines:	                       2;
+   layout:                         vertical;
+}
+
+mainbox{
+    spacing: 0;
+    padding: 20px;
+}
+
+element {
+    orientation:    vertical;
+    padding: 5px;
+    margin: 0px;
+}
+
+element selected{
+background-color: #282828;
+border-radius: 0;
+border: 0px;
+border-color: none;
+color: #b8bb26 ;
+}
+
+element-text{
+    horizontal-align: 0.5;
+    margin: 0;
 }
