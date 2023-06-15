@@ -8,8 +8,7 @@ local os = os
 
 --colors
 local black = "#282828"
-local black2 = "#1d2021"
-local black3 = "#504945"
+local black2 = "#504945"
 local red = "#cc241d"
 local green = "#b8bb26"
 local yellow = "#d79921"
@@ -33,7 +32,7 @@ theme.fg_focus = black
 theme.fg_urgent = black
 theme.bg_systray = black
 theme.border_width = 2
-theme.border_normal = black3
+theme.border_normal = black2
 theme.border_focus = blue
 theme.border_marked = aqua
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
@@ -172,7 +171,7 @@ function theme.at_screen_connect(s)
 		buttons = tasklist_buttons,
 		style = {
 			shape_border_width = 1,
-			shape_border_color = black3,
+			shape_border_color = black2,
 			shape = gears.shape.powerline,
 		},
 		layout = {
