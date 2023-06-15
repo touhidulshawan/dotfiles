@@ -174,20 +174,6 @@ function theme.at_screen_connect(s)
 			shape_border_color = black2,
 			shape = gears.shape.powerline,
 		},
-		layout = {
-			spacing = 15,
-			spacing_widget = {
-				{
-					forced_width = 5,
-					shape = gears.shape.circle,
-					widget = wibox.widget.separator,
-				},
-				valign = "center",
-				halign = "center",
-				widget = wibox.container.place,
-			},
-			layout = wibox.layout.flex.horizontal,
-		},
 		widget_template = {
 			{
 				{
