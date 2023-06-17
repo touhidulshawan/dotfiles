@@ -457,7 +457,11 @@ globalkeys = mytable.join( -- Destroy all notifications
 	-- launch zathura
 	awful.key({ modkey }, "p", function()
 		awful.util.spawn("zathura")
-	end, { description = "open zathura", group = "reader" })
+	end, { description = "open zathura", group = "reader" }),
+    -- launch burpsuite
+    awful.key({ modkey, shiftkey }, "b", function ()
+       awful.util.spawn("burpsuite")
+    end, {description = "open burpsuite", group = "tools"})
 )
 
 clientkeys = mytable.join(
@@ -654,11 +658,11 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "" },
 	},
 	{
-		rule_any = { class = { "zoom " } },
+		rule_any = { class = { "burp-StartBurp" } },
 		properties = { screen = 1, tag = "" },
 	},
 	{
-		rule_any = { class = { "burp-StartBurp", "Wireshark", "Ettercap", "org-zaproxy-zap-ZAP" } },
+		rule_any = { class = { "Wireshark", "Ettercap", "org-zaproxy-zap-ZAP" } },
 		properties = { screen = 1, tag = "", switchtotag = true },
 	},
 	{
