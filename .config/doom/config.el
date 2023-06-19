@@ -11,8 +11,8 @@
       display-line-numbers 'relative
       org-src-fontify-natively t
       org-startup-with-inline-images t
-      ;; org-hide-emphasis-markers t
-      ;; org-pretty-entities t
+      org-hide-emphasis-markers t
+      org-pretty-entities t
       org-directory "~/org/"
       ;; Agenda styling
       org-agenda-tags-column 0
