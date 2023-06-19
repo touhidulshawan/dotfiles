@@ -5,6 +5,9 @@ image/png=userapp-feh -g 1024x576 -. *-M6Z2R1.desktop
 text/plain=nvim.desktop
 inode/directory=thunar.desktop
 video/x-matroska=mpv.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-5O1A61.desktop
+message/rfc822=userapp-Thunderbird-5O1A61.desktop
+x-scheme-handler/mid=userapp-Thunderbird-5O1A61.desktop
 
 [Added Associations]
 application/pdf=org.gnome.Evince.desktop;firefox.desktop;org.pwmt.zathura.desktop;
@@ -17,3 +20,5 @@ image/webp=gimp.desktop;
 text/plain=nvim.desktop;mpv.desktop;
 application/vnd.sqlite3=cherrytree.desktop;
 audio/mpeg=easytag.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-5O1A61.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-5O1A61.desktop;
