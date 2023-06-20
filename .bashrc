@@ -103,7 +103,7 @@ alias jctl='journalctl -p 3 -xb'
 
 # yt-dlp
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
-alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mkv --split-chapters --write-subs'
+alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mp4 --split-chapters --write-subs'
 
 # search package and install from pacman
 alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
