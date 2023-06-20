@@ -95,15 +95,15 @@ local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
 awful.util.tagnames = {
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "󰍹",
-    "",
-    "",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    " 󰍹 ",
+    "  ",
+    "  ",
 }
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -636,7 +636,7 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "librewolf", "firefox", "Google-chrome", "Chromium", "Brave-browser" } },
-        properties = { screen = 1, tag = "", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
         rule = { class = "firefox", name = "Library" },
@@ -652,23 +652,23 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "Code", "Atom", "VSCodium", "jetbrains-studio", "Emacs" } },
-        properties = { screen = 1, tag = "", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
         rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk", "qBittorrent" } },
-        properties = { screen = 1, tag = "" },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
-        properties = { screen = 1, tag = "" },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "burp-StartBurp" } },
-        properties = { screen = 1, tag = "" },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "Wireshark", "Ettercap", "org-zaproxy-zap-ZAP" } },
-        properties = { screen = 1, tag = "", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
         rule_any = {
@@ -682,7 +682,7 @@ awful.rules.rules = {
                 "GParted",
             },
         },
-        properties = { screen = 1, tag = "" },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "Image Lounge", "feh" } },
@@ -690,15 +690,15 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "mpv" } },
-        properties = { screen = 1, tag = "", fullscreen = true, switchtotag = true },
+        properties = { screen = 1, tag = "  ", fullscreen = true, switchtotag = true },
     },
     {
         rule_any = { class = { "Xarchiver", "Gedit", "Catfish" } },
-        properties = { screen = 1, tag = "", floating = true, placement = awful.placement.centered },
+        properties = { screen = 1, tag = "  ", floating = true, placement = awful.placement.centered },
     },
     {
         rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
-        properties = { screen = 1, tag = "󰍹", switchtotag = true },
+        properties = { screen = 1, tag = " 󰍹 ", switchtotag = true },
     },
     {
         rule = { name = "Picture-in-Picture" },
@@ -706,7 +706,7 @@ awful.rules.rules = {
     },
     {
         rule = { class = "thunderbird" },
-        properties = { screen = 1, tag = "", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
 }
 
