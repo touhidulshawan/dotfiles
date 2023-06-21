@@ -1,11 +1,9 @@
 #!/bin/bash
 
-anime_path="$HOME/Pictures/wallpapers/anime/*"
-gruvbox_path="$HOME/Pictures/wallpapers/gruvbox/*"
-anime_gruvbox_path="$HOME/Pictures/wallpapers/anime-gruvbox/*"
-dracula_path="$HOME/Pictures/wallpapers/dracula/*"
+wallpaper_directory=$HOME/Pictures/wallpapers/
 
 case "$1" in
-    "show") sxiv -g 1338x719 -tro $anime_path $gruvbox_path $anime_gruvbox_path $dracula_path | xargs feh --bg-fill || exit ;;
-    "random") feh --recursive --bg-fill --randomize $anime_path ;;
+    "show") sxiv -g 1338x719 -tro "$wallpaper_directory" | xargs feh --bg-fill || exit ;;
+    "random") feh --recursive --bg-fill --randomize "$wallpaper_directory" ;;
 esac
+
