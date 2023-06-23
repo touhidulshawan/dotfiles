@@ -33,7 +33,7 @@ theme.fg_urgent = black
 theme.bg_systray = black
 theme.border_width = 2
 theme.border_normal = black2
-theme.border_focus = blue
+theme.border_focus = purple
 theme.border_marked = aqua
 theme.widget_temp = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime = theme.confdir .. "/icons/ac.png"
@@ -60,176 +60,176 @@ local markup = lain.util.markup
 os.setlocale(os.getenv("LANG"))
 
 local mytextclock =
-	wibox.widget.textclock(markup(blue, "%l:%M:%p") .. markup(green, " || ") .. markup(orange, "%d-%b-%a "))
+    wibox.widget.textclock(markup(blue, "%l:%M:%p") .. markup(green, " || ") .. markup(orange, "%d-%b-%a "))
 mytextclock.font = theme.font
 
 -- calender
 theme.cal = lain.widget.cal({
-	attach_to = { mytextclock },
-	notification_preset = {
-		font = theme.font,
-		fg = green,
-		bg = black,
-	},
+    attach_to = { mytextclock },
+    notification_preset = {
+        font = theme.font,
+        fg = green,
+        bg = black,
+    },
 })
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
-	settings = function()
-		local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
-		if bat_now.ac_status == 1 then
-			perc = perc .. " plug"
-		end
+        if bat_now.ac_status == 1 then
+            perc = perc .. " plug"
+        end
 
-		widget:set_markup(markup.fontfg(theme.font, purple, perc .. " "))
-	end,
+        widget:set_markup(markup.fontfg(theme.font, purple, perc .. " "))
+    end,
 })
 
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
-	settings = function()
-		widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M"))
-	end,
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M"))
+    end,
 })
 -- tasklist buttons
 local tasklist_buttons = gears.table.join(
-	awful.button({}, 1, function(c)
-		if c == client.focus then
-			c.minimized = true
-		else
-			c:emit_signal("request::activate", "tasklist", { raise = true })
-		end
-	end),
-	awful.button({}, 3, function()
-		awful.menu.client_list({ theme = { width = 250 } })
-	end),
-	awful.button({}, 4, function()
-		awful.client.focus.byidx(1)
-	end),
-	awful.button({}, 5, function()
-		awful.client.focus.byidx(-1)
-	end)
+    awful.button({}, 1, function(c)
+        if c == client.focus then
+            c.minimized = true
+        else
+            c:emit_signal("request::activate", "tasklist", { raise = true })
+        end
+    end),
+    awful.button({}, 3, function()
+        awful.menu.client_list({ theme = { width = 250 } })
+    end),
+    awful.button({}, 4, function()
+        awful.client.focus.byidx(1)
+    end),
+    awful.button({}, 5, function()
+        awful.client.focus.byidx(-1)
+    end)
 )
 
 -- MPD
 local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
-	settings = function()
-		mpd_notification_preset = {
-			text = string.format("%s [%s] - %s\n%s", mpd_now.artist, mpd_now.album, mpd_now.date, mpd_now.title),
-		}
+    settings = function()
+        mpd_notification_preset = {
+            text = string.format("%s [%s] - %s\n%s", mpd_now.artist, mpd_now.album, mpd_now.date, mpd_now.title),
+        }
 
-		if mpd_now.state == "play" then
-			artist = mpd_now.artist .. " > "
-			title = mpd_now.title .. " "
-			mpdicon:set_image(theme.widget_note_on)
-		elseif mpd_now.state == "pause" then
-			artist = "mpd "
-			title = "paused "
-		else
-			artist = ""
-			title = ""
-			--mpdicon:set_image() -- not working in 4.0
-			mpdicon._private.image = nil
-			mpdicon:emit_signal("widget::redraw_needed")
-			mpdicon:emit_signal("widget::layout_changed")
-		end
-		widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, aqua, title))
-	end,
+        if mpd_now.state == "play" then
+            artist = mpd_now.artist .. " > "
+            title = mpd_now.title .. " "
+            mpdicon:set_image(theme.widget_note_on)
+        elseif mpd_now.state == "pause" then
+            artist = "mpd "
+            title = "paused "
+        else
+            artist = ""
+            title = ""
+            --mpdicon:set_image() -- not working in 4.0
+            mpdicon._private.image = nil
+            mpdicon:emit_signal("widget::redraw_needed")
+            mpdicon:emit_signal("widget::layout_changed")
+        end
+        widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, aqua, title))
+    end,
 })
 
 function theme.at_screen_connect(s)
-	-- Quake application
-	s.quake = lain.util.quake({ app = awful.util.terminal })
+    -- Quake application
+    s.quake = lain.util.quake({ app = awful.util.terminal })
 
-	-- If wallpaper is a function, call it with the screen
-	local wallpaper = theme.wallpaper
-	if type(wallpaper) == "function" then
-		wallpaper = wallpaper(s)
-	end
-	gears.wallpaper.maximized(wallpaper, s, true)
+    -- If wallpaper is a function, call it with the screen
+    local wallpaper = theme.wallpaper
+    if type(wallpaper) == "function" then
+        wallpaper = wallpaper(s)
+    end
+    gears.wallpaper.maximized(wallpaper, s, true)
 
-	-- Tags
-	awful.tag(awful.util.tagnames, s, awful.layout.layouts)
+    -- Tags
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
 
-	-- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
-	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.all,
-		buttons = awful.util.taglist_buttons,
-	})
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist({
+        screen = s,
+        filter = awful.widget.taglist.filter.all,
+        buttons = awful.util.taglist_buttons,
+    })
 
-	-- Create a tasklist widget
-	s.mytasklist = awful.widget.tasklist({
-		screen = s,
-		filter = awful.widget.tasklist.filter.currenttags,
-		buttons = tasklist_buttons,
-		style = {
-			shape_border_width = 1,
-			shape_border_color = black2,
-			shape = gears.shape.powerline,
-		},
-		widget_template = {
-			{
-				{
-					{
-						{
-							id = "text_role",
-							widget = wibox.widget.textbox,
-							align = "center",
-						},
-						layout = wibox.layout.fixed.horizontal,
-					},
-					left = 15,
-					right = 15,
-					widget = wibox.container.margin,
-				},
-				widget = wibox.container.background,
-			},
-			id = "background_role",
-			widget = wibox.container.background,
-		},
-	})
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist({
+        screen = s,
+        filter = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons,
+        style = {
+            shape_border_width = 1,
+            shape_border_color = black2,
+            shape = gears.shape.powerline,
+        },
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id = "text_role",
+                            widget = wibox.widget.textbox,
+                            align = "center",
+                        },
+                        layout = wibox.layout.fixed.horizontal,
+                    },
+                    left = 15,
+                    right = 15,
+                    widget = wibox.container.margin,
+                },
+                widget = wibox.container.background,
+            },
+            id = "background_role",
+            widget = wibox.container.background,
+        },
+    })
 
-	-- Create the wibox
-	s.mywibox = awful.wibar({
-		position = "top",
-		screen = s,
-		height = 22,
-		bg = theme.bg_normal,
-		fg = theme.fg_normal,
-	})
+    -- Create the wibox
+    s.mywibox = awful.wibar({
+        position = "top",
+        screen = s,
+        height = 22,
+        bg = theme.bg_normal,
+        fg = theme.fg_normal,
+    })
 
-	-- Add widgets to the wibox
-	s.mywibox:setup({
-		layout = wibox.layout.align.horizontal,
-		{
-			-- Left widgets
-			layout = wibox.layout.fixed.horizontal,
-			-- s.mylayoutbox,
-			s.mytaglist,
-			s.mypromptbox,
-		},
-		s.mytasklist, -- Middle widget
-		-- nil,
-		{
-			-- Right widgets
-			layout = wibox.layout.fixed.horizontal,
-			mpdicon,
-			theme.mpd.widget,
-			wibox.widget.systray(),
-			memicon,
-			memory.widget,
-			baticon,
-			bat.widget,
-			mytextclock,
-		},
-	})
+    -- Add widgets to the wibox
+    s.mywibox:setup({
+        layout = wibox.layout.align.horizontal,
+        {
+            -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            -- s.mylayoutbox,
+            s.mytaglist,
+            s.mypromptbox,
+        },
+        s.mytasklist, -- Middle widget
+        -- nil,
+        {
+            -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            mpdicon,
+            theme.mpd.widget,
+            wibox.widget.systray(),
+            memicon,
+            memory.widget,
+            baticon,
+            bat.widget,
+            mytextclock,
+        },
+    })
 end
 
 return theme
