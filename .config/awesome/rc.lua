@@ -397,11 +397,12 @@ globalkeys = mytable.join( -- Destroy all notifications
     end, { description = "launch emoji", group = "emoji" }),
     --  run rofi
     awful.key({ altkey }, "space", function()
-        awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
+        --[[ awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons') ]]
+        awful.util.spawn('rofi -show drun -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
     --  run rofi to navigate all active window
     awful.key({ altkey, shiftkey }, "space", function()
-        awful.util.spawn('rofi -show window -icon-theme "Papirus-Dark" -show-icons')
+        awful.util.spawn('rofi -show window -show-icons')
     end, { description = "launch rofi to navigate active window", group = "launcher" }),
     -- launch power menu
     awful.key({ modkey, altkey }, "space", function()
@@ -598,7 +599,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
                 "pinentry",
             },
@@ -607,7 +608,7 @@ awful.rules.rules = {
                 "Blueman-manager",
                 "Gpick",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",  -- kalarm.
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
                 "veromix",
@@ -623,9 +624,9 @@ awful.rules.rules = {
                 "Event Tester", -- xev.
             },
             role = {
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
             },
         },
         properties = { floating = true, placement = awful.placement.centered },
