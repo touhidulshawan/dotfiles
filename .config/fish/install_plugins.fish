@@ -1,7 +1,6 @@
 #!/usr/bin/fish
 
-# fisher install jorgebucaran/nvm.fish
-# fisher install jethrokuan/z # using arch package zoxide
+fisher install jorgebucaran/nvm.fish
 fisher install joseluisq/gitnow@2.10.0
 fisher install PatrickF1/fzf.fish
 fisher install jorgebucaran/autopair.fish

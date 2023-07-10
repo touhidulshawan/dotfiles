@@ -8,3 +8,6 @@ export SUDO_EDITOR=/usr/bin/nvim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 alias luamake=/home/shawan/.emacs.d/.cache/lsp/lua-language-server/3rd/luamake/luamake
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
