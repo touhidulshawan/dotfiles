@@ -216,4 +216,3 @@ open() {
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
-eval "$(fnm env --use-on-cd)"
