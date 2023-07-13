@@ -462,11 +462,7 @@ globalkeys = mytable.join( -- Destroy all notifications
     -- launch burpsuite
     awful.key({ modkey, shiftkey }, "b", function()
         awful.util.spawn("burpsuite")
-    end, { description = "open burpsuite", group = "tools" }),
-    -- launch burpsuite
-    awful.key({ modkey, shiftkey }, "t", function()
-        awful.util.spawn("thunderbird")
-    end, { description = "open thunderbird", group = "mail" })
+    end, { description = "open burpsuite", group = "tools" })
 )
 
 clientkeys = mytable.join(
