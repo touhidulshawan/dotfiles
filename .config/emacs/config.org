@@ -4,7 +4,22 @@
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
 
-* TABLE OF CONTENTS :toc:
+* Table of Contents :TOC:
+- [[#package-manager][Package Manager]]
+- [[#layout][Layout]]
+  - [[#ui][UI]]
+- [[#editor][Editor]]
+  - [[#font][Font]]
+  - [[#treesitter-aka-syntax-highlighting][Treesitter aka Syntax highlighting]]
+  - [[#matching-parenthese][Matching parenthese]]
+  - [[#display-line-number][Display line number]]
+  - [[#theme][Theme]]
+- [[#packages-config][Packages Config]]
+  - [[#evil-mode][Evil Mode]]
+  - [[#dashboard][Dashboard]]
+- [[#org-mode-custiomization][ORG Mode Custiomization]]
+- [[#which-key][Which-key]]
+- [[#keybindings][Keybindings]]
 
 * Package Manager
 #+begin_src emacs-lisp
@@ -26,6 +41,7 @@
 #+end_src
 
 * Layout
+
 ** UI
 #+begin_src emacs-lisp
   (menu-bar-mode -1)
@@ -42,7 +58,7 @@
   :weight 'medium)
 (set-face-attribute 'variable-pitch nil
   :font "JetBrainsMono Nerd Font"
-  :height 90 
+  :height 90
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :font "JetBrainsMono Nerd Font"
@@ -116,15 +132,17 @@
 
 * ORG Mode Custiomization
 #+begin_src emacs-lisp
-  org-startup-with-inline-images t
-  org-hide-emphasis-markers t
-  org-pretty-entities t
-
+  (setq org-adapt-indentation t
+        org-startup-indented t
+        org-startup-with-inline-images t
+        org-image-actual-width 400
+        org-hide-emphasis-markers t
+        org-pretty-entities t)
   (use-package org-modern
-    :init
-    :ensure t
-    :config)
-  (global-org-modern-mode)
+     :init
+     :ensure t
+     :config)
+    (global-org-modern-mode)
 #+end_src
 
 * Which-key

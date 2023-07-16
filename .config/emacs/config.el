@@ -24,7 +24,7 @@
   :weight 'medium)
 (set-face-attribute 'variable-pitch nil
   :font "JetBrainsMono Nerd Font"
-  :height 90 
+  :height 90
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :font "JetBrainsMono Nerd Font"
@@ -75,15 +75,17 @@
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 (setq doom-fallback-buffer-name "*dashboard*")
 
-org-startup-with-inline-images t
-org-hide-emphasis-markers t
-org-pretty-entities t
-
+(setq org-adapt-indentation t
+      org-startup-indented t
+      org-startup-with-inline-images t
+      org-image-actual-width 400
+      org-hide-emphasis-markers t
+      org-pretty-entities t)
 (use-package org-modern
-  :init
-  :ensure t
-  :config)
-(global-org-modern-mode)
+   :init
+   :ensure t
+   :config)
+  (global-org-modern-mode)
 
 (use-package which-key
   :init
