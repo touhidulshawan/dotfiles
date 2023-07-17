@@ -23,6 +23,8 @@ tramp
 # elpa packages
 /elpa/
 
+/quelpa/
+
 /eln-cache/
 
 # reftex files
