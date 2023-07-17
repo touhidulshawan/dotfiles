@@ -1,3 +1,15 @@
+#+TITLE: README
+#+AUTHOR: Touhidul Shawan
+#+DESCRIPTION: Readme files to decorate about my dotfiles 
+
+* Table of Contents :toc:
+- [[#introduction][Introduction]]
+  - [[#system-info][System Info]]
+- [[#window-manager][Window Manager]]
+  - [[#installation][Installation]]
+  - [[#theme-for-awesomewm][Theme for AwesomeWM]]
+- [[#mpd--ncmpcpp][mpd & ncmpcpp]]
+
 * Introduction
 This repository is being used to store configuration files of my system.
 
@@ -50,13 +62,15 @@ Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awes
 
 [[./.screenshots/home2.png]]
 
-- mpd & ncmpcpp
-
+* mpd & ncmpcpp
+- [[./config/mpd][mpd]]
+- [[./config/ncmpcpp][ncmcpp]]
+  
   [[./.screenshots/mpd.png]]
 
-- doomemacs
+- emacs 
 
-  [[./.screenshots/doomemacs.png]]
+  [[./.screenshots/emacs.png]]
 *
 #+begin_quote
 Use the configuration if you want. Thank You 🫰
