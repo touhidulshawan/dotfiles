@@ -77,6 +77,8 @@
 
 (require 'org-tempo)
 
+(electric-pair-mode 1)
+
 (defun reload-init-file ()
  (interactive)
  (load-file user-init-file)

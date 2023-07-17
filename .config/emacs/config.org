@@ -19,6 +19,7 @@
   - [[#modeline][Modeline]]
   - [[#zooming-inout][Zooming IN/OUT]]
   - [[#code-block-expansion][Code block expansion]]
+  - [[#auto-pair][Auto Pair]]
   - [[#reload-emacs][Reload Emacs]]
 - [[#packages-config][Packages Config]]
   - [[#evil-mode][Evil Mode]]
@@ -154,6 +155,11 @@
 ** Code block expansion
 #+begin_src emacs-lisp
  (require 'org-tempo) 
+#+end_src
+
+** Auto Pair
+#+begin_src emacs-lisp
+  (electric-pair-mode 1)
 #+end_src
 
 ** Reload Emacs 
