@@ -85,45 +85,43 @@
  (load-file user-init-file))
 
 (use-package evil
-    :init
-    (setq evil-want-integration t
-          evil-want-keybinding nil
-          evil-vsplit-window-right t
-          evil-split-window-below t
-          evil-search-module 'evil-search
-          evil-want-keybinding nil
-          evil-disable-insert-state-bindings t
-          evil-want-Y-yank-to-eol t
-          evil-undo-system 'undo-redo)
-          (evil-mode)
-    :config
-    (evil-set-leader 'normal " "))
+       :init
+       (setq evil-want-integration t
+             evil-want-keybinding nil
+             evil-vsplit-window-right t
+             evil-split-window-below t
+             evil-search-module 'evil-search
+             evil-want-keybinding nil
+             evil-disable-insert-state-bindings t
+             evil-want-Y-yank-to-eol t
+             evil-undo-system 'undo-redo)
+             (evil-mode)
+       :config
+       (evil-set-leader 'normal " "))
 
- (use-package evil-collection
-    :after evil
-    :config
-    (setq evil-collection-mode-list '(dashboard dired ibuffer))
-    (evil-collection-init))
+    (use-package evil-collection
+       :after evil
+       :config
+       (setq evil-collection-mode-list '(dashboard dired))
+       (evil-collection-init))
 
-;; Enable Commentary
-(use-package evil-commentary
-   :ensure t
-   :after evil
-   :bind (:map evil-normal-state-map
-            ("gc" . evil-commentary)))
+   (use-package evil-commentary
+      :ensure t
+      :after evil
+      :bind (:map evil-normal-state-map
+               ("gc" . evil-commentary)))
 
-;; Enable Surround
-(use-package evil-surround
-   :ensure t
-   :after evil
-   :config
-   (global-evil-surround-mode 1))
+   (use-package evil-surround
+      :ensure t
+      :after evil
+      :config
+      (global-evil-surround-mode 1))
 
-;; jj to escape to normal mode
-(evil-escape-mode)
-(setq-default evil-escape-key-sequence "jj"
-           evil-escape-delay 0.2
-           evil-escape-inhibit-functions '(evil-visual-state-p))
+   ;; jj to escape to normal mode
+   (evil-escape-mode)
+   (setq-default evil-escape-key-sequence "jj"
+              evil-escape-delay 0.2
+              evil-escape-inhibit-functions '(evil-visual-state-p))
 
 (use-package dashboard
   :init
@@ -144,7 +142,7 @@
       org-adapt-indentation t
       org-startup-indented t
       org-startup-with-inline-images t
-      org-image-actual-wih 400
+      org-image-actual-width 400
       org-special-ctrl-a/e '(t . nil)
       org-special-ctrl-k t
       org-src-fontify-natively t
@@ -188,6 +186,14 @@
 (use-package toc-org
    :commands toc-org-enable
    :init (add-hook 'org-mode-hook 'toc-org-enable))
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
+  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
 
 (use-package which-key
   :init
