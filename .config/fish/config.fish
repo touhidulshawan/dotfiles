@@ -77,7 +77,7 @@ alias cat='bat'
 
 # alias for emacs
 alias em='emacsclient -t -a='
-alias emacs="emacsclient -c -a 'emacs'"
+# alias emacs="emacsclient -c -a 'emacs'"
 alias doomsync="~/.config/emacs/bin/doom sync"
 alias doomdoctor="~/.config/emacs/bin/doom doctor"
 alias doomupgrade="~/.config/emacs/bin/doom upgrade"
