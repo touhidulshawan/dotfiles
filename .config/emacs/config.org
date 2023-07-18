@@ -7,6 +7,7 @@
 * Table of Contents :toc:
 - [[#package-manager][Package Manager]]
 - [[#editor][Editor]]
+  - [[#ui][UI]]
   - [[#font][Font]]
   - [[#treesitter-aka-syntax-highlighting][Treesitter aka Syntax highlighting]]
   - [[#matching-parenthese][Matching parenthese]]
@@ -20,6 +21,7 @@
   - [[#zooming-inout][Zooming IN/OUT]]
   - [[#code-block-expansion][Code block expansion]]
   - [[#auto-pair][Auto Pair]]
+  - [[#backup-and-lock-file][Backup and Lock File]]
   - [[#reload-emacs][Reload Emacs]]
 - [[#packages-config][Packages Config]]
   - [[#evil-mode][Evil Mode]]
@@ -61,6 +63,11 @@
 #+end_src
 
 * Editor
+** UI
+Disable splash
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+#+end_src
 ** Font
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil
@@ -163,6 +170,17 @@
   (electric-pair-mode 1)
 #+end_src
 
+** Backup and Lock File
+Disable backup files
+#+begin_src emacs-lisp
+ (setq make-backup-files nil) 
+#+end_src
+
+Disable  lock files
+#+begin_src emacs-lisp
+(setq create-lockfiles nil)  
+#+end_src
+
 ** Reload Emacs 
 #+begin_src emacs-lisp 
  (defun reload-init-file ()
@@ -172,7 +190,6 @@
 #+end_src
 
 * Packages Config
-
 ** Evil Mode
 #+begin_src emacs-lisp
 
@@ -325,75 +342,75 @@
 
 * Keybindings
 #+begin_src emacs-lisp
-          (use-package general
-            :config
-            (general-evil-setup)
+            (use-package general
+              :config
+              (general-evil-setup)
 
-            ;; set up 'SPC' as the global leader key
-            (general-create-definer leader-key
-              :states '(normal insert visual emacs)
-              :keymaps 'override
-              :prefix "SPC" ;; set leader
-              :global-prefix "M-SPC") ;; access leader in insert mode
+              ;; set up 'SPC' as the global leader key
+              (general-create-definer leader-key
+                :states '(normal insert visual emacs)
+                :keymaps 'override
+                :prefix "SPC" ;; set leader
+                :global-prefix "M-SPC") ;; access leader in insert mode
+
+              (leader-key
+                "."   '(find-file   :wk "Find file")
+                "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+                "f s"  '(save-buffer  :wk "Save buffer")
+                "f r"  '(consult-recent-file  :wk "Find recent files"))
+
+              (leader-key
+                "b" '(:ignore t :wk "buffer")
+                "b i" '(ibuffer :wk "Switch ibuffer")
+                "b b" '(switch-to-buffer :wk "Switch buffer")
+                "b k" '(kill-this-buffer :wk "Kill this buffer")
+                "b n" '(next-buffer :wk "Next buffer")
+                "b p" '(previous-buffer :wk "Previous buffer")
+                "b r" '(revert-buffer :wk "Reload buffer"))
+
+             (leader-key
+                "h" '(:ignore t :wk "Help")
+                "h f" '(describe-function :wk "Describe function")
+                "h v" '(describe-variable :wk "Describe variable")
+                "h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
 
             (leader-key
-              "."   '(find-file   :wk "Find file")
-              "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
-              "f s"  '(save-buffer  :wk "Save buffer")
-              "f r"  '(consult-recent-file  :wk "Find recent files"))
+              "j" '(avy-goto-word-0 :wk "Go to word")
+              "l" '(avy-goto-line :wk "Go to line"))
 
-            (leader-key
-              "b" '(:ignore t :wk "buffer")
-              "b i" '(ibuffer :wk "Switch ibuffer")
-              "b b" '(switch-to-buffer :wk "Switch buffer")
-              "b k" '(kill-this-buffer :wk "Kill this buffer")
-              "b n" '(next-buffer :wk "Next buffer")
-              "b p" '(previous-buffer :wk "Previous buffer")
-              "b r" '(revert-buffer :wk "Reload buffer"))
-
-           (leader-key
-              "h" '(:ignore t :wk "Help")
-              "h f" '(describe-function :wk "Describe function")
-              "h v" '(describe-variable :wk "Describe variable")
-              "h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
-
-          (leader-key
-            "j" '(avy-goto-word-0 :wk "Go to word")
-            "l" '(avy-goto-line :wk "Go to line"))
-
+        (leader-key
+            "m" '(:ignore t :wk "Org")
+            "m a" '(org-agenda :wk "Org agenda")
+            "m e" '(org-export-dispatch :wk "Org export dispatch")
+            "m i" '(org-toggle-item :wk "Org toggle item")
+            "m t" '(org-todo :wk "Org todo")
+            "m B" '(org-babel-tangle :wk "Org babel tangle")
+            "m T" '(org-todo-list :wk "Org todo list"))
       (leader-key
-          "m" '(:ignore t :wk "Org")
-          "m a" '(org-agenda :wk "Org agenda")
-          "m e" '(org-export-dispatch :wk "Org export dispatch")
-          "m i" '(org-toggle-item :wk "Org toggle item")
-          "m t" '(org-todo :wk "Org todo")
-          "m B" '(org-babel-tangle :wk "Org babel tangle")
-          "m T" '(org-todo-list :wk "Org todo list"))
+          "m b" '(:ignore t :wk "Tables")
+          "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
+
+        (leader-key
+          "m d" '(:ignore t :wk "Date/deadline")
+          "m d t" '(org-time-stamp :wk "Org time stamp"))
     (leader-key
-        "m b" '(:ignore t :wk "Tables")
-        "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
-
-      (leader-key
-        "m d" '(:ignore t :wk "Date/deadline")
-        "m d t" '(org-time-stamp :wk "Org time stamp"))
-  (leader-key
-      "w" '(:ignore t :wk "Windows")
-      ;; Window splits
-      "w c" '(evil-window-delete :wk "Close window")
-      "w n" '(evil-window-new :wk "New window")
-      "w s" '(evil-window-split :wk "Horizontal split window")
-      "w v" '(evil-window-vsplit :wk "Vertical split window")
-      ;; Window motions
-      "w h" '(evil-window-left :wk "Window left")
-      "w j" '(evil-window-down :wk "Window down")
-      "w k" '(evil-window-up :wk "Window up")
-      "w l" '(evil-window-right :wk "Window right")
-      "w w" '(evil-window-next :wk "Goto next window")
-      ;; Move Windows
-      "w H" '(buf-move-left :wk "Buffer move left")
-      "w J" '(buf-move-down :wk "Buffer move down")
-      "w K" '(buf-move-up :wk "Buffer move up")
-      "w L" '(buf-move-right :wk "Buffer move right")))
+        "w" '(:ignore t :wk "Windows")
+        ;; Window splits
+        "w c" '(evil-window-delete :wk "Close window")
+        "w n" '(evil-window-new :wk "New window")
+        "w s" '(evil-window-split :wk "Horizontal split window")
+        "w v" '(evil-window-vsplit :wk "Vertical split window")
+        ;; Window motions
+        "w h" '(evil-window-left :wk "Window left")
+        "w j" '(evil-window-down :wk "Window down")
+        "w k" '(evil-window-up :wk "Window up")
+        "w l" '(evil-window-right :wk "Window right")
+        "w w" '(evil-window-next :wk "Goto next window")
+        ;; Move Windows
+        "w H" '(buf-move-left :wk "Buffer move left")
+        "w J" '(buf-move-down :wk "Buffer move down")
+        "w K" '(buf-move-up :wk "Buffer move up")
+        "w L" '(buf-move-right :wk "Buffer move right")))
 #+end_src
 
 * MISC
@@ -455,32 +472,32 @@
 
 * Code Completion
 #+begin_src emacs-lisp
-(use-package corfu
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                 ; Allows cycling through candidates
-  (corfu-auto t)                  ; Enable auto completion
-  (corfu-auto-prefix 2)
-  (corfu-auto-delay 0.0)
-  (corfu-popupinfo-delay '(0.5 . 0.2))
-  (corfu-preview-current 'insert) ; Do not preview current candidate
-  (corfu-preselect 'prompt)
-  (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
+  (use-package corfu
+    ;; Optional customizations
+    :custom
+    (corfu-cycle t)                 ; Allows cycling through candidates
+    (corfu-auto t)                  ; Enable auto completion
+    (corfu-auto-prefix 2)
+    (corfu-auto-delay 0.0)
+    (corfu-popupinfo-delay '(0.5 . 0.2))
+    (corfu-preview-current 'insert) ; Do not preview current candidate
+    (corfu-preselect 'prompt)
+    (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
 
-  ;; Optionally use TAB for cycling, default is `corfu-complete'.
-  :bind (:map corfu-map
-              ("M-SPC"      . corfu-insert-separator)
-              ("TAB"        . corfu-next)
-              ([tab]        . corfu-next)
-              ("S-TAB"      . corfu-previous)
-              ([backtab]    . corfu-previous)
-              ("S-<return>" . corfu-insert)
-              ("RET"        . nil))
+    ;; Optionally use TAB for cycling, default is `corfu-complete'.
+    :bind (:map corfu-map
+                ("M-SPC"      . corfu-insert-separator)
+                ("TAB"        . corfu-next)
+                ([tab]        . corfu-next)
+                ("S-TAB"      . corfu-previous)
+                ([backtab]    . corfu-previous)
+                ("S-<return>" . corfu-insert)
+                ("RET"        . corfu-insert))
 
-  :init
-  (global-corfu-mode)
-  (corfu-history-mode)
-  (corfu-popupinfo-mode)) ; Popup completion info
+    :init
+    (global-corfu-mode)
+    (corfu-history-mode)
+    (corfu-popupinfo-mode)) ; Popup completion info
 #+end_src
 
 #+begin_src emacs-lisp

@@ -16,6 +16,8 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
+(setq inhibit-startup-message t)
+
 (set-face-attribute 'default nil
   :font "JetBrainsMono Nerd Font"
   :height 105
@@ -78,6 +80,10 @@
 (require 'org-tempo)
 
 (electric-pair-mode 1)
+
+(setq make-backup-files nil)
+
+(setq create-lockfiles nil)
 
 (defun reload-init-file ()
  (interactive)
@@ -342,7 +348,7 @@
               ("S-TAB"      . corfu-previous)
               ([backtab]    . corfu-previous)
               ("S-<return>" . corfu-insert)
-              ("RET"        . nil))
+              ("RET"        . corfu-insert))
 
   :init
   (global-corfu-mode)
