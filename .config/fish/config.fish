@@ -75,13 +75,6 @@ alias sx="sxiv -t -g 1338x719 *"
 
 alias cat='bat'
 
-# alias for emacs
-alias em='emacsclient -t -a='
-# alias emacs="emacsclient -c -a 'emacs'"
-alias doomsync="~/.config/emacs/bin/doom sync"
-alias doomdoctor="~/.config/emacs/bin/doom doctor"
-alias doomupgrade="~/.config/emacs/bin/doom upgrade"
-
 # alias for neovim
 alias v='fd -Ht f | fzf | xargs nvim'
 alias vi='nvim'
