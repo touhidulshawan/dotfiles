@@ -20,15 +20,15 @@
 
 (set-face-attribute 'default nil
   :font "JetBrainsMono Nerd Font"
-  :height 105
+  :height 110
   :weight 'medium)
 (set-face-attribute 'variable-pitch nil
   :font "JetBrainsMono Nerd Font"
-  :height 90
+  :height 100
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :font "JetBrainsMono Nerd Font"
-  :height 90 
+  :height 100
   :weight 'medium)
 
 (require 'tree-sitter)
