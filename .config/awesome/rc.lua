@@ -63,7 +63,7 @@ naughty.config.defaults = {
     text = "",
     screen = 1,
     ontop = true,
-    margin = dpi(16),
+    margin = dpi(4),
     border_width = 0,
     position = "top_right",
     width = 400,
@@ -103,7 +103,6 @@ awful.util.tagnames = {
     "  ",
     " 󰍹 ",
     "  ",
-    "  ",
 }
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -699,10 +698,6 @@ awful.rules.rules = {
     {
         rule = { name = "Picture-in-Picture" },
         properties = { sticky = true },
-    },
-    {
-        rule = { class = "thunderbird" },
-        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
 }
 
