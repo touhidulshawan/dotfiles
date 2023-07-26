@@ -9,6 +9,7 @@
 - [[#editor][Editor]]
   - [[#ui][UI]]
   - [[#font][Font]]
+  - [[#ligature][Ligature]]
   - [[#treesitter-aka-syntax-highlighting][Treesitter aka Syntax highlighting]]
   - [[#matching-parenthese][Matching parenthese]]
   - [[#display-line-number][Display line number]]
@@ -75,7 +76,7 @@ Disable splash
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
                       :font "JetBrainsMono Nerd Font"
-                      :height 110
+                      :height 100
                       :weight 'medium)
   (set-face-attribute 'variable-pitch nil
                       :font "JetBrainsMono Nerd Font"
@@ -85,6 +86,155 @@ Disable splash
                       :font "JetBrainsMono Nerd Font"
                       :height 100
                       :weight 'medium)
+  (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+
+  (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+
+  (add-to-list
+   'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+#+end_src
+
+** Ligature
+#+begin_src emacs-lisp
+  (use-package
+   ligature
+   :load-path "path-to-ligature-repo"
+   :config
+   ;; Enable all JetBrains Mono ligatures in programming modes
+   (ligature-set-ligatures
+    'prog-mode
+    '("-|"
+      "-~"
+      "---"
+      "-<<"
+      "-<"
+      "--"
+      "->"
+      "->>"
+      "-->"
+      "///"
+      "/="
+      "/=="
+      "/>"
+      "//"
+      "/*"
+      "*>"
+      "***"
+      "*/"
+      "<-"
+      "<<-"
+      "<=>"
+      "<="
+      "<|"
+      "<||"
+      "<|||"
+      "<|>"
+      "<:"
+      "<>"
+      "<-<"
+      "<<<"
+      "<=="
+      "<<="
+      "<=<"
+      "<==>"
+      "<-|"
+      "<<"
+      "<~>"
+      "<=|"
+      "<~~"
+      "<~"
+      "<$>"
+      "<$"
+      "<+>"
+      "<+"
+      "</>"
+      "</"
+      "<*"
+      "<*>"
+      "<->"
+      "<!--"
+      ":>"
+      ":<"
+      ":::"
+      "::"
+      ":?"
+      ":?>"
+      ":="
+      "::="
+      "=>>"
+      "==>"
+      "=/="
+      "=!="
+      "=>"
+      "==="
+      "=:="
+      "=="
+      "!=="
+      "!!"
+      "!="
+      ">]"
+      ">:"
+      ">>-"
+      ">>="
+      ">=>"
+      ">>>"
+      ">-"
+      ">="
+      "&&&"
+      "&&"
+      "|||>"
+      "||>"
+      "|>"
+      "|]"
+      "|}"
+      "|=>"
+      "|->"
+      "|="
+      "||-"
+      "|-"
+      "||="
+      "||"
+      ".."
+      ".?"
+      ".="
+      ".-"
+      "..<"
+      "..."
+      "+++"
+      "+>"
+      "++"
+      "[||]"
+      "[<"
+      "[|"
+      "{|"
+      "??"
+      "?."
+      "?="
+      "?:"
+      "##"
+      "###"
+      "####"
+      "#["
+      "#{"
+      "#="
+      "#!"
+      "#:"
+      "#_("
+      "#_"
+      "#?"
+      "#("
+      ";;"
+      "_|_"
+      "__"
+      "~~"
+      "~~>"
+      "~>"
+      "~-"
+      "~@"
+      "$>"
+      "^="
+      "]#"))
+   (global-ligature-mode t))
 #+end_src
 
 ** Treesitter aka Syntax highlighting
@@ -513,6 +663,7 @@ Disable  lock files
    :defer t
    :diminish
    :init (global-flycheck-mode))
+  (setq-default flycheck-disabled-checker '(emacs-lisp-checkdoc))
 #+end_src
 ** Rainbow mode
 #+begin_src emacs-lisp

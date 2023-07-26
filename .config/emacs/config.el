@@ -22,7 +22,7 @@
 
 (set-face-attribute 'default nil
                     :font "JetBrainsMono Nerd Font"
-                    :height 110
+                    :height 100
                     :weight 'medium)
 (set-face-attribute 'variable-pitch nil
                     :font "JetBrainsMono Nerd Font"
@@ -32,6 +32,152 @@
                     :font "JetBrainsMono Nerd Font"
                     :height 100
                     :weight 'medium)
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+
+(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+
+(add-to-list
+ 'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+
+(use-package
+ ligature
+ :load-path "path-to-ligature-repo"
+ :config
+ ;; Enable all JetBrains Mono ligatures in programming modes
+ (ligature-set-ligatures
+  'prog-mode
+  '("-|"
+    "-~"
+    "---"
+    "-<<"
+    "-<"
+    "--"
+    "->"
+    "->>"
+    "-->"
+    "///"
+    "/="
+    "/=="
+    "/>"
+    "//"
+    "/*"
+    "*>"
+    "***"
+    "*/"
+    "<-"
+    "<<-"
+    "<=>"
+    "<="
+    "<|"
+    "<||"
+    "<|||"
+    "<|>"
+    "<:"
+    "<>"
+    "<-<"
+    "<<<"
+    "<=="
+    "<<="
+    "<=<"
+    "<==>"
+    "<-|"
+    "<<"
+    "<~>"
+    "<=|"
+    "<~~"
+    "<~"
+    "<$>"
+    "<$"
+    "<+>"
+    "<+"
+    "</>"
+    "</"
+    "<*"
+    "<*>"
+    "<->"
+    "<!--"
+    ":>"
+    ":<"
+    ":::"
+    "::"
+    ":?"
+    ":?>"
+    ":="
+    "::="
+    "=>>"
+    "==>"
+    "=/="
+    "=!="
+    "=>"
+    "==="
+    "=:="
+    "=="
+    "!=="
+    "!!"
+    "!="
+    ">]"
+    ">:"
+    ">>-"
+    ">>="
+    ">=>"
+    ">>>"
+    ">-"
+    ">="
+    "&&&"
+    "&&"
+    "|||>"
+    "||>"
+    "|>"
+    "|]"
+    "|}"
+    "|=>"
+    "|->"
+    "|="
+    "||-"
+    "|-"
+    "||="
+    "||"
+    ".."
+    ".?"
+    ".="
+    ".-"
+    "..<"
+    "..."
+    "+++"
+    "+>"
+    "++"
+    "[||]"
+    "[<"
+    "[|"
+    "{|"
+    "??"
+    "?."
+    "?="
+    "?:"
+    "##"
+    "###"
+    "####"
+    "#["
+    "#{"
+    "#="
+    "#!"
+    "#:"
+    "#_("
+    "#_"
+    "#?"
+    "#("
+    ";;"
+    "_|_"
+    "__"
+    "~~"
+    "~~>"
+    "~>"
+    "~-"
+    "~@"
+    "$>"
+    "^="
+    "]#"))
+ (global-ligature-mode t))
 
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
@@ -382,6 +528,7 @@
  :defer t
  :diminish
  :init (global-flycheck-mode))
+(setq-default flycheck-disabled-checker '(emacs-lisp-checkdoc))
 
 (use-package rainbow-mode
  :diminish
