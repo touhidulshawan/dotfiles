@@ -37,7 +37,6 @@
 - [[#keybindings][Keybindings]]
 - [[#misc][MISC]]
   - [[#diminish][Diminish]]
-  - [[#flycheck][Flycheck]]
   - [[#rainbow-mode][Rainbow mode]]
   - [[#sudoedit][Sudoedit]]
 - [[#completion][Completion]]
@@ -403,8 +402,7 @@ Disable  lock files
 
 ** Magit
 #+begin_src emacs-lisp
-  (use-package magit
-    :ensure t)
+  (use-package magit :commands magit-status :ensure t)
 #+end_src
 
 * ORG Mode Custiomization
@@ -655,16 +653,6 @@ Disable  lock files
 #+begin_src emacs-lisp
 (use-package diminish)
 #+end_src
-** Flycheck
-#+begin_src emacs-lisp
-  (use-package
-   flycheck
-   :ensure t
-   :defer t
-   :diminish
-   :init (global-flycheck-mode))
-  (setq-default flycheck-disabled-checker '(emacs-lisp-checkdoc))
-#+end_src
 ** Rainbow mode
 #+begin_src emacs-lisp
  (use-package rainbow-mode
@@ -711,6 +699,7 @@ Disable  lock files
    (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
    ;; Enable recursive minibuffers
    (setq enable-recursive-minibuffers t))
+  (setq native-comp-deferred-compilation t)
 #+end_src
 
 * Code Completion

@@ -290,8 +290,7 @@
       (lambda () (get-buffer-create "*dashboard*")))
 (setq doom-fallback-buffer-name "*dashboard*")
 
-(use-package magit
-  :ensure t)
+(use-package magit :commands magit-status :ensure t)
 
 (setq
  org-ellipsis " ▾"
@@ -522,14 +521,6 @@
 
 (use-package diminish)
 
-(use-package
- flycheck
- :ensure t
- :defer t
- :diminish
- :init (global-flycheck-mode))
-(setq-default flycheck-disabled-checker '(emacs-lisp-checkdoc))
-
 (use-package rainbow-mode
  :diminish
  :hook org-mode prog-mode)
@@ -569,6 +560,7 @@
  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
  ;; Enable recursive minibuffers
  (setq enable-recursive-minibuffers t))
+(setq native-comp-deferred-compilation t)
 
 (use-package
  corfu
