@@ -316,6 +316,7 @@
  org-export-with-toc nil
  org-highlight-latex-and-related '(native)
  org-goto-auto-isearch nil
+ org-log-done 'time
  org-todo-keywords
  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
    (sequence

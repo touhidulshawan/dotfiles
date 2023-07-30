@@ -432,6 +432,7 @@ Disable  lock files
    org-export-with-toc nil
    org-highlight-latex-and-related '(native)
    org-goto-auto-isearch nil
+   org-log-done 'time
    org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
      (sequence
@@ -781,3 +782,4 @@ Disable  lock files
                  (cons 'cape-yasnippet completion-at-point-functions)))
    (push 'cape-yasnippet completion-at-point-functions))
 #+end_src
+
