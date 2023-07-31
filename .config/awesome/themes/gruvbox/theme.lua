@@ -123,7 +123,7 @@ theme.mpd = lain.widget.mpd({
         }
 
         if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
+            artist = mpd_now.artist .. " ⟫ "
             title = mpd_now.title .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
