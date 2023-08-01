@@ -218,6 +218,8 @@
  (add-hook
   'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+
 (use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
 
 (global-set-key (kbd "C-=") 'text-scale-increase)

@@ -18,6 +18,7 @@
   - [[#recentf][Recentf]]
   - [[#theme][Theme]]
   - [[#icon][Icon]]
+  - [[#transparency][Transparency]]
   - [[#modeline][Modeline]]
   - [[#zooming-inout][Zooming IN/OUT]]
   - [[#code-block-expansion][Code block expansion]]
@@ -297,6 +298,11 @@ Disable splash
    :config (nerd-icons-completion-mode)
    (add-hook
     'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+#+end_src
+
+** Transparency
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 
 ** Modeline
