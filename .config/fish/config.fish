@@ -183,5 +183,5 @@ function dockerip
     docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_ID
 end
 
-starship init fish | source
+# starship init fish | source
 zoxide init fish | source
