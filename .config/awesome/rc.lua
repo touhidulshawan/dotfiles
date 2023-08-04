@@ -398,10 +398,6 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ altkey }, "space", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
-    --  run rofi to navigate all active window
-    awful.key({ altkey, shiftkey }, "space", function()
-        awful.util.spawn("sh " .. home .. "/.local/bin/active_window")
-    end, { description = "launch rofi to navigate active window", group = "launcher" }),
     -- launch power menu
     awful.key({ modkey, altkey }, "space", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/powermenu")
