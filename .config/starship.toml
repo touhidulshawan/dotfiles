@@ -1,0 +1,16 @@
+format = """$all"""
+add_newline = false
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[git_metrics]
+disabled = false
+
+[python]
+symbol = " "
+
+[lua]
+symbol = "󰢱 " 
