@@ -18,7 +18,37 @@
    use-package-always-ensure t
    use-package-expand-minimally t))
 
+(use-package
+ gcmh
+ :diminish gcmh-mode
+ :config
+ (setq
+  gcmh-idle-delay 5
+  gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
+ (gcmh-mode 1))
+
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (setq gc-cons-percentage 0.1))) ;; Default value for `gc-cons-percentage'
+
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (message "Emacs ready in %s with %d garbage collections."
+            (format "%.2f seconds"
+                    (float-time
+                     (time-subtract
+                      after-init-time before-init-time)))
+            gcs-done)))
+
 (setq inhibit-startup-message t)
+(setq use-short-answers t) ;; When emacs asks for "yes" or "no", let "y" or "n" suffice
+(setq confirm-kill-emacs 'yes-or-no-p) ;; Confirm to quit
+(setq
+ initial-major-mode 'org-mode ;; Major mode of new buffers
+ initial-scratch-message ""
+ initial-buffer-choice t) ;; Blank scratch buffer
 
 (set-face-attribute 'default nil
                     :font "JetBrainsMono Nerd Font"
@@ -38,6 +68,16 @@
 
 (add-to-list
  'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+
+(use-package
+ mixed-pitch
+ :defer t
+ :config (setq mixed-pitch-set-height nil)
+ (dolist
+     (face '(org-date org-priority org-tag org-special-keyword)) ;; Some extra faces I like to be fixed-pitch
+   (add-to-list 'mixed-pitch-fixed-pitch-faces face)))
+
+(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 
 (use-package
  ligature
@@ -179,18 +219,26 @@
     "]#"))
  (global-ligature-mode t))
 
+(use-package
+ nerd-icons-completion
+ :after marginalia
+ :config (nerd-icons-completion-mode)
+ (add-hook
+  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
 (global-tree-sitter-mode t)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
-(show-paren-mode 1)
-
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 (global-visual-line-mode t)
 
+(when (fboundp 'set-charset-priority)
+  (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; use primary as clipboard
@@ -206,17 +254,16 @@
  ;; move by logical lines rather than visual lines (better for macros)
  line-move-visual nil)
 
-(customize-set-value 'recentf-make-menu-items 150)
-(customize-set-value 'recentf-make-saved-items 150)
-
-(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
-
 (use-package
- nerd-icons-completion
- :after marginalia
- :config (nerd-icons-completion-mode)
- (add-hook
-  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+ recentf
+ :ensure nil
+ :config
+ (setq ;;recentf-auto-cleanup 'never
+  ;; recentf-max-menu-items 0
+  recentf-max-saved-items 200)
+ (setq recentf-filename-handlers ;; Show home folder path as a ~
+       (append '(abbreviate-file-name) recentf-filename-handlers))
+ (recentf-mode))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
@@ -229,7 +276,20 @@
 
 (require 'org-tempo)
 
+(show-paren-mode 1)
+
 (electric-pair-mode 1)
+
+(use-package
+ paren
+ :ensure nil
+ :config
+ (setq
+  show-paren-delay 0.1
+  show-paren-highlight-openparen t
+  show-paren-when-point-inside-paren t
+  show-paren-when-point-in-periphery t)
+ (show-paren-mode 1))
 
 (setq make-backup-files nil)
 
@@ -294,91 +354,6 @@
 
 (use-package magit :commands magit-status :ensure t)
 
-(setq
- org-ellipsis " ▾"
- org-hide-emphasis-markers t
- org-pretty-entities t
- org-adapt-indentation t
- org-startup-indented t
- org-startup-with-inline-images t
- org-image-actual-width 400
- org-special-ctrl-a/e '(t . nil)
- org-special-ctrl-k t
- org-src-fontify-natively t
- org-fontify-whole-heading-line t
- org-fontify-quote-and-verse-blocks t
- org-src-tab-acts-natively t
- org-edit-src-content-indentation 2
- org-hide-block-startup nil
- org-src-preserve-indentation nil
- org-startup-folded 'fold
- org-cycle-separator-lines 2
- org-hide-leading-stars t
- org-export-backends '(markdown ascii html icalendar latex o)
- org-export-with-toc nil
- org-highlight-latex-and-related '(native)
- org-goto-auto-isearch nil
- org-log-done 'time
- org-todo-keywords
- '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-   (sequence
-    "BACKLOG(b)"
-    "ACTIVE(a)"
-    "REVIEW(v)"
-    "WAIT(w@/!)"
-    "HOLD(h)"
-    "|"
-    "DELEGATED(D)"
-    "CANCELLED(c)"))
- org-agenda-search-view-always-boolean t
- org-agenda-timegrid-use-ampm t
- org-agenda-time-grid
- '((daily today require-timed remove-match)
-   (800
-    830
-    1000
-    1030
-    1200
-    1230
-    1400
-    1430
-    1600
-    1630
-    1700
-    1730
-    1800
-    1830
-    2000)
-   "......" "────────────────")
- org-agenda-current-time-string "← now ─────────────────")
-
-(use-package
- org-modern
- :hook
- ((org-mode . org-modern-mode)
-  (org-agenda-finalize-hook . org-modern-agenda))
- :custom
- ((org-modern-todo t)
-  (org-modern-table nil)
-  (org-modern-variable-pitch nil)
-  (org-modern-block-fringe nil))
- :commands (org-modern-mode org-modern-agenda)
- :init (global-org-modern-mode))
-
-(use-package
- toc-org
- :commands toc-org-enable
- :init (add-hook 'org-mode-hook 'toc-org-enable))
-
-(use-package
- evil-org
- :ensure t
- :after org
- :config
- (require 'evil-org-agenda)
- (evil-org-agenda-set-keys)
- (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
-
 (use-package
  which-key
  :init (which-key-mode 1)
@@ -395,6 +370,7 @@
   which-key-idle-delay 0.8
   which-key-max-description-length 25
   which-key-allow-imprecise-window-fit t
+  which-key-prefix-prefix "◉ "
   which-key-separator " → "))
 
 (use-package
@@ -520,7 +496,12 @@
   "w K"
   '(buf-move-up :wk "Buffer move up")
   "w L"
-  '(buf-move-right :wk "Buffer move right")))
+  '(buf-move-right :wk "Buffer move right"))
+ (leader-key
+  "g"
+  '(:ignore t :wk "magit")
+  "g g"
+  '(magit-status :wk "Magit Status")))
 
 (use-package diminish)
 
@@ -536,6 +517,91 @@
   '(sudo-edit-find-file :wk "Sudo find file")
   "fU"
   '(sudo-edit :wk "Sudo edit file")))
+
+(use-package
+ corfu
+ :init (global-corfu-mode)
+ :config
+ (setq
+  corfu-auto t
+  corfu-echo-documentation t
+  corfu-scroll-margin 0
+  corfu-count 8
+  corfu-max-width 50
+  corfu-min-width corfu-max-width
+  corfu-auto-prefix 2)
+
+ ;; Make Evil and Corfu play nice
+ (evil-make-overriding-map corfu-map)
+ (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
+ (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
+
+ (corfu-history-mode 1)
+ (savehist-mode 1)
+ (add-to-list 'savehist-additional-variables 'corfu-history)
+
+ (defun corfu-enable-always-in-minibuffer ()
+   (setq-local corfu-auto nil)
+   (corfu-mode 1))
+ (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer
+           1)
+
+ :general
+ (:keymaps
+  'corfu-map
+  :states
+  'insert
+  "C-n"
+  'corfu-next
+  "C-p"
+  'corfu-previous
+  "C-j"
+  'corfu-next
+  "C-k"
+  'corfu-previous
+  "RET"
+  'corfu-complete
+  "<escape>"
+  'corfu-quit))
+
+(use-package
+ cape
+ :init
+ (add-to-list 'completion-at-point-functions #'cape-file)
+ (add-to-list 'completion-at-point-functions #'cape-keyword)
+ ;; kinda confusing re length, WIP/TODO
+ ;; :hook (org-mode . (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
+ ;; :config
+ ;; (setq dabbrev-check-other-buffers nil
+ ;;       dabbrev-check-all-buffers nil
+ ;;       cape-dabbrev-min-length 6)
+ )
+
+
+(use-package
+ kind-icon
+ :config
+ (setq kind-icon-default-face 'corfu-default)
+ (setq kind-icon-default-style
+       '(:padding
+         0
+         :stroke 0
+         :margin 0
+         :radius 0
+         :height 0.9
+         :scale 1))
+ (setq kind-icon-blend-frac 0.08)
+ (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+ (add-hook
+  'counsel-load-theme
+  #'(lambda ()
+      (interactive)
+      (kind-icon-reset-cache)))
+ (add-hook
+  'load-theme
+  #'(lambda ()
+      (interactive)
+      (kind-icon-reset-cache))))
 
 (use-package
  vertico
@@ -565,57 +631,6 @@
  (setq enable-recursive-minibuffers t))
 (setq native-comp-deferred-compilation t)
 
-(use-package
- corfu
- ;; Optional customizations
- :custom
- (corfu-cycle t) ; Allows cycling through candidates
- (corfu-auto t) ; Enable auto completion
- (corfu-auto-prefix 2)
- (corfu-auto-delay 0.0)
- (corfu-popupinfo-delay '(0.5 . 0.2))
- (corfu-preview-current 'insert) ; Do not preview current candidate
- (corfu-preselect 'prompt)
- (corfu-on-exact-match nil) ; Don't auto expand tempel snippets
-
- ;; Optionally use TAB for cycling, default is `corfu-complete'.
- :bind
- (:map
-  corfu-map
-  ("M-SPC" . corfu-insert-separator)
-  ("TAB" . corfu-next)
-  ([tab] . corfu-next)
-  ("S-TAB" . corfu-previous)
-  ([backtab] . corfu-previous)
-  ("S-<return>" . corfu-insert)
-  ("RET" . corfu-insert))
-
- :init
- (global-corfu-mode)
- (corfu-history-mode)
- (corfu-popupinfo-mode)) ; Popup completion info
-
-(use-package
- cape
- :defer 10
- :bind ("C-c f" . cape-file)
- :init
- ;; Add `completion-at-point-functions', used by `completion-at-point'.
- (defalias
-   'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
- (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
- (cl-pushnew #'cape-file completion-at-point-functions)
- :config
- ;; Silence then pcomplete capf, no errors or messages!
- (advice-add
-  'pcomplete-completions-at-point
-  :around #'cape-wrap-silent)
-
- ;; Ensure that pcomplete does not write to the buffer
- ;; and behaves as a pure `completion-at-point-function'.
- (advice-add
-  'pcomplete-completions-at-point
-  :around #'cape-wrap-purify))
 (use-package
  yasnippet
  :ensure t
@@ -654,3 +669,100 @@
      ("\\paragraph{%s}" . "\\paragraph*{%s}")
      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 (setq org-latex-listings 't)
+
+(setq
+ org-ellipsis " ▾"
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-adapt-indentation t
+ org-startup-indented t
+ org-startup-with-inline-images t
+ org-image-actual-width 400
+ org-special-ctrl-a/e '(t . nil)
+ org-special-ctrl-k t
+ org-src-fontify-natively t
+ org-fontify-whole-heading-line t
+ org-fontify-quote-and-verse-blocks t
+ org-src-tab-acts-natively t
+ org-edit-src-content-indentation 2
+ org-hide-block-startup nil
+ org-src-preserve-indentation nil
+ org-startup-folded 'fold
+ org-cycle-separator-lines 2
+ org-hide-leading-stars t
+ org-export-backends '(markdown ascii html icalendar latex o)
+ org-export-with-toc nil
+ org-highlight-latex-and-related '(native)
+ org-goto-auto-isearch nil
+ org-log-done 'time
+ org-todo-keywords
+ '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+   (sequence
+    "BACKLOG(b)"
+    "ACTIVE(a)"
+    "REVIEW(v)"
+    "WAIT(w@/!)"
+    "HOLD(h)"
+    "|"
+    "DELEGATED(D)"
+    "CANCELLED(c)"))
+ org-agenda-search-view-always-boolean t
+ org-agenda-timegrid-use-ampm t
+ org-agenda-time-grid
+ '((daily today require-timed remove-match)
+   (800
+    830
+    1000
+    1030
+    1200
+    1230
+    1400
+    1430
+    1600
+    1630
+    1700
+    1730
+    1800
+    1830
+    2000)
+   "......" "────────────────")
+ org-agenda-current-time-string "← now ─────────────────")
+
+(use-package
+ toc-org
+ :commands toc-org-enable
+ :init (add-hook 'org-mode-hook 'toc-org-enable))
+
+(use-package
+ org-superstar
+ :config
+ (setq org-superstar-leading-bullet " ")
+ (setq org-superstar-special-todo-items t))
+
+;; Removes gap when you add a new heading
+(setq org-blank-before-new-entry
+      '((heading . nil) (plain-list-item . nil)))
+
+(use-package
+ org-modern
+ :hook (org-mode . org-modern-mode)
+ :config
+ (setq
+  ;; org-modern-star '("●" "○" "✸" "✿")
+  org-modern-star '("⌾" "✸" "◈" "◇")
+  org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
+  org-modern-tag nil
+  org-modern-priority nil
+  org-modern-todo nil
+  org-modern-table nil))
+
+(use-package
+ evil-org
+ :ensure t
+ :after org
+ :config
+ (require 'evil-org-agenda)
+ (evil-org-agenda-set-keys)
+ (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
+
+(setq org-lowest-priority ?F)

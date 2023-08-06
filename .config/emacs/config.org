@@ -6,34 +6,31 @@
 
 * Table of Contents :toc:
 - [[#package-manager][Package Manager]]
+- [[#garbage-collection][Garbage collection]]
 - [[#editor][Editor]]
   - [[#ui][UI]]
   - [[#font][Font]]
+  - [[#theme][Theme]]
   - [[#ligature][Ligature]]
+  - [[#icon][Icon]]
   - [[#treesitter-aka-syntax-highlighting][Treesitter aka Syntax highlighting]]
-  - [[#matching-parenthese][Matching parenthese]]
   - [[#display-line-number][Display line number]]
   - [[#utf-8][UTF-8]]
   - [[#extra][Extra]]
   - [[#recentf][Recentf]]
-  - [[#theme][Theme]]
-  - [[#icon][Icon]]
   - [[#transparency][Transparency]]
   - [[#modeline][Modeline]]
   - [[#zooming-inout][Zooming IN/OUT]]
   - [[#code-block-expansion][Code block expansion]]
+  - [[#matching-parenthese][Matching parenthese]]
   - [[#auto-pair][Auto Pair]]
+  - [[#highlight-delimiters][Highlight Delimiters]]
   - [[#backup-and-lock-file][Backup and Lock File]]
   - [[#reload-emacs][Reload Emacs]]
 - [[#important-packages][Important Packages]]
   - [[#evil-mode][Evil Mode]]
   - [[#dashboard][Dashboard]]
   - [[#magit][Magit]]
-- [[#org-mode-custiomization][ORG Mode Custiomization]]
-  - [[#better-defaults][Better defaults]]
-  - [[#org-modern][Org Modern]]
-  - [[#enable-table-of-contents][Enable Table of Contents]]
-  - [[#evil-org][Evil Org]]
 - [[#which-key][Which-key]]
 - [[#keybindings][Keybindings]]
 - [[#misc][MISC]]
@@ -41,8 +38,17 @@
   - [[#rainbow-mode][Rainbow mode]]
   - [[#sudoedit][Sudoedit]]
 - [[#completion][Completion]]
-- [[#code-completion][Code Completion]]
+  - [[#corfu--cape][Corfu & Cape]]
+  - [[#vertico][vertico]]
+- [[#yasnippet][Yasnippet]]
 - [[#improve-latex][Improve Latex]]
+- [[#org-mode][ORG Mode]]
+  - [[#better-defaults][Better defaults]]
+  - [[#enable-table-of-contents][Enable Table of Contents]]
+  - [[#org-superstar][Org Superstar]]
+  - [[#org-modern][Org Modern]]
+  - [[#evil-org][Evil Org]]
+  - [[#priorities][Priorities]]
 
 * Package Manager
 #+begin_src emacs-lisp
@@ -67,11 +73,43 @@
      use-package-expand-minimally t))
 #+end_src
 
+* Garbage collection
+#+begin_src emacs-lisp
+  (use-package
+   gcmh
+   :diminish gcmh-mode
+   :config
+   (setq
+    gcmh-idle-delay 5
+    gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
+   (gcmh-mode 1))
+
+  (add-hook
+   'emacs-startup-hook
+   (lambda ()
+     (setq gc-cons-percentage 0.1))) ;; Default value for `gc-cons-percentage'
+
+  (add-hook
+   'emacs-startup-hook
+   (lambda ()
+     (message "Emacs ready in %s with %d garbage collections."
+              (format "%.2f seconds"
+                      (float-time
+                       (time-subtract
+                        after-init-time before-init-time)))
+              gcs-done)))
+#+end_src
+
 * Editor
 ** UI
-Disable splash
 #+begin_src emacs-lisp
-(setq inhibit-startup-message t)
+  (setq inhibit-startup-message t)
+  (setq use-short-answers t) ;; When emacs asks for "yes" or "no", let "y" or "n" suffice
+  (setq confirm-kill-emacs 'yes-or-no-p) ;; Confirm to quit
+  (setq
+   initial-major-mode 'org-mode ;; Major mode of new buffers
+   initial-scratch-message ""
+   initial-buffer-choice t) ;; Blank scratch buffer
 #+end_src
 ** Font
 #+begin_src emacs-lisp
@@ -93,6 +131,21 @@ Disable splash
 
   (add-to-list
    'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+#+end_src
+*** Mixed-pitch
+#+begin_src emacs-lisp
+  (use-package
+   mixed-pitch
+   :defer t
+   :config (setq mixed-pitch-set-height nil)
+   (dolist
+       (face '(org-date org-priority org-tag org-special-keyword)) ;; Some extra faces I like to be fixed-pitch
+     (add-to-list 'mixed-pitch-fixed-pitch-faces face)))
+#+end_src
+
+** Theme
+#+begin_src emacs-lisp
+  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 #+end_src
 
 ** Ligature
@@ -238,17 +291,22 @@ Disable splash
    (global-ligature-mode t))
 #+end_src
 
+** Icon
+#+begin_src emacs-lisp
+  (use-package
+   nerd-icons-completion
+   :after marginalia
+   :config (nerd-icons-completion-mode)
+   (add-hook
+    'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+#+end_src
+
 ** Treesitter aka Syntax highlighting
 #+begin_src emacs-lisp
   (require 'tree-sitter)
   (require 'tree-sitter-langs)
   (global-tree-sitter-mode t)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-#+end_src
-
-** Matching parenthese
-#+begin_src emacs-lisp
-  (show-paren-mode 1)
 #+end_src
 
 ** Display line number
@@ -260,7 +318,10 @@ Disable splash
 
 ** UTF-8
 #+begin_src emacs-lisp
+  (when (fboundp 'set-charset-priority)
+    (set-charset-priority 'unicode))
   (prefer-coding-system 'utf-8)
+  (setq locale-coding-system 'utf-8)
 #+end_src
 
 ** Extra
@@ -282,23 +343,16 @@ Disable splash
 
 ** Recentf
 #+begin_src emacs-lisp
-  (customize-set-value 'recentf-make-menu-items 150)
-  (customize-set-value 'recentf-make-saved-items 150)
-#+end_src
-
-** Theme
-#+begin_src emacs-lisp
-  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
-#+end_src
-
-** Icon
-#+begin_src emacs-lisp
   (use-package
-   nerd-icons-completion
-   :after marginalia
-   :config (nerd-icons-completion-mode)
-   (add-hook
-    'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+   recentf
+   :ensure nil
+   :config
+   (setq ;;recentf-auto-cleanup 'never
+    ;; recentf-max-menu-items 0
+    recentf-max-saved-items 200)
+   (setq recentf-filename-handlers ;; Show home folder path as a ~
+         (append '(abbreviate-file-name) recentf-filename-handlers))
+   (recentf-mode))
 #+end_src
 
 ** Transparency
@@ -324,9 +378,28 @@ Disable splash
  (require 'org-tempo) 
 #+end_src
 
+** Matching parenthese
+#+begin_src emacs-lisp
+  (show-paren-mode 1)
+#+end_src
+
 ** Auto Pair
 #+begin_src emacs-lisp
   (electric-pair-mode 1)
+#+end_src
+
+** Highlight Delimiters
+#+begin_src emacs-lisp
+  (use-package
+   paren
+   :ensure nil
+   :config
+   (setq
+    show-paren-delay 0.1
+    show-paren-highlight-openparen t
+    show-paren-when-point-inside-paren t
+    show-paren-when-point-in-periphery t)
+   (show-paren-mode 1))
 #+end_src
 
 ** Backup and Lock File
@@ -412,102 +485,6 @@ Disable  lock files
   (use-package magit :commands magit-status :ensure t)
 #+end_src
 
-* ORG Mode Custiomization
-** Better defaults
-#+begin_src emacs-lisp
-  (setq
-   org-ellipsis " ▾"
-   org-hide-emphasis-markers t
-   org-pretty-entities t
-   org-adapt-indentation t
-   org-startup-indented t
-   org-startup-with-inline-images t
-   org-image-actual-width 400
-   org-special-ctrl-a/e '(t . nil)
-   org-special-ctrl-k t
-   org-src-fontify-natively t
-   org-fontify-whole-heading-line t
-   org-fontify-quote-and-verse-blocks t
-   org-src-tab-acts-natively t
-   org-edit-src-content-indentation 2
-   org-hide-block-startup nil
-   org-src-preserve-indentation nil
-   org-startup-folded 'fold
-   org-cycle-separator-lines 2
-   org-hide-leading-stars t
-   org-export-backends '(markdown ascii html icalendar latex o)
-   org-export-with-toc nil
-   org-highlight-latex-and-related '(native)
-   org-goto-auto-isearch nil
-   org-log-done 'time
-   org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-     (sequence
-      "BACKLOG(b)"
-      "ACTIVE(a)"
-      "REVIEW(v)"
-      "WAIT(w@/!)"
-      "HOLD(h)"
-      "|"
-      "DELEGATED(D)"
-      "CANCELLED(c)"))
-   org-agenda-search-view-always-boolean t
-   org-agenda-timegrid-use-ampm t
-   org-agenda-time-grid
-   '((daily today require-timed remove-match)
-     (800
-      830
-      1000
-      1030
-      1200
-      1230
-      1400
-      1430
-      1600
-      1630
-      1700
-      1730
-      1800
-      1830
-      2000)
-     "......" "────────────────")
-   org-agenda-current-time-string "← now ─────────────────")
-#+end_src
-** Org Modern
-#+begin_src emacs-lisp
-  (use-package
-   org-modern
-   :hook
-   ((org-mode . org-modern-mode)
-    (org-agenda-finalize-hook . org-modern-agenda))
-   :custom
-   ((org-modern-todo t)
-    (org-modern-table nil)
-    (org-modern-variable-pitch nil)
-    (org-modern-block-fringe nil))
-   :commands (org-modern-mode org-modern-agenda)
-   :init (global-org-modern-mode))
-#+end_src
-
-** Enable Table of Contents
-#+begin_src emacs-lisp
-  (use-package
-   toc-org
-   :commands toc-org-enable
-   :init (add-hook 'org-mode-hook 'toc-org-enable))
-#+end_src
-
-** Evil Org
-#+begin_src emacs-lisp
-  (use-package
-   evil-org
-   :ensure t
-   :after org
-   :config
-   (require 'evil-org-agenda)
-   (evil-org-agenda-set-keys)
-   (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
-#+end_src
 * Which-key
 #+begin_src emacs-lisp
   (use-package
@@ -526,6 +503,7 @@ Disable  lock files
     which-key-idle-delay 0.8
     which-key-max-description-length 25
     which-key-allow-imprecise-window-fit t
+    which-key-prefix-prefix "◉ "
     which-key-separator " → "))
 #+end_src
 
@@ -654,7 +632,12 @@ Disable  lock files
     "w K"
     '(buf-move-up :wk "Buffer move up")
     "w L"
-    '(buf-move-right :wk "Buffer move right")))
+    '(buf-move-right :wk "Buffer move right"))
+   (leader-key
+    "g"
+    '(:ignore t :wk "magit")
+    "g g"
+    '(magit-status :wk "Magit Status")))
 #+end_src
 * MISC
 ** Diminish
@@ -680,6 +663,95 @@ Disable  lock files
 #+end_src
 
 * Completion
+** Corfu & Cape
+#+begin_src emacs-lisp
+  (use-package
+   corfu
+   :init (global-corfu-mode)
+   :config
+   (setq
+    corfu-auto t
+    corfu-echo-documentation t
+    corfu-scroll-margin 0
+    corfu-count 8
+    corfu-max-width 50
+    corfu-min-width corfu-max-width
+    corfu-auto-prefix 2)
+
+   ;; Make Evil and Corfu play nice
+   (evil-make-overriding-map corfu-map)
+   (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
+   (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
+
+   (corfu-history-mode 1)
+   (savehist-mode 1)
+   (add-to-list 'savehist-additional-variables 'corfu-history)
+
+   (defun corfu-enable-always-in-minibuffer ()
+     (setq-local corfu-auto nil)
+     (corfu-mode 1))
+   (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer
+             1)
+
+   :general
+   (:keymaps
+    'corfu-map
+    :states
+    'insert
+    "C-n"
+    'corfu-next
+    "C-p"
+    'corfu-previous
+    "C-j"
+    'corfu-next
+    "C-k"
+    'corfu-previous
+    "RET"
+    'corfu-complete
+    "<escape>"
+    'corfu-quit))
+
+  (use-package
+   cape
+   :init
+   (add-to-list 'completion-at-point-functions #'cape-file)
+   (add-to-list 'completion-at-point-functions #'cape-keyword)
+   ;; kinda confusing re length, WIP/TODO
+   ;; :hook (org-mode . (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
+   ;; :config
+   ;; (setq dabbrev-check-other-buffers nil
+   ;;       dabbrev-check-all-buffers nil
+   ;;       cape-dabbrev-min-length 6)
+   )
+
+
+  (use-package
+   kind-icon
+   :config
+   (setq kind-icon-default-face 'corfu-default)
+   (setq kind-icon-default-style
+         '(:padding
+           0
+           :stroke 0
+           :margin 0
+           :radius 0
+           :height 0.9
+           :scale 1))
+   (setq kind-icon-blend-frac 0.08)
+   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+   (add-hook
+    'counsel-load-theme
+    #'(lambda ()
+        (interactive)
+        (kind-icon-reset-cache)))
+   (add-hook
+    'load-theme
+    #'(lambda ()
+        (interactive)
+        (kind-icon-reset-cache))))
+#+end_src
+
+** vertico
 #+begin_src emacs-lisp
   (use-package
    vertico
@@ -710,61 +782,8 @@ Disable  lock files
   (setq native-comp-deferred-compilation t)
 #+end_src
 
-* Code Completion
+* Yasnippet
 #+begin_src emacs-lisp
-  (use-package
-   corfu
-   ;; Optional customizations
-   :custom
-   (corfu-cycle t) ; Allows cycling through candidates
-   (corfu-auto t) ; Enable auto completion
-   (corfu-auto-prefix 2)
-   (corfu-auto-delay 0.0)
-   (corfu-popupinfo-delay '(0.5 . 0.2))
-   (corfu-preview-current 'insert) ; Do not preview current candidate
-   (corfu-preselect 'prompt)
-   (corfu-on-exact-match nil) ; Don't auto expand tempel snippets
-
-   ;; Optionally use TAB for cycling, default is `corfu-complete'.
-   :bind
-   (:map
-    corfu-map
-    ("M-SPC" . corfu-insert-separator)
-    ("TAB" . corfu-next)
-    ([tab] . corfu-next)
-    ("S-TAB" . corfu-previous)
-    ([backtab] . corfu-previous)
-    ("S-<return>" . corfu-insert)
-    ("RET" . corfu-insert))
-
-   :init
-   (global-corfu-mode)
-   (corfu-history-mode)
-   (corfu-popupinfo-mode)) ; Popup completion info
-#+end_src
-
-#+begin_src emacs-lisp
-  (use-package
-   cape
-   :defer 10
-   :bind ("C-c f" . cape-file)
-   :init
-   ;; Add `completion-at-point-functions', used by `completion-at-point'.
-   (defalias
-     'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
-   (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
-   (cl-pushnew #'cape-file completion-at-point-functions)
-   :config
-   ;; Silence then pcomplete capf, no errors or messages!
-   (advice-add
-    'pcomplete-completions-at-point
-    :around #'cape-wrap-silent)
-
-   ;; Ensure that pcomplete does not write to the buffer
-   ;; and behaves as a pure `completion-at-point-function'.
-   (advice-add
-    'pcomplete-completions-at-point
-    :around #'cape-wrap-purify))
   (use-package
    yasnippet
    :ensure t
@@ -806,4 +825,118 @@ Disable  lock files
        ("\\paragraph{%s}" . "\\paragraph*{%s}")
        ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
   (setq org-latex-listings 't)
+#+end_src
+
+* ORG Mode
+** Better defaults
+#+begin_src emacs-lisp
+  (setq
+   org-ellipsis " ▾"
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-adapt-indentation t
+   org-startup-indented t
+   org-startup-with-inline-images t
+   org-image-actual-width 400
+   org-special-ctrl-a/e '(t . nil)
+   org-special-ctrl-k t
+   org-src-fontify-natively t
+   org-fontify-whole-heading-line t
+   org-fontify-quote-and-verse-blocks t
+   org-src-tab-acts-natively t
+   org-edit-src-content-indentation 2
+   org-hide-block-startup nil
+   org-src-preserve-indentation nil
+   org-startup-folded 'fold
+   org-cycle-separator-lines 2
+   org-hide-leading-stars t
+   org-export-backends '(markdown ascii html icalendar latex o)
+   org-export-with-toc nil
+   org-highlight-latex-and-related '(native)
+   org-goto-auto-isearch nil
+   org-log-done 'time
+   org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+     (sequence
+      "BACKLOG(b)"
+      "ACTIVE(a)"
+      "REVIEW(v)"
+      "WAIT(w@/!)"
+      "HOLD(h)"
+      "|"
+      "DELEGATED(D)"
+      "CANCELLED(c)"))
+   org-agenda-search-view-always-boolean t
+   org-agenda-timegrid-use-ampm t
+   org-agenda-time-grid
+   '((daily today require-timed remove-match)
+     (800
+      830
+      1000
+      1030
+      1200
+      1230
+      1400
+      1430
+      1600
+      1630
+      1700
+      1730
+      1800
+      1830
+      2000)
+     "......" "────────────────")
+   org-agenda-current-time-string "← now ─────────────────")
+#+end_src
+** Enable Table of Contents
+#+begin_src emacs-lisp
+  (use-package
+   toc-org
+   :commands toc-org-enable
+   :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+** Org Superstar
+#+begin_src emacs-lisp
+  (use-package
+   org-superstar
+   :config
+   (setq org-superstar-leading-bullet " ")
+   (setq org-superstar-special-todo-items t))
+
+  ;; Removes gap when you add a new heading
+  (setq org-blank-before-new-entry
+        '((heading . nil) (plain-list-item . nil)))
+#+end_src
+** Org Modern
+#+begin_src emacs-lisp
+  (use-package
+   org-modern
+   :hook (org-mode . org-modern-mode)
+   :config
+   (setq
+    ;; org-modern-star '("●" "○" "✸" "✿")
+    org-modern-star '("⌾" "✸" "◈" "◇")
+    org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
+    org-modern-tag nil
+    org-modern-priority nil
+    org-modern-todo nil
+    org-modern-table nil))
+#+end_src
+
+** Evil Org
+#+begin_src emacs-lisp
+  (use-package
+   evil-org
+   :ensure t
+   :after org
+   :config
+   (require 'evil-org-agenda)
+   (evil-org-agenda-set-keys)
+   (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
+#+end_src
+
+** Priorities
+#+begin_src emacs-lisp
+  (setq org-lowest-priority ?F)
 #+end_src
