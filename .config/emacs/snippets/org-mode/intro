@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: intro 
+# key: <t
+# --
+
+#+TITLE: ${1:title}
+#+AUTHOR: [[https://github.com/touhidulshawan][Touhidul Shawan]]
+#+DESCRIPTION: ${2:description}
+#+DATE: `(format-time-string "%Y-%m-%d %a")`
+#+OPTIONS: toc:2
+$0

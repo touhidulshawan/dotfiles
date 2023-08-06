@@ -56,3 +56,5 @@ flycheck_*.el
 
 recentf
 /transient
+/elisp-autofmt-cache
+/.lsp-*

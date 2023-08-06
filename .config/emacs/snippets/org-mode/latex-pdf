@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: latex-pdf
+# key: <lat 
+# --
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letterpaper]
+#+SETUPFILE: ~/.config/emacs/latex/latex-standard-setup.org
+
+$0
