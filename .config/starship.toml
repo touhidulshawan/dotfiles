@@ -6,6 +6,9 @@ success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
+[directory]
+style = "bright-yellow"
+
 [git_metrics]
 disabled = false
 
