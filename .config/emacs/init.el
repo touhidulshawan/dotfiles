@@ -10,7 +10,7 @@
  '(custom-safe-themes
    '("d445c7b530713eac282ecdeea07a8fa59692c83045bf84dd112dd738c7bcad1d" default))
  '(package-selected-packages
-   '(gcmh ligature elisp-autofmt key-chord fish-mode evil-org yasnippet-snippets which-key vertico tree-sitter-langs toc-org sudo-edit spinner rainbow-mode quelpa-use-package pyvenv project org-modern orderless nerd-icons-ivy-rich nerd-icons-ibuffer nerd-icons-dired nerd-icons-completion markdown-mode marginalia lv load-env-vars language-id jsonrpc inheritenv ht gruvbox-theme general external-completion evil-surround evil-nerd-commenter evil-commentary evil-collection eldoc doom-modeline diminish dashboard corfu cape-yasnippet cape avy affe))
+   '(mixed-pitch gcmh ligature elisp-autofmt key-chord fish-mode evil-org yasnippet-snippets which-key vertico tree-sitter-langs toc-org sudo-edit spinner rainbow-mode quelpa-use-package pyvenv project org-modern orderless nerd-icons-ivy-rich nerd-icons-ibuffer nerd-icons-dired nerd-icons-completion markdown-mode marginalia lv load-env-vars language-id jsonrpc inheritenv ht gruvbox-theme general external-completion evil-surround evil-nerd-commenter evil-commentary evil-collection eldoc doom-modeline diminish dashboard corfu cape-yasnippet cape avy affe))
  '(warning-suppress-log-types '((comp) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

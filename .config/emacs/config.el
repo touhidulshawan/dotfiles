@@ -696,52 +696,24 @@
  org-goto-auto-isearch nil
  org-log-done 'time
  org-todo-keywords
- '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+ '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
    (sequence
-    "BACKLOG(b)"
-    "ACTIVE(a)"
-    "REVIEW(v)"
-    "WAIT(w@/!)"
-    "HOLD(h)"
+    "HIGH(h)"
+    "MEDIUM(m)"
+    "LOW(l)"
+    "DUP(u)"
+    "WIP(w)"
+    "POC(p)"
+    "PENDING PAYMENT(e)"
     "|"
-    "DELEGATED(D)"
-    "CANCELLED(c)"))
- org-agenda-search-view-always-boolean t
- org-agenda-timegrid-use-ampm t
- org-agenda-time-grid
- '((daily today require-timed remove-match)
-   (800
-    830
-    1000
-    1030
-    1200
-    1230
-    1400
-    1430
-    1600
-    1630
-    1700
-    1730
-    1800
-    1830
-    2000)
-   "......" "────────────────")
- org-agenda-current-time-string "← now ─────────────────")
+    "FALSE POSITIVE(f)"
+    "VALIDATE(v)"
+    "REPORTED(r)")))
 
 (use-package
  toc-org
  :commands toc-org-enable
  :init (add-hook 'org-mode-hook 'toc-org-enable))
-
-(use-package
- org-superstar
- :config
- (setq org-superstar-leading-bullet " ")
- (setq org-superstar-special-todo-items t))
-
-;; Removes gap when you add a new heading
-(setq org-blank-before-new-entry
-      '((heading . nil) (plain-list-item . nil)))
 
 (use-package
  org-modern
