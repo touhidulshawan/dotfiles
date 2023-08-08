@@ -115,6 +115,7 @@ alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay
 
 # alias to fix tryhackme machine website issues
 alias enfix="sudo ip link set dev eno1 mtu 1200"
+alias nmfix="sudo ip link set dev nm-bridge mtu 1200"
 alias tunfix="sudo ip link set dev tun0 mtu 1200"
 alias tunshow="sudo ip link show dev tun0"
 
