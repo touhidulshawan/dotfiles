@@ -1,6 +1,5 @@
 #!/usr/bin/fish
 
-fisher install jorgebucaran/hydro
 fisher install jorgebucaran/nvm.fish
 fisher install joseluisq/gitnow@2.10.0
 fisher install PatrickF1/fzf.fish
