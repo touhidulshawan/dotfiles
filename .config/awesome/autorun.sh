@@ -12,6 +12,5 @@ picom --experimental-backends &
 ~/.fehbg &
 nm-applet &
 copyq &
-pa-applet &
 xfce4-power-manager &
 emacs --daemon &
