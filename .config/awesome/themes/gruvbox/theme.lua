@@ -91,7 +91,7 @@ local bat = lain.widget.bat({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M"))
+        widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M "))
     end,
 })
 -- volume
