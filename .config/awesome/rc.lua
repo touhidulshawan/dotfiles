@@ -342,10 +342,27 @@ globalkeys = mytable.join( -- Destroy all notifications
     -- Screen brightness
     awful.key({}, "XF86MonBrightnessUp", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness up")
-    end, { description = "+5%", group = "hotkeys" }),
+    end, { description = "+10%", group = "hotkeys" }),
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
-    end, { description = "-5%", group = "hotkeys" }),
+    end, { description = "-10%", group = "hotkeys" }),
+    awful.key({modkey}, ";", function()
+        awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness up")
+    end, { description = "Brightness +10%", group = "hotkeys" }),
+    awful.key({modkey, shiftkey}, ";", function()
+        awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
+    end, { description = "Brightness -10%", group = "hotkeys" }),
+    -- volume control [pw-volume]
+    awful.key({modkey}, "]", function()
+        awful.util.spawn("pw-volume change +5%")
+    end, { description = "Increase volume by 10%", group = "hotkeys" }),
+    awful.key({modkey}, "[", function()
+        awful.util.spawn("pw-volume change -5%")
+    end, { description = "Decrease volume by 10%", group = "hotkeys" }),
+    awful.key({modkey}, "\\", function()
+        awful.util.spawn("pw-volume mute toggle")
+    end, { description = "Toggle mute", group = "hotkeys" }),
+    -- copy terminal to gtk
     awful.key({ modkey }, "c", function()
         awful.spawn.with_shell("xsel | xsel -i -b")
     end, { description = "copy terminal to gtk", group = "hotkeys" }),
