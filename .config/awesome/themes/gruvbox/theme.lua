@@ -94,26 +94,17 @@ local memory = lain.widget.mem({
         widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M"))
     end,
 })
--- tasklist buttons
-local tasklist_buttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        if c == client.focus then
-            c.minimized = true
-        else
-            c:emit_signal("request::activate", "tasklist", { raise = true })
+-- volume
+local volicon = wibox.widget.imagebox(theme.widget_vol)
+local volume = lain.widget.alsa({
+    settings = function()
+        if volume_now.status == "off" then
+            volume_now.level = volume_now.level .. "M"
         end
-    end),
-    awful.button({}, 3, function()
-        awful.menu.client_list({ theme = { width = 250 } })
-    end),
-    awful.button({}, 4, function()
-        awful.client.focus.byidx(1)
-    end),
-    awful.button({}, 5, function()
-        awful.client.focus.byidx(-1)
-    end)
-)
 
+        widget:set_markup(markup.fontfg(theme.font, aqua, volume_now.level .. "% "))
+    end,
+})
 -- MPD
 local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
@@ -140,6 +131,25 @@ theme.mpd = lain.widget.mpd({
         widget:set_markup(markup.fontfg(theme.font, orange, artist) .. markup.fontfg(theme.font, aqua, title))
     end,
 })
+-- tasklist buttons
+local tasklist_buttons = gears.table.join(
+    awful.button({}, 1, function(c)
+        if c == client.focus then
+            c.minimized = true
+        else
+            c:emit_signal("request::activate", "tasklist", { raise = true })
+        end
+    end),
+    awful.button({}, 3, function()
+        awful.menu.client_list({ theme = { width = 250 } })
+    end),
+    awful.button({}, 4, function()
+        awful.client.focus.byidx(1)
+    end),
+    awful.button({}, 5, function()
+        awful.client.focus.byidx(-1)
+    end)
+)
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -225,6 +235,8 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             memicon,
             memory.widget,
+            volicon,
+            volume,
             baticon,
             bat.widget,
             mytextclock,
