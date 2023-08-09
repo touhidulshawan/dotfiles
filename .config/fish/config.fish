@@ -76,9 +76,7 @@ alias sx="sxiv -t -g 1338x719 *"
 alias cat='bat'
 
 # alias for neovim
-alias v='fd -Ht f | fzf | xargs nvim'
-alias vi='nvim'
-alias vim='nvim'
+alias nf='fd -Ht f | fzf | xargs nvim'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
