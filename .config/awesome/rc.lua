@@ -346,20 +346,20 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
     end, { description = "-10%", group = "hotkeys" }),
-    awful.key({modkey}, ";", function()
+    awful.key({ modkey }, ";", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness up")
     end, { description = "Brightness +10%", group = "hotkeys" }),
-    awful.key({modkey, shiftkey}, ";", function()
+    awful.key({ modkey, shiftkey }, ";", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
     end, { description = "Brightness -10%", group = "hotkeys" }),
     -- volume control [pw-volume]
-    awful.key({modkey}, "]", function()
+    awful.key({ modkey }, "]", function()
         awful.util.spawn("pw-volume change +5%")
     end, { description = "Increase volume by 10%", group = "hotkeys" }),
-    awful.key({modkey}, "[", function()
+    awful.key({ modkey }, "[", function()
         awful.util.spawn("pw-volume change -5%")
     end, { description = "Decrease volume by 10%", group = "hotkeys" }),
-    awful.key({modkey}, "\\", function()
+    awful.key({ modkey }, "\\", function()
         awful.util.spawn("pw-volume mute toggle")
     end, { description = "Toggle mute", group = "hotkeys" }),
     -- copy terminal to gtk
@@ -475,7 +475,7 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "b", function()
         awful.util.spawn("burpsuite")
     end, { description = "open burpsuite", group = "tools" }),
-    -- launch newsboat 
+    -- launch newsboat
     awful.key({ modkey, shiftkey }, "o", function()
         awful.util.spawn(terminal .. " -e newsboat")
     end, { description = "launch newsboat", group = "rss reader" })
@@ -656,6 +656,10 @@ awful.rules.rules = {
     },
     {
         rule = { class = "burp-StartBurp", name = "Settings" },
+        properties = { floating = true, placement = awful.placement.centered },
+    },
+    {
+        rule = { class = "burp-StartBurp", name = "New live task" },
         properties = { floating = true, placement = awful.placement.centered },
     },
     {
