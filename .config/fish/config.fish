@@ -39,6 +39,9 @@ abbr tl trash-list
 abbr rr trash-restore
 abbr td trash-empty
 abbr dcom docker-compose
+abbr oc ouch compress
+abbr od ouch decompress 
+
 
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
