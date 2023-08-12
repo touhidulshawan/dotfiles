@@ -717,7 +717,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = " 󰍹 ", switchtotag = true },
     },
     {
-        rule = { name = "Picture-in-Picture" },
+        rule = { class = "firefox", name = "Picture-in-Picture" },
         properties = { sticky = true },
     },
 }
