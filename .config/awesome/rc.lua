@@ -352,16 +352,38 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, ";", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
     end, { description = "Brightness -10%", group = "hotkeys" }),
-    -- volume control [pw-volume]
-    awful.key({ modkey }, "]", function()
-        awful.util.spawn("pw-volume change +5%")
-    end, { description = "Increase volume by 10%", group = "hotkeys" }),
-    awful.key({ modkey }, "[", function()
-        awful.util.spawn("pw-volume change -5%")
-    end, { description = "Decrease volume by 10%", group = "hotkeys" }),
-    awful.key({ modkey }, "\\", function()
-        awful.util.spawn("pw-volume mute toggle")
-    end, { description = "Toggle mute", group = "hotkeys" }),
+    -- ALSA volume control
+    awful.key({ modkey }, "]",
+        function()
+            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        { description = "volume up by 5%", group = "hotkeys" }),
+    awful.key({ modkey }, "[",
+        function()
+            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        { description = "volume down by 5%", group = "hotkeys" }),
+    awful.key({ modkey }, "\\",
+        function()
+            os.execute(string.format("amixer -q set %s toggle",
+                beautiful.volume.togglechannel or beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        { description = "toggle mute", group = "hotkeys" }),
+    awful.key({ altkey, "Control" }, "m",
+        function()
+            os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        { description = "volume 100%", group = "hotkeys" }),
+    awful.key({ altkey, "Control" }, "0",
+        function()
+            os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        { description = "volume 0%", group = "hotkeys" }),
     -- copy terminal to gtk
     awful.key({ modkey }, "c", function()
         awful.spawn.with_shell("xsel | xsel -i -b")

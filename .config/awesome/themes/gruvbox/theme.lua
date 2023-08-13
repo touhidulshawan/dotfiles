@@ -94,16 +94,16 @@ local memory = lain.widget.mem({
         widget:set_markup(markup.fontfg(theme.font, yellow, mem_now.used .. "M "))
     end,
 })
--- volume
+-- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-local volume = lain.widget.alsa({
+theme.volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, aqua, volume_now.level .. "% "))
-    end,
+        widget:set_markup(markup.fontfg(theme.font, green, volume_now.level .. "% "))
+    end
 })
 -- MPD
 local mpdicon = wibox.widget.imagebox()
@@ -236,7 +236,7 @@ function theme.at_screen_connect(s)
             memicon,
             memory.widget,
             volicon,
-            volume,
+            theme.volume,
             baticon,
             bat.widget,
             mytextclock,
