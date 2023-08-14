@@ -354,6 +354,16 @@
 
 (use-package magit :commands magit-status :ensure t)
 
+(use-package diminish)
+
+(use-package rainbow-mode
+ :diminish
+ :hook org-mode prog-mode)
+
+(use-package sudo-edit)
+
+(use-package centered-cursor-mode :diminish centered-cursor-mode)
+
 (use-package
  which-key
  :init (which-key-mode 1)
@@ -377,146 +387,144 @@
  general
  :config (general-evil-setup)
 
- (general-imap
-  "j"
-  (general-key-dispatch
-   'self-insert-command
-   :timeout 0.2 "j" 'evil-normal-state))
+(general-imap
+ "j"
+ (general-key-dispatch
+  'self-insert-command
+  :timeout 0.2 "j" 'evil-normal-state))
 
- ;; set up 'SPC' as the global leader key
- (general-create-definer
-  leader-key
-  :states '(normal insert visual emacs)
-  :keymaps 'override
-  :prefix "SPC" ;; set leader
-  :global-prefix "M-SPC") ;; access leader in insert mode
+;; set up 'SPC' as the global leader key
+(general-create-definer
+ leader-key
+ :states '(normal insert visual emacs)
+ :keymaps 'override
+ :prefix "SPC" ;; set leader
+ :global-prefix "M-SPC") ;; access leader in insert mode
 
- (leader-key
-  "."
-  '(find-file :wk "Find file")
-  "f c"
-  '((lambda ()
-      (interactive)
-      (find-file "~/.config/emacs/config.org"))
-    :wk "Edit emacs config")
-  "f s"
-  '(save-buffer :wk "Save buffer")
-  "f r"
-  '(consult-recent-file :wk "Find recent files"))
+(leader-key
+ "."
+ '(find-file :wk "Find file")
+ "f c"
+ '((lambda ()
+     (interactive)
+     (find-file "~/.config/emacs/config.org"))
+   :wk "Edit emacs config")
+ "f s"
+ '(save-buffer :wk "Save buffer")
+ "f r"
+ '(consult-recent-file :wk "Find recent files"))
 
- (leader-key
-  "b"
-  '(:ignore t :wk "buffer")
-  "b i"
-  '(ibuffer :wk "Switch ibuffer")
-  "b b"
-  '(switch-to-buffer :wk "Switch buffer")
-  "b k"
-  '(kill-this-buffer :wk "Kill this buffer")
-  "b n"
-  '(next-buffer :wk "Next buffer")
-  "b p"
-  '(previous-buffer :wk "Previous buffer")
-  "b r"
-  '(revert-buffer :wk "Reload buffer"))
+(leader-key
+ "fu"
+ '(sudo-edit-find-file :wk "Sudo find file")
+ "fU"
+ '(sudo-edit :wk "Sudo edit file"))
 
- (leader-key
-  "h"
-  '(:ignore t :wk "Help")
-  "h f"
-  '(describe-function :wk "Describe function")
-  "h v"
-  '(describe-variable :wk "Describe variable")
-  "h r r"
-  '((lambda ()
-      (interactive)
-      (load-file "~/.config/emacs/init.el"))
-    :wk "Reload emacs config"))
+(leader-key
+ "b"
+ '(:ignore t :wk "buffer")
+ "b i"
+ '(ibuffer :wk "Switch ibuffer")
+ "b b"
+ '(switch-to-buffer :wk "Switch buffer")
+ "b k"
+ '(kill-this-buffer :wk "Kill this buffer")
+ "b n"
+ '(next-buffer :wk "Next buffer")
+ "b p"
+ '(previous-buffer :wk "Previous buffer")
+ "b r"
+ '(revert-buffer :wk "Reload buffer"))
 
- (leader-key
-  "j"
-  '(avy-goto-word-0 :wk "Go to word")
-  "l"
-  '(avy-goto-line :wk "Go to line"))
+(leader-key "n" '(scratch-buffer :wk "Scratch Buffer"))
 
- (leader-key
-  "m"
-  '(:ignore t :wk "Org")
-  "m a"
-  '(org-agenda :wk "Org agenda")
-  "m e"
-  '(org-export-dispatch :wk "Org export dispatch")
-  "m i"
-  '(org-toggle-item :wk "Org toggle item")
-  "m t"
-  '(org-todo :wk "Org todo")
-  "m B"
-  '(org-babel-tangle :wk "Org babel tangle")
-  "m T"
-  '(org-todo-list :wk "Org todo list"))
- (leader-key
-  "m b"
-  '(:ignore t :wk "Tables")
-  "m b -"
-  '(org-table-insert-hline :wk "Insert hline in table"))
+(leader-key
+ "w"
+ '(:ignore t :wk "Windows")
+ ;; Window splits
+ "w c"
+ '(evil-window-delete :wk "Close window")
+ "w n"
+ '(evil-window-new :wk "New window")
+ "w s"
+ '(evil-window-split :wk "Horizontal split window")
+ "w v"
+ '(evil-window-vsplit :wk "Vertical split window")
+ ;; Window motions
+ "w h"
+ '(evil-window-left :wk "Window left")
+ "w j"
+ '(evil-window-down :wk "Window down")
+ "w k"
+ '(evil-window-up :wk "Window up")
+ "w l"
+ '(evil-window-right :wk "Window right")
+ "w w"
+ '(evil-window-next :wk "Goto next window")
+ ;; Move Windows
+ "w H"
+ '(buf-move-left :wk "Buffer move left")
+ "w J"
+ '(buf-move-down :wk "Buffer move down")
+ "w K"
+ '(buf-move-up :wk "Buffer move up")
+ "w L"
+ '(buf-move-right :wk "Buffer move right"))
 
- (leader-key
-  "m d"
-  '(:ignore t :wk "Date/deadline")
-  "m d t"
-  '(org-time-stamp :wk "Org time stamp"))
- (leader-key
-  "w"
-  '(:ignore t :wk "Windows")
-  ;; Window splits
-  "w c"
-  '(evil-window-delete :wk "Close window")
-  "w n"
-  '(evil-window-new :wk "New window")
-  "w s"
-  '(evil-window-split :wk "Horizontal split window")
-  "w v"
-  '(evil-window-vsplit :wk "Vertical split window")
-  ;; Window motions
-  "w h"
-  '(evil-window-left :wk "Window left")
-  "w j"
-  '(evil-window-down :wk "Window down")
-  "w k"
-  '(evil-window-up :wk "Window up")
-  "w l"
-  '(evil-window-right :wk "Window right")
-  "w w"
-  '(evil-window-next :wk "Goto next window")
-  ;; Move Windows
-  "w H"
-  '(buf-move-left :wk "Buffer move left")
-  "w J"
-  '(buf-move-down :wk "Buffer move down")
-  "w K"
-  '(buf-move-up :wk "Buffer move up")
-  "w L"
-  '(buf-move-right :wk "Buffer move right"))
- (leader-key
-  "g"
-  '(:ignore t :wk "magit")
-  "g g"
-  '(magit-status :wk "Magit Status")))
+(leader-key
+ "h"
+ '(:ignore t :wk "Help")
+ "h f"
+ '(describe-function :wk "Describe function")
+ "h v"
+ '(describe-variable :wk "Describe variable")
+ "h r r"
+ '((lambda ()
+     (interactive)
+     (load-file "~/.config/emacs/init.el"))
+   :wk "Reload emacs config"))
 
-(use-package diminish)
+(leader-key
+ "j"
+ '(avy-goto-word-0 :wk "Go to word")
+ "l"
+ '(avy-goto-line :wk "Go to line"))
 
-(use-package rainbow-mode
- :diminish
- :hook org-mode prog-mode)
+(leader-key
+ "g"
+ '(:ignore t :wk "magit")
+ "g g"
+ '(magit-status :wk "Magit Status"))
 
-(use-package
- sudo-edit
- :config
- (leader-key
-  "fu"
-  '(sudo-edit-find-file :wk "Sudo find file")
-  "fU"
-  '(sudo-edit :wk "Sudo edit file")))
+(leader-key
+ "m"
+ '(:ignore t :wk "Org")
+ "m a"
+ '(org-agenda :wk "Org agenda")
+ "m e"
+ '(org-export-dispatch :wk "Org export dispatch")
+ "m i"
+ '(org-toggle-item :wk "Org toggle item")
+ "m t"
+ '(org-todo :wk "Org todo")
+ "m B"
+ '(org-babel-tangle :wk "Org babel tangle")
+ "m T"
+ '(org-todo-list :wk "Org todo list"))
+(leader-key
+ "m b"
+ '(:ignore t :wk "Tables")
+ "m b -"
+ '(org-table-insert-hline :wk "Insert hline in table"))
+
+(leader-key
+ "m d"
+ '(:ignore t :wk "Date/deadline")
+ "m d t"
+ '(org-time-stamp :wk "Org time stamp"))
+
+(leader-key
+ "m i" '(org-toggle-inline-images :wk "Toggle inline image")))
 
 (use-package
  corfu
@@ -670,45 +678,112 @@
      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 (setq org-latex-listings 't)
 
-(setq
- org-ellipsis " ▾"
- org-hide-emphasis-markers t
- org-pretty-entities t
- org-adapt-indentation t
- org-startup-indented t
- org-startup-with-inline-images t
- org-image-actual-width 400
- org-special-ctrl-a/e '(t . nil)
- org-special-ctrl-k t
- org-src-fontify-natively t
- org-fontify-whole-heading-line t
- org-fontify-quote-and-verse-blocks t
- org-src-tab-acts-natively t
- org-edit-src-content-indentation 2
- org-hide-block-startup nil
- org-src-preserve-indentation nil
- org-startup-folded 'fold
- org-cycle-separator-lines 2
- org-hide-leading-stars t
- org-export-backends '(markdown ascii html icalendar latex o)
- org-export-with-toc nil
- org-highlight-latex-and-related '(native)
- org-goto-auto-isearch nil
- org-log-done 'time
- org-todo-keywords
- '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
-   (sequence
-    "HIGH(h)"
-    "MEDIUM(m)"
-    "LOW(l)"
-    "DUP(u)"
-    "WIP(w)"
-    "POC(p)"
-    "PENDING PAYMENT(e)"
-    "|"
-    "FALSE POSITIVE(f)"
-    "VALIDATE(v)"
-    "REPORTED(r)")))
+(setq org-ellipsis " ▾")
+(setq org-src-fontify-natively t) 
+(setq org-highlight-latex-and-related '(native))
+(setq org-startup-folded 'showeverything)
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width 300)
+(setq org-fontify-whole-heading-line t)
+(setq org-pretty-entities t)
+(setq org-hide-emphasis-markers t)
+(setq org-adapt-indentation t)
+(setq org-startup-indented t)
+(setq org-special-ctrl-a/e '(t . nil))
+(setq org-special-ctrl-k t)
+(setq org-fontify-quote-and-verse-blocks t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 2)
+(setq org-hide-block-startup nil)
+(setq org-src-preserve-indentation nil)
+(setq org-startup-folded 'fold)
+(setq org-cycle-separator-lines 2)
+(setq org-goto-auto-isearch nil)
+(setq org-log-done 'time)
+
+(setq org-cycle-separator-lines 1)
+(setq org-catch-invisible-edits 'show-and-error)
+(setq org-src-tab-acts-natively t)
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
+        (sequence
+         "HIGH(h)"
+         "MEDIUM(m)"
+         "LOW(l)"
+         "DUP(u)"
+         "WIP(w)"
+         "POC(p)"
+         "PENDING PAYMENT(e)"
+         "|"
+         "FALSE POSITIVE(f)"
+         "VALIDATE(v)"
+         "REPORTED(r)")))
+
+(setq org-todo-keyword-faces
+      '(("TODO"
+         :inherit (region org-todo)
+         :foreground "DarkOrange1"
+         :weight bold)
+        ("CRITICAL"
+         :inherit (region org-todo)
+         :foreground "white smoke"
+         :background "dark red"
+         :weight bold)
+        ("HIGH"
+         :inherit (region org-todo)
+         :foreground "white smoke"
+         :background "red"
+         :weight bold)
+        ("MEDIUM"
+         :inherit (region org-todo)
+         :foreground "white smoke"
+         :background "firebrick"
+         :weight bold)
+        ("LOW"
+         :inherit (region org-todo)
+         :foreground "white smoke"
+         :background "indian red"
+         :weight bold)
+        ("FALSE POSITIVE"
+         :inherit (region org-todo)
+         :foreground "gray9"
+         :background "coral"
+         :weight bold)
+        ("DUP"
+         :inherit (org-todo region)
+         :foreground "tan2"
+         :weight bold)
+        ("POC"
+         :inherit (org-todo region)
+         :foreground "MediumPurple2"
+         :weight bold)
+        ("WIP"
+         :inherit (org-todo region)
+         :foreground "magenta3"
+         :weight bold)
+        ("REPORTED"
+         :inherit (region org-todo)
+         :foreground "DarkGoldenrod2"
+         :weight bold)
+        ("VALIDATE"
+         :inherit (region org-todo)
+         :foreground "SpringGreen2"
+         :weight bold)
+        ("DONE" . "SeaGreen4")))
+
+(setq org-tags-column -1)
+
+(setq org-lowest-priority ?F)
+(setq org-default-priority ?E)
+
+(setq org-priority-faces
+      '((65 . "red2")
+        (66 . "Gold1")
+        (67 . "Goldenrod2")
+        (68 . "PaleTurquoise3")
+        (69 . "DarkSlateGray4")
+        (70 . "PaleTurquoise4")))
 
 (use-package
  toc-org
@@ -736,5 +811,3 @@
  (require 'evil-org-agenda)
  (evil-org-agenda-set-keys)
  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
-
-(setq org-lowest-priority ?F)
