@@ -14,35 +14,6 @@ set -x SUDO_EDITOR /usr/bin/nvim
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
 
-fzf_configure_bindings --directory=\cf
-set fzf_preview_dir_cmd exa --all --color=always --icons
-set fzf_fd_opts --hidden --exclude=.git
-
-### Abbreviations (expanded aliases)
-abbr ncm ncmpcpp
-abbr pbc pbcopy
-abbr pbp pbpaste
-abbr py python
-abbr blt bluetoothctl
-abbr bl bluetooth
-abbr bm bashmount
-abbr e exit
-abbr cl clear
-abbr bt btop
-abbr n nvim
-abbr up "sudo ip link set dev wlan0 up"
-abbr down "sudo ip link set dev wlan0 down"
-abbr gpkg 'npm install -g eslint prettier prettier-plugin-toml yarn'
-abbr st startx
-abbr cn config
-abbr tl trash-list
-abbr rr trash-restore
-abbr td trash-empty
-abbr dcom docker-compose
-abbr oc ouch compress
-abbr od ouch decompress 
-
-
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
 alias stop_wifi='nmcli radio wifi off'
@@ -64,7 +35,6 @@ alias ls='exa -a --icons --sort=name --group-directories-first'
 alias ll='exa -l --icons --color=always --group-directories-first'
 alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
-
 
 #alias for copy
 alias cp='cp -rivg '
@@ -123,6 +93,10 @@ alias tunshow="sudo ip link show dev tun0"
 # alias for vagrant
 alias vaup="vagrant up --provider=libvirt"
 
+# fzf
+fzf_configure_bindings --directory=\cf
+set fzf_preview_dir_cmd exa --all --color=always --icons
+set fzf_fd_opts --hidden --exclude=.git
 export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_DEFAULT_OPTS="--layout=reverse-list --border=bold --ansi"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f'
@@ -185,5 +159,6 @@ function dockerip
     docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_ID
 end
 
+source $HOME/.config/fish/abbr.fish
 starship init fish | source
 zoxide init fish | source
