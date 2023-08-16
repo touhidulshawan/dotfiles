@@ -69,14 +69,6 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 
-(use-package
- mixed-pitch
- :defer t
- :config (setq mixed-pitch-set-height nil)
- (dolist
-     (face '(org-date org-priority org-tag org-special-keyword)) ;; Some extra faces I like to be fixed-pitch
-   (add-to-list 'mixed-pitch-fixed-pitch-faces face)))
-
 (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 
 (use-package
@@ -265,7 +257,7 @@
        (append '(abbreviate-file-name) recentf-filename-handlers))
  (recentf-mode))
 
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
 

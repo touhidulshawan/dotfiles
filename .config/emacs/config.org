@@ -145,16 +145,6 @@
   (add-to-list
    'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 #+end_src
-*** Mixed-pitch
-#+begin_src emacs-lisp
-  (use-package
-   mixed-pitch
-   :defer t
-   :config (setq mixed-pitch-set-height nil)
-   (dolist
-       (face '(org-date org-priority org-tag org-special-keyword)) ;; Some extra faces I like to be fixed-pitch
-     (add-to-list 'mixed-pitch-fixed-pitch-faces face)))
-#+end_src
 ** Theme
 #+begin_src emacs-lisp
   (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
@@ -997,4 +987,3 @@ Disable  lock files
    (evil-org-agenda-set-keys)
    (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
 #+end_src
-
