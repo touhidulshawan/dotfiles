@@ -461,10 +461,6 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
-    -- launch chrome
-    awful.key({ modkey, shiftkey }, "c", function()
-        awful.util.spawn("google-chrome-stable")
-    end, { description = "launch google chrome", group = "browser" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/screenshot")
