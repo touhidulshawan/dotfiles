@@ -52,11 +52,11 @@
 
 (set-face-attribute 'default nil
                     :font "JetBrainsMono Nerd Font"
-                    :height 100
+                    :height 110
                     :weight 'medium)
 (set-face-attribute 'variable-pitch nil
                     :font "JetBrainsMono Nerd Font"
-                    :height 100
+                    :height 110
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
                     :font "JetBrainsMono Nerd Font"
@@ -520,7 +520,9 @@
 
 (use-package
  corfu
- :init (global-corfu-mode)
+ :init
+ (global-corfu-mode)
+ (corfu-popupinfo-mode)
  :config
  (setq
   corfu-auto t
@@ -566,16 +568,25 @@
 
 (use-package
  cape
+ :defer 10
+ :bind ("C-c f" . cape-file)
  :init
- (add-to-list 'completion-at-point-functions #'cape-file)
- (add-to-list 'completion-at-point-functions #'cape-keyword)
- ;; kinda confusing re length, WIP/TODO
- ;; :hook (org-mode . (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
- ;; :config
- ;; (setq dabbrev-check-other-buffers nil
- ;;       dabbrev-check-all-buffers nil
- ;;       cape-dabbrev-min-length 6)
- )
+ ;; Add `completion-at-point-functions', used by `completion-at-point'.
+ (defalias
+   'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
+ (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
+ (cl-pushnew #'cape-file completion-at-point-functions)
+ :config
+ ;; Silence then pcomplete capf, no errors or messages!
+ (advice-add
+  'pcomplete-completions-at-point
+  :around #'cape-wrap-silent)
+
+ ;; Ensure that pcomplete does not write to the buffer
+ ;; and behaves as a pure `completion-at-point-function'.
+ (advice-add
+  'pcomplete-completions-at-point
+  :around #'cape-wrap-purify))
 
 
 (use-package
@@ -692,6 +703,7 @@
 (setq org-cycle-separator-lines 2)
 (setq org-goto-auto-isearch nil)
 (setq org-log-done 'time)
+(setq org-log-into-drawer t)
 
 (setq org-cycle-separator-lines 1)
 (setq org-catch-invisible-edits 'show-and-error)
@@ -793,7 +805,9 @@
   org-modern-tag nil
   org-modern-priority nil
   org-modern-todo nil
-  org-modern-table nil))
+  org-modern-table nil
+  org-modern-variable-pitch nil
+  org-modern-block-fringe nil))
 
 (use-package
  evil-org
