@@ -7,7 +7,6 @@ lsp.nvim_workspace()
 lsp.ensure_installed({
 	"tsserver",
 	"pylsp",
-	"gopls",
 })
 
 local cmp = require("cmp")
