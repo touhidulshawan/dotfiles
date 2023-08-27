@@ -14,6 +14,19 @@ set -x SUDO_EDITOR /usr/bin/nvim
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
 
+# alias for docker-compose
+# list all running containters
+alias dcp="docker compose ps"
+# start all containers
+alias dcu="docker compose up"
+# start all containers, rebuild if necessary
+alias dcub="docker compose up --build"
+# stop all running containers
+alias dcs="docker compose stop"
+# stop and remove all containters, networks, images, volumnes
+alias dcd="docker compose down --rmi all --volumes"
+
+
 # alias for wifi on/OFF
 alias start_wifi='nmcli radio wifi on'
 alias stop_wifi='nmcli radio wifi off'
@@ -157,6 +170,12 @@ function dockerip
     echo "[?] Container ID: "
     set container_ID (read)
     docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_ID
+end
+
+# add host to /etc/hosts
+function addhost
+    echo "$argv[1]  $argv[2]" | sudo tee -a /etc/hosts
+    cat /etc/hosts
 end
 
 source $HOME/.config/fish/abbr.fish

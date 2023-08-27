@@ -132,13 +132,14 @@ awful.util.taglist_buttons = mytable.join(
         if client.focus then
             client.focus:toggle_tag(t)
         end
-    end),
-    awful.button({}, 4, function(t)
-        awful.tag.viewnext(t.screen)
-    end),
-    awful.button({}, 5, function(t)
-        awful.tag.viewprev(t.screen)
     end)
+-- disable mouse wheel to switch tag
+--[[ awful.button({}, 4, function(t) ]]
+--[[     awful.tag.viewnext(t.screen) ]]
+--[[ end), ]]
+--[[ awful.button({}, 5, function(t) ]]
+--[[     awful.tag.viewprev(t.screen) ]]
+--[[ end) ]]
 )
 
 awful.util.tasklist_buttons = mytable.join(
@@ -353,37 +354,26 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("sh " .. home .. "/.local/bin/changebrightness down")
     end, { description = "Brightness -10%", group = "hotkeys" }),
     -- ALSA volume control
-    awful.key({ modkey }, "]",
-        function()
-            os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        { description = "volume up by 5%", group = "hotkeys" }),
-    awful.key({ modkey }, "[",
-        function()
-            os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        { description = "volume down by 5%", group = "hotkeys" }),
-    awful.key({ modkey }, "\\",
-        function()
-            os.execute(string.format("amixer -q set %s toggle",
-                beautiful.volume.togglechannel or beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        { description = "toggle mute", group = "hotkeys" }),
-    awful.key({ altkey, "Control" }, "m",
-        function()
-            os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        { description = "volume 100%", group = "hotkeys" }),
-    awful.key({ altkey, "Control" }, "0",
-        function()
-            os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        { description = "volume 0%", group = "hotkeys" }),
+    awful.key({ modkey }, "]", function()
+        os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
+        beautiful.volume.update()
+    end, { description = "volume up by 5%", group = "hotkeys" }),
+    awful.key({ modkey }, "[", function()
+        os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
+        beautiful.volume.update()
+    end, { description = "volume down by 5%", group = "hotkeys" }),
+    awful.key({ modkey }, "\\", function()
+        os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+        beautiful.volume.update()
+    end, { description = "toggle mute", group = "hotkeys" }),
+    awful.key({ altkey, "Control" }, "m", function()
+        os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
+        beautiful.volume.update()
+    end, { description = "volume 100%", group = "hotkeys" }),
+    awful.key({ altkey, "Control" }, "0", function()
+        os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
+        beautiful.volume.update()
+    end, { description = "volume 0%", group = "hotkeys" }),
     -- copy terminal to gtk
     awful.key({ modkey }, "c", function()
         awful.spawn.with_shell("xsel | xsel -i -b")
@@ -693,7 +683,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = "  " },
     },
     {
-        rule_any = { class = { "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
+        rule_any = { class = { "Mousepad", "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
         properties = { screen = 1, tag = "  " },
     },
     {

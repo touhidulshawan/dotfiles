@@ -22,3 +22,4 @@ abbr --add  dcom docker-compose
 abbr --add  oc 'ouch compress'
 abbr --add  od 'ouch decompress'
 abbr --add  sd ssh-add
+abbr --add  sec /usr/share/seclists/
