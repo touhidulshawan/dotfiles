@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name:test-account 
+# key:<taa
+# --
+
+** Test account
+       - username: =wiener=
+       - password: =peter=
+$0

@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# name:checklist for bug hunting v1 
+# key:<cv1 
+# --
+
+* TODO IDOR [0/13]
+- [ ] Find out how the target website works under the hood
+- [ ] Identify important feature as many as possible
+- [ ] Identify it's authorization machanism [JWT, API key, cookies, tokens]
+- [ ] Understand how it uses ID's, hashes, api. Read API documentaion if it has any.
+- [ ] Use tool like waybackurls, gau to grep UUID's, ids and common IDOR url parameters
+- [ ] Scrap JS files for API endpoints with UUID's, common IDOR parameters
+- [ ] Create multiple user with different priviledge if possible and check for =horizontal priviledge escalation=
+- [ ] Send =*= instead of an ID
+- [ ] Many times there will be enpoints to translate emails into GUID's, check for those
+- [ ] It its is =number id=, test through a large amount of numbers.
+- [ ] If endpoint has a name like =/api/user/myinfo= check for =/api/admins/myinfo=
+- [ ] Replace request methods
+  
+* TODO Broken Access Control [/]
+- [ ] Test for path traversal
+- [ ] Test for bypassing authorization schema
+- [ ] Test for vertical Access control problems (a.k.a. Privilege Escalation)
+- [ ] Test for horizontal Access control problems (between two users at the same privilege level)
+- [ ] Test for missing authorization
+
+* TODO Broken Authentication and Session Management [0/10]
+- [ ] Session Hijacking
+- [ ] Does Old session expire
+- [ ] Does password reset token expire
+- [ ] Server security misconfiguration
+- [ ] Broken authentication to email verification bypass
+- [ ] Email verification bypass
+- [ ] Does old password reset token expire on requesting new one
+- [ ] Password reset token not expiring after password change
+- [ ] Insufficient account process validation leads to account takeover
+$0
