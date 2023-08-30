@@ -146,6 +146,7 @@
    'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 #+end_src
 ** Theme
+*** gruvbox
 #+begin_src emacs-lisp
   (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 #+end_src
