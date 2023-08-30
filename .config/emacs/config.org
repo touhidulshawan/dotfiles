@@ -150,31 +150,20 @@
 #+begin_src emacs-lisp
   ;; (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 #+end_src
-*** modus
-#+begin_src emacs-lisp 
-  (setq modus-themes-mode-line '(borderless))
-  (setq modus-themes-region '(bg-only no-extend))
-  (setq modus-themes-bold-constructs t)
-  (setq modus-themes-italic-constructs nil)
-  (setq modus-themes-hl-line '(intense))
-  (setq modus-themes-mixed-fonts t)
-  (setq modus-themes-prompts '(italic semibold))
-  (setq modus-themes-completions
-        '((matches . (extrabold underline))
-          (selection . (semibold italic))))
-  (setq modus-themes-headings
-        (quote ((1 . (variable-pitch 1.1 rainbow))
-                (2 . (regular))
-                (3 . (regular))
-                (4 . (regular))
-                (t . (rainbow)))))
-  (setq modus-themes-common-palette-overrides
-        '((comment yellow-cooler) (string green-cooler)))
-  (setq modus-themes-common-palette-overrides
-        '((bg-paren-match bg-magenta-intense)))
-  (setq modus-themes-org-blocks 'gray-background)
+*** doom-themes
+#+begin_src emacs-lisp
+  (use-package doom-themes
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold t    
+	  doom-themes-enable-italic nil 
+	  doom-gruvbox-dark-variant "hard")
+    (load-theme 'doom-gruvbox t)
 
-  (load-theme 'modus-vivendi t)
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
 #+end_src
 ** Ligature
 #+begin_src emacs-lisp
