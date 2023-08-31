@@ -156,8 +156,8 @@
     :ensure t
     :config
     (setq doom-themes-enable-bold t    
-	  doom-themes-enable-italic nil 
-	  doom-gruvbox-dark-variant "hard")
+          doom-themes-enable-italic nil 
+          doom-gruvbox-dark-variant "hard")
     (load-theme 'doom-gruvbox t)
 
     ;; Enable flashing mode-line on errors
