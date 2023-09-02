@@ -29,6 +29,21 @@ export VISUAL=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
 export SUDO_EDITOR=/usr/bin/nvim
 
+# search github repository & clone it
+alias ghs="gh s | xargs gh repo clone"
+
+# alias for docker-compose
+# list all running containters
+alias dcp="docker compose ps"
+# start all containers
+alias dcu="docker compose up"
+# start all containers, rebuild if necessary
+alias dcub="docker compose up --build"
+# stop all running containers
+alias dcs="docker compose stop"
+# stop and remove all containters, networks, images, volumnes
+alias dcd="docker compose down --rmi all --volumes"
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'

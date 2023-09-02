@@ -14,6 +14,9 @@ set -x SUDO_EDITOR /usr/bin/nvim
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
 
+# search github repository & clone it
+alias ghs="gh s | xargs gh repo clone"
+
 # alias for docker-compose
 # list all running containters
 alias dcp="docker compose ps"
