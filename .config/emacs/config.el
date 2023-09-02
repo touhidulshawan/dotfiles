@@ -69,20 +69,9 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 
-;; (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
+(add-to-list 'custom-theme-load-path "~/.config/emacs/themes")
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t    
-        doom-themes-enable-italic nil 
-        doom-gruvbox-dark-variant "hard")
-  (load-theme 'doom-gruvbox t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
 
 (use-package
  ligature
@@ -529,7 +518,9 @@
  '(org-time-stamp :wk "Org time stamp"))
 
 (leader-key
- "m i" '(org-toggle-inline-images :wk "Toggle inline image")))
+ "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
+
+(leader-key "tw" '(writeroom-mode :which-key "writeroom-mode")))
 
 (use-package
  corfu
@@ -830,3 +821,17 @@
  (require 'evil-org-agenda)
  (evil-org-agenda-set-keys)
  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
+
+(use-package visual-fill-column
+  :defer t
+  :config
+  (setq visual-fill-column-center-text t))
+
+(use-package writeroom-mode
+  :defer t
+  :config
+  (setq writeroom-maximize-window nil
+        writeroom-mode-line t
+        writeroom-global-effects nil ;; No need to have Writeroom do any of that silly stuff
+        writeroom-extra-line-spacing 3) 
+  (setq writeroom-width visual-fill-column-width))
