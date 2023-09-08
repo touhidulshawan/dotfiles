@@ -2,12 +2,6 @@
 
 (require 'elpaca-setup)
 
-(use-package nerd-icons-completion
- :after marginalia
- :config (nerd-icons-completion-mode)
- (add-hook
-  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
 (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 
 (defun reload-init-file ()
@@ -388,31 +382,6 @@ cape
  :around #'cape-wrap-purify))
 
 (use-package
- kind-icon
- :config
- (setq kind-icon-default-face 'corfu-default)
- (setq kind-icon-default-style
-       '(:padding
-	 0
-	 :stroke 0
-	 :margin 0
-	 :radius 0
-	 :height 0.9
-	 :scale 1))
- (setq kind-icon-blend-frac 0.08)
- (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
- (add-hook
-  'counsel-load-theme
-  #'(lambda ()
-      (interactive)
-      (kind-icon-reset-cache)))
- (add-hook
-  'load-theme
-  #'(lambda ()
-      (interactive)
-      (kind-icon-reset-cache))))
-
-(use-package
  vertico
  :init
  ;; Enable vertico using the vertico-flat-mode
@@ -439,6 +408,39 @@ cape
  ;; Enable recursive minibuffers
  (setq enable-recursive-minibuffers t))
 (setq native-comp-deferred-compilation t)
+
+(use-package consult)
+
+(use-package nerd-icons-completion
+ :after marginalia
+ :config (nerd-icons-completion-mode)
+ (add-hook
+  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(use-package
+ kind-icon
+ :config
+ (setq kind-icon-default-face 'corfu-default)
+ (setq kind-icon-default-style
+       '(:padding
+	 0
+	 :stroke 0
+	 :margin 0
+	 :radius 0
+	 :height 0.9
+	 :scale 1))
+ (setq kind-icon-blend-frac 0.08)
+ (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+ (add-hook
+  'counsel-load-theme
+  #'(lambda ()
+      (interactive)
+      (kind-icon-reset-cache)))
+ (add-hook
+  'load-theme
+  #'(lambda ()
+      (interactive)
+      (kind-icon-reset-cache))))
 
 (use-package yasnippet
  :diminish yas-minor-mode
