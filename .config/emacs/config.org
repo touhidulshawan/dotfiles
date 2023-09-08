@@ -4,6 +4,70 @@
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
 
+* Table of Contents :toc:
+- [[#load-script-first][Load script first]]
+  - [[#sourceing-the-script][Sourceing the script]]
+- [[#backup][Backup]]
+- [[#reload-emacs][Reload Emacs]]
+- [[#misc][Misc]]
+  - [[#diminish][Diminish]]
+  - [[#rainbow-mode][Rainbow mode]]
+  - [[#sudoedit][Sudoedit]]
+  - [[#center-cursor][Center Cursor]]
+  - [[#magit][Magit]]
+  - [[#avy][Avy]]
+- [[#editor][Editor]]
+  - [[#ui][UI]]
+  - [[#font][Font]]
+  - [[#theme][Theme]]
+  - [[#line-number][Line number]]
+  - [[#dashboard][Dashboard]]
+  - [[#modeline][Modeline]]
+  - [[#dired][Dired]]
+  - [[#utf-8][UTF-8]]
+  - [[#zoom][Zoom]]
+  - [[#transparency][Transparency]]
+  - [[#code-block-expansion][Code block expansion]]
+  - [[#extra][Extra]]
+  - [[#matching-paren--auto-pair][Matching paren & auto pair]]
+  - [[#backup-and-lock-file][Backup and Lock file]]
+- [[#evil-mode][Evil mode]]
+- [[#which-key][Which Key]]
+- [[#keybindings][Keybindings]]
+  - [[#setup][Setup]]
+  - [[#jj-to-escape-from-insert-to-normal][jj to escape from insert to normal]]
+  - [[#space-as-global-leader-key][Space as global leader key]]
+  - [[#help][Help]]
+  - [[#files][Files]]
+  - [[#sudoedit-1][Sudoedit]]
+  - [[#buffer][Buffer]]
+  - [[#scratch-buffer][Scratch Buffer]]
+  - [[#window][Window]]
+  - [[#avy-1][Avy]]
+  - [[#magit-1][Magit]]
+  - [[#org][ORG]]
+  - [[#writeroom][Writeroom]]
+- [[#completion][Completion]]
+  - [[#corfu][Corfu]]
+  - [[#cape][Cape]]
+  - [[#vertico][Vertico]]
+  - [[#consult][Consult]]
+  - [[#icons][Icons]]
+  - [[#kind-icon][Kind-icon]]
+- [[#yasnippet][Yasnippet]]
+  - [[#snippets][Snippets]]
+- [[#improved-latex][Improved Latex]]
+- [[#org-1][ORG]]
+  - [[#improve-visual][Improve visual]]
+  - [[#interaction][Interaction]]
+  - [[#todo-keyword][TODO-Keyword]]
+  - [[#tags-setting][Tags setting]]
+  - [[#priorities][Priorities]]
+  - [[#enable-table-of-contents][Enable Table of Contents]]
+  - [[#org-modern][ORG Modern]]
+  - [[#evil-org][Evil ORG]]
+  - [[#writeroom--visual-fill-column][Writeroom + Visual-Fill-Column]]
+
 * Load script first
 #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.config/emacs/scripts")
@@ -67,15 +131,15 @@
 ** Font
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-		      :font "JetBrainsMono Nerd Font"
+		      :font "JetBrains Mono"
 		      :height 110
 		      :weight 'medium)
   (set-face-attribute 'variable-pitch nil
-		      :font "JetBrainsMono Nerd Font"
+		      :font "Ubuntu"
 		      :height 120
 		      :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-		      :font "JetBrainsMono Nerd Font"
+		      :font "JetBrains Mono"
 		      :height 110
 		      :weight 'medium)
   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
@@ -83,7 +147,7 @@
   (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
   (add-to-list
-   'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+   'default-frame-alist '(font . "JetBrains Mono-11"))
 #+end_src
 ** Theme
 *** Gruvbox
@@ -158,7 +222,7 @@
 #+end_src
 ** Transparency
 #+begin_src emacs-lisp
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+  ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 ** Code block expansion
 #+begin_src emacs-lisp

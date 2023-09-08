@@ -35,15 +35,15 @@
  initial-buffer-choice t) ;; Blank scratch buffer
 
 (set-face-attribute 'default nil
-		    :font "JetBrainsMono Nerd Font"
+		    :font "JetBrains Mono"
 		    :height 110
 		    :weight 'medium)
 (set-face-attribute 'variable-pitch nil
-		    :font "JetBrainsMono Nerd Font"
+		    :font "Ubuntu"
 		    :height 120
 		    :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-		    :font "JetBrainsMono Nerd Font"
+		    :font "JetBrains Mono"
 		    :height 110
 		    :weight 'medium)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
@@ -51,7 +51,7 @@
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
 (add-to-list
- 'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
+ 'default-frame-alist '(font . "JetBrains Mono-11"))
 
 ;;  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
 
