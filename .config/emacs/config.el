@@ -131,6 +131,8 @@
 
 (setq create-lockfiles nil)
 
+(use-package format-all)
+
 (use-package
  evil
  :demand t
@@ -162,11 +164,11 @@
  :after evil
  :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
 
-(use-package
- evil-surround
- :ensure t
- :after evil
- :config (global-evil-surround-mode 1))
+(with-eval-after-load 'evil-maps
+  (define-key evil-motion-state-map (kbd "SPC") nil)
+  (define-key evil-motion-state-map (kbd "RET") nil)
+  (define-key evil-motion-state-map (kbd "TAB") nil))
+  (setq org-return-follows-link  t)
 
 (use-package
 which-key
@@ -298,6 +300,12 @@ general
  '(:ignore t :wk "magit")
  "g g"
  '(magit-status :wk "Magit Status"))
+
+(leader-key
+  "i"
+  '(:ignore t :wk "snippets")
+  "s"
+'(yas-insert-snippet :wk "Yas insert snippet"))
 
 (leader-key
  "m"
