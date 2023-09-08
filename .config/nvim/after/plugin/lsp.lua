@@ -14,12 +14,12 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
+	["<return>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
 })
 
-cmp_mappings["<Tab>"] = nil
-cmp_mappings["<S-Tab>"] = nil
+cmp_mappings["<Tab>"] = cmp.mapping.select_next_item(cmp_select)
+cmp_mappings["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select)
 
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
