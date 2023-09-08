@@ -1,46 +1,36 @@
-(require 'package)
-(require 'quelpa-use-package)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")
-        ("elpa" . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+(add-to-list 'load-path "~/.config/emacs/scripts")
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+(require 'elpaca-setup)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-and-compile
-  (setq
-   use-package-always-ensure t
-   use-package-expand-minimally t))
+(use-package nerd-icons-completion
+ :after marginalia
+ :config (nerd-icons-completion-mode)
+ (add-hook
+  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
-(use-package
- gcmh
- :diminish gcmh-mode
- :config
- (setq
-  gcmh-idle-delay 5
-  gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
- (gcmh-mode 1))
+(setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (setq gc-cons-percentage 0.1))) ;; Default value for `gc-cons-percentage'
+(defun reload-init-file ()
+  (interactive)
+  (load-file user-init-file)
+  (load-file user-init-file))
 
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (message "Emacs ready in %s with %d garbage collections."
-            (format "%.2f seconds"
-                    (float-time
-                     (time-subtract
-                      after-init-time before-init-time)))
-            gcs-done)))
+(use-package diminish)
+
+(use-package rainbow-mode
+ :diminish
+ :hook org-mode prog-mode)
+
+(use-package sudo-edit)
+
+(use-package centered-cursor-mode :diminish centered-cursor-mode)
+
+(use-package magit :commands magit-status :ensure t)
+
+(use-package avy
+  :defer t
+  :config
+  (setq avy-case-fold-search nil))
 
 (setq inhibit-startup-message t)
 (setq use-short-answers t) ;; When emacs asks for "yes" or "no", let "y" or "n" suffice
@@ -51,17 +41,17 @@
  initial-buffer-choice t) ;; Blank scratch buffer
 
 (set-face-attribute 'default nil
-                    :font "JetBrainsMono Nerd Font"
-                    :height 110
-                    :weight 'medium)
+		    :font "JetBrainsMono Nerd Font"
+		    :height 110
+		    :weight 'medium)
 (set-face-attribute 'variable-pitch nil
-                    :font "JetBrainsMono Nerd Font"
-                    :height 120
-                    :weight 'medium)
+		    :font "JetBrainsMono Nerd Font"
+		    :height 120
+		    :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-                    :font "JetBrainsMono Nerd Font"
-                    :height 110
-                    :weight 'medium)
+		    :font "JetBrainsMono Nerd Font"
+		    :height 110
+		    :weight 'medium)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
@@ -69,170 +59,60 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 
-(add-to-list 'custom-theme-load-path "~/.config/emacs/themes")
-
 (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
-
-(use-package
- ligature
- :load-path "path-to-ligature-repo"
- :config
- ;; Enable all JetBrains Mono ligatures in programming modes
- (ligature-set-ligatures
-  'prog-mode
-  '("-|"
-    "-~"
-    "---"
-    "-<<"
-    "-<"
-    "--"
-    "->"
-    "->>"
-    "-->"
-    "///"
-    "/="
-    "/=="
-    "/>"
-    "//"
-    "/*"
-    "*>"
-    "***"
-    "*/"
-    "<-"
-    "<<-"
-    "<=>"
-    "<="
-    "<|"
-    "<||"
-    "<|||"
-    "<|>"
-    "<:"
-    "<>"
-    "<-<"
-    "<<<"
-    "<=="
-    "<<="
-    "<=<"
-    "<==>"
-    "<-|"
-    "<<"
-    "<~>"
-    "<=|"
-    "<~~"
-    "<~"
-    "<$>"
-    "<$"
-    "<+>"
-    "<+"
-    "</>"
-    "</"
-    "<*"
-    "<*>"
-    "<->"
-    "<!--"
-    ":>"
-    ":<"
-    ":::"
-    "::"
-    ":?"
-    ":?>"
-    ":="
-    "::="
-    "=>>"
-    "==>"
-    "=/="
-    "=!="
-    "=>"
-    "==="
-    "=:="
-    "=="
-    "!=="
-    "!!"
-    "!="
-    ">]"
-    ">:"
-    ">>-"
-    ">>="
-    ">=>"
-    ">>>"
-    ">-"
-    ">="
-    "&&&"
-    "&&"
-    "|||>"
-    "||>"
-    "|>"
-    "|]"
-    "|}"
-    "|=>"
-    "|->"
-    "|="
-    "||-"
-    "|-"
-    "||="
-    "||"
-    ".."
-    ".?"
-    ".="
-    ".-"
-    "..<"
-    "..."
-    "+++"
-    "+>"
-    "++"
-    "[||]"
-    "[<"
-    "[|"
-    "{|"
-    "??"
-    "?."
-    "?="
-    "?:"
-    "##"
-    "###"
-    "####"
-    "#["
-    "#{"
-    "#="
-    "#!"
-    "#:"
-    "#_("
-    "#_"
-    "#?"
-    "#("
-    ";;"
-    "_|_"
-    "__"
-    "~~"
-    "~~>"
-    "~>"
-    "~-"
-    "~@"
-    "$>"
-    "^="
-    "]#"))
- (global-ligature-mode t))
-
-(use-package
- nerd-icons-completion
- :after marginalia
- :config (nerd-icons-completion-mode)
- (add-hook
-  'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-(global-tree-sitter-mode t)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 (global-visual-line-mode t)
 
+(use-package
+ dashboard
+ :init
+ (setq
+  dashboard-set-heading-icons t
+  dashboard-set-file-icons t
+  dashboard-display-icons-p t
+  dashboard-startup-banner "~/.config/emacs/gruvbox.png"
+  dashboard-center-content nil
+  dashboard-items '((recents . 8)))
+ :config (dashboard-setup-startup-hook))
+(setq initial-buffer-choice
+      (lambda () (get-buffer-create "*dashboard*")))
+(setq doom-fallback-buffer-name "*dashboard*")
+
+(use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
+
+(use-package dired-open
+  :config
+  (setq dired-open-extensions '(("gif" . "sxiv")
+                                ("jpg" . "sxiv")
+                                ("png" . "sxiv")
+                                ("mkv" . "mpv")
+                                ("mp4" . "mpv"))))
+
+(use-package peep-dired
+  :after dired
+  :hook (evil-normalize-keymaps . peep-dired-hook)
+  :config
+    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+)
+
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
+
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+
+;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+
+(require 'org-tempo)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; use primary as clipboard
@@ -248,51 +128,12 @@
  ;; move by logical lines rather than visual lines (better for macros)
  line-move-visual nil)
 
-(use-package
- recentf
- :ensure nil
- :config
- (setq ;;recentf-auto-cleanup 'never
-  ;; recentf-max-menu-items 0
-  recentf-max-saved-items 200)
- (setq recentf-filename-handlers ;; Show home folder path as a ~
-       (append '(abbreviate-file-name) recentf-filename-handlers))
- (recentf-mode))
-
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
-
-(use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
-
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
-
-(require 'org-tempo)
-
 (show-paren-mode 1)
-
 (electric-pair-mode 1)
-
-(use-package
- paren
- :ensure nil
- :config
- (setq
-  show-paren-delay 0.1
-  show-paren-highlight-openparen t
-  show-paren-when-point-inside-paren t
-  show-paren-when-point-in-periphery t)
- (show-paren-mode 1))
 
 (setq make-backup-files nil)
 
 (setq create-lockfiles nil)
-
-(defun reload-init-file ()
-  (interactive)
-  (load-file user-init-file)
-  (load-file user-init-file))
 
 (use-package
  evil
@@ -332,68 +173,53 @@
  :config (global-evil-surround-mode 1))
 
 (use-package
- dashboard
- :init
- (setq
-  dashboard-set-heading-icons t
-  dashboard-set-file-icons t
-  dashboard-display-icons-p t
-  dashboard-startup-banner "~/.config/emacs/gruvbox.png"
-  dashboard-center-content nil
-  dashboard-items '((recents . 8)))
- :config (dashboard-setup-startup-hook))
-(setq initial-buffer-choice
-      (lambda () (get-buffer-create "*dashboard*")))
-(setq doom-fallback-buffer-name "*dashboard*")
-
-(use-package magit :commands magit-status :ensure t)
-
-(use-package diminish)
-
-(use-package rainbow-mode
- :diminish
- :hook org-mode prog-mode)
-
-(use-package sudo-edit)
-
-(use-package centered-cursor-mode :diminish centered-cursor-mode)
+which-key
+:init (which-key-mode 1)
+:config
+(setq
+ which-key-side-window-location 'bottom
+ which-key-sort-order #'which-key-key-order-alpha
+ which-key-sort-uppercase-first nil
+ which-key-add-column-padding 1
+ which-key-max-display-columns nil
+ which-key-min-display-lines 6
+ which-key-side-window-slot -10
+ which-key-side-window-max-height 0.25
+ which-key-idle-delay 0.8
+ which-key-max-description-length 25
+ which-key-allow-imprecise-window-fit t
+ which-key-prefix-prefix "◉ "
+ which-key-separator " → "))
 
 (use-package
- which-key
- :init (which-key-mode 1)
- :config
- (setq
-  which-key-side-window-location 'bottom
-  which-key-sort-order #'which-key-key-order-alpha
-  which-key-sort-uppercase-first nil
-  which-key-add-column-padding 1
-  which-key-max-display-columns nil
-  which-key-min-display-lines 6
-  which-key-side-window-slot -10
-  which-key-side-window-max-height 0.25
-  which-key-idle-delay 0.8
-  which-key-max-description-length 25
-  which-key-allow-imprecise-window-fit t
-  which-key-prefix-prefix "◉ "
-  which-key-separator " → "))
-
-(use-package
- general
- :config (general-evil-setup)
+general
+:config (general-evil-setup)
 
 (general-imap
- "j"
- (general-key-dispatch
-  'self-insert-command
-  :timeout 0.2 "j" 'evil-normal-state))
+"j"
+(general-key-dispatch
+ 'self-insert-command
+ :timeout 0.2 "j" 'evil-normal-state))
 
-;; set up 'SPC' as the global leader key
 (general-create-definer
  leader-key
  :states '(normal insert visual emacs)
  :keymaps 'override
- :prefix "SPC" ;; set leader
- :global-prefix "M-SPC") ;; access leader in insert mode
+ :prefix "SPC"
+ :global-prefix "M-SPC")
+
+(leader-key
+ "h"
+ '(:ignore t :wk "Help")
+ "h f"
+ '(describe-function :wk "Describe function")
+ "h v"
+ '(describe-variable :wk "Describe variable")
+ "h r r"
+ '((lambda ()
+     (interactive)
+     (load-file "~/.config/emacs/init.el"))
+   :wk "Reload emacs config"))
 
 (leader-key
  "."
@@ -464,19 +290,6 @@
  '(buf-move-up :wk "Buffer move up")
  "w L"
  '(buf-move-right :wk "Buffer move right"))
-
-(leader-key
- "h"
- '(:ignore t :wk "Help")
- "h f"
- '(describe-function :wk "Describe function")
- "h v"
- '(describe-variable :wk "Describe variable")
- "h r r"
- '((lambda ()
-     (interactive)
-     (load-file "~/.config/emacs/init.el"))
-   :wk "Reload emacs config"))
 
 (leader-key
  "j"
@@ -550,48 +363,29 @@
    (setq-local corfu-auto nil)
    (corfu-mode 1))
  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer
-           1)
-
- :general
- (:keymaps
-  'corfu-map
-  :states
-  'insert
-  "C-n"
-  'corfu-next
-  "C-p"
-  'corfu-previous
-  "C-j"
-  'corfu-next
-  "C-k"
-  'corfu-previous
-  "RET"
-  'corfu-complete
-  "<escape>"
-  'corfu-quit))
+	   1))
 
 (use-package
- cape
- :defer 10
- :bind ("C-c f" . cape-file)
- :init
- ;; Add `completion-at-point-functions', used by `completion-at-point'.
- (defalias
-   'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
- (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
- (cl-pushnew #'cape-file completion-at-point-functions)
- :config
- ;; Silence then pcomplete capf, no errors or messages!
- (advice-add
-  'pcomplete-completions-at-point
-  :around #'cape-wrap-silent)
+cape
+:defer 10
+:bind ("C-c f" . cape-file)
+:init
+;; Add `completion-at-point-functions', used by `completion-at-point'.
+(defalias
+  'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
+(add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
+(cl-pushnew #'cape-file completion-at-point-functions)
+:config
+;; Silence then pcomplete capf, no errors or messages!
+(advice-add
+ 'pcomplete-completions-at-point
+ :around #'cape-wrap-silent)
 
- ;; Ensure that pcomplete does not write to the buffer
- ;; and behaves as a pure `completion-at-point-function'.
- (advice-add
-  'pcomplete-completions-at-point
-  :around #'cape-wrap-purify))
-
+;; Ensure that pcomplete does not write to the buffer
+;; and behaves as a pure `completion-at-point-function'.
+(advice-add
+ 'pcomplete-completions-at-point
+ :around #'cape-wrap-purify))
 
 (use-package
  kind-icon
@@ -599,12 +393,12 @@
  (setq kind-icon-default-face 'corfu-default)
  (setq kind-icon-default-style
        '(:padding
-         0
-         :stroke 0
-         :margin 0
-         :radius 0
-         :height 0.9
-         :scale 1))
+	 0
+	 :stroke 0
+	 :margin 0
+	 :radius 0
+	 :height 0.9
+	 :scale 1))
  (setq kind-icon-blend-frac 0.08)
  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
  (add-hook
@@ -646,29 +440,17 @@
  (setq enable-recursive-minibuffers t))
 (setq native-comp-deferred-compilation t)
 
-(use-package
- yasnippet
+(use-package yasnippet
+ :diminish yas-minor-mode
  :ensure t
  :init
  (setq yas-nippet-dir "~/.config/emacs/snippets")
- (yas-global-mode))
+ (yas-global-mode 1))
+;; Silences the warning when running a snippet with backticks (runs a command in the snippet)
+(require 'warnings)
+(add-to-list 'warning-suppress-types '(yasnippet backquote-change))
+
 (use-package yasnippet-snippets :ensure t :after yasnippet)
-(use-package
- cape-yasnippet
- :ensure nil
- :quelpa (cape-yasnippet :fetcher github :repo "elken/cape-yasnippet")
- :after yasnippet
- :hook
- ((prog-mode . yas-setup-capf)
-  (text-mode . yas-setup-capf)
-  (lsp-mode . yas-setup-capf)
-  (sly-mode . yas-setup-capf))
- :bind (("C-c y" . cape-yasnippet) ("M-+" . yas-insert-snippet))
- :config
- (defun yas-setup-capf ()
-   (setq-local completion-at-point-functions
-               (cons 'cape-yasnippet completion-at-point-functions)))
- (push 'cape-yasnippet completion-at-point-functions))
 
 (with-eval-after-load 'ox-latex
   (add-to-list
@@ -779,8 +561,6 @@
          :foreground "SpringGreen2"
          :weight bold)
         ("DONE" . "SeaGreen4")))
-
-(setq org-tags-column -1)
 
 (setq org-lowest-priority ?F)
 (setq org-default-priority ?E)

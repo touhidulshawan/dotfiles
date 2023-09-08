@@ -23,10 +23,6 @@ tramp
 # elpa packages
 /elpa/
 
-/quelpa/
-
-/eln-cache/
-
 # reftex files
 *.rel
 
@@ -49,13 +45,8 @@ flycheck_*.el
 # directory configuration
 .dir-locals.el
 
-/.local
-
 # network security
 /network-security.data
 
-recentf
-/transient
-/elisp-autofmt-cache
-/.lsp-*
-history
+
+# End of https://www.toptal.com/developers/gitignore/api/emacs
