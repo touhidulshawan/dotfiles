@@ -23,6 +23,16 @@ tramp
 # elpa packages
 /elpa/
 
+# elpaca package
+/elpaca/
+
+# cache
+/cache/
+/.cache/
+
+history
+recentf
+
 # reftex files
 *.rel
 
