@@ -53,7 +53,9 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrainsMono Nerd Font-11"))
 
-(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
+;;  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
+
+(use-package ef-themes :config (load-theme 'ef-cherie t))
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
