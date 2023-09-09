@@ -162,7 +162,6 @@
 ;;  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
 #+end_src
 *** EF-Themes
-
 #+begin_src emacs-lisp
   (use-package ef-themes :config (load-theme 'ef-cherie t))
 #+end_src

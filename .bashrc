@@ -27,7 +27,6 @@ bind "set completion-ignore-case on"
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
-export SUDO_EDITOR=/usr/bin/nvim
 
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
@@ -219,6 +218,11 @@ open() {
 	if [[ -n "$filename" ]]; then
 		xdg-open "$filename"
 	fi
+}
+
+# sudoedit for doas
+doasedit(){
+    emacsclient -nw /doas::"${1}"
 }
 
 eval "$(starship init bash)"

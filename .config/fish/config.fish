@@ -9,7 +9,6 @@ set BROWSER firefox
 set -x EDITOR /usr/bin/nvim
 set -x VISUAL /usr/bin/nvim
 set -x GIT_EDITOR /usr/bin/nvim
-set -x SUDO_EDITOR /usr/bin/nvim
 
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
@@ -179,6 +178,11 @@ end
 function addhost
     echo "$argv[1]  $argv[2]" | sudo tee -a /etc/hosts
     cat /etc/hosts
+end
+
+# sudoedit for doas
+function doasedit
+    emacsclient -nw /doas::$argv[1]
 end
 
 source $HOME/.config/fish/abbr.fish
