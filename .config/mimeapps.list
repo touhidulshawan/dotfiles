@@ -8,6 +8,7 @@ video/x-matroska=mpv.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-5O1A61.desktop
 message/rfc822=userapp-Thunderbird-5O1A61.desktop
 x-scheme-handler/mid=userapp-Thunderbird-5O1A61.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 application/pdf=org.gnome.Evince.desktop;firefox.desktop;org.pwmt.zathura.desktop;

@@ -113,10 +113,10 @@ alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mp4 --s
 
 # search package and install from pacman
 alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
-alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
+alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas yay -Rns"
 
 # remove pacman lock
-alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias unlock="doas rm /var/lib/pacman/db.lck"
 
 alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
@@ -163,8 +163,8 @@ _fzf_comprun() {
 }
 
 # fix tryhackme machine website issues
-alias nmfix='sudo ip link set dev nm-bridge mtu 1200'
-alias tunfix='sudo ip link set dev tun0 mtu 1200'
+alias nmfix='doas ip link set dev nm-bridge mtu 1200'
+alias tunfix='doas ip link set dev tun0 mtu 1200'
 
 # alias for vagrant
 alias vaup='vagrant up --provider=libvirt'
@@ -220,7 +220,7 @@ open() {
 	fi
 }
 
-# sudoedit for doas
+# doasedit for doas
 doasedit(){
     emacsclient -nw /doas::"${1}"
 }

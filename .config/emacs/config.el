@@ -57,9 +57,6 @@
 
 (use-package ef-themes :config (load-theme 'ef-cherie t))
 
-(if window-system
-    load-theme 'ef-cherie t)
-
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 (global-visual-line-mode t)
