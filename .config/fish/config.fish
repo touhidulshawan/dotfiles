@@ -97,7 +97,7 @@ alias jctl="journalctl -p 3 -xb"
 alias unlock="doas rm /var/lib/pacman/db.lck"
 # search package and install from pacman
 alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
-alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas yay -Rns"
+alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas pacman -Rns"
 
 # alias to fix tryhackme machine website issues
 alias enfix="doas ip link set dev eno1 mtu 1200"
