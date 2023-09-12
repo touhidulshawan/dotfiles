@@ -15,8 +15,6 @@
  :diminish
  :hook org-mode prog-mode)
 
-(use-package sudo-edit)
-
 (use-package centered-cursor-mode :diminish centered-cursor-mode)
 
 (use-package magit :commands magit-status :ensure t)
@@ -60,6 +58,11 @@
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 (global-visual-line-mode t)
+
+(use-package nerd-icons-completion
+  :after marginalia
+  :config (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package
   dashboard
@@ -234,12 +237,6 @@
   '(consult-recent-file :wk "Find recent files"))
 
 (leader-key
-  "fu"
-  '(sudo-edit-find-file :wk "Sudo find file")
-  "fU"
-  '(sudo-edit :wk "Sudo edit file"))
-
-(leader-key
   "b"
   '(:ignore t :wk "buffer")
   "b i"
@@ -396,34 +393,27 @@
   (require 'vertico-directory)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
 
-  (use-package
-    orderless
-    :commands (orderless)
-    :custom (completion-styles '(orderless flex)))
-  (load (concat user-emacs-directory "lisp/affe-config.el"))
-  (use-package
-    marginalia
-    :custom
-    (marginalia-annotators
-     '(marginalia-annotators-heavy marginalia-annotators-light nil))
-    :init (marginalia-mode))
-  (vertico-mode t)
-  :config
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
+(use-package orderless
+  :commands (orderless)
+  :custom (completion-styles '(orderless flex)))
+(load (concat user-emacs-directory "lisp/affe-config.el"))
+
+(use-package marginalia
+  :custom
+  (marginalia-annotators
+   '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init (marginalia-mode))
+(vertico-mode t)
+:config
+;; Do not allow the cursor in the minibuffer prompt
+(setq minibuffer-prompt-properties
+      '(read-only t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+;; Enable recursive minibuffers
+(setq enable-recursive-minibuffers t))
 (setq native-comp-deferred-compilation t)
 
 (use-package consult)
-
-(use-package nerd-icons-completion
-  :after marginalia
-  :config (nerd-icons-completion-mode)
-  (add-hook
-   'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package kind-icon
   :config
