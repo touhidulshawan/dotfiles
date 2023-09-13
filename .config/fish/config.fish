@@ -88,8 +88,8 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
 alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mp4 --write-subs'
 
-# [bat as MANPAGER]
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# [nvim as MANPAGER]
+export MANPAGER="nvim +Man!"
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

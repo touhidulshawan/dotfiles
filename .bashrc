@@ -76,7 +76,9 @@ alias fgrep='fgrep --color=auto'
 
 alias cat='bat'
 # [bat as MANPAGER]
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# [nvim as MANPAGER]
+export MANPAGER="nvim +Man!"
 
 # alias for exit
 alias e='exit'
