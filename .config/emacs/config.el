@@ -335,7 +335,19 @@
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
 
-(leader-key "tw" '(writeroom-mode :which-key "writeroom-mode")))
+(leader-key "tw" '(writeroom-mode :which-key "writeroom-mode"))
+
+(leader-key
+  "c"
+  '(:ignore t "wk" "Eglot-lsp")
+  "c a"
+  '(eglot-code-actions :wk "Eglot code action")
+  "c q"
+  '(eglot-code-action-quickfix :wk "Eglot code quickfix")
+  "c d"
+  '(eldoc-doc-buffer :wk "Eglot code diagnostics")
+  "c r"
+  '(eglot-rename :wk "Rename")))
 
 (use-package corfu
   :init
