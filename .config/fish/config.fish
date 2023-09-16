@@ -184,11 +184,6 @@ function addhost
     cat /etc/hosts
 end
 
-# doasedit for doas
-function doasedit
-    emacsclient -nw /doas::$argv[1]
-end
-
 source $HOME/.config/fish/abbr.fish
 starship init fish | source
 zoxide init fish | source

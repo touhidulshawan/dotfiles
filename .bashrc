@@ -222,11 +222,6 @@ open() {
 	fi
 }
 
-# doasedit for doas
-doasedit(){
-    emacsclient -nw /doas::"${1}"
-}
-
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 export NVM_DIR="$HOME/.nvm"
