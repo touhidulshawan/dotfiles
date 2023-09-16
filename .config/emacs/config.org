@@ -3,7 +3,6 @@
 #+DESCRIPTIONS: My GNU Emacs config file
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
-
 * Table of Contents :toc:
 - [[#load-script-first][Load script first]]
   - [[#sourceing-the-script][Sourceing the script]]
@@ -350,10 +349,8 @@ Disable lock file
 ** jj to escape from insert to normal
 #+begin_src emacs-lisp
   (general-imap
-    "j"
-    (general-key-dispatch
-        'self-insert-command
-      :timeout 0.2 "j" 'evil-normal-state))
+    "j" (general-key-dispatch 'self-insert-command
+          :timeout 0.2 "j" 'evil-normal-state))
 #+end_src
 ** Space as global leader key
 #+begin_src emacs-lisp
@@ -367,50 +364,35 @@ Disable lock file
 ** Help
 #+begin_src emacs-lisp
   (leader-key
-    "h"
-    '(:ignore t :wk "Help")
-    "h f"
-    '(describe-function :wk "Describe function")
-    "h v"
-    '(describe-variable :wk "Describe variable")
-    "h r r"
-    '((lambda ()
-        (interactive)
-        (load-file "~/.config/emacs/init.el"))
-      :wk "Reload emacs config"))
+    "h" '(:ignore t :wk "Help")
+    "h f" '(describe-function :wk "Describe function")
+    "h v" '(describe-variable :wk "Describe variable")
+    "h r r" '((lambda ()
+                (interactive) (load-file "~/.config/emacs/init.el"))
+              :wk "Reload emacs config"))
 #+end_src
 ** Files
 #+begin_src emacs-lisp
   (leader-key
-    "."
-    '(find-file :wk "Find file")
-    "f c"
-    '((lambda ()
-        (interactive)
-        (find-file "~/.config/emacs/config.org"))
-      :wk "Edit emacs config")
-    "f s"
-    '(save-buffer :wk "Save buffer")
-    "f r"
-    '(consult-recent-file :wk "Find recent files"))
+    "." '(find-file :wk "Find file")
+    "f c" '((lambda ()
+              (interactive)
+              (find-file "~/.config/emacs/config.org"))
+            :wk "Edit emacs config")
+    "f s" '(save-buffer :wk "Save buffer")
+    "f r" '(consult-recent-file :wk "Find recent files")
+    "f q" '(kill-buffer :wk "Kill buffer"))
 #+end_src
 ** Buffer
 #+begin_src emacs-lisp
   (leader-key
-    "b"
-    '(:ignore t :wk "buffer")
-    "b i"
-    '(ibuffer :wk "Switch ibuffer")
-    "b b"
-    '(switch-to-buffer :wk "Switch buffer")
-    "b k"
-    '(kill-this-buffer :wk "Kill this buffer")
-    "b n"
-    '(next-buffer :wk "Next buffer")
-    "b p"
-    '(previous-buffer :wk "Previous buffer")
-    "b r"
-    '(revert-buffer :wk "Reload buffer"))
+    "b" '(:ignore t :wk "buffer")
+    "b i" '(ibuffer :wk "Switch ibuffer")
+    "b b" '(switch-to-buffer :wk "Switch buffer")
+    "b k" '(kill-this-buffer :wk "Kill this buffer")
+    "b n" '(next-buffer :wk "Next buffer")
+    "b p" '(previous-buffer :wk "Previous buffer")
+    "b r" '(revert-buffer :wk "Reload buffer"))
 #+end_src
 ** Scratch Buffer
 #+begin_src emacs-lisp
@@ -419,90 +401,56 @@ Disable lock file
 ** Window
 #+begin_src emacs-lisp
   (leader-key
-    "w"
-    '(:ignore t :wk "Windows")
-    ;; Window splits
-    "w c"
-    '(evil-window-delete :wk "Close window")
-    "w n"
-    '(evil-window-new :wk "New window")
-    "w s"
-    '(evil-window-split :wk "Horizontal split window")
-    "w v"
-    '(evil-window-vsplit :wk "Vertical split window")
-    ;; Window motions
-    "w h"
-    '(evil-window-left :wk "Window left")
-    "w j"
-    '(evil-window-down :wk "Window down")
-    "w k"
-    '(evil-window-up :wk "Window up")
-    "w l"
-    '(evil-window-right :wk "Window right")
-    "w w"
-    '(evil-window-next :wk "Goto next window")
-    ;; Move Windows
-    "w H"
-    '(buf-move-left :wk "Buffer move left")
-    "w J"
-    '(buf-move-down :wk "Buffer move down")
-    "w K"
-    '(buf-move-up :wk "Buffer move up")
-    "w L"
-    '(buf-move-right :wk "Buffer move right"))
+    "w" '(:ignore t :wk "Windows")
+    "w c" '(evil-window-delete :wk "Close window")
+    "w n" '(evil-window-new :wk "New window")
+    "w s" '(evil-window-split :wk "Horizontal split window")
+    "w v" '(evil-window-vsplit :wk "Vertical split window")
+    "w h" '(evil-window-left :wk "Window left")
+    "w j" '(evil-window-down :wk "Window down")
+    "w k" '(evil-window-up :wk "Window up")
+    "w l" '(evil-window-right :wk "Window right")
+    "w w" '(evil-window-next :wk "Goto next window")
+    "w H" '(buf-move-left :wk "Buffer move left")
+    "w J" '(buf-move-down :wk "Buffer move down")
+    "w K" '(buf-move-up :wk "Buffer move up")
+    "w L" '(buf-move-right :wk "Buffer move right"))
 #+end_src
 ** Avy
 #+begin_src emacs-lisp
   (leader-key
-    "j"
-    '(avy-goto-word-0 :wk "Go to word")
-    "l"
-    '(avy-goto-line :wk "Go to line"))
+    "j" '(avy-goto-word-0 :wk "Go to word")
+    "l" '(avy-goto-line :wk "Go to line"))
 #+end_src
 ** Magit
 #+begin_src emacs-lisp
   (leader-key
-    "g"
-    '(:ignore t :wk "magit")
-    "g g"
-    '(magit-status :wk "Magit Status"))
+    "g" '(:ignore t :wk "magit")
+    "g g" '(magit-status :wk "Magit Status"))
 #+end_src
 ** Snippet
 #+begin_src emacs-lisp
   (leader-key
-    "i"
-    '(:ignore t :wk "snippets")
-    "s"
-    '(yas-insert-snippet :wk "Yas insert snippet"))
+    "i" '(:ignore t :wk "snippets")
+    "s" '(yas-insert-snippet :wk "Yas insert snippet"))
 #+end_src
 ** ORG
 #+begin_src emacs-lisp
   (leader-key
-    "m"
-    '(:ignore t :wk "Org")
-    "m a"
-    '(org-agenda :wk "Org agenda")
-    "m e"
-    '(org-export-dispatch :wk "Org export dispatch")
-    "m i"
-    '(org-toggle-item :wk "Org toggle item")
-    "m t"
-    '(org-todo :wk "Org todo")
-    "m B"
-    '(org-babel-tangle :wk "Org babel tangle")
-    "m T"
-    '(org-todo-list :wk "Org todo list"))
+    "m" '(:ignore t :wk "Org")
+    "m a" '(org-agenda :wk "Org agenda")
+    "m e" '(org-export-dispatch :wk "Org export dispatch")
+    "m i" '(org-toggle-item :wk "Org toggle item")
+    "m t" '(org-todo :wk "Org todo")
+    "m B" '(org-babel-tangle :wk "Org babel tangle")
+    "m T" '(org-todo-list :wk "Org todo list"))
   (leader-key
-    "m b"
-    '(:ignore t :wk "Tables")
-    "m b -"
-    '(org-table-insert-hline :wk "Insert hline in table"))
+    "m b" '(:ignore t :wk "Tables")
+    "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
 
   (leader-key
-    "m d"
-    '(:ignore t :wk "Date/deadline")
-    "m d t"
-    '(org-time-stamp :wk "Org time stamp"))
+    "m d" '(:ignore t :wk "Date/deadline")
+    "m d t" '(org-time-stamp :wk "Org time stamp"))
 
   (leader-key
     "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
@@ -514,16 +462,11 @@ Disable lock file
 ** Eglot(lsp)
 #+begin_src emacs-lisp
   (leader-key
-    "c"
-    '(:ignore t "wk" "Eglot-lsp")
-    "c a"
-    '(eglot-code-actions :wk "Eglot code action")
-    "c q"
-    '(eglot-code-action-quickfix :wk "Eglot code quickfix")
-    "c d"
-    '(eldoc-doc-buffer :wk "Eglot code diagnostics")
-    "c r"
-    '(eglot-rename :wk "Rename")))
+    "c" '(:ignore t "wk" "Eglot-lsp")
+    "c a" '(eglot-code-actions :wk "Eglot code action")
+    "c q" '(eglot-code-action-quickfix :wk "Eglot code quickfix")
+    "c d" '(eldoc-doc-buffer :wk "Eglot code diagnostics")
+    "c r" '(eglot-rename :wk "Rename")))
 #+end_src
 * Completion
 ** Corfu
