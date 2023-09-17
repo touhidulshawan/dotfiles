@@ -198,10 +198,8 @@
   :config (general-evil-setup)
 
 (general-imap
-  "j"
-  (general-key-dispatch
-      'self-insert-command
-    :timeout 0.2 "j" 'evil-normal-state))
+  "j" (general-key-dispatch 'self-insert-command
+        :timeout 0.2 "j" 'evil-normal-state))
 
 (general-create-definer
   leader-key
@@ -211,126 +209,77 @@
   :global-prefix "M-SPC")
 
 (leader-key
-  "h"
-  '(:ignore t :wk "Help")
-  "h f"
-  '(describe-function :wk "Describe function")
-  "h v"
-  '(describe-variable :wk "Describe variable")
-  "h r r"
-  '((lambda ()
-      (interactive)
-      (load-file "~/.config/emacs/init.el"))
-    :wk "Reload emacs config"))
+  "h" '(:ignore t :wk "Help")
+  "h f" '(describe-function :wk "Describe function")
+  "h v" '(describe-variable :wk "Describe variable")
+  "h r r" '((lambda ()
+              (interactive) (load-file "~/.config/emacs/init.el"))
+            :wk "Reload emacs config"))
 
 (leader-key
-  "."
-  '(find-file :wk "Find file")
-  "f c"
-  '((lambda ()
-      (interactive)
-      (find-file "~/.config/emacs/config.org"))
-    :wk "Edit emacs config")
-  "f s"
-  '(save-buffer :wk "Save buffer")
-  "f r"
-  '(consult-recent-file :wk "Find recent files"))
+  "." '(find-file :wk "Find file")
+  "f c" '((lambda ()
+            (interactive)
+            (find-file "~/.config/emacs/config.org"))
+          :wk "Edit emacs config")
+  "f s" '(save-buffer :wk "Save buffer")
+  "f r" '(consult-recent-file :wk "Find recent files")
+  "f q" '(kill-buffer :wk "Kill buffer"))
 
 (leader-key
-  "b"
-  '(:ignore t :wk "buffer")
-  "b i"
-  '(ibuffer :wk "Switch ibuffer")
-  "b b"
-  '(switch-to-buffer :wk "Switch buffer")
-  "b k"
-  '(kill-this-buffer :wk "Kill this buffer")
-  "b n"
-  '(next-buffer :wk "Next buffer")
-  "b p"
-  '(previous-buffer :wk "Previous buffer")
-  "b r"
-  '(revert-buffer :wk "Reload buffer"))
+  "b" '(:ignore t :wk "buffer")
+  "b i" '(ibuffer :wk "Switch ibuffer")
+  "b b" '(switch-to-buffer :wk "Switch buffer")
+  "b k" '(kill-this-buffer :wk "Kill this buffer")
+  "b n" '(next-buffer :wk "Next buffer")
+  "b p" '(previous-buffer :wk "Previous buffer")
+  "b r" '(revert-buffer :wk "Reload buffer"))
 
 (leader-key "n" '(scratch-buffer :wk "Scratch Buffer"))
 
 (leader-key
-  "w"
-  '(:ignore t :wk "Windows")
-  ;; Window splits
-  "w c"
-  '(evil-window-delete :wk "Close window")
-  "w n"
-  '(evil-window-new :wk "New window")
-  "w s"
-  '(evil-window-split :wk "Horizontal split window")
-  "w v"
-  '(evil-window-vsplit :wk "Vertical split window")
-  ;; Window motions
-  "w h"
-  '(evil-window-left :wk "Window left")
-  "w j"
-  '(evil-window-down :wk "Window down")
-  "w k"
-  '(evil-window-up :wk "Window up")
-  "w l"
-  '(evil-window-right :wk "Window right")
-  "w w"
-  '(evil-window-next :wk "Goto next window")
-  ;; Move Windows
-  "w H"
-  '(buf-move-left :wk "Buffer move left")
-  "w J"
-  '(buf-move-down :wk "Buffer move down")
-  "w K"
-  '(buf-move-up :wk "Buffer move up")
-  "w L"
-  '(buf-move-right :wk "Buffer move right"))
+  "w" '(:ignore t :wk "Windows")
+  "w c" '(evil-window-delete :wk "Close window")
+  "w n" '(evil-window-new :wk "New window")
+  "w s" '(evil-window-split :wk "Horizontal split window")
+  "w v" '(evil-window-vsplit :wk "Vertical split window")
+  "w h" '(evil-window-left :wk "Window left")
+  "w j" '(evil-window-down :wk "Window down")
+  "w k" '(evil-window-up :wk "Window up")
+  "w l" '(evil-window-right :wk "Window right")
+  "w w" '(evil-window-next :wk "Goto next window")
+  "w H" '(buf-move-left :wk "Buffer move left")
+  "w J" '(buf-move-down :wk "Buffer move down")
+  "w K" '(buf-move-up :wk "Buffer move up")
+  "w L" '(buf-move-right :wk "Buffer move right"))
 
 (leader-key
-  "j"
-  '(avy-goto-word-0 :wk "Go to word")
-  "l"
-  '(avy-goto-line :wk "Go to line"))
+  "j" '(avy-goto-word-0 :wk "Go to word")
+  "l" '(avy-goto-line :wk "Go to line"))
 
 (leader-key
-  "g"
-  '(:ignore t :wk "magit")
-  "g g"
-  '(magit-status :wk "Magit Status"))
+  "g" '(:ignore t :wk "magit")
+  "g g" '(magit-status :wk "Magit Status"))
 
 (leader-key
-  "i"
-  '(:ignore t :wk "snippets")
-  "s"
-  '(yas-insert-snippet :wk "Yas insert snippet"))
+  "i" '(:ignore t :wk "snippets")
+  "s" '(yas-insert-snippet :wk "Yas insert snippet"))
 
 (leader-key
-  "m"
-  '(:ignore t :wk "Org")
-  "m a"
-  '(org-agenda :wk "Org agenda")
-  "m e"
-  '(org-export-dispatch :wk "Org export dispatch")
-  "m i"
-  '(org-toggle-item :wk "Org toggle item")
-  "m t"
-  '(org-todo :wk "Org todo")
-  "m B"
-  '(org-babel-tangle :wk "Org babel tangle")
-  "m T"
-  '(org-todo-list :wk "Org todo list"))
+  "m" '(:ignore t :wk "Org")
+  "m a" '(org-agenda :wk "Org agenda")
+  "m e" '(org-export-dispatch :wk "Org export dispatch")
+  "m i" '(org-toggle-item :wk "Org toggle item")
+  "m t" '(org-todo :wk "Org todo")
+  "m B" '(org-babel-tangle :wk "Org babel tangle")
+  "m T" '(org-todo-list :wk "Org todo list"))
 (leader-key
-  "m b"
-  '(:ignore t :wk "Tables")
-  "m b -"
-  '(org-table-insert-hline :wk "Insert hline in table"))
+  "m b" '(:ignore t :wk "Tables")
+  "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
 
 (leader-key
-  "m d"
-  '(:ignore t :wk "Date/deadline")
-  "m d t"
-  '(org-time-stamp :wk "Org time stamp"))
+  "m d" '(:ignore t :wk "Date/deadline")
+  "m d t" '(org-time-stamp :wk "Org time stamp"))
 
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
@@ -338,16 +287,22 @@
 (leader-key "tw" '(writeroom-mode :which-key "writeroom-mode"))
 
 (leader-key
-  "c"
-  '(:ignore t "wk" "Eglot-lsp")
-  "c a"
-  '(eglot-code-actions :wk "Eglot code action")
-  "c q"
-  '(eglot-code-action-quickfix :wk "Eglot code quickfix")
-  "c d"
-  '(eldoc-doc-buffer :wk "Eglot code diagnostics")
-  "c r"
-  '(eglot-rename :wk "Rename")))
+  "c" '(:ignore t "wk" "Eglot-lsp")
+  "c a" '(eglot-code-actions :wk "Eglot code action")
+  "c q" '(eglot-code-action-quickfix :wk "Eglot code quickfix")
+  "c d" '(eldoc-doc-buffer :wk "Eglot code diagnostics")
+  "c r" '(eglot-rename :wk "Rename"))
+
+(leader-key
+  "x" '(:ignore t "wk" "Consult")
+  "x b" '(consult-buffer :wk "consult buffer")
+  "x y" '(consult-yank-pop :wk "consult yank pop")
+  "x l" '(consult-goto-line :wk "consult goto-line")
+  "x f" '(consult-flymake :wk "consult flymake")
+  "x i" '(consult-imenu :wk "consult imenu")
+  "x g" '(consult-ripgrep :wk "consult ripgre")
+  "x x" '(consult-fd :wk "consult find")
+  ))
 
 (use-package corfu
   :init
@@ -399,31 +354,53 @@
    'pcomplete-completions-at-point
    :around #'cape-wrap-purify))
 
+(use-package marginalia
+  :custom
+  (marginalia-annotators
+   '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
+
+(use-package orderless
+  :commands (orderless)
+  :custom (completion-styles '(orderless flex)))
+(load (concat user-emacs-directory
+              "lisp/affe-config.el"))
+
 (use-package vertico
   :init
   ;; Enable vertico using the vertico-flat-mode
   (require 'vertico-directory)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-
-(use-package orderless
-  :commands (orderless)
-  :custom (completion-styles '(orderless flex)))
-(load (concat user-emacs-directory "lisp/affe-config.el"))
-
-(use-package marginalia
-  :custom
-  (marginalia-annotators
-   '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init (marginalia-mode))
-(vertico-mode t)
-:config
-;; Do not allow the cursor in the minibuffer prompt
-(setq minibuffer-prompt-properties
-      '(read-only t cursor-intangible t face minibuffer-prompt))
-(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-;; Enable recursive minibuffers
-(setq enable-recursive-minibuffers t))
+  (vertico-mode t)
+  :config
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
 (setq native-comp-deferred-compilation t)
+
+;; (use-package consult
+;;   :after vertico
+;;   :bind (("C-x b"       . consult-buffer)
+;;          ("C-x C-k C-k" . consult-kmacro)
+;;          ("M-y"         . consult-yank-pop)
+;;          ("M-g g"       . consult-goto-line)
+;;          ("M-g M-g"     . consult-goto-line)
+;;          ("M-g f"       . consult-flymake)
+;;          ("M-g i"       . consult-imenu)
+;;          ("M-s l"       . consult-line)
+;;          ("M-s L"       . consult-line-multi)
+;;          ("M-s u"       . consult-focus-lines)
+;;          ("M-s g"       . consult-ripgrep)
+;;          ("M-s M-g"     . consult-ripgrep)
+;;          ("C-x C-SPC"   . consult-global-mark)
+;;          ("C-x M-:"     . consult-complex-command)
+;;          ("C-c n"       . consult-org-agenda))
+;;   :custom
+;;   (completion-in-region-function #'consult-completion-in-region))
 
 (use-package consult)
 
