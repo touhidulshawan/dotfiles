@@ -12,7 +12,6 @@
   - [[#mpd--ncmcpp][MPD & Ncmcpp]]
   - [[#emacs][Emacs]]
   - [[#neovim][Neovim]]
-- [[#][]]
 
 * Introduction
 This repository is being used to store configuration files of my system.
@@ -83,7 +82,3 @@ Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awes
 - [[./.config/nvim/init.lua][neovim config]]
 
 [[./.screenshots/nvim.png]]
-* 
-#+begin_quote
-Use the configuration if you want. Thank You 🫰
-#+end_quote
