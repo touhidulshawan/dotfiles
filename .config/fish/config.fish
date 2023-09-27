@@ -52,9 +52,9 @@ alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 
 #alias for copy
-alias cp='cp -rivg '
-alias mv='mv -ivg'
-alias rm='rm -rfv'
+alias cp='uu-coreutils cp -ivg '
+alias mv='uu-coreutils mv -figv'
+alias rm='uu-coreutils rm -frdv'
 
 # alias for feh
 alias fh='feh -g 1024x576 -. *'
