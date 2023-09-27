@@ -52,7 +52,7 @@ alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 
 #alias for copy
-alias cp='uu-coreutils cp -ivg '
+alias cp='uu-coreutils cp -rivg '
 alias mv='uu-coreutils mv -figv'
 alias rm='uu-coreutils rm -frdv'
 
