@@ -216,8 +216,10 @@
               (interactive) (load-file "~/.config/emacs/init.el"))
             :wk "Reload emacs config"))
 
-(leader-key
+(leader-key 
+  "f" '(:ignore t :wk "Files")
   "." '(find-file :wk "Find file")
+  "f f" '(find-file :wk "Find file")
   "f c" '((lambda ()
             (interactive)
             (find-file "~/.config/emacs/config.org"))
@@ -284,17 +286,19 @@
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
 
-(leader-key "tw" '(writeroom-mode :which-key "writeroom-mode"))
+(leader-key
+  "t" '(:ignore t :wk "writeroom")
+  "tw" '(writeroom-mode :wk "writeroom-mode"))
 
 (leader-key
-  "c" '(:ignore t "wk" "Eglot-lsp")
+  "c" '(:ignore t :wk "Eglot-lsp")
   "c a" '(eglot-code-actions :wk "Eglot code action")
   "c q" '(eglot-code-action-quickfix :wk "Eglot code quickfix")
   "c d" '(eldoc-doc-buffer :wk "Eglot code diagnostics")
   "c r" '(eglot-rename :wk "Rename"))
 
 (leader-key
-  "x" '(:ignore t "wk" "Consult")
+  "x" '(:ignore t :wk "Consult")
   "x b" '(consult-buffer :wk "consult buffer")
   "x y" '(consult-yank-pop :wk "consult yank pop")
   "x l" '(consult-goto-line :wk "consult goto-line")
