@@ -1,5 +1,5 @@
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $HOME/.local/share/gem/ruby/3.0.0/bin $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $HOME/.local/share/gem/ruby/3.0.0/bin $fish_user_paths
 
 # Export
 set fish_greeting
