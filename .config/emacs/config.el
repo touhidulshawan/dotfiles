@@ -24,6 +24,11 @@
   :config
   (setq avy-case-fold-search nil))
 
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1))
+
 (setq inhibit-startup-message t)
 (setq use-short-answers t) ;; When emacs asks for "yes" or "no", let "y" or "n" suffice
 (setq confirm-kill-emacs 'yes-or-no-p) ;; Confirm to quit
@@ -266,6 +271,13 @@
 (leader-key
   "i" '(:ignore t :wk "snippets")
   "s" '(yas-insert-snippet :wk "Yas insert snippet"))
+
+(leader-key
+  "p" '(:ignore t :wk "Projectile")
+  "p a" '(projectile-add-known-project :wk "Add project")
+  "p p" '(projectile-switch-project :wk "Switch to project")
+  "p f" '(projectile-find-file :wk "Project find file")
+  "p d" '(projectile-remove-known-project :wk "Remove project"))
 
 (leader-key
   "m" '(:ignore t :wk "Org")

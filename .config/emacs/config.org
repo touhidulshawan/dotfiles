@@ -15,6 +15,7 @@
   - [[#center-cursor][Center Cursor]]
   - [[#magit][Magit]]
   - [[#avy][Avy]]
+  - [[#projectile][Projectile]]
 - [[#editor][Editor]]
   - [[#ui][UI]]
   - [[#font][Font]]
@@ -51,6 +52,7 @@
   - [[#avy-1][Avy]]
   - [[#magit-1][Magit]]
   - [[#snippet][Snippet]]
+  - [[#projectile-1][Projectile]]
   - [[#org][ORG]]
   - [[#writeroom][Writeroom]]
   - [[#eglotlsp][Eglot(lsp)]]
@@ -121,6 +123,13 @@
   :defer t
   :config
   (setq avy-case-fold-search nil))
+#+end_src
+** Projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :ensure t
+    :init
+    (projectile-mode +1))
 #+end_src
 * Editor
 ** UI
@@ -439,6 +448,15 @@ Disable lock file
   (leader-key
     "i" '(:ignore t :wk "snippets")
     "s" '(yas-insert-snippet :wk "Yas insert snippet"))
+#+end_src
+** Projectile
+#+begin_src emacs-lisp
+  (leader-key
+    "p" '(:ignore t :wk "Projectile")
+    "p a" '(projectile-add-known-project :wk "Add project")
+    "p p" '(projectile-switch-project :wk "Switch to project")
+    "p f" '(projectile-find-file :wk "Project find file")
+    "p d" '(projectile-remove-known-project :wk "Remove project"))
 #+end_src
 ** ORG
 #+begin_src emacs-lisp
