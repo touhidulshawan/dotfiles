@@ -419,10 +419,6 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "s", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper show")
     end, { description = "view and set wallpaper", group = "misc" }),
-    -- launch emoji
-    awful.key({ modkey }, ".", function()
-        awful.util.spawn("emote")
-    end, { description = "launch emoji", group = "emoji" }),
     --  run rofi
     awful.key({ altkey }, "space", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
@@ -471,10 +467,6 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, controlkey }, "l", function()
         awful.util.spawn("betterlockscreen -l")
     end, { description = "Lockscreen", group = "lockscreen" }),
-    -- launch copyq window
-    awful.key({ modkey }, "a", function()
-        awful.util.spawn("copyq toggle")
-    end, { description = "open copyq window", group = "clipboard" }),
     -- launch emacs
     awful.key({ modkey }, "o", function()
         awful.util.spawn("emacsclient -c")
