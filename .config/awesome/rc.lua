@@ -419,6 +419,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "s", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper show")
     end, { description = "view and set wallpaper", group = "misc" }),
+    -- launch copyq window
+    awful.key({ modkey }, "a", function()
+        awful.util.spawn("copyq toggle")
+    end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
     awful.key({ altkey }, "space", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')

@@ -13,3 +13,4 @@ feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 nm-applet &
 xfce4-power-manager &
 emacs --daemon &
+copyq &
