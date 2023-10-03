@@ -135,11 +135,44 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
+(use-package flycheck
+  :ensure t
+  :defer t
+  :diminish
+  :init (global-flycheck-mode))
+
 (setq make-backup-files nil)
 
 (setq create-lockfiles nil)
 
 (use-package format-all)
+
+(use-package vterm
+  :ensure t
+  :config (setq shell-file-name "/bin/sh"
+                vterm-max-scrollback 5000))
+
+(use-package vterm-toggle
+  :after vterm
+  :config
+  ;; When running programs in Vterm and in 'normal' mode, make sure that ESC
+  ;; kills the program as it would in most standard terminal programs.
+  ;; (evil-define-key 'normal vterm-mode-map (kbd "<escape>") 'vterm--self-insert)
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-scope 'project)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 ;;(direction . bottom)
+                 ;;(dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.4))))
 
 (use-package evil
   :demand t
@@ -299,8 +332,9 @@
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
 
 (leader-key
-  "t" '(:ignore t :wk "writeroom")
-  "tw" '(writeroom-mode :wk "writeroom-mode"))
+  "t" '(:ignore t :wk "terminal & writeroom")
+  "tt" '(vterm-toggle :wk "vterm toggle")
+  "tw" '(writeroom-mode :wk "writeroom mode"))
 
 (leader-key
   "c" '(:ignore t :wk "Eglot-lsp")
@@ -319,6 +353,26 @@
   "x g" '(consult-ripgrep :wk "consult ripgre")
   "x x" '(consult-fd :wk "consult find")
   ))
+
+(use-package rust-mode
+  :ensure t)
+
+;; indentation
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
+
+;; format on save
+(setq rust-format-on-save t)
+
+;; lsp
+(add-hook 'rust-mode-hook 'eglot-ensure)
+
+;; rustic
+(use-package rustic
+  :ensure t)
+
+;; change client
+(setq rustic-lsp-client 'eglot)
 
 (use-package corfu
   :init

@@ -31,8 +31,11 @@
   - [[#code-block-expansion][Code block expansion]]
   - [[#extra][Extra]]
   - [[#matching-paren--auto-pair][Matching paren & auto pair]]
+  - [[#flycheck][Flycheck]]
   - [[#backup-and-lock-file][Backup and Lock file]]
   - [[#format-all][Format all]]
+  - [[#vterm][vterm]]
+  - [[#vtermm-toggle][vtermm-toggle]]
 - [[#evil-mode][Evil mode]]
   - [[#evil][Evil]]
   - [[#evil-collection][Evil collection]]
@@ -54,9 +57,11 @@
   - [[#snippet][Snippet]]
   - [[#projectile-1][Projectile]]
   - [[#org][ORG]]
-  - [[#writeroom][Writeroom]]
+  - [[#vterm--writeroom][vterm & Writeroom]]
   - [[#eglotlsp][Eglot(lsp)]]
   - [[#consult][Consult]]
+- [[#language][Language]]
+  - [[#rust][Rust]]
 - [[#completion][Completion]]
   - [[#corfu][Corfu]]
   - [[#cape][Cape]]
@@ -269,6 +274,14 @@
   (show-paren-mode 1)
   (electric-pair-mode 1)
 #+end_src
+** Flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :defer t
+    :diminish
+    :init (global-flycheck-mode))
+#+end_src
 ** Backup and Lock file
 Disable backup file
 #+begin_src emacs-lisp
@@ -281,6 +294,37 @@ Disable lock file
 ** Format all
 #+begin_src emacs-lisp
   (use-package format-all)
+#+end_src
+** vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t
+    :config (setq shell-file-name "/bin/sh"
+                  vterm-max-scrollback 5000))
+#+end_src
+** vtermm-toggle
+#+begin_src emacs-lisp
+  (use-package vterm-toggle
+    :after vterm
+    :config
+    ;; When running programs in Vterm and in 'normal' mode, make sure that ESC
+    ;; kills the program as it would in most standard terminal programs.
+    ;; (evil-define-key 'normal vterm-mode-map (kbd "<escape>") 'vterm--self-insert)
+    (setq vterm-toggle-fullscreen-p nil)
+    (setq vterm-toggle-scope 'project)
+    (add-to-list 'display-buffer-alist
+                 '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                   (display-buffer-reuse-window display-buffer-at-bottom)
+                   ;;(display-buffer-reuse-window display-buffer-in-direction)
+                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                   ;;(direction . bottom)
+                   ;;(dedicated . t) ;dedicated is supported in emacs27
+                   (reusable-frames . visible)
+                   (window-height . 0.4))))
 #+end_src
 * Evil mode
 ** Evil
@@ -479,11 +523,12 @@ Disable lock file
   (leader-key
     "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
 #+end_src
-** Writeroom
+** vterm & Writeroom
 #+begin_src emacs-lisp
   (leader-key
-    "t" '(:ignore t :wk "writeroom")
-    "tw" '(writeroom-mode :wk "writeroom-mode"))
+    "t" '(:ignore t :wk "terminal & writeroom")
+    "tt" '(vterm-toggle :wk "vterm toggle")
+    "tw" '(writeroom-mode :wk "writeroom mode"))
 #+end_src
 ** Eglot(lsp)
 #+begin_src emacs-lisp
@@ -506,6 +551,29 @@ Disable lock file
     "x g" '(consult-ripgrep :wk "consult ripgre")
     "x x" '(consult-fd :wk "consult find")
     ))
+#+end_src
+* Language
+** Rust
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :ensure t)
+
+  ;; indentation
+  (add-hook 'rust-mode-hook
+            (lambda () (setq indent-tabs-mode nil)))
+
+  ;; format on save
+  (setq rust-format-on-save t)
+
+  ;; lsp
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+
+  ;; rustic
+  (use-package rustic
+    :ensure t)
+
+  ;; change client
+  (setq rustic-lsp-client 'eglot)
 #+end_src
 * Completion
 ** Corfu
