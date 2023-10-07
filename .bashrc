@@ -59,8 +59,8 @@ alias lt='exa -aT --icons --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
 #alias for advanced copy
-alias cp='uu-coreutils cp -rivg '
-alias mv='uu-coreutils mv -figv'
+alias cp='uu-coreutils cp -rig'
+alias mv='uu-coreutils mv -fig'
 alias rm='uu-coreutils rm -frdv'
 
 # aliash for feh

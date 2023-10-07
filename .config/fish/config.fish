@@ -52,8 +52,8 @@ alias l='exa --icons --color=always --group-directories-first'
 alias lt='exa -aT --icons --color=always --group-directories-first'
 
 #alias for copy
-alias cp='uu-coreutils cp -rivg '
-alias mv='uu-coreutils mv -figv'
+alias cp='uu-coreutils cp -rig'
+alias mv='uu-coreutils mv -fig'
 alias rm='uu-coreutils rm -frdv'
 
 # alias for feh
@@ -89,7 +89,7 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # yt-dlp
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
-alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mp4 --write-subs'
+alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4'
 
 # [nvim as MANPAGER]
 export MANPAGER="nvim +Man!"
