@@ -88,7 +88,7 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # yt-dlp
-alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --write-thumbnail'
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --write-thumbnail --convert-thumbnails jpg'
 alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4'
 
 # [nvim as MANPAGER]
