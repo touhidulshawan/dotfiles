@@ -199,7 +199,7 @@
      dashboard-set-heading-icons t
      dashboard-set-file-icons t
      dashboard-display-icons-p t
-     dashboard-startup-banner "~/.config/emacs/gruvbox.png"
+     dashboard-startup-banner "~/.config/emacs/cover.png"
      dashboard-center-content nil
      dashboard-items '((recents . 8)))
     :config (dashboard-setup-startup-hook))
