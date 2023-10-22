@@ -448,17 +448,17 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn(browser .. " -P Pentest")
     end, { description = "launch Firefox browser with Pentest Profile", group = "browser" }),
     -- launch Firefox with lab Profile
-    awful.key({ modkey, shiftkey }, "h", function()
+    awful.key({ modkey, shiftkey }, "c", function()
         awful.util.spawn(browser .. " -P lab")
     end, { description = "launch Firefox browser with lab Profile", group = "browser" }),
     -- launch Firefox private window
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
-    -- launch chromium
-    awful.key({ modkey, shiftkey }, "c", function()
-        awful.util.spawn("chromium --force-device-scale-factor=1")
-    end, { description = "launch Chromium", group = "browser" }),
+    -- launch brave browser 
+    awful.key({ modkey, shiftkey }, "space", function()
+        awful.util.spawn("brave --force-device-scale-factor=1")
+    end, { description = "launch brave", group = "browser" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/screenshot")
@@ -668,6 +668,14 @@ awful.rules.rules = {
     },
     {
         rule = { class = "burp-StartBurp", name = "Settings" },
+        properties = { floating = true, placement = awful.placement.centered },
+    },
+    {
+        rule = { class = "burp-StartBurp", name = "Filter settings" },
+        properties = { floating = true, placement = awful.placement.centered },
+    },
+    {
+        rule = { class = "burp-StartBurp", name = "Configure filter" },
         properties = { floating = true, placement = awful.placement.centered },
     },
     {
