@@ -1,9 +1,10 @@
 #!/bin/bash
 
 wallpaper_directory=$HOME/Pictures/wallpapers/
+anime_wallpapers=$HOME/Pictures/wallpapers/anime/
 
 case "$1" in
-    "show") sxiv -g 1338x719 -tro "$wallpaper_directory" | xargs feh --bg-fill || exit ;;
-    "random") feh --recursive --bg-fill --randomize "$wallpaper_directory" ;;
+    "show") sxiv -g 1338x719 -tro "$wallpaper_directory" | xargs feh --bg-fill || exit &;;
+    "random") feh --recursive --bg-fill --randomize "$anime_wallpapers" & ;;
 esac
 
