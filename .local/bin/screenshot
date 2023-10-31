@@ -1,7 +1,13 @@
-#! /bin/sh
-output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
+#! /bin/bash
 
-case "$1" in
+# output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
+if [ -z "$1" ];then
+    output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
+else
+    output="/home/shawan/Pictures/Screenshots/$1-screenshot.png"
+fi
+
+case "$2" in
     "select") scrot "$output" --select --line mode=edge || exit ;;
     "window") scrot "$output" --focused -b || exit ;;
     *) scrot "$output" || exit ;;
