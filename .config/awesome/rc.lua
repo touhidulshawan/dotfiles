@@ -410,6 +410,9 @@ globalkeys = mytable.join( -- Destroy all notifications
         end
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
+    -- Run prompt
+    awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end,
+        { description = "run prompt", group = "launcher" }),
     -- User programs
     -- Random wallpapers
     awful.key({ modkey, shiftkey }, "w", function()
@@ -424,13 +427,13 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    awful.key({ altkey }, "space", function()
-        awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
-    end, { description = "launch rofi", group = "launcher" }),
-    -- launch power menu
-    awful.key({ modkey, altkey }, "space", function()
-        awful.util.spawn("sh " .. home .. "/.local/bin/powermenu")
-    end, { description = "launch power menu in rofi", group = "launcher" }),
+    --[[ awful.key({ altkey }, "space", function() ]]
+    --[[     awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons') ]]
+    --[[ end, { description = "launch rofi", group = "launcher" }), ]]
+    -- launch power menr
+    --[[ awful.key({ modkey, altkey }, "space", function() ]]
+    --[[     awful.util.spawn("sh " .. home .. "/.local/bin/powermenu") ]]
+    --[[ end, { description = "launch power menu in rofi", group = "launcher" }), ]]
     -- launch gui filemanager
     awful.key({ modkey }, "e", function()
         awful.util.spawn(filemanager)
@@ -455,22 +458,55 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
-    -- launch brave browser 
+    -- launch brave browser
     awful.key({ modkey, shiftkey }, "space", function()
         awful.util.spawn("brave --force-device-scale-factor=1")
     end, { description = "launch brave", group = "browser" }),
     -- ScreenShot
     awful.key({}, "Print", function()
-        awful.util.spawn("sh " .. home .. "/.local/bin/screenshot")
-    end, { description = "take screenshots", group = "screenshot" }),
+        awful.prompt.run {
+            prompt       = '<b>Filename: </b>',
+            bg_cursor    = '#fb4934',
+            textbox      = awful.screen.focused().mypromptbox.widget,
+            exe_callback = function(input)
+                if input and #input > 0 then
+                    awful.spawn(home .. "/.local/bin/screenshot " .. input)
+                else
+                    awful.spawn(home .. "/.local/bin/screenshot")
+                end
+            end
+        }
+    end, { description = "Take a screenshot", group = "screenshot" }),
     -- Screenshots by selecting area
     awful.key({ shiftkey }, "Print", function()
-        awful.util.spawn("sh " .. home .. "/.local/bin/screenshot select")
-    end, { description = "take screenshots by selecting area", group = "screenshot" }),
+        awful.prompt.run {
+            prompt       = '<b>Filename: </b>',
+            bg_cursor    = '#fb4934',
+            textbox      = awful.screen.focused().mypromptbox.widget,
+            exe_callback = function(input)
+                if input and #input > 0 then
+                    awful.spawn(home .. "/.local/bin/screenshot " .. input .. " select")
+                else
+                    awful.spawn(home .. "/.local/bin/screenshot " .. "select")
+                end
+            end
+        }
+    end, { description = "Take a screenshot by selecting area", group = "screenshot" }),
     -- Screenshot of focused window
     awful.key({ controlkey }, "Print", function()
-        awful.util.spawn("sh " .. home .. "/.local/bin/screenshot window")
-    end, { description = "take screenshot focused window", group = "screenshot" }),
+        awful.prompt.run {
+            prompt       = '<b>Filename: </b>',
+            bg_cursor    = '#fb4934',
+            textbox      = awful.screen.focused().mypromptbox.widget,
+            exe_callback = function(input)
+                if input and #input > 0 then
+                    awful.spawn(home .. "/.local/bin/screenshot " .. input .. " window")
+                else
+                    awful.spawn(home .. "/.local/bin/screenshot " .. "window")
+                end
+            end
+        }
+    end, { description = "Take a screenshot by selecting area", group = "screenshot" }),
     -- lockscreen
     awful.key({ modkey, controlkey }, "l", function()
         awful.util.spawn("betterlockscreen -l")
