@@ -1,10 +1,6 @@
 #! /bin/bash
 
-if [ -z "$1" ];then
-    output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
-else
-    output="/home/shawan/Pictures/Screenshots/$1-screenshot.png"
-fi
+output="/home/shawan/Pictures/Screenshots/$1-screenshot.png"
 
 case "$2" in
     "select") scrot "$output" --select --line mode=edge || exit ;;
@@ -12,4 +8,4 @@ case "$2" in
     *) scrot "$output" || exit ;;
 esac
 
-notify-send "Screenshot taken."
+notify-send "Image saved as $output"

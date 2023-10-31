@@ -472,7 +472,7 @@ globalkeys = mytable.join( -- Destroy all notifications
                 if input and #input > 0 then
                     awful.spawn(home .. "/.local/bin/screenshot " .. input)
                 else
-                    awful.spawn(home .. "/.local/bin/screenshot")
+                    awful.spawn(home .. "/.local/bin/screenshot " .. os.date('%Y-%m-%d_%H-%M'))
                 end
             end
         }
@@ -487,7 +487,7 @@ globalkeys = mytable.join( -- Destroy all notifications
                 if input and #input > 0 then
                     awful.spawn(home .. "/.local/bin/screenshot " .. input .. " select")
                 else
-                    awful.spawn(home .. "/.local/bin/screenshot " .. "select")
+                    awful.spawn(home .. "/.local/bin/screenshot " .. os.date('%Y-%m-%d_%H-%M') .. " select")
                 end
             end
         }
@@ -502,7 +502,7 @@ globalkeys = mytable.join( -- Destroy all notifications
                 if input and #input > 0 then
                     awful.spawn(home .. "/.local/bin/screenshot " .. input .. " window")
                 else
-                    awful.spawn(home .. "/.local/bin/screenshot " .. "window")
+                    awful.spawn(home .. "/.local/bin/screenshot " .. os.date('%Y-%m-%d_%H-%M') .. " window")
                 end
             end
         }
