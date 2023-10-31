@@ -1,6 +1,5 @@
 #! /bin/bash
 
-# output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
 if [ -z "$1" ];then
     output='/home/shawan/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png'
 else
