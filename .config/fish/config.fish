@@ -44,12 +44,12 @@ alias .4='cd ../../..'
 alias .5='cd ../../../..'
 alias .6='cd ../../../../..'
 
-# alias for my exa command replace for ls
-alias la='exa -al --icons --sort=name --color=always --group-directories-first'
-alias ls='exa -a --icons --sort=name --group-directories-first'
-alias ll='exa -l --icons --color=always --group-directories-first'
-alias l='exa --icons --color=always --group-directories-first'
-alias lt='exa -aT --icons --color=always --group-directories-first'
+# alias for my eza command replace for ls
+alias la='eza -al --total-size --icons --sort=name --color=always --group-directories-first'
+alias ls='eza -a --icons --sort=name --group-directories-first'
+alias ll='eza -l --total-size --icons --color=always --group-directories-first'
+alias l='eza --icons --color=always --group-directories-first'
+alias lt='eza -aT --icons --color=always --group-directories-first'
 
 #alias for copy
 alias cp='uu-coreutils cp -rig'
@@ -114,7 +114,7 @@ alias vaup="vagrant up --provider=libvirt"
 
 # fzf
 fzf_configure_bindings --directory=\cf
-set fzf_preview_dir_cmd exa --all --color=always --icons
+set fzf_preview_dir_cmd eza --all --color=always --icons
 set fzf_fd_opts --hidden --exclude=.git
 export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_DEFAULT_OPTS="--layout=reverse-list --border=bold --ansi"

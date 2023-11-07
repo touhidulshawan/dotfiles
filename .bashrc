@@ -51,12 +51,12 @@ alias .4='cd ../../..'
 alias .5='cd ../../../..'
 alias .6='cd ../../../../..'
 
-# alias for my exa command replace for ls
-alias la='exa -al --icons --sort=name --color=always --group-directories-first'
-alias ls='exa -a --icons --sort=name --group-directories-first'
-alias ll='exa -l --icons --color=always --group-directories-first'
-alias lt='exa -aT --icons --color=always --group-directories-first'
-alias l.='exa -a | egrep "^\."'
+# alias for my eza command replace for ls
+alias la='eza -al --icons --sort=name --color=always --group-directories-first'
+alias ls='eza -a --icons --sort=name --group-directories-first'
+alias ll='eza -l --icons --color=always --group-directories-first'
+alias lt='eza -aT --icons --color=always --group-directories-first'
+alias l.='eza -a | egrep "^\."'
 
 #alias for advanced copy
 alias cp='uu-coreutils cp -rig'
