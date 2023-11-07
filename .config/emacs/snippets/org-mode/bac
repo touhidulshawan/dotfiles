@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name:checklist for bug hunting v1 
-# key:<bac
+# key:<bug
 # --
 
 * TODO IDOR [0/13]

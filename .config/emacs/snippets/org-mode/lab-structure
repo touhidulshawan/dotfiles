@@ -5,7 +5,7 @@
 
 #+title: ${1:title}
 #+author: [[https://github.com/touhidulshawan][Touhidul Shawan]]
-#+description: Graphql API Vulnerabilities Labs from Portswigger
+#+description: Business Logic Vulnerabilities Labs from Portswigger
 #+date: `(format-time-string "%Y-%m-%d %a")`
 #+options: toc:2
 
