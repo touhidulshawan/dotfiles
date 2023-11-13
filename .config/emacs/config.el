@@ -39,22 +39,22 @@
 
 (set-face-attribute 'default nil
                     :font "JetBrains Mono"
-                    :height 110
+                    :height 111
                     :weight 'medium)
 (set-face-attribute 'variable-pitch nil
                     :font "Ubuntu"
-                    :height 120
+                    :height 122
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
                     :font "JetBrains Mono"
-                    :height 110
+                    :height 111
                     :weight 'medium)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
 (add-to-list
- 'default-frame-alist '(font . "JetBrains Mono-11"))
+ 'default-frame-alist '(font . "JetBrains Mono-13"))
 
 ;;  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
 
