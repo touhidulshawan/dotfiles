@@ -3,8 +3,7 @@ abbr --add  ncm ncmpcpp
 abbr --add  pbc pbcopy
 abbr --add  pbp pbpaste
 abbr --add  py python
-abbr --add  blt bluetoothctl
-abbr --add  bl bluetooth
+abbr --add  bl bluetoothctl
 abbr --add  bm bashmount
 abbr --add  e exit
 abbr --add  cl clear
