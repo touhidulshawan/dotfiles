@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Author: Touhidul Shawan
+# Date Created: 13-11-2023
+# Date Modified: 13-11-2023
+
+# Check if gruvbox-factory is installed
+if ! command -v gruvbox-factory &> /dev/null; then
+    echo "Error: gruvbox-factory is not installed. Please install it before running this script."
+    exit 1
+fi
+
+# Description
+# Change image with grubox color palettes
+
+# Usages
+# There are only two options: pink, white
+# ./script options
+#
+# Help
+if [ "$#" -eq 0 ]  || [ "$1" == "-h" ]; then
+  echo "Usage: imgtogruv option
+  option:
+        pink: use pink color palette
+        white: use white color palette"
+  exit 0
+fi
+
+# Ensure the destination folders exist or create them
+mkdir -p "$HOME/Pictures/Wallhaven"
+mkdir -p "$HOME/Pictures/Wallhaven/gruvbox-white"
+mkdir -p "$HOME/Pictures/Wallhaven/gruvbox-pink"
+
+# Set destination folder path
+folder_path="$HOME/Pictures/Wallhaven/gruvbox-$1"
+
+# Change images with gruvbox color palette
+gruvbox-factory -p "$1" -i ./*.png ./*.jpg
+
+# Move changed images to the destination folder
+if mv gruvbox_* "$folder_path"; then
+    echo "Changed images saved into $folder_path"
+fi
