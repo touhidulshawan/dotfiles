@@ -224,7 +224,8 @@ function theme.at_screen_connect(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
+        --[[ s.mytasklist, -- Middle widget ]]
+        nil,
         {
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
