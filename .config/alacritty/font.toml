@@ -2,17 +2,17 @@
 size = 11
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
+family = "JetBrainsMono NF"
+style = "Medium"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Bold"
+family = "JetBrainsMono NF"
+style = "SemiBold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Italic"
+family = "JetBrainsMono NF"
+style = "Medium Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
+family = "JetBrainsMono NF"
+style = "SemiBold Italic"
