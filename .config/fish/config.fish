@@ -47,7 +47,6 @@ alias .6='cd ../../../../..'
 # alias for my eza command replace for ls
 alias la='eza -al --total-size --icons --sort=name --color=always --group-directories-first'
 alias ls='eza -a --icons --sort=name --group-directories-first'
-alias ll='eza -l --total-size --icons --color=always --group-directories-first'
 alias l='eza --icons --color=always --group-directories-first'
 alias lt='eza -aT --icons --color=always --group-directories-first'
 
