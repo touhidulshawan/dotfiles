@@ -502,7 +502,7 @@ globalkeys = mytable.join( -- Destroy all notifications
                 end
             end
         }
-    end, { description = "Take a screenshot by selecting area", group = "screenshot" }),
+    end, { description = "Take a screenshot of focused window", group = "screenshot" }),
     -- lockscreen
     awful.key({ modkey, controlkey }, "l", function()
         awful.util.spawn("betterlockscreen -l")
