@@ -230,9 +230,9 @@ function theme.at_screen_connect(s)
             forced_num_rows = 1,
             s.mypromptbox,
             s.mytasklist,
-            expand = true,
+            expand      = true,
             homogeneous = false,
-            layout          = wibox.layout.grid
+            layout      = wibox.layout.grid
         },
         {
             -- Right widgets
