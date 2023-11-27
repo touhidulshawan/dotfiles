@@ -10,7 +10,6 @@ lxsession &
 picom --experimental-backends &
 feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 # ~/.fehbg &
-nm-applet &
 xfce4-power-manager &
 emacs --daemon &
 copyq &
