@@ -62,6 +62,7 @@ alias fh='feh -g 1024x576 -. *'
 alias sx="sxiv -t -g 1338x719 *"
 
 alias cat='bat'
+alias rg='batgrep'
 
 # alias for neovim
 alias nf='fd -Ht f | fzf | xargs nvim'
@@ -70,9 +71,6 @@ alias nf='fd -Ht f | fzf | xargs nvim'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-
-# batgrep
-alias rg=batgrep
 
 # storage
 alias du='du -sh'
