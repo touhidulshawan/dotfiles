@@ -68,7 +68,7 @@ local bat = lain.widget.bat({
         local perc = "  " .. bat_now.perc ~= "N/A" and "  " .. bat_now.perc .. "%" or "  " .. bat_now.perc
 
         if bat_now.ac_status == 1 then
-            perc = perc .. " plug"
+            perc = perc .. " "
         end
 
         widget:set_markup(markup.fontfg(theme.font, purple, perc))
@@ -319,7 +319,7 @@ function theme.at_screen_connect(s)
             mpdicon,
             theme.mpd.widget,
             --[[ wibox.widget.systray(), ]]
-            kernel_widget,
+            --[[ kernel_widget, ]]
             network_widget,
             update_network_widget(),
             ram_widget,
