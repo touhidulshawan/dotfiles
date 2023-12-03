@@ -7,6 +7,7 @@ run() {
 }
 
 lxsession &
+nm-applet &
 picom --experimental-backends &
 feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 # ~/.fehbg &

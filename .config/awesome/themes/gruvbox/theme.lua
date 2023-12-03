@@ -318,7 +318,6 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             mpdicon,
             theme.mpd.widget,
-            --[[ wibox.widget.systray(), ]]
             --[[ kernel_widget, ]]
             network_widget,
             update_network_widget(),
@@ -327,6 +326,7 @@ function theme.at_screen_connect(s)
             theme.volume,
             bat.widget,
             mytextclock,
+            wibox.widget.systray()
         },
     })
 end
