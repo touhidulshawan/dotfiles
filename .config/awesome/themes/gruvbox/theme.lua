@@ -91,7 +91,7 @@ local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist, mpd_now.album, mpd_now.title),
+            text = string.format("%s [%s] - %s", mpd_now.artist, mpd_now.album, mpd_now.title),
         }
 
         if mpd_now.state == "play" then
