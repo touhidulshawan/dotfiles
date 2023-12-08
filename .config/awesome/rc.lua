@@ -444,7 +444,7 @@ globalkeys = mytable.join( -- Destroy all notifications
     end, { description = "launch Firefox browser with Master Profile", group = "browser" }),
     -- launch Firefox with entertainment profile
     awful.key({ modkey, shiftkey }, "e", function()
-        awful.util.spawn(browser)
+        awful.util.spawn(browser .. " -p entertainment")
     end, { description = "launch Firefox browser with entertainment profile", group = "browser" }),
     -- launch Firefox with Pentest Profile
     awful.key({ modkey, shiftkey }, "p", function()
