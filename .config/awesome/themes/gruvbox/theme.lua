@@ -125,7 +125,11 @@ network_widget = wibox.widget {
 -- Set the widget text
 function update_network_widget()
     local ip_address = get_ip_address()
-    network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
+    if ip_address == "0" then
+        network_widget:set_markup("<span color='#cc241d'>󰤭 </span>")
+    else
+        network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
+    end
 end
 
 -- Get the current IP address
@@ -133,7 +137,7 @@ function get_ip_address()
     local f = io.popen("ip addr show dev eno1 | grep 'inet ' | awk '{print $2}'")
     local ip_address = f:read("*l")
     f:close()
-    return ip_address or "N/A"
+    return ip_address or "0"
 end
 
 -- Update the widget every 5 seconds
