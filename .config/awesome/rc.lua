@@ -411,8 +411,8 @@ globalkeys = mytable.join( -- Destroy all notifications
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
     -- Run prompt
-    awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
+    --[[ awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end, ]]
+    --[[     { description = "run prompt", group = "launcher" }), ]]
     -- sleep mode
     awful.key({ modkey, shiftkey }, "-", function()
         awful.util.spawn("betterlockscreen -s")
@@ -434,13 +434,9 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    --[[ awful.key({ altkey }, "space", function() ]]
-    --[[     awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons') ]]
-    --[[ end, { description = "launch rofi", group = "launcher" }), ]]
-    -- launch power menr
-    --[[ awful.key({ modkey, altkey }, "space", function() ]]
-    --[[     awful.util.spawn("sh " .. home .. "/.local/bin/powermenu") ]]
-    --[[ end, { description = "launch power menu in rofi", group = "launcher" }), ]]
+    awful.key({ altkey }, "space", function()
+        awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
+    end, { description = "launch rofi", group = "launcher" }),
     -- launch gui filemanager
     awful.key({ modkey }, "e", function()
         awful.util.spawn(filemanager)
