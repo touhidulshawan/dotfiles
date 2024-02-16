@@ -102,7 +102,7 @@ alias vaup="vagrant up --provider=libvirt"
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
 
-# alias for docker-compose
+# Docker compose 
 # list all running containters
 alias dcp="docker compose ps"
 # start all containers
