@@ -70,5 +70,6 @@ song_columns_list_format = "(6)[]{} (23)[red]{a} (26)[yellow]{t|f} (40)[green]{b
 
 song_list_format = " $7%l  $2%t $R$5%a "
 
-song_status_format = "$b$7♫ $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
+# song_status_format = "$b$7♫ $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
+song_status_format = "$b$7♫ $2%a $4⟫$3⟫ $8%t"
 song_window_title_format = " {%a} - {%t}"
