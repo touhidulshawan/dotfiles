@@ -413,7 +413,14 @@ globalkeys = mytable.join( -- Destroy all notifications
     -- Run prompt
     awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
-    -- User programs
+    -- sleep mode
+    awful.key({ modkey, shiftkey }, "-", function()
+        awful.util.spawn("betterlockscreen -s")
+    end, { description = "sleep mode" }),
+    -- power off
+    awful.key({ modkey, shiftkey }, "=", function()
+        awful.util.spawn("poweroff")
+    end, { description = "shutdown pc" }),
     -- Random wallpapers
     awful.key({ modkey, shiftkey }, "w", function()
         awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper random")
