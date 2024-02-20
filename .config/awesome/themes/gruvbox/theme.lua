@@ -127,6 +127,8 @@ function update_network_widget()
     local ip_address = get_ip_address()
     if ip_address ~= "0" then
         network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
+    else
+        network_widget:set_markup("")
     end
 end
 
