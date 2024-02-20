@@ -125,9 +125,7 @@ network_widget = wibox.widget {
 -- Set the widget text
 function update_network_widget()
     local ip_address = get_ip_address()
-    if ip_address == "0" then
-        network_widget:set_markup("<span color='#cc241d'> </span>")
-    else
+    if ip_address ~= "0" then
         network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
     end
 end
