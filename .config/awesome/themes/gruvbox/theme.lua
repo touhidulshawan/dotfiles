@@ -126,15 +126,15 @@ network_widget = wibox.widget {
 function update_network_widget()
     local ip_address = get_ip_address()
     if ip_address == "0" then
-        network_widget:set_markup("<span color='#cc241d'>󰤭 </span>")
+        network_widget:set_markup("<span color='#cc241d'> </span>")
     else
-        network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
+        network_widget:set_markup("<span color='#458588'> </span><span color='#458588'>" .. ip_address .. "</span>")
     end
 end
 
 -- Get the current IP address
 function get_ip_address()
-    local f = io.popen("ip addr show dev eno1 | grep 'inet ' | awk '{print $2}'")
+    local f = io.popen("ip addr show dev tun0 | grep 'inet ' | awk '{print $2}'")
     local ip_address = f:read("*l")
     f:close()
     return ip_address or "0"
