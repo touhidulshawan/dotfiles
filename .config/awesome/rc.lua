@@ -411,8 +411,8 @@ globalkeys = mytable.join( -- Destroy all notifications
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
     -- Run prompt
-    --[[ awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end, ]]
-    --[[     { description = "run prompt", group = "launcher" }), ]]
+    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+        { description = "run prompt", group = "launcher" }),
     -- sleep mode
     awful.key({ modkey, shiftkey }, "-", function()
         awful.util.spawn("betterlockscreen -s")
