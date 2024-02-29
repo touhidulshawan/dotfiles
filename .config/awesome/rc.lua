@@ -411,7 +411,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
     -- Run prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+    awful.key({ altkey }, "space", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
     -- sleep mode
     awful.key({ modkey, shiftkey }, "-", function()
@@ -430,11 +430,11 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper show")
     end, { description = "view and set wallpaper", group = "misc" }),
     -- launch copyq window
-    awful.key({ modkey }, "a", function()
+    awful.key({ modkey }, ",", function()
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    awful.key({ altkey }, "space", function()
+    awful.key({ modkey }, "a", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
     -- launch gui filemanager
