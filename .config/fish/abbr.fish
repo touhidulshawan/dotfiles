@@ -23,3 +23,4 @@ abbr --add  od 'ouch decompress'
 abbr --add  sd ssh-add
 abbr --add  sec /usr/share/seclists/
 abbr --add  tg  trufflehog
+abbr --add aft aft-mtp-mount ~/mnt/
