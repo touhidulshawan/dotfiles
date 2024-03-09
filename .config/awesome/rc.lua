@@ -90,7 +90,6 @@ local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nvim"
 local browser = "firefox"
-local filemanager = "thunar"
 local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
@@ -430,17 +429,13 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("sh " .. home .. "/.local/bin/wallpaper show")
     end, { description = "view and set wallpaper", group = "misc" }),
     -- launch copyq window
-    awful.key({ modkey }, ",", function()
+    awful.key({ modkey }, "a", function()
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    awful.key({ modkey }, "a", function()
+    awful.key({ modkey }, "e", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
-    -- launch gui filemanager
-    awful.key({ modkey }, "e", function()
-        awful.util.spawn(filemanager)
-    end, { description = "launch gui filemanager", group = "application" }),
     -- launch Firefox with Master Profile (default)
     awful.key({ modkey }, "b", function()
         awful.util.spawn(browser)
