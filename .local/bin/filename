@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Author: Touhidul Shawan
+# Date Created: 09-03-2024
+# Date Modified: 09-03-2024
+
+# Description
+# Change multiple files with specific pattern
+
+# Usages
+# run filename naming pattern word [ex: episode, nature] count start number
+
+# Help
+if [ "$#" -eq 0 ]  || [ "$1" == "-h" ]; then
+  echo "Usage: filename naming pattern word [ex: episode] count start number
+  Example:
+        filename episode 1"
+  exit 0
+fi
+
+count=$2
+extensions=".mp4 .avi .mkv .png .jpg .jpeg .svg .mp3" 
+
+for ext in $extensions; do
+    for file in *"$ext"; do
+        if [ -f "$file" ]; then
+            new_name=$(printf "$1-%d%s" "$count" "$ext")
+            mv "$file" "$new_name"
+            ((count++))
+        fi
+    done
+done
