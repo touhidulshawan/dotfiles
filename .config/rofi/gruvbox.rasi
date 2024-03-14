@@ -11,11 +11,11 @@ configuration {
 @theme "/dev/null"
 
 * {
-	bg:				#282828;
+	bg:				#1d2021;
 	fg:				#ebdbb2;
-	accent:			#8ec07c;
+	accent:			#b16286;
     bcolor:         #83a598;
-	button:			#363636;
+	button:			#282828;
 
 	background-color:	@bg;
 	text-color:			@fg;
@@ -23,10 +23,10 @@ configuration {
 }
 
 window {
-	border-radius:      5px;
+	border-radius:      0px;
 	width:			    48%;
 	padding: 			2px;
-    border:             3px;
+    border:             0px;
 }
 
 prompt {
@@ -91,8 +91,8 @@ element-text, element-icon {
 }
 
 element selected {
-    	background-color:               @button;
-    	border-radius:                  8px;
-        border:                         0px 0px 5px 0px;
-        border-color:                   @bcolor;
+    	background-color:               #32302f;
+    	border-radius:                  4px;
+        border:                         2px;
+        border-color:                   #fabd2f;
 }
