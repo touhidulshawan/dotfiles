@@ -25,7 +25,7 @@ for ext in $extensions; do
     for file in *"$ext"; do
         if [ -f "$file" ]; then
             new_name=$(printf "$1-%d%s" "$count" "$ext")
-            mv "$file" "$new_name"
+            mv -v "$file" "$new_name"
             ((count++))
         fi
     done
