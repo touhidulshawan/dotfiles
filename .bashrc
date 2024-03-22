@@ -1,4 +1,10 @@
-#!/bin/bash
+# exports
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+export GIT_EDITOR=/usr/bin/nvim
+export LESSHISTFILE=-
+export HISTFILE="$HOME/.config/bash/.bash_history"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # If not running interactively, don't do anything
 case $- in
@@ -23,10 +29,6 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-# export
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
-export GIT_EDITOR=/usr/bin/nvim
 
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
@@ -87,9 +89,7 @@ alias e='exit'
 alias cl='clear'
 
 # alias for neovim
-alias v='fd -t f | fzf | xargs nvim'
-alias vi='nvim'
-alias vim='nvim'
+alias nv='fd -t f | fzf | xargs nvim'
 
 # create virtualenv in project folder [pipenv]
 export PIPENV_VENV_IN_PROJECT=1
@@ -120,49 +120,9 @@ alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas pac
 # remove pacman lock
 alias unlock="doas rm /var/lib/pacman/db.lck"
 
-alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
-
 # setup fzf
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
-
-export FZF_DEFAULT_COMMAND="fd --type f --color=never"
-export FZF_DEFAULT_OPTS=" --height 100% --layout=reverse --border --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
-
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
-
-# Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
-
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-	fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-	fd --type d --hidden --follow --exclude ".git" . "$1"
-}
-
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
-	local command=$1
-	shift
-
-	case "$command" in
-		cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
-		export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
-		ssh) fzf --preview 'dig {}' "$@" ;;
-		*) fzf --preview 'bat -n --color=always {}' "$@" ;;
-	esac
-}
 
 # fix tryhackme machine website issues
 alias nmfix='doas ip link set dev nm-bridge mtu 1200'
@@ -176,14 +136,9 @@ alias config='/usr/bin/git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}'
 alias cn=config
 alias config=dotbare
 
-# manage bare repository
-source ~/.dotbare/dotbare.plugin.bash
-
-export DOTBARE_DIR="$HOME/.dotfiles"
-export DOTBARE_TREE="$HOME"
 
 ### ARCHIVE EXTRACTION
-extract() {
+ex() {
 	if [ -f "$1" ]; then
 		case $1 in
 			*.tar.bz2) tar xjf "$1" ;;
@@ -206,21 +161,12 @@ extract() {
 		echo "'$1' is not a valid file"
 	fi
 }
-# search and go that directory
-ff() {
-	folderName=$(fd . -Ht d --color=always | fzf)
-	if [[ -n "$folderName" ]]; then
-		cd "$folderName" || return
-	fi
-}
 
-# open file
-open() {
-	filename=$(fd . -Ht f --color=always | fzf)
-	if [[ -n "$filename" ]]; then
-		xdg-open "$filename"
-	fi
-}
+
+# manage bare repository
+source ~/.dotbare/dotbare.plugin.bash
+export DOTBARE_DIR="$HOME/.dotfiles"
+export DOTBARE_TREE="$HOME"
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
