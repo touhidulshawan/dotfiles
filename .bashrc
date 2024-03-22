@@ -168,5 +168,4 @@ source ~/.dotbare/dotbare.plugin.bash
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
 
-eval "$(starship init bash)"
 eval "$(zoxide init bash)"
