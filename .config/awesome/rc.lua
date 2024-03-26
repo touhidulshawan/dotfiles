@@ -86,6 +86,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
+local filemanager = "thunar"
 local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nvim"
@@ -436,6 +437,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey }, "r", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
+    -- open filemanager
+    awful.key({ modkey }, "e", function()
+        awful.util.spawn(filemanager)
+    end, { description = "launch file manager", group = "application" }),
     -- launch Firefox with Master Profile (default)
     awful.key({ modkey }, "b", function()
         awful.util.spawn(browser)
