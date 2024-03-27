@@ -2,17 +2,21 @@
 size = 12
 
 [font.normal]
-family = "JetBrainsMono NF"
+# family = "JetBrainsMono NF"
+family = "JetBrains Mono"
 style = "Medium"
 
 [font.bold]
-family = "JetBrainsMono NF"
+# family = "JetBrainsMono NF"
+family = "JetBrains Mono"
 style = "SemiBold"
 
 [font.italic]
-family = "JetBrainsMono NF"
+# family = "JetBrainsMono NF"
+family = "JetBrains Mono"
 style = "Medium Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono NF"
+# family = "JetBrainsMono NF"
+family = "JetBrains Mono"
 style = "SemiBold Italic"
