@@ -94,7 +94,7 @@ error_symbol = "[⊘](purple)"
 
 [username]
 style_user = "yellow bold"
-style_root = "purple bold italic"
+style_root = "purple bold "
 format = "[$user]($style) ▻ "
 disabled = false
 
@@ -103,17 +103,17 @@ home_symbol = "⌂"
 truncation_length = 2
 truncation_symbol = "▦ "
 read_only = " ■"
-style = "italic blue"
+style = " blue"
 format = ' [$path]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
 min_time = 500
-format = "[$duration ](italic bright-yellow)"
+format = "[$duration ]( bright-yellow)"
 
 [jobs]
 format = "[ $symbol$number]($style)"
 style = "white"
-symbol = "[▶ ](blue italic)"
+symbol = "[▶ ](blue )"
 
 [localip]
 ssh_only = true
@@ -122,11 +122,11 @@ disabled = false
 
 [battery]
 format = "[ $percentage $symbol]($style)"
-full_symbol = "[█](italic green)"
-charging_symbol = "[↑](italic green)"
-discharging_symbol = "[↓](italic)"
-unknown_symbol = "[░](italic)"
-empty_symbol = "[▃](italic red)"
+full_symbol = "[█]( green)"
+charging_symbol = "[↑]( green)"
+discharging_symbol = "[↓]()"
+unknown_symbol = "[░]()"
+empty_symbol = "[▃]( red)"
 
 [[battery.display]]
 threshold = 40
@@ -139,69 +139,69 @@ style = "dimmed white"
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch)]($style)"
 symbol = "[◬](bold bright-blue)"
-style = "bold italic bright-blue"
+style = "bold  bright-blue"
 
 [git_status]
-style = "italic bright-blue"
+style = " bright-blue"
 format = """([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"""
-conflicted = "[◪◦](italic bright-magenta)"
-ahead = "[▲│[${count}](bold white)│](italic green)"
-behind = "[▽│[${count}](bold white)│](italic red)"
-diverged = "[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)"
-untracked = "[◌◦](italic bright-yellow)"
-stashed = "[◦◫◦](italic white)"
-modified = "[●◦](italic yellow)"
-staged = "[■┤[$count](bold white)│](italic bright-cyan)"
-renamed = "[◎◦](italic bright-blue)"
-deleted = "[✕](italic red)"
+conflicted = "[◪◦]( bright-magenta)"
+ahead = "[▲│[${count}](bold white)│]( green)"
+behind = "[▽│[${count}](bold white)│]( red)"
+diverged = "[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│]( bright-magenta)"
+untracked = "[◌◦]( bright-yellow)"
+stashed = "[◦◫◦]( white)"
+modified = "[●◦]( yellow)"
+staged = "[■┤[$count](bold white)│]( bright-cyan)"
+renamed = "[◎◦]( bright-blue)"
+deleted = "[✕]( red)"
 
 [deno]
-format = " deno [∫ $version](blue italic)"
+format = " deno [∫ $version](blue )"
 version_format = "${major}.${minor}"
 
 [lua]
 format = " lua [${symbol}${version}]($style)"
 symbol = "⨀ "
-style = "italic bright-yellow"
+style = " bright-yellow"
 
 [nodejs]
-format = " node [◫ ($version)](italic bright-green)"
+format = " node [◫ ($version)]( bright-green)"
 detect_files = ["package-lock.json", "yarn.lock"]
 version_format = "${major}.${minor}"
 
 [python]
 format = ' py [${symbol}(${version} )(\($virtualenv\) )]($style)'
-symbol = "[⌉](italic bright-blue)⌊ "
+symbol = "[⌉]( bright-blue)⌊ "
 version_format = "${major}.${minor}"
-style = "italic bright-yellow"
+style = " bright-yellow"
 
 [ruby]
 format = " rb [${symbol}${version}]($style)"
 symbol = "◆ "
 version_format = "${major}.${minor}"
-style = "italic red"
+style = " red"
 
 [rust]
 format = " rs [$symbol$version]($style)"
 symbol = "⊃ "
 version_format = "${major}.${minor}"
-style = "italic red"
+style = " red"
 
 [package]
 format = " pkg [$symbol$version]($style)"
 version_format = "${major}.${minor}"
 symbol = "◫ "
-style = "bright-yellow italic"
+style = "bright-yellow "
 
 [swift]
 format = " sw [${symbol}${version}]($style)"
 symbol = "◁ "
-style = "italic bright-red"
+style = " bright-red"
 version_format = "${major}.${minor}"
 
 [aws]
 format = " aws [$symbol $profile $region]($style)"
-style = "italic blue"
+style = " blue"
 symbol = "▲ "
 
 [buf]
