@@ -6,7 +6,6 @@ $shlvl\
 $shell\
 $env_var\
 $username\
-$sudo\
 $character\
 """
 
@@ -90,18 +89,8 @@ add_newline = true
 
 [character]
 format = "$symbol "
-success_symbol = "[◉](bold italic bright-yellow)"
-error_symbol = "[⊘](italic purple)"
-
-[env_var.VIMSHELL] # vim subshell
-format = "[$env_value]($style)"
-style = 'green italic'
-
-[sudo]
-format = "[$symbol]($style)"
-style = "italic bright-purple"
-symbol = "◇┈"
-disabled = false
+success_symbol = "[◉](bold bright-yellow)"
+error_symbol = "[⊘](purple)"
 
 [username]
 style_user = "yellow bold"
@@ -181,7 +170,7 @@ detect_files = ["package-lock.json", "yarn.lock"]
 version_format = "${major}.${minor}"
 
 [python]
-format = " py [${symbol}${version}]($style)"
+format = ' py [${symbol}(${version} )(\($virtualenv\) )]($style)'
 symbol = "[⌉](italic bright-blue)⌊ "
 version_format = "${major}.${minor}"
 style = "italic bright-yellow"
