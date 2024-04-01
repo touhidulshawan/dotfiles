@@ -85,7 +85,7 @@ $container\
 $battery\
 """
 
-add_newline = true
+add_newline = false
 
 [character]
 format = "$symbol "
