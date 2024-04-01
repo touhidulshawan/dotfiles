@@ -29,6 +29,8 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+# prompt
+PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\W${PS1_CMD1}\n◉ '
 
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
@@ -169,3 +171,4 @@ export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
 
 eval "$(zoxide init bash)"
+source ~/.git-prompt.sh
