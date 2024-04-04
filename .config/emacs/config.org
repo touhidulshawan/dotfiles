@@ -73,6 +73,7 @@
 - [[#yasnippet][Yasnippet]]
   - [[#snippets][Snippets]]
 - [[#improved-latex][Improved Latex]]
+- [[#markdown][Markdown]]
 - [[#org-1][ORG]]
   - [[#improve-visual][Improve visual]]
   - [[#interaction][Interaction]]
@@ -749,6 +750,14 @@ For better or exporting mainly
        ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
   (setq org-latex-listings 't)
 #+end_src
+* Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+#+end_src
+
 * ORG
 ** Improve visual
 #+begin_src emacs-lisp

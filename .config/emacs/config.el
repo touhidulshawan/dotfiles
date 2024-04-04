@@ -525,6 +525,11 @@
      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 (setq org-latex-listings 't)
 
+(use-package markdown-mode
+:ensure t
+:mode ("README\\.md\\'" . gfm-mode)
+:init (setq markdown-command "multimarkdown"))
+
 (setq org-ellipsis " ▾")
 (setq org-src-fontify-natively t)
 (setq org-highlight-latex-and-related '(native))
