@@ -21,7 +21,7 @@ local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox"
 theme.wallpaper = theme.confdir .. "/arch.png"
 theme.font = "JetBrainsMono NF SemiBold 11"
-theme.taglist_font = "Symbols Nerd Font Mono 10"
+theme.taglist_font = "Symbols Nerd Font Mono 11"
 
 theme.bg_normal = black
 theme.bg_focus = green

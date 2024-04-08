@@ -95,14 +95,13 @@ local home = os.getenv("HOME")
 
 awful.util.terminal = terminal
 awful.util.tagnames = {
-    "  ",
-    "  ",
+    "  ",
+    "  ",
     "  ",
-    "  ",
-    "  ",
-    "  ",
-    " 󰍹 ",
-    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
 }
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -699,7 +698,7 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "librewolf", "firefox", "Google-chrome", "Chromium", "Brave-browser" } },
-        properties = { screen = 1, tag = "  ", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
         rule = { class = "firefox", name = "Library" },
@@ -731,19 +730,15 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk", "qBittorrent" } },
-        properties = { screen = 1, tag = "  " },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "Mousepad", "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
-        properties = { screen = 1, tag = "  " },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "burp-StartBurp" } },
-        properties = { screen = 1, tag = "  " },
-    },
-    {
-        rule_any = { class = { "Wireshark", "Ettercap", "org-zaproxy-zap-ZAP" } },
-        properties = { screen = 1, tag = "  ", switchtotag = true },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = {
@@ -757,7 +752,7 @@ awful.rules.rules = {
                 "GParted",
             },
         },
-        properties = { screen = 1, tag = "  " },
+        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = { class = { "Image Lounge", "feh" } },
@@ -773,7 +768,7 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
-        properties = { screen = 1, tag = " 󰍹 ", switchtotag = true },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
         rule = { class = "firefox", name = "Picture-in-Picture" },
