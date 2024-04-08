@@ -161,11 +161,11 @@ version_format = "${major}.${minor}"
 
 [lua]
 format = " lua [${symbol}${version}]($style)"
-symbol = "⨀ "
+symbol = "󰢱 "
 style = " bright-yellow"
 
 [nodejs]
-format = " node [◫ ($version)]( bright-green)"
+format = " node [󰎙 ($version)]( bright-green)"
 detect_files = ["package-lock.json", "yarn.lock"]
 version_format = "${major}.${minor}"
 
@@ -190,7 +190,7 @@ style = " red"
 [package]
 format = " pkg [$symbol$version]($style)"
 version_format = "${major}.${minor}"
-symbol = "◫ "
+symbol = " "
 style = "bright-yellow "
 
 [swift]
