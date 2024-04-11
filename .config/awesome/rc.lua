@@ -760,7 +760,7 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { "mpv" } },
-        properties = { screen = 1, tag = "  ", fullscreen = true, switchtotag = true },
+        properties = { screen = 1, tag = "  ", fullscreen = true, switchtotag = true },
     },
     {
         rule_any = { class = { "Xarchiver", "Gedit", "Catfish" } },
