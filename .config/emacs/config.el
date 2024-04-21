@@ -1,41 +1,18 @@
 (add-to-list 'load-path "~/.config/emacs/scripts")
-
 (require 'elpaca-setup)
-
-(setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 
 (defun reload-init-file ()
   (interactive)
   (load-file user-init-file)
   (load-file user-init-file))
 
-(use-package diminish)
-
-(use-package rainbow-mode
- :diminish
- :hook org-mode prog-mode)
-
-(use-package centered-cursor-mode :diminish centered-cursor-mode)
-
-(use-package magit :commands magit-status :ensure t)
-
-(use-package avy
-  :defer t
-  :config
-  (setq avy-case-fold-search nil))
-
-(use-package projectile
-  :ensure t
-  :init
-  (projectile-mode +1))
-
 (setq inhibit-startup-message t)
-(setq use-short-answers t) ;; When emacs asks for "yes" or "no", let "y" or "n" suffice
-(setq confirm-kill-emacs 'yes-or-no-p) ;; Confirm to quit
+(setq use-short-answers t)
+(setq confirm-kill-emacs 'yes-or-no-p)
 (setq
- initial-major-mode 'org-mode ;; Major mode of new buffers
+ initial-major-mode 'org-mode
  initial-scratch-message ""
- initial-buffer-choice t) ;; Blank scratch buffer
+ initial-buffer-choice t)
 
 (set-face-attribute 'default nil
                     :font "JetBrains Mono"
@@ -56,18 +33,63 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrains Mono-13"))
 
-;;  (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
-
 (use-package ef-themes :config (load-theme 'ef-cherie t))
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 (global-visual-line-mode t)
 
-(use-package nerd-icons-completion
-  :after marginalia
-  :config (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+(show-paren-mode 1)
+(electric-pair-mode 1)
+
+(setq make-backup-files nil)
+
+(setq create-lockfiles nil)
+
+(use-package evil
+  :demand t
+  :bind (("<escape>" . keyboard-escape-quit))
+  :init
+  (setq
+   evil-want-integration t
+   evil-want-keybinding nil
+   evil-vsplit-window-right t
+   evil-split-window-below t
+   evil-search-module 'evil-search
+   evil-want-keybinding nil
+   evil-disable-insert-state-bindings t
+   evil-want-Y-yank-to-eol t
+   evil-undo-system 'undo-redo)
+  (evil-mode)
+  :config (evil-set-leader 'normal " ") (evil-mode 1))
+
+(use-package evil-collection
+:after evil
+:config
+(setq evil-want-integration t)
+(evil-collection-init))
+
+(use-package evil-commentary
+  :ensure t
+  :after evil
+  :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
+
+(use-package evil-surround
+  :ensure t
+  :after evil
+  :config (global-evil-surround-mode 1))
+
+(use-package magit :commands magit-status :ensure t)
+
+(use-package avy
+  :defer t
+  :config
+  (setq avy-case-fold-search nil))
+
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1))
 
 (use-package
   dashboard
@@ -104,147 +126,79 @@
   (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
   )
 
-(when (fboundp 'set-charset-priority)
-  (set-charset-priority 'unicode))
-(prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
-
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
-
-(require 'org-tempo)
-
-(fset 'yes-or-no-p 'y-or-n-p)
-;; use primary as clipboard
-(setq-default x-select-enable-primary t)
-;; avoid leaving a gap between the frame and the screen
-(setq-default frame-resize-pixelwise t)
-
-;; Vim like scrolling
-(setq
- scroll-step 1
- scroll-conservatively 10000
- next-screen-context-lines 5
- ;; move by logical lines rather than visual lines (better for macros)
- line-move-visual nil)
-
-(show-paren-mode 1)
-(electric-pair-mode 1)
-
-(use-package flycheck
+(use-package yasnippet
+  :diminish yas-minor-mode
   :ensure t
-  :defer t
-  :diminish
-  :init (global-flycheck-mode))
-
-(setq make-backup-files nil)
-
-(setq create-lockfiles nil)
-
-(use-package format-all)
-
-(use-package vterm
-  :ensure t
-  :config (setq shell-file-name "/bin/sh"
-                vterm-max-scrollback 5000))
-
-(use-package vterm-toggle
-  :after vterm
-  :config
-  ;; When running programs in Vterm and in 'normal' mode, make sure that ESC
-  ;; kills the program as it would in most standard terminal programs.
-  ;; (evil-define-key 'normal vterm-mode-map (kbd "<escape>") 'vterm--self-insert)
-  (setq vterm-toggle-fullscreen-p nil)
-  (setq vterm-toggle-scope 'project)
-  (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                   (let ((buffer (get-buffer buffer-or-name)))
-                     (with-current-buffer buffer
-                       (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 ;;(display-buffer-reuse-window display-buffer-in-direction)
-                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                 ;;(direction . bottom)
-                 ;;(dedicated . t) ;dedicated is supported in emacs27
-                 (reusable-frames . visible)
-                 (window-height . 0.4))))
-
-(use-package evil
-  :demand t
-  :bind (("<escape>" . keyboard-escape-quit))
   :init
-  (setq
-   evil-want-integration t
-   evil-want-keybinding nil
-   evil-vsplit-window-right t
-   evil-split-window-below t
-   evil-search-module 'evil-search
-   evil-want-keybinding nil
-   evil-disable-insert-state-bindings t
-   evil-want-Y-yank-to-eol t
-   evil-undo-system 'undo-redo)
-  (evil-mode)
-  :config (evil-set-leader 'normal " ") (evil-mode 1))
+  (setq yas-nippet-dir "~/.config/emacs/snippets")
+  (yas-global-mode 1))
+(require 'warnings)
+(add-to-list 'warning-suppress-types '(yasnippet backquote-change))
 
-(use-package evil-collection
-  :after evil
+(use-package yasnippet-snippets :ensure t :after yasnippet)
+
+(use-package marginalia
+:custom
+(marginalia-annotators
+ '(marginalia-annotators-heavy marginalia-annotators-light nil))
+:init
+(marginalia-mode))
+
+(use-package orderless
+  :commands (orderless)
+  :custom (completion-styles '(orderless flex)))
+(load (concat user-emacs-directory
+              "lisp/affe-config.el"))
+
+(use-package vertico
+  :init
+  ;; Enable vertico using the vertico-flat-mode
+  (require 'vertico-directory)
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (vertico-mode t)
   :config
-  (setq evil-want-integration t)
-  (evil-collection-init))
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
+(setq native-comp-deferred-compilation t)
 
-(use-package evil-commentary
-  :ensure t
-  :after evil
-  :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
-
-(use-package evil-surround
-  :ensure t
-  :after evil
-  :config (global-evil-surround-mode 1))
-
-(with-eval-after-load 'evil-maps
-  (define-key evil-motion-state-map (kbd "SPC") nil)
-  (define-key evil-motion-state-map (kbd "RET") nil)
-  (define-key evil-motion-state-map (kbd "TAB") nil))
-(setq org-return-follows-link  t)
+(use-package consult)
 
 (use-package which-key
-  :init (which-key-mode 1)
-  :config
-  (setq
-   which-key-side-window-location 'bottom
-   which-key-sort-order #'which-key-key-order-alpha
-   which-key-sort-uppercase-first nil
-   which-key-add-column-padding 1
-   which-key-max-display-columns nil
-   which-key-min-display-lines 6
-   which-key-side-window-slot -10
-   which-key-side-window-max-height 0.25
-   which-key-idle-delay 0.8
-   which-key-max-description-length 25
-   which-key-allow-imprecise-window-fit t
-   which-key-prefix-prefix "◉ "
-   which-key-separator " → "))
+:init (which-key-mode 1)
+:config
+(setq
+ which-key-side-window-location 'bottom
+ which-key-sort-order #'which-key-key-order-alpha
+ which-key-sort-uppercase-first nil
+ which-key-add-column-padding 1
+ which-key-max-display-columns nil
+ which-key-min-display-lines 6
+ which-key-side-window-slot -10
+ which-key-side-window-max-height 0.25
+ which-key-idle-delay 0.8
+ which-key-max-description-length 25
+ which-key-allow-imprecise-window-fit t
+ which-key-prefix-prefix "◉ "
+ which-key-separator " → "))
 
 (use-package
-  general
-  :config (general-evil-setup)
+general
+:config (general-evil-setup)
 
 (general-imap
   "j" (general-key-dispatch 'self-insert-command
         :timeout 0.2 "j" 'evil-normal-state))
 
 (general-create-definer
-  leader-key
-  :states '(normal insert visual emacs)
-  :keymaps 'override
-  :prefix "SPC"
-  :global-prefix "M-SPC")
+leader-key
+:states '(normal insert visual emacs)
+:keymaps 'override
+:prefix "SPC"
+:global-prefix "M-SPC")
 
 (leader-key
   "h" '(:ignore t :wk "Help")
@@ -332,18 +286,6 @@
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
 
 (leader-key
-  "t" '(:ignore t :wk "terminal & writeroom")
-  "tt" '(vterm-toggle :wk "vterm toggle")
-  "tw" '(writeroom-mode :wk "writeroom mode"))
-
-(leader-key
-  "c" '(:ignore t :wk "Eglot-lsp")
-  "c a" '(eglot-code-actions :wk "Eglot code action")
-  "c q" '(eglot-code-action-quickfix :wk "Eglot code quickfix")
-  "c d" '(eldoc-doc-buffer :wk "Eglot code diagnostics")
-  "c r" '(eglot-rename :wk "Rename"))
-
-(leader-key
   "x" '(:ignore t :wk "Consult")
   "x b" '(consult-buffer :wk "consult buffer")
   "x y" '(consult-yank-pop :wk "consult yank pop")
@@ -353,182 +295,6 @@
   "x g" '(consult-ripgrep :wk "consult ripgre")
   "x x" '(consult-fd :wk "consult find")
   ))
-
-(use-package rust-mode
-  :ensure t)
-
-;; indentation
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
-
-;; format on save
-(setq rust-format-on-save t)
-
-;; lsp
-(add-hook 'rust-mode-hook 'eglot-ensure)
-
-;; rustic
-(use-package rustic
-  :ensure t)
-
-;; change client
-(setq rustic-lsp-client 'eglot)
-
-(use-package corfu
-  :init
-  (global-corfu-mode)
-  (corfu-popupinfo-mode)
-  :config
-  (setq
-   corfu-auto t
-   corfu-echo-documentation t
-   corfu-scroll-margin 0
-   corfu-count 8
-   corfu-max-width 50
-   corfu-min-width corfu-max-width
-   corfu-auto-prefix 2)
-
-  ;; Make Evil and Corfu play nice
-  (evil-make-overriding-map corfu-map)
-  (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
-  (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
-
-  (corfu-history-mode 1)
-  (savehist-mode 1)
-  (add-to-list 'savehist-additional-variables 'corfu-history)
-
-  (defun corfu-enable-always-in-minibuffer ()
-    (setq-local corfu-auto nil)
-    (corfu-mode 1))
-  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer
-            1))
-
-(use-package cape
-  :defer 10
-  :bind ("C-c f" . cape-file)
-  :init
-  ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (defalias
-    'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
-  (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
-  (cl-pushnew #'cape-file completion-at-point-functions)
-  :config
-  ;; Silence then pcomplete capf, no errors or messages!
-  (advice-add
-   'pcomplete-completions-at-point
-   :around #'cape-wrap-silent)
-
-  ;; Ensure that pcomplete does not write to the buffer
-  ;; and behaves as a pure `completion-at-point-function'.
-  (advice-add
-   'pcomplete-completions-at-point
-   :around #'cape-wrap-purify))
-
-(use-package marginalia
-  :custom
-  (marginalia-annotators
-   '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init
-  (marginalia-mode))
-
-(use-package orderless
-  :commands (orderless)
-  :custom (completion-styles '(orderless flex)))
-(load (concat user-emacs-directory
-              "lisp/affe-config.el"))
-
-(use-package vertico
-  :init
-  ;; Enable vertico using the vertico-flat-mode
-  (require 'vertico-directory)
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (vertico-mode t)
-  :config
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
-(setq native-comp-deferred-compilation t)
-
-;; (use-package consult
-;;   :after vertico
-;;   :bind (("C-x b"       . consult-buffer)
-;;          ("C-x C-k C-k" . consult-kmacro)
-;;          ("M-y"         . consult-yank-pop)
-;;          ("M-g g"       . consult-goto-line)
-;;          ("M-g M-g"     . consult-goto-line)
-;;          ("M-g f"       . consult-flymake)
-;;          ("M-g i"       . consult-imenu)
-;;          ("M-s l"       . consult-line)
-;;          ("M-s L"       . consult-line-multi)
-;;          ("M-s u"       . consult-focus-lines)
-;;          ("M-s g"       . consult-ripgrep)
-;;          ("M-s M-g"     . consult-ripgrep)
-;;          ("C-x C-SPC"   . consult-global-mark)
-;;          ("C-x M-:"     . consult-complex-command)
-;;          ("C-c n"       . consult-org-agenda))
-;;   :custom
-;;   (completion-in-region-function #'consult-completion-in-region))
-
-(use-package consult)
-
-(use-package kind-icon
-  :config
-  (setq kind-icon-default-face 'corfu-default)
-  (setq kind-icon-default-style
-        '(:padding
-          0
-          :stroke 0
-          :margin 0
-          :radius 0
-          :height 0.9
-          :scale 1))
-  (setq kind-icon-blend-frac 0.08)
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-  (add-hook
-   'counsel-load-theme
-   #'(lambda ()
-       (interactive)
-       (kind-icon-reset-cache)))
-  (add-hook
-   'load-theme
-   #'(lambda ()
-       (interactive)
-       (kind-icon-reset-cache))))
-
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :ensure t
-  :init
-  (setq yas-nippet-dir "~/.config/emacs/snippets")
-  (yas-global-mode 1))
-;; Silences the warning when running a snippet with backticks (runs a command in the snippet)
-(require 'warnings)
-(add-to-list 'warning-suppress-types '(yasnippet backquote-change))
-
-(use-package yasnippet-snippets :ensure t :after yasnippet)
-
-(with-eval-after-load 'ox-latex
-  (add-to-list
-   'org-latex-classes
-   '("org-plain-latex"
-     "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-     ("\\section{%s}" . "\\section*{%s}")
-     ("\\subsection{%s}" . "\\subsection*{%s}")
-     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-     ("\\paragraph{%s}" . "\\paragraph*{%s}")
-     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-(setq org-latex-listings 't)
-
-(use-package markdown-mode
-:ensure t
-:mode ("README\\.md\\'" . gfm-mode)
-:init (setq markdown-command "multimarkdown"))
 
 (setq org-ellipsis " ▾")
 (setq org-src-fontify-natively t)
@@ -625,6 +391,8 @@
          :weight bold)
         ("DONE" . "SeaGreen4")))
 
+(setq org-tags-column -1)
+
 (setq org-lowest-priority ?F)
 (setq org-default-priority ?E)
 
@@ -645,7 +413,7 @@
   :config
   (setq
    ;; org-modern-star '("●" "○" "✸" "✿")
-   org-modern-star '("⌾" "✸" "◈" "◇")
+   org-modern-star '("⌾" "✸" "◈" "✿")
    org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
    org-modern-tag nil
    org-modern-priority nil
@@ -662,16 +430,58 @@
   (evil-org-agenda-set-keys)
   (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
 
-(use-package visual-fill-column
-  :defer t
-  :config
-  (setq visual-fill-column-center-text t))
+(require 'org-tempo)
 
-(use-package writeroom-mode
-  :defer t
-  :config
-  (setq writeroom-maximize-window nil
-        writeroom-mode-line t
-        writeroom-global-effects nil ;; No need to have Writeroom do any of that silly stuff
-        writeroom-extra-line-spacing 3)
-  (setq writeroom-width visual-fill-column-width))
+(use-package diminish)
+
+(use-package rainbow-mode
+ :diminish
+ :hook org-mode prog-mode)
+
+(use-package centered-cursor-mode :diminish centered-cursor-mode)
+
+(use-package nerd-icons-completion
+  :after marginalia
+  :config (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(when (fboundp 'set-charset-priority)
+  (set-charset-priority 'unicode))
+(prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+
+;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+
+(fset 'yes-or-no-p 'y-or-n-p)
+;; use primary as clipboard
+(setq-default x-select-enable-primary t)
+;; avoid leaving a gap between the frame and the screen
+(setq-default frame-resize-pixelwise t)
+
+;; Vim like scrolling
+(setq
+ scroll-step 1
+ scroll-conservatively 10000
+ next-screen-context-lines 5
+ ;; move by logical lines rather than visual lines (better for macros)
+ line-move-visual nil)
+
+(with-eval-after-load 'ox-latex
+  (add-to-list
+   'org-latex-classes
+   '("org-plain-latex"
+     "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\subsection{%s}" . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+(setq org-latex-listings 't)
