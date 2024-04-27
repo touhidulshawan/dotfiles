@@ -31,7 +31,13 @@ bind "set completion-ignore-case on"
 
 # prompt
 PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\W${PS1_CMD1}\n◉ '
-
+GIT_PS1_SHOWDIRTYSTATE='true'
+GIT_PS1_SHOWSTASHSTATE='true'
+GIT_PS1_SHOWUNTRACKEDFILES='true'
+GIT_PS1_SHOWUPSTREAM="auto verbose"
+GIT_PS1_SHOWCONFLICTSTATE='yes'
+GIT_PS1_SHOWCOLORHINTS='yes'
+GIT_PS1_HIDE_IF_PWD_IGNORED='yes'
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
 
@@ -166,9 +172,9 @@ ex() {
 
 
 # manage bare repository
-source ~/.dotbare/dotbare.plugin.bash
+source "$HOME/.dotbare/dotbare.plugin.bash"
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
 
 eval "$(zoxide init bash)"
-source ~/.git-prompt.sh
+source "$HOME/.git-prompt.sh"
