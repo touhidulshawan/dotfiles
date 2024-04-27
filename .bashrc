@@ -38,6 +38,7 @@ GIT_PS1_SHOWUPSTREAM="auto verbose"
 GIT_PS1_SHOWCONFLICTSTATE='yes'
 GIT_PS1_SHOWCOLORHINTS='yes'
 GIT_PS1_HIDE_IF_PWD_IGNORED='yes'
+
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
 
