@@ -457,7 +457,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn(browser .. " -P lab")
     end, { description = "launch Firefox browser with lab Profile", group = "browser" }),
     -- launch Firefox Developer edition 
-    awful.key({ modkey, shiftkey }, "d", function()
+    awful.key({ modkey, shiftkey }, ".", function()
         awful.util.spawn(browser .. "-developer-edition")
     end, { description = "launch Firefox Developer", group = "browser" }),
     -- launch Firefox private window
