@@ -54,6 +54,7 @@
   - [[#org-modern][org-modern]]
   - [[#evil-org][evil-org]]
   - [[#org-tempo][org-tempo]]
+  - [[#org-agenda][org-agenda]]
 - [[#misc][misc]]
   - [[#diminish][diminish]]
   - [[#rainbow-mode][rainbow mode]]
@@ -609,6 +610,11 @@
 #+begin_src emacs-lisp
 (require 'org-tempo) 
 #+end_src
+** org-agenda
+#+begin_src emacs-lisp 
+  (setq org-agenda-files '("~/notes/org/agenda.org"))
+#+end_src
+
 * misc
 ** diminish
 #+begin_src emacs-lisp

@@ -437,6 +437,8 @@ leader-key
 
 (require 'org-tempo)
 
+(setq org-agenda-files '("~/notes/org/agenda.org"))
+
 (use-package diminish)
 
 (use-package rainbow-mode
