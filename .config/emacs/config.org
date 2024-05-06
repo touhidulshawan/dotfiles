@@ -27,6 +27,7 @@
   - [[#orderless][orderless]]
   - [[#vertico][vertico]]
   - [[#consult][consult]]
+  - [[#corfu][corfu]]
   - [[#which-key][which key]]
 - [[#keybindings][keybindings]]
   - [[#evil][evil]]
@@ -251,19 +252,18 @@
 ** marginalia
 #+begin_src emacs-lisp
   (use-package marginalia
-  :custom
-  (marginalia-annotators
-   '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init
-  (marginalia-mode))
+    :bind (:map minibuffer-local-map
+           ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
 #+end_src
 ** orderless
 #+begin_src emacs-lisp
-(use-package orderless
-  :commands (orderless)
-  :custom (completion-styles '(orderless flex)))
-(load (concat user-emacs-directory
-              "lisp/affe-config.el"))
+  (use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
 ** vertico
 #+begin_src emacs-lisp
@@ -285,6 +285,14 @@
 ** consult
 #+begin_src emacs-lisp
 (use-package consult)
+#+end_src
+** corfu
+#+begin_src emacs-lisp 
+  (use-package corfu
+    :custom
+    (corfu-auto t)
+    :init
+    (global-corfu-mode))
 #+end_src
 ** which key
 #+begin_src emacs-lisp

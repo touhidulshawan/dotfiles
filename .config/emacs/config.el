@@ -138,17 +138,16 @@
 (use-package yasnippet-snippets :ensure t :after yasnippet)
 
 (use-package marginalia
-:custom
-(marginalia-annotators
- '(marginalia-annotators-heavy marginalia-annotators-light nil))
-:init
-(marginalia-mode))
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
 
 (use-package orderless
-  :commands (orderless)
-  :custom (completion-styles '(orderless flex)))
-(load (concat user-emacs-directory
-              "lisp/affe-config.el"))
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
   :init
@@ -166,6 +165,12 @@
 (setq native-comp-deferred-compilation t)
 
 (use-package consult)
+
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  :init
+  (global-corfu-mode))
 
 (use-package which-key
 :init (which-key-mode 1)
