@@ -490,72 +490,67 @@
 #+end_src
 ** todo keyword 
 #+begin_src emacs-lisp
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
-        (sequence
-         "HIGH(h)"
-         "MEDIUM(m)"
-         "LOW(l)"
-         "DUP(u)"
-         "WIP(w)"
-         "POC(p)"
-         "PENDING PAYMENT(e)"
-         "|"
-         "FALSE POSITIVE(f)"
-         "VALIDATE(v)"
-         "REPORTED(r)")))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
+          (sequence
+           "DROP(o)"
+           "HIGH(h)"
+           "MEDIUM(m)"
+           "LOW(l)"
+           "WORK-IN-PROGRESS(w)"
+           "POSTPONE(p)")))
 
-(setq org-todo-keyword-faces
-      '(("TODO"
-         :inherit (region org-todo)
-         :foreground "DarkOrange1"
-         :weight bold)
-        ("CRITICAL"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "dark red"
-         :weight bold)
-        ("HIGH"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "red"
-         :weight bold)
-        ("MEDIUM"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "firebrick"
-         :weight bold)
-        ("LOW"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "indian red"
-         :weight bold)
-        ("FALSE POSITIVE"
-         :inherit (region org-todo)
-         :foreground "gray9"
-         :background "coral"
-         :weight bold)
-        ("DUP"
-         :inherit (org-todo region)
-         :foreground "tan2"
-         :weight bold)
-        ("POC"
-         :inherit (org-todo region)
-         :foreground "MediumPurple2"
-         :weight bold)
-        ("WIP"
-         :inherit (org-todo region)
-         :foreground "magenta3"
-         :weight bold)
-        ("REPORTED"
-         :inherit (region org-todo)
-         :foreground "DarkGoldenrod2"
-         :weight bold)
-        ("VALIDATE"
-         :inherit (region org-todo)
-         :foreground "SpringGreen2"
-         :weight bold)
-        ("DONE" . "SeaGreen4")))
+  (setq org-todo-keyword-faces
+        '(("TODO"
+           :inherit (region org-todo)
+           :foreground "DarkOrange1"
+           :weight bold)
+          ("CRITICAL"
+           :inherit (region org-todo)
+           :foreground "white smoke"
+           :background "dark red"
+           :weight bold)
+          ("HIGH"
+           :inherit (region org-todo)
+           :foreground "white smoke"
+           :background "red"
+           :weight bold)
+          ("MEDIUM"
+           :inherit (region org-todo)
+           :foreground "white smoke"
+           :background "firebrick"
+           :weight bold)
+          ("LOW"
+           :inherit (region org-todo)
+           :foreground "white smoke"
+           :background "indian red"
+           :weight bold)
+          ("FALSE POSITIVE"
+           :inherit (region org-todo)
+           :foreground "gray9"
+           :background "coral"
+           :weight bold)
+          ("DUP"
+           :inherit (org-todo region)
+           :foreground "tan2"
+           :weight bold)
+          ("POC"
+           :inherit (org-todo region)
+           :foreground "MediumPurple2"
+           :weight bold)
+          ("WIP"
+           :inherit (org-todo region)
+           :foreground "magenta3"
+           :weight bold)
+          ("REPORTED"
+           :inherit (region org-todo)
+           :foreground "DarkGoldenrod2"
+           :weight bold)
+          ("VALIDATE"
+           :inherit (region org-todo)
+           :foreground "SpringGreen2"
+           :weight bold)
+          ("DONE" . "SeaGreen4")))
 #+end_src
 ** tags setting
 #+begin_src emacs-lisp
@@ -614,7 +609,6 @@
 #+begin_src emacs-lisp 
   (setq org-agenda-files '("~/notes/org/agenda.org"))
 #+end_src
-
 * misc
 ** diminish
 #+begin_src emacs-lisp

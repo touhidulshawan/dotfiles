@@ -332,17 +332,12 @@ leader-key
 (setq org-todo-keywords
       '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
         (sequence
+         "DROP(o)"
          "HIGH(h)"
          "MEDIUM(m)"
          "LOW(l)"
-         "DUP(u)"
-         "WIP(w)"
-         "POC(p)"
-         "PENDING PAYMENT(e)"
-         "|"
-         "FALSE POSITIVE(f)"
-         "VALIDATE(v)"
-         "REPORTED(r)")))
+         "WORK-IN-PROGRESS(w)"
+         "POSTPONE(p)")))
 
 (setq org-todo-keyword-faces
       '(("TODO"
