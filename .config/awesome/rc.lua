@@ -435,7 +435,7 @@ globalkeys = mytable.join( -- Destroy all notifications
 		awful.util.spawn("copyq toggle")
 	end, { description = "open copyq window", group = "clipboard" }),
 	--  run rofi
-	awful.key({ modkey }, "r", function()
+	awful.key({ modkey, altkey }, "space", function()
 		awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
 	end, { description = "launch rofi", group = "launcher" }),
 	-- open filemanager
