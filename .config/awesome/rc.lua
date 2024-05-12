@@ -97,11 +97,10 @@ awful.util.terminal = terminal
 awful.util.tagnames = {
 	"  ",
 	"  ",
-	"  ",
 	"  ",
-	"  ",
 	"  ",
-	"  ",
+    "  ",
+    "  ",
 	"  ",
 }
 awful.layout.layouts = {
@@ -707,10 +706,6 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = "  ", switchtotag = true },
 	},
 	{
-		rule_any = { class = { "firefoxdeveloperedition", "VSCodium", "Code", "Atom", "jetbrains-studio" } },
-		properties = { screen = 1, tag = "  ", switchtotag = true },
-	},
-	{
 		rule = { class = "firefox", name = "Library" },
 		properties = { floating = true, placement = awful.placement.centered },
 	},
@@ -740,7 +735,7 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "Thunar", "Pcmanfm", "vlc", "Transmission-gtk", "qBittorrent" } },
-		properties = { screen = 1, tag = "  " },
+		properties = { screen = 1, tag = "  " },
 	},
 	{
 		rule_any = { class = { "Mousepad", "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
@@ -770,15 +765,11 @@ awful.rules.rules = {
 	},
 	{
 		rule_any = { class = { "mpv" } },
-		properties = { screen = 1, tag = "  ", fullscreen = true, switchtotag = true },
+		properties = { screen = 1, tag = "  ", fullscreen = true, switchtotag = true },
 	},
 	{
 		rule_any = { class = { "Xarchiver", "Gedit", "Catfish" } },
 		properties = { screen = 1, tag = "  ", floating = true, placement = awful.placement.centered },
-	},
-	{
-		rule_any = { class = { "VirtualBox Manager", "VirtualBox Machine", "Virt-manager" } },
-		properties = { screen = 1, tag = "  ", switchtotag = true },
 	},
 	{
 		rule = { class = "firefox", name = "Picture-in-Picture" },
