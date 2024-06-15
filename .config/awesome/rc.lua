@@ -450,18 +450,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "e", function()
         awful.util.spawn(browser .. " -p entertainment")
     end, { description = "launch Firefox browser with entertainment profile", group = "browser" }),
-    -- launch Firefox with Pentest Profile
-    awful.key({ modkey, shiftkey }, "p", function()
-        awful.util.spawn(browser .. " -P Pentest")
-    end, { description = "launch Firefox browser with Pentest Profile", group = "browser" }),
-    -- launch Firefox with lab Profile
-    awful.key({ modkey, shiftkey }, "c", function()
-        awful.util.spawn(browser .. " -P lab")
-    end, { description = "launch Firefox browser with lab Profile", group = "browser" }),
-    -- launch Firefox Developer edition
+    -- launch firefox with dev 
     awful.key({ modkey, shiftkey }, ".", function()
-        awful.util.spawn(browser .. "-developer-edition")
-    end, { description = "launch Firefox Developer", group = "browser" }),
+        awful.util.spawn(browser .. " -p dev")
+    end, { description = "launch firefox with dev profile", group = "browser" }),
     -- launch Firefox private window
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
@@ -470,6 +462,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "space", function()
         awful.util.spawn("brave")
     end, { description = "launch brave browser", group = "browser" }),
+    -- launch VSCodium 
+    awful.key({ modkey, shiftkey }, "c", function()
+        awful.util.spawn('vscodium')
+    end, { description = "launch vscodium", group = "program" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.prompt.run({
@@ -666,7 +662,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
                 "pinentry",
             },
@@ -675,7 +671,7 @@ awful.rules.rules = {
                 "Blueman-manager",
                 "Gpick",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",  -- kalarm.
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
                 "veromix",
@@ -691,9 +687,9 @@ awful.rules.rules = {
                 "Event Tester", -- xev.
             },
             role = {
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
             },
         },
         properties = { floating = true, placement = awful.placement.centered },
@@ -739,7 +735,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = "  " },
     },
     {
-        rule_any = { class = { "VSCodium", "Code", "jetbrains-studio" } },
+        rule_any = { class = { "VSCodium", "Code", "jetbrains-phpstorm", "jetbrains-studio" } },
         properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
