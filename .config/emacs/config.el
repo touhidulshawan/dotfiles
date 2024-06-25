@@ -87,9 +87,12 @@
   (setq avy-case-fold-search nil))
 
 (use-package projectile
+  :diminish projectile-mode
   :ensure t
-  :init
-  (projectile-mode +1))
+  :config
+  (projectile-mode)
+  (setq projectile-completion-system 'auto)
+  (setq projectile-project-search-path '("~/projects/")))
 
 (use-package
   dashboard
@@ -129,6 +132,7 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :ensure t
+  :hook (php-mode . yas-minor-mode)
   :init
   (setq yas-nippet-dir "~/.config/emacs/snippets")
   (yas-global-mode 1))
