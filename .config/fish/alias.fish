@@ -4,9 +4,6 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotbare="$HOME/.dotbare/dotbare"
 alias config=dotbare
 
-# vscodium
-alias vs='vscodium .'
-
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'

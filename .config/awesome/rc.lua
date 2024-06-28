@@ -86,6 +86,7 @@ local altkey = "Mod1"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local terminal = "alacritty"
+local codeEditor = 'code'
 local filemanager = "thunar"
 local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
@@ -450,7 +451,7 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "e", function()
         awful.util.spawn(browser .. " -p entertainment")
     end, { description = "launch Firefox browser with entertainment profile", group = "browser" }),
-    -- launch firefox with dev 
+    -- launch firefox with dev
     awful.key({ modkey, shiftkey }, ".", function()
         awful.util.spawn(browser .. " -p dev")
     end, { description = "launch firefox with dev profile", group = "browser" }),
@@ -462,10 +463,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "space", function()
         awful.util.spawn("brave")
     end, { description = "launch brave browser", group = "browser" }),
-    -- launch VSCodium 
+    -- launch VSCodium
     awful.key({ modkey, shiftkey }, "c", function()
-        awful.util.spawn('vscodium')
-    end, { description = "launch vscodium", group = "program" }),
+        awful.util.spawn(codeEditor)
+    end, { description = ("launch ") .. codeEditor, group = "editor" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.prompt.run({
