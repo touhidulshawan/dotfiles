@@ -20,5 +20,5 @@ set --export PIPENV_VENV_IN_PROJECT 1
 # sources
 source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/abbr.fish
-starship init fish | source
+# starship init fish | source
 zoxide init fish | source
