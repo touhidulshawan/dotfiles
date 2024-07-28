@@ -26,3 +26,4 @@ abbr --add  tg  trufflehog
 abbr --add aft aft-mtp-mount ~/mnt/
 abbr --add  pn pnpm
 abbr --add art 'php artisan'
+abbr --add lg 'lazygit'

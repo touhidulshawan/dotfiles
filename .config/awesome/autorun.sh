@@ -9,8 +9,8 @@ run() {
 lxsession &
 nm-applet &
 picom --experimental-backends &
-feh --bg-fill --randomize ~/Pictures/wallpapers/* &
-# ~/.fehbg &
+# feh --bg-fill --randomize ~/Pictures/wallpapers/* &
+~/.fehbg &
 xfce4-power-manager &
 emacs --daemon &
 copyq &
