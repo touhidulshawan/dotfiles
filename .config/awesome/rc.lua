@@ -455,6 +455,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, ".", function()
         awful.util.spawn(browser .. " -p dev")
     end, { description = "launch firefox with dev profile", group = "browser" }),
+    -- launch firefox with hack profile
+    awful.key({ modkey, shiftkey }, ",", function()
+        awful.util.spawn(browser .. " -p hack")
+    end, { description = "launch firefox with hack profile", group = "browser" }),
     -- launch Firefox private window
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
