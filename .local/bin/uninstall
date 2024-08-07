@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check if the file paclist.txt exists
+if [ ! -f paclist2.txt ]; then
+    echo "File paclist2.txt not found!"
+    exit 1
+fi
+
+# Read the file and uninstall each package
+while IFS= read -r package; do
+    # Uninstall the package
+    echo "Uninstalling package: $package"
+    doas pacman -Rns --noconfirm "$package"
+done <paclist2.txt
+
+echo "All packages have been uninstalled."

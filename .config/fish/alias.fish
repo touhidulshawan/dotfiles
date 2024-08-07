@@ -90,26 +90,5 @@ alias stop_wifi='nmcli radio wifi off'
 # ip with colors
 alias ip="ip -c"
 
-# alias to fix tryhackme machine website issues
-alias enfix="doas ip link set dev eno1 mtu 1200"
-alias nmfix="doas ip link set dev nm-bridge mtu 1200"
-alias tunfix="doas ip link set dev tun0 mtu 1200"
-alias tunshow="doas ip link show dev tun0"
-
-# alias for vagrant
-alias vaup="vagrant up --provider=libvirt"
-
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
-
-# Docker compose 
-# list all running containters
-alias dcp="docker compose ps"
-# start all containers
-alias dcu="docker compose up"
-# start all containers, rebuild if necessary
-alias dcub="docker compose up --build"
-# stop all running containers
-alias dcs="docker compose stop"
-# stop and remove all containters, networks, images, volumnes
-alias dcd="docker compose down --rmi all --volumes"

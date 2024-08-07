@@ -98,7 +98,7 @@ awful.util.terminal = terminal
 awful.util.tagnames = {
     "  ",
     "  ",
-    "  ",
+    "  ",
     "  ",
     " 󰟞 ",
     "  ",
@@ -412,7 +412,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
     -- Run prompt
-    awful.key({ altkey }, "space", function()
+    awful.key({ modkey }, "r", function()
         awful.screen.focused().mypromptbox:run()
     end, { description = "run prompt", group = "launcher" }),
     -- sleep mode
@@ -436,7 +436,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    awful.key({ modkey, altkey }, "space", function()
+    awful.key({ altkey }, "space", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
     -- open filemanager
@@ -447,30 +447,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey }, "b", function()
         awful.util.spawn(browser)
     end, { description = "launch Firefox browser with Master Profile", group = "browser" }),
-    -- launch Firefox with entertainment profile
-    awful.key({ modkey, shiftkey }, "e", function()
-        awful.util.spawn(browser .. " -p entertainment")
-    end, { description = "launch Firefox browser with entertainment profile", group = "browser" }),
-    -- launch firefox with dev
-    awful.key({ modkey, shiftkey }, ".", function()
-        awful.util.spawn(browser .. " -p dev")
-    end, { description = "launch firefox with dev profile", group = "browser" }),
-    -- launch firefox with hack profile
-    awful.key({ modkey, shiftkey }, ",", function()
-        awful.util.spawn(browser .. " -p hack")
-    end, { description = "launch firefox with hack profile", group = "browser" }),
     -- launch Firefox private window
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
-    -- launch brave browser
-    awful.key({ modkey, shiftkey }, "space", function()
-        awful.util.spawn("brave")
-    end, { description = "launch brave browser", group = "browser" }),
-    -- launch VSCodium
-    awful.key({ modkey, shiftkey }, "c", function()
-        awful.util.spawn(codeEditor)
-    end, { description = ("launch ") .. codeEditor, group = "editor" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.prompt.run({
@@ -528,14 +508,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey }, "p", function()
         awful.util.spawn("zathura")
     end, { description = "open zathura", group = "reader" }),
-    -- launch burpsuite
-    awful.key({ modkey, shiftkey }, "b", function()
-        awful.util.spawn("burpsuite")
-    end, { description = "open burpsuite", group = "tools" }),
-    -- launch newsboat
-    awful.key({ modkey, shiftkey }, "o", function()
-        awful.util.spawn(terminal .. " -e newsboat")
-    end, { description = "launch newsboat", group = "rss reader" })
+    -- launch krita 
+    awful.key({ modkey, shiftkey }, ".", function()
+        awful.util.spawn("krita")
+    end, { description = "launch krita", group = "drawing" })
 )
 
 clientkeys = mytable.join(
@@ -712,22 +688,6 @@ awful.rules.rules = {
         properties = { floating = true, placement = awful.placement.centered },
     },
     {
-        rule = { class = "burp-StartBurp", name = "Settings" },
-        properties = { floating = true, placement = awful.placement.centered },
-    },
-    {
-        rule = { class = "burp-StartBurp", name = "Filter settings" },
-        properties = { floating = true, placement = awful.placement.centered },
-    },
-    {
-        rule = { class = "burp-StartBurp", name = "Configure filter" },
-        properties = { floating = true, placement = awful.placement.centered },
-    },
-    {
-        rule = { class = "burp-StartBurp", name = "New live task" },
-        properties = { floating = true, placement = awful.placement.centered },
-    },
-    {
         rule = { class = "Sxiv" },
         properties = { floating = true, placement = awful.placement.centered },
     },
@@ -740,16 +700,12 @@ awful.rules.rules = {
         properties = { screen = 1, tag = "  " },
     },
     {
-        rule_any = { class = { "VSCodium", "Code", "jetbrains-phpstorm", "jetbrains-studio" } },
-        properties = { screen = 1, tag = "  ", switchtotag = true },
+        rule_any = { class = { "krita", "Inkscape" } },
+        properties = { screen = 1, tag = "  ", switchtotag = true },
     },
     {
-        rule_any = { class = { "Mousepad", "Gimp-2.10", "obs", "Evince", "Inkscape", "Zathura" } },
+        rule_any = { class = { "Mousepad", "Gimp-2.10", "obs", "Evince", "Zathura" } },
         properties = { screen = 1, tag = "  " },
-    },
-    {
-        rule_any = { class = { "burp-StartBurp" } },
-        properties = { screen = 1, tag = "  " },
     },
     {
         rule_any = {

@@ -26,7 +26,7 @@ window {
 	border-radius:      0px;
 	width:			    48%;
 	padding: 			2px;
-    border:             0px;
+    border:             3px;
 }
 
 prompt {
@@ -48,7 +48,7 @@ inputbar {
 	children:			[ prompt, entry ];
     background-color:   @button;
     expand:             false;
-    border-radius:      5px;
+    border-radius:      0px;
     margin:             0%;
     padding:            10px;
 }
@@ -91,8 +91,8 @@ element-text, element-icon {
 }
 
 element selected {
-    	background-color:               #32302f;
-    	border-radius:                  4px;
-        border:                         2px;
+    	background-color:               #282828;
+    	border-radius:                  6px;
+        border:                         0px;
         border-color:                   #fabd2f;
 }

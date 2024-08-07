@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Run bluetoothctl to get information about connected devices
+bluetooth_output=$(bluetoothctl info)
+
+# Extract the name of the connected device
+connected_device=$(echo "$bluetooth_output" | grep "Name:" | awk '{print $2 "-" $3}')
+
+if [ -z "$connected_device" ]; then
+    echo "disconnect"
+else
+    echo "$connected_device"
+fi
+
+

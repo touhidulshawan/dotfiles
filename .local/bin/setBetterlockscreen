@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Author: Touhidul Shawan
+# Date Created: 07-08-24
+# Date Modified: 07-08-24
+
+# Descriptions
+# Choose a random picture from my anime folder and set as lockscreen wallpaper
+
+# anime wallpaper directory
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/anime"
+
+# Select a random picture file from the anime wallpaper directory
+RANDOM_WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+# Set the selected wallpaper as the lockscreen using betterlockscreen
+betterlockscreen -u "$RANDOM_WALLPAPER"
+
+echo "Lockscreen set to $RANDOM_WALLPAPER"
