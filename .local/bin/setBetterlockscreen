@@ -14,6 +14,6 @@ WALLPAPER_DIR="$HOME/Pictures/wallpapers/anime"
 RANDOM_WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
 
 # Set the selected wallpaper as the lockscreen using betterlockscreen
-betterlockscreen -u "$RANDOM_WALLPAPER"
+betterlockscreen -u "$RANDOM_WALLPAPER" --fx dim
 
 echo "Lockscreen set to $RANDOM_WALLPAPER"

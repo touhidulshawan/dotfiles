@@ -48,7 +48,7 @@ os.setlocale(os.getenv("LANG"))
 -- Widgets
 
 local mytextclock =
-    wibox.widget.textclock(markup(blue, " 󱑆 " .. "%I:%M:%p") .. markup(orange, "  " .. "%d-%b-%a "))
+    wibox.widget.textclock(markup(blue, "󱑆 " .. "%I:%M:%p") .. markup(orange, "  " .. "%d-%b-%a "))
 mytextclock.font = theme.font
 
 -- calender
@@ -328,7 +328,7 @@ function theme.at_screen_connect(s)
             ram_widget,
             update_ram_widget(),
             theme.volume,
-            bat.widget,
+            --[[ bat.widget, ]]
             mytextclock,
             wibox.widget.systray()
         },

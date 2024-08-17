@@ -33,7 +33,9 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrains Mono-13"))
 
-(use-package ef-themes :config (load-theme 'ef-cherie t))
+;; (use-package ef-themes :config (load-theme 'ef-cherie t))
+
+(load-theme 'wombat t)
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
@@ -101,7 +103,7 @@
    dashboard-set-heading-icons t
    dashboard-set-file-icons t
    dashboard-display-icons-p t
-   dashboard-startup-banner "~/.config/emacs/cover.png"
+   ;; dashboard-startup-banner "~/.config/emacs/cover.png"
    dashboard-center-content nil
    dashboard-items '((recents . 8)))
   :config (dashboard-setup-startup-hook))

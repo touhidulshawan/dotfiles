@@ -113,7 +113,11 @@
 ** themes
 *** ef-theme
 #+begin_src emacs-lisp
-(use-package ef-themes :config (load-theme 'ef-cherie t))
+  ;; (use-package ef-themes :config (load-theme 'ef-cherie t))
+#+end_src
+*** wombat
+#+begin_src emacs-lisp
+  (load-theme 'wombat t)
 #+end_src
 ** line-number
 #+begin_src emacs-lisp
@@ -201,20 +205,20 @@
 #+end_src
 ** dashboard
 #+begin_src emacs-lisp
-(use-package
-  dashboard
-  :init
-  (setq
-   dashboard-set-heading-icons t
-   dashboard-set-file-icons t
-   dashboard-display-icons-p t
-   dashboard-startup-banner "~/.config/emacs/cover.png"
-   dashboard-center-content nil
-   dashboard-items '((recents . 8)))
-  :config (dashboard-setup-startup-hook))
-(setq initial-buffer-choice
-      (lambda () (get-buffer-create "*dashboard*")))
-(setq doom-fallback-buffer-name "*dashboard*")
+  (use-package
+    dashboard
+    :init
+    (setq
+     dashboard-set-heading-icons t
+     dashboard-set-file-icons t
+     dashboard-display-icons-p t
+     ;; dashboard-startup-banner "~/.config/emacs/cover.png"
+     dashboard-center-content nil
+     dashboard-items '((recents . 8)))
+    :config (dashboard-setup-startup-hook))
+  (setq initial-buffer-choice
+        (lambda () (get-buffer-create "*dashboard*")))
+  (setq doom-fallback-buffer-name "*dashboard*")
 #+end_src
 ** modeline
 #+begin_src emacs-lisp
