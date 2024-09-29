@@ -22,10 +22,3 @@ source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/abbr.fish
 starship init fish | source
 zoxide init fish | source
-
-# pnpm
-set -gx PNPM_HOME "/home/shawan/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end

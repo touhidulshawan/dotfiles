@@ -14,3 +14,4 @@ feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 xfce4-power-manager &
 emacs --daemon &
 copyq &
+unclutter --start-hidden &
