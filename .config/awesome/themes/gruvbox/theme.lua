@@ -328,7 +328,7 @@ function theme.at_screen_connect(s)
             ram_widget,
             update_ram_widget(),
             theme.volume,
-            --[[ bat.widget, ]]
+            bat.widget,
             mytextclock,
             wibox.widget.systray()
         },

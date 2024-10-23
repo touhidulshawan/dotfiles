@@ -451,6 +451,10 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
+    -- launch Brave Browser
+    awful.key({ modkey, shiftkey }, "b", function()
+        awful.util.spawn("brave")
+    end, { description = "launch Brave browser", group = "browser" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.prompt.run({
@@ -508,7 +512,7 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey }, "p", function()
         awful.util.spawn("zathura")
     end, { description = "open zathura", group = "reader" }),
-    -- launch krita 
+    -- launch krita
     awful.key({ modkey, shiftkey }, ".", function()
         awful.util.spawn("krita")
     end, { description = "launch krita", group = "drawing" })
