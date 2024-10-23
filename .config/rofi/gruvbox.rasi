@@ -92,7 +92,7 @@ element-text, element-icon {
 
 element selected {
     	background-color:               #282828;
-    	border-radius:                  6px;
-        border:                         0px;
+    	border-radius:                  0px;
+        border:                         0px; 
         border-color:                   #fabd2f;
 }
