@@ -412,7 +412,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         naughty.notify(common)
     end, { description = "mpc on/off", group = "widgets" }),
     -- Run prompt
-    awful.key({ modkey }, "r", function()
+    awful.key({ altkey }, "space", function()
         awful.screen.focused().mypromptbox:run()
     end, { description = "run prompt", group = "launcher" }),
     -- sleep mode
@@ -436,7 +436,7 @@ globalkeys = mytable.join( -- Destroy all notifications
         awful.util.spawn("copyq toggle")
     end, { description = "open copyq window", group = "clipboard" }),
     --  run rofi
-    awful.key({ altkey }, "space", function()
+    awful.key({ modkey }, "r", function()
         awful.util.spawn('rofi -show drun -icon-theme "Papirus-Dark" -show-icons')
     end, { description = "launch rofi", group = "launcher" }),
     -- open filemanager
@@ -451,10 +451,6 @@ globalkeys = mytable.join( -- Destroy all notifications
     awful.key({ modkey, shiftkey }, "i", function()
         awful.util.spawn(browser .. " --private-window")
     end, { description = "launch Firefox with private window", group = "browser" }),
-    -- launch Brave Browser
-    awful.key({ modkey, shiftkey }, "b", function()
-        awful.util.spawn("brave")
-    end, { description = "launch Brave browser", group = "browser" }),
     -- ScreenShot
     awful.key({}, "Print", function()
         awful.prompt.run({
