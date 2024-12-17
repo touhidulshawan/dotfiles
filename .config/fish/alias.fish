@@ -92,5 +92,3 @@ alias ip="ip -c"
 
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
-
-alias pen='systemctl --user restart xppentablet.service'

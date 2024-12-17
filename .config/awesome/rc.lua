@@ -511,7 +511,11 @@ globalkeys = mytable.join( -- Destroy all notifications
     -- launch krita
     awful.key({ modkey, shiftkey }, ".", function()
         awful.util.spawn("krita")
-    end, { description = "launch krita", group = "drawing" })
+    end, { description = "launch krita", group = "drawing" }),
+    -- start xppendriver -- temp solution
+    awful.key({modkey, shiftkey}, "x", function()
+       awful.util.spawn('systemctl --user restart xppentablet.service')
+    end, {description =  "start xppendriver", group = 'drawing'})
 )
 
 clientkeys = mytable.join(
@@ -763,8 +767,5 @@ client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
     -- c.opacity = 0.8
 end)
-
--- Autostart
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- }}}
