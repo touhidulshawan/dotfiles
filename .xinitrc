@@ -43,10 +43,10 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 # chose random wallpapers
 #
-feh --bg-fill --randomize $HOME/Pictures/wallpapers/* &
 # picom --experimental-backends
 lxsession &
 nm-applet &
+feh --bg-fill --randomize $HOME/Pictures/wallpapers/* &
 xfce4-power-manager &
 emacs --daemon &
 copyq &
