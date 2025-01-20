@@ -92,3 +92,6 @@ alias ip="ip -c"
 
 # search github repository & clone it
 alias ghs="gh s | xargs gh repo clone"
+
+# get keyname of keyboard
+alias whatkey="xev | grep keycode"

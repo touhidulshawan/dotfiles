@@ -47,14 +47,14 @@ fi
 lxsession &
 nm-applet &
 feh --bg-fill --randomize $HOME/Pictures/wallpapers/* &
-xfce4-power-manager &
 emacs --daemon &
 copyq &
 unclutter --start-hidden &
+dunst &
 
 #---- dwm---
-# slstatus &
-# exec dwm
+slstatus &
+exec dwm
 #---------
 
-exec awesome
+# exec awesome
