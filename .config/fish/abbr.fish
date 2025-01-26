@@ -17,3 +17,4 @@ abbr --add  oc 'ouch compress'
 abbr --add  od 'ouch decompress'
 abbr --add  sd ssh-add
 abbr --add aft aft-mtp-mount ~/mnt/
+abbr --add ex extract

@@ -43,7 +43,7 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 # chose random wallpapers
 #
-# picom --experimental-backends
+picom --experimental-backends
 lxsession &
 nm-applet &
 feh --bg-fill --randomize $HOME/Pictures/wallpapers/* &
