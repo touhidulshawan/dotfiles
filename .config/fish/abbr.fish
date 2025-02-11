@@ -18,3 +18,4 @@ abbr --add  od 'ouch decompress'
 abbr --add  sd ssh-add
 abbr --add aft aft-mtp-mount ~/mnt/
 abbr --add ex extract
+abbr --add hy hyprland
