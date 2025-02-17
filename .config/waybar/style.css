@@ -28,7 +28,7 @@ window#waybar.hidden {
   /* Fix weird spacing in materia (waybar #450) */
   box-shadow: inset 0 -3px transparent;
   /* Use box-shadow instead of border so the text isn't offset */
-  padding: 2px 8px;
+  padding: 2px 6px;
   margin: 4px 3px;
   border-radius: 2px;
   background-color: #1d2021;
@@ -36,8 +36,8 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: #3c3836;
-  background-color: #d5c4a1;
+  color: #fbf1c7;
+  background-color: #458588;
 }
 
 #workspaces button:hover {
