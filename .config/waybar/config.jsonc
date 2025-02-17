@@ -3,7 +3,7 @@
     "position": "top",
     "spacing": 0,
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
     ],
     "modules-center": [
     ],
@@ -12,6 +12,7 @@
         "bluetooth",
         "wireplumber",
         "memory",
+        "cpu",
         "clock",
     ],
     "hyprland/workspaces": {
@@ -48,6 +49,11 @@
         "interval": 5,
         "format": "󰍛 {used:0.1f}G",
         "max-length": 15
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10
     },
     "tray": {
         "icon-size": 22,

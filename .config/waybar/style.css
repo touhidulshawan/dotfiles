@@ -56,6 +56,7 @@ window#waybar.hidden {
 #wireplumber,
 #clock,
 #tray, 
+#cpu,
 #bluetooth
 {
   border-radius: 2px;
@@ -71,6 +72,11 @@ window#waybar.hidden {
 
 #memory {
   background-color: #458588;
+}
+
+#cpu{
+    background-color: #b8bb26;
+    color: #3c3836;
 }
 
 #wireplumber {
