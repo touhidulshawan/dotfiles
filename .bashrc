@@ -179,4 +179,3 @@ export DOTBARE_TREE="$HOME"
 
 eval "$(zoxide init bash)"
 source "$HOME/.git-prompt.sh"
-eval "$(fnm env --use-on-cd)"
