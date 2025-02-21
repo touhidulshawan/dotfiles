@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-  background-color: #282828;
+  background-color: transparent;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -60,10 +60,14 @@ window#waybar.hidden {
 #bluetooth
 {
   border-radius: 2px;
-  margin: 4px 3px;
-  padding: 2px 12px;
+  margin: 4px 6px;
+  padding: 2px 6px;
   background-color: transparent;
   color: #fbf1c7;
+}
+
+#clock {
+    margin-left: 8px;
 }
 
 #tray{
