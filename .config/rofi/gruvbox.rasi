@@ -23,7 +23,7 @@ configuration {
 }
 
 window {
-	border-radius:      0px;
+	border-radius:      2px;
 	width:			    48%;
 	padding: 			2px;
     border:             3px;
