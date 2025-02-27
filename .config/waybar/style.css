@@ -57,7 +57,8 @@ window#waybar.hidden {
 #clock,
 #tray, 
 #cpu,
-#bluetooth
+#bluetooth,
+#disk
 {
   border-radius: 2px;
   margin: 4px 6px;
@@ -80,6 +81,11 @@ window#waybar.hidden {
 
 #cpu{
     background-color: #b8bb26;
+    color: #3c3836;
+}
+
+#disk{
+    background-color: #fe8019;
     color: #3c3836;
 }
 

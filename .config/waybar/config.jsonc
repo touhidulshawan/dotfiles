@@ -14,6 +14,7 @@
         "wireplumber",
         "memory",
         "cpu",
+        "disk",
     ],
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -29,7 +30,8 @@
             "4": "",
             "5": "",
             "6": "",
-            "7": ""
+            "7": "",
+            "8": "󱜿"
             // "active": "󱓻",
             // "urgent": "󱓻"
         },
@@ -47,12 +49,12 @@
     },
     "memory": {
         "interval": 5,
-        "format": "󰍛 {used:0.1f}G",
+        "format": " {used:0.1f}G",
         "max-length": 15
     },
     "cpu": {
         "interval": 10,
-        "format": " {}%",
+        "format": " {usage}%",
         "max-length": 10
     },
     "tray": {
@@ -63,7 +65,7 @@
         "format": "{icon} {volume}%",
         "format-bluetooth": "󰂰",
         "nospacing": 1,
-        "tooltip-format": "Volume : {volume}%",
+        "tooltip-format": false,
         "format-muted": "󰝟",
         "format-icons": {
             "headphone": "",
@@ -101,4 +103,9 @@
                     "on-scroll-down": "shift_down"
                     }
     },
+    "disk": {
+        "interval": 30,
+        "format": " {free}",
+        "path": "/"
+    }
 }
