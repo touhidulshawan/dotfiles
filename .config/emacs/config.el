@@ -463,7 +463,7 @@ leader-key
 (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; use primary as clipboard

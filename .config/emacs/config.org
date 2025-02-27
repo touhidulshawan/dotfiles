@@ -655,7 +655,7 @@
 #+end_src
 ** transparency
 #+begin_src emacs-lisp
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 ** extra
 #+begin_src emacs-lisp
