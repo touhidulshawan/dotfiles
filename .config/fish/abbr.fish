@@ -8,7 +8,6 @@ abbr --add  e exit
 abbr --add  cl clear
 abbr --add  bt btop
 abbr --add  n nvim
-abbr --add  st startx
 abbr --add  cn config
 abbr --add  tl trash-list
 abbr --add  rr trash-restore
