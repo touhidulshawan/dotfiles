@@ -22,3 +22,7 @@ source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/abbr.fish
 starship init fish | source
 zoxide init fish | source
+
+if status is-interactive
+    colorscript random
+end
