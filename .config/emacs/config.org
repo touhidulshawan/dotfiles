@@ -117,8 +117,21 @@
 #+end_src
 *** wombat
 #+begin_src emacs-lisp
-  (load-theme 'wombat t)
+  ;; (load-theme 'wombat t)
 #+end_src
+*** doom-themes 
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t     
+        doom-themes-enable-italic t)
+  (load-theme 'doom-one t)
+
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
+#+end_src
+
 ** line-number
 #+begin_src emacs-lisp
 (global-display-line-numbers-mode 1)
@@ -302,6 +315,7 @@
     (corfu-auto t)
     :init
     (global-corfu-mode))
+  (customize-set-variable 'text-mode-ispell-word-completion nil)
 #+end_src
 ** which key
 #+begin_src emacs-lisp

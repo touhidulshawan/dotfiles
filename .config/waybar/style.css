@@ -61,7 +61,7 @@ window#waybar.hidden {
 #disk
 {
   border-radius: 2px;
-  margin: 4px 6px;
+  margin: 4px;
   padding: 2px 6px;
   background-color: transparent;
   color: #fbf1c7;

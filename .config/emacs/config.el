@@ -35,7 +35,17 @@
 
 ;; (use-package ef-themes :config (load-theme 'ef-cherie t))
 
-(load-theme 'wombat t)
+;; (load-theme 'wombat t)
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t     
+        doom-themes-enable-italic t)
+  (load-theme 'doom-one t)
+
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
@@ -177,6 +187,7 @@
   (corfu-auto t)
   :init
   (global-corfu-mode))
+(customize-set-variable 'text-mode-ispell-word-completion nil)
 
 (use-package which-key
 :init (which-key-mode 1)
