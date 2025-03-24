@@ -9,6 +9,9 @@ vim.g.maplocalleader = " "
 -- file browser (netrw)
 keymap("n", "<leader>e", vim.cmd.Ex, option )
 
+-- insert date on file
+keymap('n', "t", "<cmd>:.!date<CR>", option)
+
 keymap("n", "j", "gj", option)
 keymap("n", "k", "gk", option)
 keymap("i", "jj", "<esc>", option)
