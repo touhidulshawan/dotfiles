@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- file browser (netrw)
-keymap("n", "<leader>e", vim.cmd.Ex, option )
+keymap("n", "<leader>e", "<cmd>:Lexplore<CR>" , option )
 
 -- insert date on file
 keymap('n', "t", "<cmd>:.!date<CR>", option)

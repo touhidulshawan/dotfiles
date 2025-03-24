@@ -32,3 +32,6 @@ vim.cmd("autocmd InsertEnter * norm zz")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.netrw_keepdir = 0
+vim.g.netrw_winsize = 30
+vim.g.netrw_banner = 0
