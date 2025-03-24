@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Author: Touhidul Shawan
+# Date Created: Tue Mar 25 01:48:52 AM +06 2025
+# Date Modified: Tue Mar 25 01:49:15 AM +06 2025
+
+# Descriptions
+# Blacklist some of colorscripts from DT shell-color-scriptsfor my system
+
+#list of colorscripts that will flag out as backlisted
+colorscriptNames=(
+  "doom-original"
+  "xmonad"
+  "tux"
+  "spectrum"
+  "rupees"
+  "pukeskull"
+  "kaisen"
+  "colorbars"
+  "awk-rgb-test"
+)
+
+for colorscriptName in "${colorscriptNames[@]}"; do
+    echo "Flag out as backlisted: $colorscriptName"
+    colorscript -b "$colorscriptName"
+done
