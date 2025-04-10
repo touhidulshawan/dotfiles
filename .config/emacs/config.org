@@ -629,7 +629,7 @@
 #+end_src
 ** org-agenda
 #+begin_src emacs-lisp 
-  (setq org-agenda-files '("~/notes/org/agenda.org"))
+  (setq org-agenda-files '("~/todos/tasks.org"))
 #+end_src
 * misc
 ** diminish

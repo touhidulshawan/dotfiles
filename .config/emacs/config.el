@@ -449,7 +449,7 @@ leader-key
 
 (require 'org-tempo)
 
-(setq org-agenda-files '("~/notes/org/agenda.org"))
+(setq org-agenda-files '("~/todos/tasks.org"))
 
 (use-package diminish)
 
