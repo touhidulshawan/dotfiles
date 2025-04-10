@@ -81,8 +81,7 @@
 	    "tooltip-format": false,
     },
     "clock": {
-        "format": " {:%I:%M:%S:%p}",
-        "format-alt": " {:%A, %B %d, %Y (%I:%M:%S:%p)}",
+        "format": " {:%I:%M:%S:%p  %d-%B-%a} ",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "interval": 1,
         "calendar": {
