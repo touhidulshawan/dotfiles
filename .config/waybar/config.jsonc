@@ -9,12 +9,12 @@
         "hyprland/workspaces",
     ],
     "modules-right": [
-        "tray",
         "bluetooth",
         "wireplumber",
         "memory",
         "cpu",
         "disk",
+        "tray",
     ],
     "hyprland/workspaces": {
         "on-click": "activate",
