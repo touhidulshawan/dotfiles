@@ -71,7 +71,7 @@ alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
 alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas pacman -Rns"
 
 # yt-dlp
-alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --write-thumbnail --convert-thumbnails jpg'
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
 alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4'
 
 # fzf
