@@ -17,6 +17,14 @@ set -x DOTBARE_TREE "$HOME"
 # create virtualenv in project folder [pipenv]
 set --export PIPENV_VENV_IN_PROJECT 1
 
+
+### FZF ###
+# Enables the following keybindings:
+# CTRL-t = fzf select
+# CTRL-r = fzf history
+# ALT-c  = fzf cd
+fzf --fish | source
+
 # sources
 source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/abbr.fish
