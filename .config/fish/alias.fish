@@ -94,4 +94,10 @@ alias ip="ip -c"
 alias ghs="gh s | xargs gh repo clone"
 
 # get keyname of keyboard
-alias whatkey="xev | grep keycode"
+alias whatkey="wev"
+
+# list install native packages [not from aur]
+alias archpack="pacman -Qentq"
+
+#list install aur packages
+alias aurpack="pacman -Qemtq"

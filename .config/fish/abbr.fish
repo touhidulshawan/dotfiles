@@ -1,3 +1,4 @@
+abbr --add  do  doas
 abbr --add  ncm ncmpcpp
 abbr --add  pbc pbcopy
 abbr --add  pbp pbpaste
