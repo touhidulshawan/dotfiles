@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+anime_path="$HOME/Pictures/wallpapers/anime/"
+gruvbox_path="$HOME/Pictures/wallpapers/gruvbox/"
+anime_gruvbox_path="$HOME/Pictures/wallpapers/anime-gruvbox/"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
-CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
 # Get a random wallpaper that is not the current one
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
-# Apply the selected wallpaper
-hyprctl hyprpaper reload ,"$WALLPAPER"
+case "$1" in
+    "show") sxiv -g 1338x719 -tro "$anime_path" "$gruvbox_path" "$anime_gruvbox_path" | xargs swww img || exit ;;
+    "random") swww img "$WALLPAPER";;
+esac
