@@ -5,8 +5,6 @@ GRUVBOX_PATH="$HOME/Pictures/wallpapers/gruvbox/"
 ANIME_GRUVBOX_PATH="$HOME/Pictures/wallpapers/anime-gruvbox/"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
 
-# SWWW_PROPERTY="--transition-step 100 --transition-type random"
-
 # Get a random wallpaper that is not the current one
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
