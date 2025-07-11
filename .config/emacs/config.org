@@ -1,4 +1,4 @@
-#+TITLE: emacs config 
+#+TITLE: emacs config
 #+AUTHOR: Touhidul Shawan
 #+DESCRIPTIONS: My GNU Emacs config file
 #+STARTUP: showeverything
@@ -126,7 +126,7 @@
   :config
   (setq doom-themes-enable-bold t     
         doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-solarized-dark t)
 
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
@@ -629,7 +629,9 @@
 #+end_src
 ** org-agenda
 #+begin_src emacs-lisp 
-  (setq org-agenda-files '("~/todos/tasks.org"))
+  (setq org-agenda-files '("~/org/agenda.org"))
+  (setq org-agenda-span 21)
+
 #+end_src
 * misc
 ** diminish
@@ -669,7 +671,7 @@
 #+end_src
 ** transparency
 #+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist '(alpha-background . 90))
+  ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 ** extra
 #+begin_src emacs-lisp

@@ -42,7 +42,7 @@
   :config
   (setq doom-themes-enable-bold t     
         doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-solarized-dark t)
 
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
@@ -449,7 +449,8 @@ leader-key
 
 (require 'org-tempo)
 
-(setq org-agenda-files '("~/todos/tasks.org"))
+(setq org-agenda-files '("~/org/agenda.org"))
+(setq org-agenda-span 21)
 
 (use-package diminish)
 
@@ -474,7 +475,7 @@ leader-key
 (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; use primary as clipboard
