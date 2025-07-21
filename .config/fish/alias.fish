@@ -66,9 +66,6 @@ alias getpath="fd . -aHt f | fzf | xclip -selection c"
 
 # unlock pacman
 alias unlock="doas rm /var/lib/pacman/db.lck"
-# search package and install from pacman
-alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
-alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas pacman -Rns"
 
 # yt-dlp
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
@@ -88,9 +85,6 @@ alias stop_wifi='nmcli radio wifi off'
 
 # ip with colors
 alias ip="ip -c"
-
-# search github repository & clone it
-alias ghs="gh s | xargs gh repo clone"
 
 # get keyname of keyboard
 alias whatkey="wev"

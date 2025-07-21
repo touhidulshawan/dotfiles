@@ -13,7 +13,7 @@ vim.g.gruvbox_material_visual =  "reverse"
 vim.g.gruvbox_material_diagnostic_text_highlight =  1
 
 --[[ local colorscheme = "gruvbox-material" ]]
-local colorscheme = "solarized-osaka"
+local colorscheme = "gruvbox-material"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 

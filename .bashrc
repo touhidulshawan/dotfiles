@@ -39,21 +39,6 @@ GIT_PS1_SHOWCONFLICTSTATE='yes'
 GIT_PS1_SHOWCOLORHINTS='yes'
 GIT_PS1_HIDE_IF_PWD_IGNORED='yes'
 
-# search github repository & clone it
-alias ghs="gh s | xargs gh repo clone"
-
-# alias for docker-compose
-# list all running containters
-alias dcp="docker compose ps"
-# start all containers
-alias dcu="docker compose up"
-# start all containers, rebuild if necessary
-alias dcub="docker compose up --build"
-# stop all running containers
-alias dcs="docker compose stop"
-# stop and remove all containters, networks, images, volumnes
-alias dcd="docker compose down --rmi all --volumes"
-
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -100,9 +85,6 @@ alias cl='clear'
 # alias for neovim
 alias nv='fd -t f | fzf | xargs nvim'
 
-# create virtualenv in project folder [pipenv]
-export PIPENV_VENV_IN_PROJECT=1
-
 # storage
 alias du='du -sh'
 alias ncdu='ncdu --color dark'
@@ -122,23 +104,12 @@ alias jctl='journalctl -p 3 -xb'
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3  --split-chapters'
 alias ytv='yt-dlp  -S "res:1440" --embed-thumbnail --merge-output-format mp4 --split-chapters --write-subs'
 
-# search package and install from pacman
-alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
-alias remove="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas pacman -Rns"
-
 # remove pacman lock
 alias unlock="doas rm /var/lib/pacman/db.lck"
 
 # setup fzf
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
-
-# fix tryhackme machine website issues
-alias nmfix='doas ip link set dev nm-bridge mtu 1200'
-alias tunfix='doas ip link set dev tun0 mtu 1200'
-
-# alias for vagrant
-alias vaup='vagrant up --provider=libvirt'
 
 # bare git repo alias for dotfiles
 alias config='/usr/bin/git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}'

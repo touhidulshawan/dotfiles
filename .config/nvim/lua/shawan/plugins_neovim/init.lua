@@ -21,13 +21,9 @@ return { -- Essentials
         -- install jsregexp (optional!).
         build = "make install_jsregexp"
     }, {'rafamadriz/friendly-snippets'}}
-}, -- colorscheme
---[[ "sainnhe/gruvbox-material", -- other plugins ]]
-{
-  "craftzdog/solarized-osaka.nvim",
-  lazy = false,
-  priority = 1000,
-  opts = {},
 },
+-- colorscheme
+"sainnhe/gruvbox-material",
+-- other plugins
 "windwp/nvim-autopairs", "JoosepAlviste/nvim-ts-context-commentstring", "NvChad/nvim-colorizer.lua",
 "lewis6991/gitsigns.nvim", "folke/trouble.nvim", "nvim-lualine/lualine.nvim"}
