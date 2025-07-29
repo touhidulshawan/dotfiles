@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cls=("00default.sh" "awk-rgb-test" "colorbars" "colortest" "colortest-slim" "colorview" "doom-original" "doom-outlined", "illumina" "kaisen" "print256" "pukeskull" "rupees""spectrum" "tux" "xmonand")
+
+for cl in "${cls[@]}"; do
+    colorscript -b "$cl"
+done
+
