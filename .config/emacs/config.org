@@ -117,19 +117,19 @@
 #+end_src
 *** wombat
 #+begin_src emacs-lisp
-  ;; (load-theme 'wombat t)
+  (load-theme 'wombat t)
 #+end_src
 *** doom-themes 
 #+begin_src emacs-lisp
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t     
-        doom-themes-enable-italic t)
-  (load-theme 'doom-solarized-dark t)
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq doom-themes-enable-bold t     
+  ;;         doom-themes-enable-italic t)
+  ;;   (load-theme 'doom-solarized-dark t)
 
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+  ;;   (doom-themes-visual-bell-config)
+  ;;   (doom-themes-org-config))
 #+end_src
 
 ** line-number
@@ -197,7 +197,7 @@
 #+end_src
 ** magit
 #+begin_src emacs-lisp
-(use-package magit :commands magit-status :ensure t)
+(use-package magit :after transient :commands magit-status :ensure t)
 #+end_src
 ** avy
 #+begin_src emacs-lisp

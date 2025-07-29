@@ -35,17 +35,17 @@
 
 ;; (use-package ef-themes :config (load-theme 'ef-cherie t))
 
-;; (load-theme 'wombat t)
+(load-theme 'wombat t)
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t     
-        doom-themes-enable-italic t)
-  (load-theme 'doom-solarized-dark t)
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (setq doom-themes-enable-bold t     
+;;         doom-themes-enable-italic t)
+;;   (load-theme 'doom-solarized-dark t)
 
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-org-config))
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
@@ -91,7 +91,7 @@
   :after evil
   :config (global-evil-surround-mode 1))
 
-(use-package magit :commands magit-status :ensure t)
+(use-package magit :after transient :commands magit-status :ensure t)
 
 (use-package avy
   :defer t
