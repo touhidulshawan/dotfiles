@@ -5,7 +5,7 @@ lsp.preset("recommended")
 lsp.nvim_workspace()
 
 lsp.ensure_installed({
-	"pylsp",
+	--[[ "pylsp", ]]
 })
 
 local cmp = require("cmp")

@@ -1,4 +1,5 @@
 (setq package-enable-at-startup nil)
+(setq package-install-upgrade-built-in t)
 
 ;; Minimal UI
 (setq-default
