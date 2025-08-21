@@ -12,8 +12,8 @@
      default))
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(eglot eldoc flymake idlwave org python track-changes tramp transient
-	   verilog-mode which-key window-tool-bar)))
+   '(eglot eldoc flymake idlwave markdown-mode org python track-changes
+	   tramp transient verilog-mode which-key window-tool-bar)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
