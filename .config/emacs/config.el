@@ -189,6 +189,13 @@
   (global-corfu-mode))
 (customize-set-variable 'text-mode-ispell-word-completion nil)
 
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/journal")
+  :config
+  (org-roam-db-autosync-mode))
+
 (use-package which-key
 :init (which-key-mode 1)
 :config
@@ -246,12 +253,11 @@ leader-key
   "b" '(:ignore t :wk "buffer")
   "b i" '(ibuffer :wk "Switch ibuffer")
   "b b" '(switch-to-buffer :wk "Switch buffer")
-  "b k" '(kill-this-buffer :wk "Kill this buffer")
+  "b k" '(kill-current-buffer :wk "Kill this buffer")
   "b n" '(next-buffer :wk "Next buffer")
   "b p" '(previous-buffer :wk "Previous buffer")
-  "b r" '(revert-buffer :wk "Reload buffer"))
-
-(leader-key "n" '(scratch-buffer :wk "Scratch Buffer"))
+  "b r" '(revert-buffer :wk "Reload buffer")
+  "b s" '(scratch-buffer :wk "Scratch buffer"))
 
 (leader-key
   "w" '(:ignore t :wk "Windows")
@@ -306,6 +312,19 @@ leader-key
 
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
+
+(leader-key
+  "n" '(:ignore t :wk "Org Roam")
+  "n l" '(org-roam-buffer-toggle :wk "Org roam buffer toggle")
+  "n f" '(org-roam-node-find :wk "Org roam node find")
+  "n g" '(org-roam-graph :wk "Org roam graph")
+  "n i" '(org-roam-node-insert :wk "Org roam node insert")
+  "n c" '(org-roam-capture :wk "Org roam capture")
+  "n j" '(org-roam-dailies-capture-today :wk "Org roam today capture")
+  "n y" '(org-roam-dailies-capture-yesterday :wk "Org roam yesterday capture")
+  "n t" '(org-roam-dailies-capture-tomorrow :wk "Org roam tomorrow capture")
+  "n d" '(org-roam-dailies-goto-today :wk "Org roam go to  today")
+  )
 
 (leader-key
   "x" '(:ignore t :wk "Consult")

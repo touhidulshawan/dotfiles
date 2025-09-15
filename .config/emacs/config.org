@@ -28,6 +28,7 @@
   - [[#vertico][vertico]]
   - [[#consult][consult]]
   - [[#corfu][corfu]]
+  - [[#org-roam][org-roam]]
   - [[#which-key][which key]]
 - [[#keybindings][keybindings]]
   - [[#evil][evil]]
@@ -36,13 +37,13 @@
   - [[#help][help]]
   - [[#files][files]]
   - [[#buffer][buffer]]
-  - [[#scratch-buffer][scratch buffer]]
   - [[#window][window]]
   - [[#avy-1][avy]]
   - [[#magit-1][magit]]
   - [[#snippet][snippet]]
   - [[#projectile-1][projectile]]
   - [[#org][org]]
+  - [[#org-roam-1][org-roam]]
   - [[#consult-1][consult]]
 - [[#org-1][org]]
   - [[#improve-visual][improve visual]]
@@ -317,6 +318,15 @@
     (global-corfu-mode))
   (customize-set-variable 'text-mode-ispell-word-completion nil)
 #+end_src
+** org-roam
+#+begin_src emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :custom
+    (org-roam-directory "~/journal")
+    :config
+    (org-roam-db-autosync-mode))
+#+end_src
 ** which key
 #+begin_src emacs-lisp
   (use-package which-key
@@ -385,18 +395,15 @@
 #+end_src
 ** buffer
 #+begin_src emacs-lisp
-(leader-key
-  "b" '(:ignore t :wk "buffer")
-  "b i" '(ibuffer :wk "Switch ibuffer")
-  "b b" '(switch-to-buffer :wk "Switch buffer")
-  "b k" '(kill-this-buffer :wk "Kill this buffer")
-  "b n" '(next-buffer :wk "Next buffer")
-  "b p" '(previous-buffer :wk "Previous buffer")
-  "b r" '(revert-buffer :wk "Reload buffer"))
-#+end_src
-** scratch buffer
-#+begin_src emacs-lisp
-(leader-key "n" '(scratch-buffer :wk "Scratch Buffer"))
+  (leader-key
+    "b" '(:ignore t :wk "buffer")
+    "b i" '(ibuffer :wk "Switch ibuffer")
+    "b b" '(switch-to-buffer :wk "Switch buffer")
+    "b k" '(kill-current-buffer :wk "Kill this buffer")
+    "b n" '(next-buffer :wk "Next buffer")
+    "b p" '(previous-buffer :wk "Previous buffer")
+    "b r" '(revert-buffer :wk "Reload buffer")
+    "b s" '(scratch-buffer :wk "Scratch buffer"))
 #+end_src
 ** window
 #+begin_src emacs-lisp
@@ -463,6 +470,21 @@
 
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
+#+end_src
+** org-roam
+#+begin_src emacs-lisp
+  (leader-key
+    "n" '(:ignore t :wk "Org Roam")
+    "n l" '(org-roam-buffer-toggle :wk "Org roam buffer toggle")
+    "n f" '(org-roam-node-find :wk "Org roam node find")
+    "n g" '(org-roam-graph :wk "Org roam graph")
+    "n i" '(org-roam-node-insert :wk "Org roam node insert")
+    "n c" '(org-roam-capture :wk "Org roam capture")
+    "n j" '(org-roam-dailies-capture-today :wk "Org roam today capture")
+    "n y" '(org-roam-dailies-capture-yesterday :wk "Org roam yesterday capture")
+    "n t" '(org-roam-dailies-capture-tomorrow :wk "Org roam tomorrow capture")
+    "n d" '(org-roam-dailies-goto-today :wk "Org roam go to  today")
+    )
 #+end_src
 ** consult
 #+begin_src emacs-lisp
