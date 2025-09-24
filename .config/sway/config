@@ -6,8 +6,7 @@
 
 #execute on startup
 set $wayb waybar -c ~/.config/waybar/config.sway -s ~/.config/waybar/style.css.sway
-exec_always $wayb
-exec swww-daemon 
+exec $wayb
 exec nm-applet 
 exec unclutter --start-hidden
 exec copyq --start-server 
@@ -148,8 +147,6 @@ set $filemanager thunar
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
     bindsym $mod+Shift+b splith
     bindsym $mod+Shift+v splitv
 
@@ -176,11 +173,11 @@ set $filemanager thunar
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+n move scratchpad
+    bindsym $mod+n move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+n scratchpad show
+    bindsym $mod+Shift+n scratchpad show
 #
 # Resizing containers:
 #
@@ -283,7 +280,7 @@ for_window [app_id="thunar"] move container to workspace 6, workspace 6
 for_window [app_id="org.qbittorrent.qBittorrent"] move container to workspace 7, workspace 7
 for_window [app_id="gimp"] move container to workspace 4, workspace 4
 for_window [app_id="com.github.hluk.copyq"] floating enable, resize set 760 480, move position center
-for_window [class="feh"] floating enable, move position center
+for_window [class="feh"] floating enable, resize set 760 480, move position center
 for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, resize set 640 360
 for_window [app_id="org.pwmt.zathura"] move container to workspace 7, workspace 7
 for_window [app_id="org.kde.kdenlive"] move container to workspace 1, workspace 1
