@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+ANIME_PATH="$HOME/Pictures/wallpapers/anime/"
+GRUVBOX_PATH="$HOME/Pictures/wallpapers/gruvbox/"
+ANIME_GRUVBOX_PATH="$HOME/Pictures/wallpapers/anime-gruvbox/"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
+
+# Get a random wallpaper that is not the current one
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+
+case "$1" in
+    "show") sxiv -g 1338x719 -tro "$ANIME_PATH" "$GRUVBOX_PATH" "$ANIME_GRUVBOX_PATH" | xargs swww img --transition-step 100 --transition-type random || exit ;;
+    "random") swww img --transition-step 100 --transition-type random "$WALLPAPER" ;;
+esac
