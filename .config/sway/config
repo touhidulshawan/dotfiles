@@ -12,7 +12,6 @@ exec unclutter --start-hidden
 exec copyq --start-server 
 exec /usr/bin/emacs --daemon 
 exec systemctl --user start hyprpolkitagent
-exec systemctl --user restart xppentablet.service
 exec sleep 2 && /home/shawan/.local/bin/setwallpaper random
 exec_always xrdb -load ~/.Xresources 
 
@@ -74,6 +73,10 @@ set $filemanager thunar
 #       xkb_layout "eu"
 #   }
 #
+#input my xppentablet deco xs
+input "10429:2352:UGTABLET_4_inch_PenTablet_Pen" {
+    map_to_output LVDS-1 
+}
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
@@ -243,7 +246,6 @@ bindsym $mod+r mode "resize"
     bindsym $mod+e               exec   $filemanager
     bindsym $mod+a               exec   copyq toggle
     bindsym $mod+Escape     workspace back_and_forth
-    bindsym $mod+Shift+x    exec systemctl --user restart xppentablet.service
     bindsym $mod+period     exec rofi -show emoji -emoji-format '{emoji}' -theme emoji.rasi 
 
     #screenshot
