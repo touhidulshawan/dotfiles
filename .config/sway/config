@@ -166,9 +166,6 @@ input "10429:2352:UGTABLET_4_inch_PenTablet_Pen" {
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
-    bindsym $mod+p focus parent
 #
 # Scratchpad:
 #
@@ -231,6 +228,9 @@ bindsym $mod+r mode "resize"
     # kill and restart waybar
     bindsym $mod+Shift+m  exec   pkill waybar && exec $wayb
 
+    # toggle window sticky
+    bindsym $mod+p exec swaymsg '[con_id=__focused__]' sticky toggle, floating enable, move position center
+
     # set wallpaper
     bindsym $mod+Shift+w    exec    setwallpaper random
     bindsym $mod+Shift+s    exec    setwallpaper show 
@@ -258,7 +258,7 @@ bindsym $mod+r mode "resize"
 
     # power
     bindsym $mod+Shift+p    exec poweroff
-    bindsym $mod+Shift+r    exec rebot
+    bindsym $mod+Shift+r    exec reboot
 
 #
 # Status Bar:
