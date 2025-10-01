@@ -68,8 +68,8 @@ alias getpath="fd . -aHt f | fzf | xclip -selection c"
 alias unlock="doas rm /var/lib/pacman/db.lck"
 
 # yt-dlp
-alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3'
-alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4'
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply"'
+alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4 --extractor-args "youtube:player-client=default,-tv_simply"'
 
 # fzf
 fzf_configure_bindings --directory=\cf
