@@ -255,12 +255,12 @@ bindsym $mod+r mode "resize"
     bindsym $mod+period     exec rofi -show emoji -emoji-format '{emoji}' -theme emoji.rasi 
 
     #screenshot
-    # Screenshot a window
-    bindsym $mod+PRINT  exec hyprshot -m window -o ~/Pictures/Screenshots
-    # Screenshot a monitor
-    bindsym  PRINT exec hyprshot -m output -o ~/Pictures/Screenshots
-    # Screenshot a region
-    bindsym SHIFT+PRINT  exec hyprshot -m region -o ~/Pictures/Screenshots
+    # Screenshot a window (using slurp to pick the window region)
+    bindsym $mod+PRINT exec grim -g "$(slurp -w)" ~/Pictures/Screenshots/window-$(date +%F_%T).png
+    # Screenshot a monitor (grab the whole output)
+    bindsym PRINT exec grim ~/Pictures/Screenshots/monitor-$(date +%F_%T).png
+    # Screenshot a region (interactive selection)
+    bindsym SHIFT+PRINT exec grim -g "$(slurp)" ~/Pictures/Screenshots/region-$(date +%F_%T).png
 
     # power
     bindsym $mod+Shift+p    exec poweroff
