@@ -22,7 +22,7 @@ XTerm*vt100.translations: #override \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! Xft.dpi: 112
-! Xft.dpi: 96
+Xft.dpi: 96
 ! Xft.lcdfilter:  lcddefault
 ! Xft.hintstyle:  hintsfull
 ! Xft.antialias: 1
