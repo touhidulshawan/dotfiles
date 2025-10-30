@@ -13,7 +13,7 @@ exec copyq --start-server
 exec /usr/bin/emacs --daemon 
 exec /usr/lib/polkit-kde-authentication-agent-1
 exec sleep 2 && /home/shawan/.local/bin/setwallpaper random
-# exec_always xrdb -load ~/.Xresources 
+exec_always xrdb -load ~/.Xresources 
 
 
 ### Variables
@@ -156,7 +156,7 @@ input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    bindsym $mod+Shift+b splith
+    bindsym $mod+v splith
     bindsym $mod+Shift+v splitv
 
     # Switch the current container between different layout styles
@@ -244,6 +244,7 @@ bindsym $mod+r mode "resize"
 
     # browser
     bindsym $mod+b        exec    $browser
+    bindsym $mod+Shift+b  exec    qutebrowser 
     bindsym $mod+Shift+i  exec    $browser --private-window
     
     #others application
@@ -252,6 +253,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+e               exec   $filemanager
     bindsym $mod+a               exec   copyq toggle
     bindsym $mod+Escape     workspace back_and_forth
+    bindsym $mod+Shift+x    exec systemctl --user restart xppentablet.service
     bindsym $mod+period     exec rofi -show emoji -emoji-format '{emoji}' -theme emoji.rasi 
 
     #screenshot
