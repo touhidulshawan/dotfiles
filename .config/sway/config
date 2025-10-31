@@ -26,9 +26,9 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+# my preferred terminal emulator
 set $term alacritty 
-# Your preferred application launcher
+# my preferred application launcher
 set $menu rofi -show 
 
 # custom Variables
@@ -110,7 +110,7 @@ input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e swaymsg exit
 #
 # Moving around:
 #
