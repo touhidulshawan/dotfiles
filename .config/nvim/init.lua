@@ -1,9 +1,6 @@
-if vim.g.vscode then
-    require("shawan")
-    require("plugins.fugitive")
-    require("plugins.hop")
-    require("plugins.comment")
-else
-require("shawan")
-require("plugins")
-end
+require("config.options")
+require("core.lazy")
+require("core.lsp")
+require("config.keymaps")
+require("config.autocmds")
+require("config.lualine")
