@@ -3,6 +3,7 @@
 #+DESCRIPTION: Readme files to decorate about my dotfiles 
 
 * Table of Contents :toc:
+- [[#attention][Attention]]
 - [[#introduction][Introduction]]
   - [[#system-info][System Info]]
 - [[#awesome-window-manager][Awesome Window Manager]]
@@ -14,6 +15,11 @@
   - [[#neovim][Neovim]]
 - [[#][]]
 
+* Attention
+#+begin_quote
+No Longer using Awesome window manager.
+Currently using Archlinux + sway
+#+end_quote
 * Introduction
 This repository is being used to store configuration files of my system.
 
