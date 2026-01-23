@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# wallpaer directory
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/anime/"
+
+# random image file 
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+# now lock with that iamge 
+swaylock -i "$WALLPAPER"
