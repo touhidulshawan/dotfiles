@@ -242,7 +242,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+s    exec    setwallpaper show 
 
     # lock with swaylock
-    bindsym $mod+Control_L+l    exec    swlock
+    bindsym $mod+$alt+l    exec    swlock
 
 
     # browser
