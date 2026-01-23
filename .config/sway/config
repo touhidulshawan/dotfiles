@@ -12,8 +12,8 @@ exec unclutter --start-hidden
 exec copyq --start-server 
 exec /usr/bin/emacs --daemon 
 exec /usr/lib/polkit-kde-authentication-agent-1
-exec sleep 2 && /home/shawan/.local/bin/setwallpaper random
-# exec_always xrdb -load ~/.Xresources 
+exec xrdb ~/.Xdefaults
+exec sleep 2 && ~/.local/bin/setwallpaper random
 
 
 ### Variables
