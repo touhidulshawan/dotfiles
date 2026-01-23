@@ -4,6 +4,19 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotbare="$HOME/.dotbare/dotbare"
 alias config=dotbare
 
+# pacman 
+# search and install packages from archlinux repository(not AUR)
+alias pack="doas pacman -S (pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse)"
+# uninstall packages
+alias remove="doas pacman -Rns (pacman -Qq |  fzf -m --preview 'pacman -Qi {}')"
+# unlock pacman db
+alias unlock="doas rm /var/lib/pacman/db.lck"
+
+# list install native packages [not from aur]
+alias archpack="pacman -Qenq"
+#list install aur packages
+alias aurpack="pacman -Qemq"
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -64,9 +77,6 @@ export MANPAGER="nvim +Man!"
 # getpath
 alias getpath="fd . -aHt f | fzf | xclip -selection c"
 
-# unlock pacman
-alias unlock="doas rm /var/lib/pacman/db.lck"
-
 # yt-dlp
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply"'
 alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4 --extractor-args "youtube:player-client=default,-tv_simply"'
@@ -89,8 +99,3 @@ alias ip="ip -c"
 # get keyname of keyboard
 alias whatkey="wev"
 
-# list install native packages [not from aur]
-alias archpack="pacman -Qentq"
-
-#list install aur packages
-alias aurpack="pacman -Qemtq"

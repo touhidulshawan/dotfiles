@@ -10,9 +10,7 @@ abbr --add  cl clear
 abbr --add  bt btop
 abbr --add  n nvim
 abbr --add  cn config
-abbr --add  tl trash-list
-abbr --add  rr trash-restore
-abbr --add  td trash-empty
+abbr --add  rr remove 
 abbr --add  oc 'ouch compress'
 abbr --add  od 'ouch decompress'
 abbr --add  sd ssh-add
