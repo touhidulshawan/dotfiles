@@ -9,6 +9,6 @@ WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
 case "$1" in
-    "show") sxiv -g 1338x719 -tro "$ANIME_PATH" "$GRUVBOX_PATH" "$ANIME_GRUVBOX_PATH" | xargs swaybg -m fill -i || exit ;;
+    "show") nsxiv -g 1338x719 -tro "$ANIME_PATH" "$GRUVBOX_PATH" "$ANIME_GRUVBOX_PATH" | xargs swaybg -m fill -i || exit ;;
     "random") swaybg -m fill -i"$WALLPAPER" ;;
 esac
