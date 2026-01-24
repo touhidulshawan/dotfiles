@@ -74,15 +74,15 @@ set $filemanager thunar
 #   }
 #
 #input my xppentablet deco xs
-# input "10429:2352:UGTABLET_4_inch_PenTablet_Pen" {
-#     map_to_output LVDS-1 
-# }
-# input "10429:2352:UGTABLET_4_inch_PenTablet_Mouse" {
-#     events disabled
-# }
-# input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
-#     events disabled
-# }
+input "10429:2352:UGTABLET_4_inch_PenTablet_Pen" {
+    map_to_output LVDS-1 
+}
+input "10429:2352:UGTABLET_4_inch_PenTablet_Mouse" {
+    events disabled
+}
+input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
+    events disabled
+}
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
