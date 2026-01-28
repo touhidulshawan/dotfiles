@@ -36,6 +36,9 @@ alias cp='uu-coreutils cp -rig'
 alias mv='uu-coreutils mv -fig'
 alias rm='uu-coreutils rm -frdv'
 
+# delete from disk forever
+alias del="shred -f -n 3 -u"
+
 # feh
 alias fh='feh -g 1024x576 -. *'
 
