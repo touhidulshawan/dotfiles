@@ -1,18 +1,48 @@
-(add-to-list 'load-path "~/.config/emacs/scripts")
-(require 'elpaca-setup)
+(require 'package)
+(package-initialize)
+  
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(defun reload-init-file ()
+(when (< emacs-major-version 29)
+  (unless (package-installed-p 'use-package)
+    (unless package-archive-contents
+      (package-refresh-contents))
+    (package-install 'use-package)))
+
+(add-to-list 'display-buffer-alist
+           '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
+             (display-buffer-no-window)
+             (allow-no-window . t)))
+
+(defun prot/keyboard-quit-dwim ()
+  "Do-What-I-Mean behaviour for a general `keyboard-quit'.
+
+The generic `keyboard-quit' does not do the expected thing when
+the minibuffer is open.  Whereas we want it to close the
+minibuffer, even without explicitly focusing it.
+
+The DWIM behaviour of this command is as follows:
+
+- When the region is active, disable it.
+- When a minibuffer is open, but not focused, close the minibuffer.
+- When the Completions buffer is selected, close it.
+- In every other case use the regular `keyboard-quit'."
   (interactive)
-  (load-file user-init-file)
-  (load-file user-init-file))
+  (cond
+   ((region-active-p)
+    (keyboard-quit))
+   ((derived-mode-p 'completion-list-mode)
+    (delete-completion-window))
+   ((> (minibuffer-depth) 0)
+    (abort-recursive-edit))
+   (t
+    (keyboard-quit))))
 
-(setq inhibit-startup-message t)
-(setq use-short-answers t)
-(setq confirm-kill-emacs 'yes-or-no-p)
-(setq
- initial-major-mode 'org-mode
- initial-scratch-message ""
- initial-buffer-choice t)
+(define-key global-map (kbd "C-g") #'prot/keyboard-quit-dwim)
+
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
 
 (set-face-attribute 'default nil
                     :font "JetBrains Mono"
@@ -33,19 +63,7 @@
 (add-to-list
  'default-frame-alist '(font . "JetBrains Mono-13"))
 
-;; (use-package ef-themes :config (load-theme 'ef-cherie t))
-
 (load-theme 'wombat t)
-
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (setq doom-themes-enable-bold t     
-;;         doom-themes-enable-italic t)
-;;   (load-theme 'doom-solarized-dark t)
-
-;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-org-config))
 
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
@@ -54,11 +72,11 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
-(setq make-backup-files nil)
-
+(setq make-backup-files nil) 
 (setq create-lockfiles nil)
 
 (use-package evil
+  :ensure t
   :demand t
   :bind (("<escape>" . keyboard-escape-quit))
   :init
@@ -76,118 +94,114 @@
   :config (evil-set-leader 'normal " ") (evil-mode 1))
 
 (use-package evil-collection
+:ensure t
 :after evil
 :config
 (setq evil-want-integration t)
 (evil-collection-init))
 
-(use-package evil-commentary
+(use-package nerd-icons
+  :ensure t)
+(use-package nerd-icons-completion
   :ensure t
-  :after evil
-  :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
+  :after marginalia
+  :config
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
-(use-package evil-surround
+(use-package nerd-icons-corfu
   :ensure t
-  :after evil
-  :config (global-evil-surround-mode 1))
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+(use-package nerd-icons-dired
+  :ensure t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
-(use-package magit :after transient :commands magit-status :ensure t)
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
+
+(use-package marginalia
+  :ensure t
+  :hook (after-init . marginalia-mode))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic))
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil))
+
+(use-package savehist
+  :ensure nil ; it is built-in
+  :hook (after-init . savehist-mode))
+
+(use-package corfu
+  :ensure t
+  :hook (after-init . global-corfu-mode)
+  :bind (:map corfu-map ("<tab>" . corfu-complete))
+  :config
+  (setq tab-always-indent 'complete)
+  (setq corfu-preview-current nil)
+  (setq corfu-min-width 20)
+
+  (setq corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
+
+  ;; Sort by input history (no need to modify `corfu-sort-function').
+  (with-eval-after-load 'savehist
+    (corfu-history-mode 1)
+    (add-to-list 'savehist-additional-variables 'corfu-history)))
+
+(use-package dired
+  :ensure nil
+  :commands (dired)
+  :hook
+  ((dired-mode . dired-hide-details-mode)
+   (dired-mode . hl-line-mode))
+  :config
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  (setq delete-by-moving-to-trash t)
+  (setq dired-dwim-target t))
+
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :bind
+  ( :map dired-mode-map
+    ("<tab>" . dired-subtree-toggle)
+    ("TAB" . dired-subtree-toggle)
+    ("<backtab>" . dired-subtree-remove)
+    ("S-TAB" . dired-subtree-remove))
+  :config
+  (setq dired-subtree-use-backgrounds nil))
+
+(use-package trashed
+  :ensure t
+  :commands (trashed)
+  :config
+  (setq trashed-action-confirmer 'y-or-n-p)
+  (setq trashed-use-header-line t)
+  (setq trashed-sort-key '("Date deleted" . t))
+  (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
 (use-package avy
   :defer t
   :config
   (setq avy-case-fold-search nil))
 
-(use-package projectile
-  :diminish projectile-mode
-  :ensure t
-  :config
-  (projectile-mode)
-  (setq projectile-completion-system 'auto)
-  (setq projectile-project-search-path '("~/projects/")))
+(use-package consult :ensure t)
 
-(use-package
-  dashboard
-  :init
-  (setq
-   dashboard-set-heading-icons t
-   dashboard-set-file-icons t
-   dashboard-display-icons-p t
-   ;; dashboard-startup-banner "~/.config/emacs/cover.png"
-   dashboard-center-content nil
-   dashboard-items '((recents . 8)))
-  :config (dashboard-setup-startup-hook))
-(setq initial-buffer-choice
-      (lambda () (get-buffer-create "*dashboard*")))
-(setq doom-fallback-buffer-name "*dashboard*")
+(use-package toc-org
+    :ensure t
+    :commands toc-org-enable
+    :init (add-hook 'org-mode-hook 'toc-org-enable))
 
-(use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
-
-(use-package dired-open
-  :config
-  (setq dired-open-extensions '(("gif" . "sxiv")
-                                ("jpg" . "sxiv")
-                                ("png" . "sxiv")
-                                ("mkv" . "mpv")
-                                ("mp4" . "mpv"))))
-
-(use-package peep-dired
-  :after dired
-  :hook (evil-normalize-keymaps . peep-dired-hook)
-  :config
-  (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-  (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
-  (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-  (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
-  )
-
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :ensure t
-  :hook (php-mode . yas-minor-mode)
-  :init
-  (setq yas-nippet-dir "~/.config/emacs/snippets")
-  (yas-global-mode 1))
-(require 'warnings)
-(add-to-list 'warning-suppress-types '(yasnippet backquote-change))
-
-(use-package yasnippet-snippets :ensure t :after yasnippet)
-
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
-
-(use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package vertico
-  :init
-  ;; Enable vertico using the vertico-flat-mode
-  (require 'vertico-directory)
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (vertico-mode t)
-  :config
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
-(setq native-comp-deferred-compilation t)
-
-(use-package consult)
-
-(use-package corfu
-  :custom
-  (corfu-auto t)
-  :init
-  (global-corfu-mode))
-(customize-set-variable 'text-mode-ispell-word-completion nil)
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (use-package org-roam
   :ensure t
@@ -196,7 +210,36 @@
   :config
   (org-roam-db-autosync-mode))
 
+(setq org-ellipsis " ▾")
+(setq org-src-fontify-natively t)
+(setq org-highlight-latex-and-related '(native))
+(setq org-startup-folded 'showeverything)
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width 300)
+(setq org-fontify-whole-heading-line t)
+(setq org-pretty-entities t)
+(setq org-hide-emphasis-markers t)
+(setq org-adapt-indentation t)
+(setq org-startup-indented t)
+(setq org-special-ctrl-a/e '(t . nil))
+(setq org-special-ctrl-k t)
+(setq org-fontify-quote-and-verse-blocks t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 2)
+(setq org-hide-block-startup nil)
+(setq org-src-preserve-indentation nil)
+(setq org-startup-folded 'fold)
+(setq org-cycle-separator-lines 2)
+(setq org-goto-auto-isearch nil)
+(setq org-log-done 'time)
+(setq org-log-into-drawer t)
+
+(require 'org-tempo)
+
+(setq org-agenda-files '("~/journal/agenda.org"))
+
 (use-package which-key
+:ensure t
 :init (which-key-mode 1)
 :config
 (setq
@@ -214,9 +257,9 @@
  which-key-prefix-prefix "◉ "
  which-key-separator " → "))
 
-(use-package
-general
-:config (general-evil-setup)
+(use-package general
+  :ensure t
+  :config (general-evil-setup)
 
 (general-imap
   "j" (general-key-dispatch 'self-insert-command
@@ -288,13 +331,6 @@ leader-key
   "s" '(yas-insert-snippet :wk "Yas insert snippet"))
 
 (leader-key
-  "p" '(:ignore t :wk "Projectile")
-  "p a" '(projectile-add-known-project :wk "Add project")
-  "p p" '(projectile-switch-project :wk "Switch to project")
-  "p f" '(projectile-find-file :wk "Project find file")
-  "p d" '(projectile-remove-known-project :wk "Remove project"))
-
-(leader-key
   "m" '(:ignore t :wk "Org")
   "m a" '(org-agenda :wk "Org agenda")
   "m e" '(org-export-dispatch :wk "Org export dispatch")
@@ -324,7 +360,7 @@ leader-key
   "n y" '(org-roam-dailies-capture-yesterday :wk "Org roam yesterday capture")
   "n t" '(org-roam-dailies-capture-tomorrow :wk "Org roam tomorrow capture")
   "n d" '(org-roam-dailies-goto-today :wk "Org roam go to  today")
-  )
+  ))
 
 (leader-key
   "x" '(:ignore t :wk "Consult")
@@ -336,191 +372,3 @@ leader-key
   "x g" '(consult-ripgrep :wk "consult ripgre")
   "x x" '(consult-fd :wk "consult find")
   ))
-
-(setq org-ellipsis " ▾")
-(setq org-src-fontify-natively t)
-(setq org-highlight-latex-and-related '(native))
-(setq org-startup-folded 'showeverything)
-(setq org-startup-with-inline-images t)
-(setq org-image-actual-width 300)
-(setq org-fontify-whole-heading-line t)
-(setq org-pretty-entities t)
-(setq org-hide-emphasis-markers t)
-(setq org-adapt-indentation t)
-(setq org-startup-indented t)
-(setq org-special-ctrl-a/e '(t . nil))
-(setq org-special-ctrl-k t)
-(setq org-fontify-quote-and-verse-blocks t)
-(setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 2)
-(setq org-hide-block-startup nil)
-(setq org-src-preserve-indentation nil)
-(setq org-startup-folded 'fold)
-(setq org-cycle-separator-lines 2)
-(setq org-goto-auto-isearch nil)
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
-
-(setq org-cycle-separator-lines 1)
-(setq org-catch-invisible-edits 'show-and-error)
-(setq org-src-tab-acts-natively t)
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
-        (sequence
-         "DROP(o)"
-         "HIGH(h)"
-         "MEDIUM(m)"
-         "LOW(l)"
-         "WORK-IN-PROGRESS(w)"
-         "POSTPONE(p)")))
-
-(setq org-todo-keyword-faces
-      '(("TODO"
-         :inherit (region org-todo)
-         :foreground "DarkOrange1"
-         :weight bold)
-        ("CRITICAL"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "dark red"
-         :weight bold)
-        ("HIGH"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "red"
-         :weight bold)
-        ("MEDIUM"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "firebrick"
-         :weight bold)
-        ("LOW"
-         :inherit (region org-todo)
-         :foreground "white smoke"
-         :background "indian red"
-         :weight bold)
-        ("FALSE POSITIVE"
-         :inherit (region org-todo)
-         :foreground "gray9"
-         :background "coral"
-         :weight bold)
-        ("DUP"
-         :inherit (org-todo region)
-         :foreground "tan2"
-         :weight bold)
-        ("POC"
-         :inherit (org-todo region)
-         :foreground "MediumPurple2"
-         :weight bold)
-        ("WIP"
-         :inherit (org-todo region)
-         :foreground "magenta3"
-         :weight bold)
-        ("REPORTED"
-         :inherit (region org-todo)
-         :foreground "DarkGoldenrod2"
-         :weight bold)
-        ("VALIDATE"
-         :inherit (region org-todo)
-         :foreground "SpringGreen2"
-         :weight bold)
-        ("DONE" . "SeaGreen4")))
-
-(setq org-tags-column -1)
-
-(setq org-lowest-priority ?F)
-(setq org-default-priority ?E)
-
-(setq org-priority-faces
-      '((65 . "red2")
-        (66 . "Gold1")
-        (67 . "Goldenrod2")
-        (68 . "PaleTurquoise3")
-        (69 . "DarkSlateGray4")
-        (70 . "PaleTurquoise4")))
-
-(use-package toc-org
-  :commands toc-org-enable
-  :init (add-hook 'org-mode-hook 'toc-org-enable))
-
-(use-package org-modern
-  :hook (org-mode . org-modern-mode)
-  :config
-  (setq
-   ;; org-modern-star '("●" "○" "✸" "✿")
-   org-modern-star '("⌾" "✸" "◈" "✿")
-   org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
-   org-modern-tag nil
-   org-modern-priority nil
-   org-modern-todo nil
-   org-modern-table nil
-   org-modern-variable-pitch nil
-   org-modern-block-fringe nil))
-
-(use-package evil-org
-  :ensure t
-  :after org
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys)
-  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
-
-(require 'org-tempo)
-
-(setq org-agenda-files '("~/org/agenda.org"))
-(setq org-agenda-span 21)
-
-(use-package diminish)
-
-(use-package rainbow-mode
- :diminish
- :hook org-mode prog-mode)
-
-(use-package centered-cursor-mode :diminish centered-cursor-mode)
-
-(use-package nerd-icons-completion
-  :after marginalia
-  :config (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
-(when (fboundp 'set-charset-priority)
-  (set-charset-priority 'unicode))
-(prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
-
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
-
-(fset 'yes-or-no-p 'y-or-n-p)
-;; use primary as clipboard
-(setq-default x-select-enable-primary t)
-;; avoid leaving a gap between the frame and the screen
-(setq-default frame-resize-pixelwise t)
-
-;; Vim like scrolling
-(setq
- scroll-step 1
- scroll-conservatively 10000
- next-screen-context-lines 5
- ;; move by logical lines rather than visual lines (better for macros)
- line-move-visual nil)
-
-(with-eval-after-load 'ox-latex
-  (add-to-list
-   'org-latex-classes
-   '("org-plain-latex"
-     "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-     ("\\section{%s}" . "\\section*{%s}")
-     ("\\subsection{%s}" . "\\subsection*{%s}")
-     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-     ("\\paragraph{%s}" . "\\paragraph*{%s}")
-     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-(setq org-latex-listings 't)
