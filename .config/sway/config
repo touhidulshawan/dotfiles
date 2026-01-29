@@ -286,7 +286,7 @@ gaps outer 4
 # window rules
 for_window [app_id="firefox"] move container to workspace 2, workspace 2
 for_window [class="krita"] move container to workspace 3, workspace 3
-for_window [class="Emacs"] move container to workspace 4, workspace 4
+for_window [app_id="emacs"] move container to workspace 4, workspace 4
 for_window [app_id="mpv"] move container to workspace 5, workspace 5
 for_window [app_id="thunar"] move container to workspace 6, workspace 6
 for_window [app_id="org.qbittorrent.qBittorrent"] move container to workspace 7, workspace 7

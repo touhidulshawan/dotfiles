@@ -14,6 +14,8 @@
              (display-buffer-no-window)
              (allow-no-window . t)))
 
+(recentf-mode t)
+
 (defun prot/keyboard-quit-dwim ()
   "Do-What-I-Mean behaviour for a general `keyboard-quit'.
 
@@ -43,6 +45,12 @@ The DWIM behaviour of this command is as follows:
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(setq inhibit-startup-message t)
+(setq use-short-answers t)
+(setq
+ initial-major-mode 'org-mode
+ initial-scratch-message ""
+ initial-buffer-choice t)
 
 (set-face-attribute 'default nil
                     :font "JetBrains Mono"
@@ -99,6 +107,11 @@ The DWIM behaviour of this command is as follows:
 :config
 (setq evil-want-integration t)
 (evil-collection-init))
+
+(use-package evil-surround
+  :ensure t
+  :after evil
+  :config (global-evil-surround-mode 1))
 
 (use-package nerd-icons
   :ensure t)
@@ -194,6 +207,18 @@ The DWIM behaviour of this command is as follows:
 
 (use-package consult :ensure t)
 
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(setq initial-buffer-choice 'dashboard-open)
+(setq dashboard-center-content t)
+(setq dashboard-vertically-center-content t)
+(setq dashboard-show-shortcuts nil)
+(setq dashboard-items '((agenda    . 5)
+			(recents   . 5)
+                        (bookmarks . 5)))
+
 (use-package toc-org
     :ensure t
     :commands toc-org-enable
@@ -237,6 +262,29 @@ The DWIM behaviour of this command is as follows:
 (require 'org-tempo)
 
 (setq org-agenda-files '("~/journal/agenda.org"))
+
+(use-package org-modern
+  :ensure t
+  :hook (org-mode . org-modern-mode)
+  :config
+  (setq
+   ;; org-modern-star '("●" "○" "✸" "✿")
+   org-modern-star '("⌾" "✸" "◈" "✿")
+   org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
+   org-modern-tag nil
+   org-modern-priority nil
+   org-modern-todo nil
+   org-modern-table nil
+   org-modern-variable-pitch nil
+   org-modern-block-fringe nil))
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package which-key
 :ensure t
@@ -360,7 +408,7 @@ leader-key
   "n y" '(org-roam-dailies-capture-yesterday :wk "Org roam yesterday capture")
   "n t" '(org-roam-dailies-capture-tomorrow :wk "Org roam tomorrow capture")
   "n d" '(org-roam-dailies-goto-today :wk "Org roam go to  today")
-  ))
+  )
 
 (leader-key
   "x" '(:ignore t :wk "Consult")
