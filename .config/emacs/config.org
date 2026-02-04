@@ -11,7 +11,6 @@
   
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 #+end_src
-
 * use-package
 #+begin_src emacs-lisp
   (when (< emacs-major-version 29)
@@ -25,7 +24,6 @@
                (display-buffer-no-window)
                (allow-no-window . t)))
 #+end_src
-
 * Editor
 ** Recentf
 #+begin_src emacs-lisp
@@ -60,7 +58,6 @@ The DWIM behaviour of this command is as follows:
 (define-key global-map (kbd "C-g") #'prot/keyboard-quit-dwim)
 
 #+end_src
-
 ** UI
 #+begin_src emacs-lisp
 (menu-bar-mode -1)
@@ -106,8 +103,8 @@ The DWIM behaviour of this command is as follows:
 #+end_src
 ** match paren & auto pair
 #+begin_src emacs-lisp
-(show-paren-mode 1)
-(electric-pair-mode 1)
+  (show-paren-mode 1)
+  (electric-pair-mode 1)
 #+end_src
 ** backup & lock file
 disable backup and lock file
@@ -123,7 +120,6 @@ disable backup and lock file
   :ensure nil ; no need to install it as it is built-in
   :hook (after-init . delete-selection-mode))
 #+end_src
-
 ** evil mode
 *** evil
 #+begin_src emacs-lisp
@@ -161,6 +157,13 @@ disable backup and lock file
   :after evil
   :config (global-evil-surround-mode 1))
 #+end_src
+*** evil commentry 
+#+begin_src emacs-lisp
+  (use-package evil-commentary
+    :ensure t
+    :after evil
+    :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
+#+end_src
 ** nerd icons 
 #+begin_src emacs-lisp
   (use-package nerd-icons
@@ -181,21 +184,18 @@ disable backup and lock file
     :hook
     (dired-mode . nerd-icons-dired-mode))
 #+end_src
- 
 ** vertico
 #+begin_src emacs-lisp
 (use-package vertico
   :ensure t
   :hook (after-init . vertico-mode))
 #+end_src
-
 ** marginalia 
 #+begin_src  emacs-lisp
 (use-package marginalia
   :ensure t
   :hook (after-init . marginalia-mode))
 #+end_src
-
 ** orderless
 #+begin_src emacs-lisp
 (use-package orderless
@@ -205,14 +205,12 @@ disable backup and lock file
   (setq completion-category-defaults nil)
   (setq completion-category-overrides nil))
 #+end_src
-
 ** savehist
 #+begin_src emacs-lisp
 (use-package savehist
   :ensure nil ; it is built-in
   :hook (after-init . savehist-mode))
 #+end_src
-
 ** corfu
 #+begin_src emacs-lisp
 (use-package corfu
@@ -232,7 +230,6 @@ disable backup and lock file
     (corfu-history-mode 1)
     (add-to-list 'savehist-additional-variables 'corfu-history)))
 #+end_src
-
 ** dired
 #+begin_src emacs-lisp
 (use-package dired
@@ -247,7 +244,6 @@ disable backup and lock file
   (setq delete-by-moving-to-trash t)
   (setq dired-dwim-target t))
 #+end_src
-
 ** dired subtree
 #+begin_src emacs-lisp
 (use-package dired-subtree
@@ -262,7 +258,6 @@ disable backup and lock file
   :config
   (setq dired-subtree-use-backgrounds nil))
 #+end_src
-
 ** trashed
 #+begin_src emacs-lisp
 (use-package trashed
@@ -274,13 +269,13 @@ disable backup and lock file
   (setq trashed-sort-key '("Date deleted" . t))
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 #+end_src
-
 ** avy
 #+begin_src emacs-lisp
-(use-package avy
-  :defer t
-  :config
-  (setq avy-case-fold-search nil))
+  (use-package avy
+    :ensure t
+    :defer t
+    :config
+    (setq avy-case-fold-search nil))
 #+end_src
 ** consult
 #+begin_src emacs-lisp
@@ -296,9 +291,8 @@ disable backup and lock file
   (setq dashboard-center-content t)
   (setq dashboard-vertically-center-content t)
   (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((agenda    . 5)
-  			(recents   . 5)
-                          (bookmarks . 5)))
+  (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
+  (setq dashboard-items '((agenda    . 8)))
 #+end_src
 * ORG mode
 ** toc
@@ -349,6 +343,12 @@ disable backup and lock file
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 #+end_src
+** interaction 
+#+begin_src emacs-lisp
+(setq org-cycle-separator-lines 1)
+(setq org-catch-invisible-edits 'show-and-error)
+(setq org-src-tab-acts-natively t)
+#+end_src
 ** org tempo
 #+begin_src emacs-lisp
 (require 'org-tempo) 
@@ -383,6 +383,31 @@ disable backup and lock file
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
+#+end_src
+** todo keyword 
+#+begin_src emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
+          (sequence
+           "DROP(o)"
+           "WORK-IN-PROGRESS(w)"
+           "POSTPONE(p)")))
+
+  (setq org-todo-keyword-faces
+        '(("TODO"
+           :inherit (region org-todo)
+           :foreground "DarkOrange1"
+           :weight bold)
+          ("CRITICAL"
+           :inherit (region org-todo)
+           :foreground "white smoke"
+           :background "dark red"
+           :weight bold)
+          ("WIP"
+           :inherit (org-todo region)
+           :foreground "magenta3"
+           :weight bold)
+          ("DONE" . "SeaGreen4")))
 #+end_src
 * Keybindings 
 ** which key

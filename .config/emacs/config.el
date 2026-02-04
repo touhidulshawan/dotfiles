@@ -113,6 +113,11 @@ The DWIM behaviour of this command is as follows:
   :after evil
   :config (global-evil-surround-mode 1))
 
+(use-package evil-commentary
+  :ensure t
+  :after evil
+  :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
+
 (use-package nerd-icons
   :ensure t)
 (use-package nerd-icons-completion
@@ -201,6 +206,7 @@ The DWIM behaviour of this command is as follows:
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
 (use-package avy
+  :ensure t
   :defer t
   :config
   (setq avy-case-fold-search nil))
@@ -215,9 +221,8 @@ The DWIM behaviour of this command is as follows:
 (setq dashboard-center-content t)
 (setq dashboard-vertically-center-content t)
 (setq dashboard-show-shortcuts nil)
-(setq dashboard-items '((agenda    . 5)
-			(recents   . 5)
-                        (bookmarks . 5)))
+(setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
+(setq dashboard-items '((agenda    . 8)))
 
 (use-package toc-org
     :ensure t
@@ -259,6 +264,10 @@ The DWIM behaviour of this command is as follows:
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 
+(setq org-cycle-separator-lines 1)
+(setq org-catch-invisible-edits 'show-and-error)
+(setq org-src-tab-acts-natively t)
+
 (require 'org-tempo)
 
 (setq org-agenda-files '("~/journal/agenda.org"))
@@ -285,6 +294,29 @@ The DWIM behaviour of this command is as follows:
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
+        (sequence
+         "DROP(o)"
+         "WORK-IN-PROGRESS(w)"
+         "POSTPONE(p)")))
+
+(setq org-todo-keyword-faces
+      '(("TODO"
+         :inherit (region org-todo)
+         :foreground "DarkOrange1"
+         :weight bold)
+        ("CRITICAL"
+         :inherit (region org-todo)
+         :foreground "white smoke"
+         :background "dark red"
+         :weight bold)
+        ("WIP"
+         :inherit (org-todo region)
+         :foreground "magenta3"
+         :weight bold)
+        ("DONE" . "SeaGreen4")))
 
 (use-package which-key
 :ensure t
