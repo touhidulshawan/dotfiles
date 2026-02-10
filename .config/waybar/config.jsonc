@@ -6,7 +6,7 @@
         "clock",
     ],
     "modules-center": [
-        "hyprland/workspaces",
+        "niri/workspaces",
     ],
     "modules-right": [
         "bluetooth",
@@ -16,7 +16,7 @@
         "disk",
         "tray",
     ],
-    "hyprland/workspaces": {
+    "niri/workspaces": {
         "on-click": "activate",
         "disable-scroll": true,
         "all-outputs": true,

@@ -247,7 +247,6 @@ bindsym $mod+r mode "resize"
 
     # browser
     bindsym $mod+b        exec    $browser
-    bindsym $mod+Shift+b  exec    qutebrowser 
     bindsym $mod+Shift+i  exec    $browser --private-window
     
     #others application
