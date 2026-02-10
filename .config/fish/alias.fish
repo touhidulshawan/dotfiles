@@ -102,3 +102,5 @@ alias ip="ip -c"
 # get keyname of keyboard
 alias whatkey="wev"
 
+# niri
+alias ns="niri-session"

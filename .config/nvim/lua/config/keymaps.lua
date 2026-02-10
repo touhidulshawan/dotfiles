@@ -44,3 +44,4 @@ keymap("i", ",/", "</<C-X><C-O>", option)
 
 -- After searching, pressing escape stops the highlight
 keymap("n", "<esc>", ":noh<cr><esc>", option)
+

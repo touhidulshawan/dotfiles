@@ -107,10 +107,10 @@ input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c swaymsg reload
+    bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q swaymsg exit
+    bindsym $mod+Shift+q exit
 #
 # Moving around:
 #
