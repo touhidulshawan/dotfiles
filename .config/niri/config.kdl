@@ -248,11 +248,12 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "nm-applet"
-spawn-at-startup "copyq" "--start" "-hidden"
-spawn-at-startup "/usr/bin/emacs" "--daemon"
-spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup "copyq" 
+spawn-at-startup "emacs" "--daemon"
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
-spawn-sh-at-startup "xrdb ~/.Xdefaults"
+
+spawn-sh-at-startup "xrdb $HOME/.Xdefaults"
 spawn-sh-at-startup "setwallpaper random"
 
 environment {
@@ -428,12 +429,12 @@ binds {
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    Mod+I              { focus-workspace-down; }
+    Mod+U              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
+    Mod+Ctrl+I         { move-column-to-workspace-down; }
+    Mod+Ctrl+U         { move-column-to-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -441,8 +442,8 @@ binds {
 
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    Mod+Shift+I         { move-workspace-down; }
+    Mod+Shift+U         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
