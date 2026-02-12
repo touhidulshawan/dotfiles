@@ -103,7 +103,7 @@ window#waybar.hidden {
   color: #3c3836;
 }
 tooltip {
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 15px;
   background-color: #32302f;
 }

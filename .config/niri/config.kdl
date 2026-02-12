@@ -84,6 +84,12 @@ cursor {
     hide-after-inactive-ms 1000
 }
 
+gestures{
+    hot-corners{
+        off
+    }
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Layout
@@ -290,6 +296,11 @@ animations {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
+
+window-rule {
+    // Disable rounded corners for all windows.
+    geometry-corner-radius 0;
+}
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
