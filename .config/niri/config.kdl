@@ -263,7 +263,6 @@ spawn-sh-at-startup "xrdb $HOME/.Xdefaults"
 spawn-sh-at-startup "setwallpaper random"
 
 environment {
-    DISPLAY ":1"
     QT_QPA_PLATFORM "wayland"
     XDG_SESSION_TYPE "wayland"
     MOZ_ENABLE_WAYLAND "1"
@@ -625,7 +624,7 @@ binds {
     // applications
     Mod+B {spawn "firefox";}
     Mod+Shift+B {spawn "firefox" "--private-window";}
-    Mod+Shift+Period {spawn-sh "~/krita/krita";}
+    Mod+Shift+Period {spawn-sh "krita";}
     Mod+Shift+O {spawn "emacsclient" "-c" "-a" "'emacs'";}
     Mod+E {spawn "thunar";}
     Mod+A {spawn "copyq" "toggle";}

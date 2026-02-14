@@ -250,7 +250,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+i  exec    $browser --private-window
     
     #others application
-    bindsym $mod+Shift+period    exec   ~/krita/krita
+    bindsym $mod+Shift+period    exec   krita 
     bindsym $mod+o               exec   $ems
     bindsym $mod+e               exec   $filemanager
     bindsym $mod+a               exec   copyq toggle
