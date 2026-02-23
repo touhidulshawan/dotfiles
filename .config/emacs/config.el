@@ -222,7 +222,7 @@ The DWIM behaviour of this command is as follows:
 (setq dashboard-vertically-center-content t)
 (setq dashboard-show-shortcuts nil)
 (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
-(setq dashboard-items '((agenda    . 8)))
+(setq dashboard-items '((agenda    . 12)))
 
 (use-package toc-org
     :ensure t
