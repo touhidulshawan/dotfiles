@@ -265,6 +265,9 @@ bindsym $mod+r mode "resize"
     # Screenshot a region (interactive selection)
     bindsym SHIFT+PRINT exec grim -g "$(slurp)" ~/Pictures/Screenshots/region-$(date +%F_%T).png
 
+    # color picker script
+    bindsym $mod+Shift+o    exec colorpicker
+
     # power
     bindsym $mod+Shift+p    exec poweroff
     bindsym $mod+Shift+r    exec reboot
