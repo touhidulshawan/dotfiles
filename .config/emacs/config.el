@@ -14,6 +14,23 @@
              (display-buffer-no-window)
              (allow-no-window . t)))
 
+(delete-selection-mode 1)    ;; You can select text and delete it by typing.
+(electric-indent-mode -1)    ;; Turn off the weird indenting that Emacs does by default.
+(electric-pair-mode 1)       ;; Turns on automatic parens pairing
+;; The following prevents <> from auto-pairing when electric-pair-mode is on.
+;; Otherwise, org-tempo is broken when you try to <s TAB...
+(add-hook 'org-mode-hook (lambda ()
+           (setq-local electric-pair-inhibit-predicate
+                   `(lambda (c)
+                  (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+(global-auto-revert-mode t)  ;; Automatically show changes if the file has changed
+(global-display-line-numbers-mode 1) ;; Display line numbers
+(global-visual-line-mode t)  ;; Enable truncated lines
+(setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
+(setq use-file-dialog nil)   ;; No file dialog
+(setq use-dialog-box nil)    ;; No dialog box
+(setq pop-up-windows nil)    ;; No popup windows
+
 (recentf-mode t)
 
 (defun prot/keyboard-quit-dwim ()
@@ -50,7 +67,9 @@ The DWIM behaviour of this command is as follows:
 (setq
  initial-major-mode 'org-mode
  initial-scratch-message ""
- initial-buffer-choice t)
+ initial-buffer-choice t) 
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 (set-face-attribute 'default nil
                     :font "JetBrains Mono"
@@ -82,6 +101,8 @@ The DWIM behaviour of this command is as follows:
 
 (setq make-backup-files nil) 
 (setq create-lockfiles nil)
+
+(global-set-key [escape] 'keyboard-escape-quit)
 
 (use-package evil
   :ensure t
@@ -213,32 +234,78 @@ The DWIM behaviour of this command is as follows:
 
 (use-package consult :ensure t)
 
+(use-package hl-todo
+  :ensure t
+  :hook ((org-mode . hl-todo-mode)
+         (prog-mode . hl-todo-mode))
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+          ("FIXME"      error bold)
+          ("LATER"      font-lock-constant-face bold)
+          ("REVIEW"     font-lock-keyword-face bold)
+          ("NOTE"       success bold)
+          ("DEPRECATED" font-lock-doc-face bold))))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-height 35      ;; sets modeline height
+        doom-modeline-bar-width 5    ;; sets right bar width
+        doom-modeline-persp-name t   ;; adds perspective name to modeline
+        doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
+
 (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook))
-(setq initial-buffer-choice 'dashboard-open)
-(setq dashboard-center-content t)
-(setq dashboard-vertically-center-content t)
-(setq dashboard-show-shortcuts nil)
 (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
-(setq dashboard-items '((agenda    . 12)))
+(setq dashboard-items '((agenda    . 8)))
+
+(setq org-directory "~/shawan-org/")
+
+(setq org-agenda-files 
+      (list (concat org-directory "tasks.org")
+	        (concat org-directory "notes.org")
+            (concat org-directory "journal.org")))
+
+;; Defines the global fallback destination for all your Org notes.
+(setq org-default-notes-file (concat org-directory "notes.org"))
+
+;; (Optional) Create custom templates
+;; NOTE '%U' is an inactive timestamp meaning the item will not show
+;; in org-agenda.  Use '%^t' for active timestamps instead.
+;; You can manually switch active/inactive with SHIFT-up/down.
+(setq org-capture-templates
+      `(
+        ;; Idea capture
+        ("i" "idea" entry
+         (file ,org-default-notes-file)
+         "* %? :idea:\n%U\n")
+
+        ;; Journal entry
+        ("j" "journal" entry
+         (file+olp+datetree ,(concat org-directory "journal.org"))
+         "* %U\n%?\n")
+
+        ;; Note with link to source
+        ("n" "note" entry
+         (file ,org-default-notes-file)
+         "* %? :note:\n%^t\n%a\n")
+	
+        ;; Todo with context
+        ("t" "task" entry
+         (file+headline ,(concat org-directory "tasks.org") "Tasks")
+         "* TODO %?\n%^t\n%a\n")
+
+        ))
 
 (use-package toc-org
     :ensure t
     :commands toc-org-enable
     :init (add-hook 'org-mode-hook 'toc-org-enable))
-
-(add-hook 'org-mode-hook 'org-indent-mode)
-(use-package org-bullets :ensure t)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory "~/journal")
-  :config
-  (org-roam-db-autosync-mode))
 
 (setq org-ellipsis " ▾")
 (setq org-src-fontify-natively t)
@@ -269,8 +336,6 @@ The DWIM behaviour of this command is as follows:
 (setq org-src-tab-acts-natively t)
 
 (require 'org-tempo)
-
-(setq org-agenda-files '("~/journal/agenda.org"))
 
 (use-package org-modern
   :ensure t
@@ -413,6 +478,7 @@ leader-key
 (leader-key
   "m" '(:ignore t :wk "Org")
   "m a" '(org-agenda :wk "Org agenda")
+  "m c" '(org-capture :wk "Org capture")
   "m e" '(org-export-dispatch :wk "Org export dispatch")
   "m i" '(org-toggle-item :wk "Org toggle item")
   "m t" '(org-todo :wk "Org todo")
@@ -428,19 +494,6 @@ leader-key
 
 (leader-key
   "m i" '(org-toggle-inline-images :wk "Toggle inline image"))
-
-(leader-key
-  "n" '(:ignore t :wk "Org Roam")
-  "n l" '(org-roam-buffer-toggle :wk "Org roam buffer toggle")
-  "n f" '(org-roam-node-find :wk "Org roam node find")
-  "n g" '(org-roam-graph :wk "Org roam graph")
-  "n i" '(org-roam-node-insert :wk "Org roam node insert")
-  "n c" '(org-roam-capture :wk "Org roam capture")
-  "n j" '(org-roam-dailies-capture-today :wk "Org roam today capture")
-  "n y" '(org-roam-dailies-capture-yesterday :wk "Org roam yesterday capture")
-  "n t" '(org-roam-dailies-capture-tomorrow :wk "Org roam tomorrow capture")
-  "n d" '(org-roam-dailies-goto-today :wk "Org roam go to  today")
-  )
 
 (leader-key
   "x" '(:ignore t :wk "Consult")
