@@ -3,7 +3,6 @@ size = 12
 
 [font.normal]
 family = "JetBrainsMono NF"
-# family = "JetBrains Mono"
 style = "Medium"
 
 [font.bold]
