@@ -261,6 +261,7 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :config
   (dashboard-setup-startup-hook))
+(setq initial-buffer-choice 'dashboard-open)
 (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
 (setq dashboard-items '((agenda    . 8)))
 
@@ -361,7 +362,7 @@ The DWIM behaviour of this command is as follows:
   (evil-org-agenda-set-keys))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "CRITICAL(c)" "|" "DONE(d)")
+      '((sequence "TODO(t)" "FAILED(f)" "|" "DONE(d)")
         (sequence
          "DROP(o)"
          "WORK-IN-PROGRESS(w)"
@@ -372,7 +373,7 @@ The DWIM behaviour of this command is as follows:
          :inherit (region org-todo)
          :foreground "DarkOrange1"
          :weight bold)
-        ("CRITICAL"
+        ("FAILED"
          :inherit (region org-todo)
          :foreground "white smoke"
          :background "dark red"

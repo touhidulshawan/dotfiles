@@ -20,7 +20,7 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message-new-instant.oga
 font= JetBrainsMono Nerd Font 11
 
 # background color of notification( #RRGGBB | #RRGGBBAA )
-background-color=#282828
+background-color=#1d2021
 
 # Text color inside the notification( #RRGGBB | #RRGGBBAA )
 text-color=#ebdbb2
