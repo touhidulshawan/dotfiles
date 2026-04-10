@@ -255,6 +255,7 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "nm-applet"
 spawn-at-startup "copyq" 
+spawn-at-startup "mako" 
 spawn-at-startup "emacs" "--daemon"
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
