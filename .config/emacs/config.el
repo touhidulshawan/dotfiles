@@ -269,7 +269,6 @@ The DWIM behaviour of this command is as follows:
 
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
-	        (concat org-directory "notes.org")
             (concat org-directory "journal.org")))
 
 ;; Defines the global fallback destination for all your Org notes.
@@ -298,7 +297,8 @@ The DWIM behaviour of this command is as follows:
 	
         ;; Todo with context
         ("t" "task" entry
-         (file+headline ,(concat org-directory "tasks.org") "Tasks")
+         ;; (file+headline ,(concat org-directory "tasks.org") "Tasks")
+         (file ,(concat org-directory "tasks.org"))
          "* TODO %?\n%^t\n%a\n")
 
         ))

@@ -407,42 +407,42 @@ my org directory
 #+begin_src emacs-lisp
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
-	        (concat org-directory "notes.org")
             (concat org-directory "journal.org")))
 #+end_src
 ** Capture
 from DT
 #+begin_src emacs-lisp
-;; Defines the global fallback destination for all your Org notes.
-(setq org-default-notes-file (concat org-directory "notes.org"))
+  ;; Defines the global fallback destination for all your Org notes.
+  (setq org-default-notes-file (concat org-directory "notes.org"))
 
-;; (Optional) Create custom templates
-;; NOTE '%U' is an inactive timestamp meaning the item will not show
-;; in org-agenda.  Use '%^t' for active timestamps instead.
-;; You can manually switch active/inactive with SHIFT-up/down.
-(setq org-capture-templates
-      `(
-        ;; Idea capture
-        ("i" "idea" entry
-         (file ,org-default-notes-file)
-         "* %? :idea:\n%U\n")
+  ;; (Optional) Create custom templates
+  ;; NOTE '%U' is an inactive timestamp meaning the item will not show
+  ;; in org-agenda.  Use '%^t' for active timestamps instead.
+  ;; You can manually switch active/inactive with SHIFT-up/down.
+  (setq org-capture-templates
+        `(
+          ;; Idea capture
+          ("i" "idea" entry
+           (file ,org-default-notes-file)
+           "* %? :idea:\n%U\n")
 
-        ;; Journal entry
-        ("j" "journal" entry
-         (file+olp+datetree ,(concat org-directory "journal.org"))
-         "* %U\n%?\n")
+          ;; Journal entry
+          ("j" "journal" entry
+           (file+olp+datetree ,(concat org-directory "journal.org"))
+           "* %U\n%?\n")
 
-        ;; Note with link to source
-        ("n" "note" entry
-         (file ,org-default-notes-file)
-         "* %? :note:\n%^t\n%a\n")
-	
-        ;; Todo with context
-        ("t" "task" entry
-         (file+headline ,(concat org-directory "tasks.org") "Tasks")
-         "* TODO %?\n%^t\n%a\n")
+          ;; Note with link to source
+          ("n" "note" entry
+           (file ,org-default-notes-file)
+           "* %? :note:\n%^t\n%a\n")
+  	
+          ;; Todo with context
+          ("t" "task" entry
+           ;; (file+headline ,(concat org-directory "tasks.org") "Tasks")
+           (file ,(concat org-directory "tasks.org"))
+           "* TODO %?\n%^t\n%a\n")
 
-        ))
+          ))
 #+end_src
 ** toc
 #+begin_src emacs-lisp
