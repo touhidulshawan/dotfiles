@@ -42,7 +42,6 @@
   - [[#interaction][interaction]]
   - [[#org-tempo][org tempo]]
   - [[#org-modern][org modern]]
-  - [[#evil-org][evil org]]
   - [[#keyword][keyword]]
 - [[#keybindings][Keybindings]]
   - [[#which-key][which key]]
@@ -243,6 +242,16 @@ disable backup and lock file
     :ensure t
     :after evil
     :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
+#+end_src
+*** evil org 
+#+begin_src emacs-lisp
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
+  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
 #+end_src
 ** nerd icons 
 #+begin_src emacs-lisp
@@ -503,16 +512,6 @@ from DT
    org-modern-table nil
    org-modern-variable-pitch nil
    org-modern-block-fringe nil))
-#+end_src
-** evil org
-#+begin_src emacs-lisp
-(use-package evil-org
-  :ensure t
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
 #+end_src
 ** todo keyword 
 #+begin_src emacs-lisp

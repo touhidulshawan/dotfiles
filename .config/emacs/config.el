@@ -139,6 +139,14 @@ The DWIM behaviour of this command is as follows:
   :after evil
   :bind (:map evil-normal-state-map ("gc" . evil-commentary)))
 
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
+  (add-hook 'org-mode-hook (lambda () (evil-org-mode 1))))
+
 (use-package nerd-icons
   :ensure t)
 (use-package nerd-icons-completion
@@ -352,14 +360,6 @@ The DWIM behaviour of this command is as follows:
    org-modern-table nil
    org-modern-variable-pitch nil
    org-modern-block-fringe nil))
-
-(use-package evil-org
-  :ensure t
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "FAILED(f)" "|" "DONE(d)")
