@@ -257,16 +257,15 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Escape     workspace back_and_forth
     bindsym $mod+period     exec rofi -show emoji -emoji-format '{emoji}' -theme emoji.rasi 
 
-    #screenshot
-    # Screenshot a window (using slurp to pick the window region)
-    bindsym $mod+PRINT exec grim -g "$(slurp -w)" ~/Pictures/Screenshots/window-$(date +%F_%T).png
-    # Screenshot a monitor (grab the whole output)
-    bindsym PRINT exec grim ~/Pictures/Screenshots/monitor-$(date +%F_%T).png
+    # Screenshot a window
+    bindsym $mod+Print exec grimshot --notify save active ~/Pictures/Screenshots/shots-$(date +%F_%T).png
+    # Screenshot a monitor (focused output)
+    bindsym Print exec grimshot --notify save output ~/Pictures/Screenshots/shots-$(date +%F_%T).png
     # Screenshot a region (interactive selection)
-    bindsym SHIFT+PRINT exec grim -g "$(slurp)" ~/Pictures/Screenshots/region-$(date +%F_%T).png
+    bindsym Shift+Print exec grimshot --notify save area ~/Pictures/Screenshots/shots-$(date +%F_%T).png
 
     # color picker script
-    bindsym $mod+Shift+o    exec colorpicker
+    bindsym $mod+Shift+o    exec grimpicker -c 
 
     # power
     bindsym $mod+Shift+p    exec poweroff
