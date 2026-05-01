@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # wallpaer directory
-WALLPAPER_DIR="$HOME/Pictures/wallpapers/anime/"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 
 # random image file 
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
