@@ -34,7 +34,7 @@ alias lt='eza -aT --icons --color=always --group-directories-first'
 # copy, move, remove 
 alias cp='uu-coreutils cp -rig'
 alias mv='uu-coreutils mv -fig'
-alias rm='uu-coreutils rm -frdv'
+alias rm='uu-coreutils rm -irdvg'
 
 # delete from disk forever
 alias del="shred -f -n 3 -u"
