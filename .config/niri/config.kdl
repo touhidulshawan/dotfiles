@@ -264,10 +264,12 @@ spawn-sh-at-startup "xrdb $HOME/.Xdefaults"
 spawn-sh-at-startup "setwallpaper random"
 
 environment {
-    QT_QPA_PLATFORM "wayland"
-    XDG_SESSION_TYPE "wayland"
+    // QT_QPA_PLATFORM "wayland"
+    // XDG_SESSION_TYPE "wayland"
     MOZ_ENABLE_WAYLAND "1"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    XCURSOR_THEME "Vanilla-DMZ"
+    XCURSOR_SIZE "24"
 }
 hotkey-overlay {
     skip-at-startup

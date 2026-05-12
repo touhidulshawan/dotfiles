@@ -34,7 +34,8 @@ alias lt='eza -aT --icons --color=always --group-directories-first'
 # copy, move, remove 
 alias cp='uu-coreutils cp -rig'
 alias mv='uu-coreutils mv -fig'
-alias rm='uu-coreutils rm -irdvg'
+alias rm='uu-coreutils rm -irdg'
+alias rmf='uu-coreutils rm -frdg'
 
 # delete from disk forever
 alias del="shred -f -n 3 -u"
@@ -43,7 +44,7 @@ alias del="shred -f -n 3 -u"
 alias fh='feh -g 1024x576 -. *'
 
 # sxiv
-alias sx="sxiv -t -g 1338x719 *"
+alias sx="nsxiv -t -g 1338x719 *"
 
 # bat like cat
 alias cat='bat'
@@ -79,6 +80,9 @@ export MANPAGER="nvim +Man!"
 
 # getpath
 alias getpath="fd . -aHt f | fzf | xclip -selection c"
+
+# active virtual environment with uv
+alias uva="source .venv/bin/activate.fish"
 
 # yt-dlp
 alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply"'

@@ -8,13 +8,12 @@
 set $wayb waybar -c ~/.config/waybar/config.sway -s ~/.config/waybar/style.css.sway
 exec $wayb
 exec nm-applet 
-exec unclutter --start-hidden
+# exec unclutter --start-hidden
 exec copyq --start-server 
 exec /usr/bin/emacs --daemon 
 exec /usr/lib/polkit-kde-authentication-agent-1
-exec xrdb ~/.Xdefaults
+exec xrdb  ~/.Xdefaults
 exec sleep 2 && ~/.local/bin/setwallpaper random
-
 
 ### Variables
 #
@@ -293,7 +292,7 @@ for_window [app_id="thunar"] move container to workspace 6, workspace 6
 for_window [app_id="org.qbittorrent.qBittorrent"] move container to workspace 7, workspace 7
 for_window [app_id="gimp"] move container to workspace 4, workspace 4
 for_window [app_id="com.github.hluk.copyq"] floating enable, resize set 760 480, move position center
-for_window [class="feh"] floating enable, resize set 760 480, move position center
+for_window [app_id="swayimg"] floating enable, resize set 900 650, move position center
 for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, resize set 640 360
 for_window [app_id="org.pwmt.zathura"] move container to workspace 7, workspace 7
 for_window [app_id="org.kde.kdenlive"] move container to workspace 1, workspace 1
