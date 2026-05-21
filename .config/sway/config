@@ -284,7 +284,7 @@ gaps outer 6
 
 # window rules
 for_window [app_id="firefox"] move container to workspace 2, workspace 2
-for_window [class="krita"] move container to workspace 3, workspace 3
+for_window [app_id="org.kde.krita"] move container to workspace 3, workspace 3
 for_window [app_id="emacs"] move container to workspace 4, workspace 4
 for_window [app_id="mpv"] move container to workspace 5, workspace 5
 for_window [app_id="thunar"] move container to workspace 6, workspace 6
