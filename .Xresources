@@ -22,12 +22,12 @@ XTerm*vt100.translations: #override \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! Xft.dpi: 112
-! Xft.dpi: 96
-! Xft.lcdfilter:  lcddefault
-! Xft.hintstyle:  hintsfull
-! Xft.antialias: 1
-! Xft.hinting: 1
-! Xft.rgba: rgb
+Xft.dpi: 96
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintsfull
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.rgba: rgb
 
 XTerm*title: XTerminal
 XTerm*background: #1d2021
