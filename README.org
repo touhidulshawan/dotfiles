@@ -93,5 +93,5 @@ Install [[https://github.com/lcpz/lain][lain]]  & [[https://github.com/lcpz/awes
 
 * 
 #+begin_quote
-I am using hyprland as my window manager now.
+I am using Arch Linux + Sway ❤.
 #+end_quote>
