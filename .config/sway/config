@@ -253,7 +253,6 @@ bindsym $mod+r mode "resize"
     bindsym $mod+e               exec   $filemanager
     bindsym $mod+a               exec   copyq toggle
     bindsym $mod+Escape     workspace back_and_forth
-    bindsym $mod+period     exec rofi -show emoji -emoji-format '{emoji}' -theme emoji.rasi 
 
     # Screenshot a window
     bindsym $mod+Print exec grimshot --notify save active ~/Pictures/Screenshots/shots-$(date +%F_%T).png
