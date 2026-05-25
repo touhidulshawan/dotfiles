@@ -57,6 +57,7 @@ alias l.='eza -a | egrep "^\."'
 #alias for advanced copy
 alias cp='uu-coreutils cp -rig'
 alias mv='uu-coreutils mv -fig'
+alias rm='uu-coreutils rm -irdv'
 alias rm='uu-coreutils rm -frdv'
 
 # aliash for feh
@@ -64,6 +65,9 @@ alias fh='feh -g 1024x576 -. *'
 
 # alias for sxiv
 alias sx="sxiv -t -g 1338x719 *"
+
+# nsxiv
+alias nn="xrdb ~/.Xdefaults && nsxiv"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -150,3 +154,5 @@ export DOTBARE_TREE="$HOME"
 
 eval "$(zoxide init bash)"
 source "$HOME/.git-prompt.sh"
+
+colorscript -r
