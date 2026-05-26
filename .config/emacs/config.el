@@ -278,6 +278,7 @@ The DWIM behaviour of this command is as follows:
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
             (concat org-directory "journal.org")))
+(setq org-agenda-window-setup 'only-window)
 
 ;; Defines the global fallback destination for all your Org notes.
 (setq org-default-notes-file (concat org-directory "notes.org"))

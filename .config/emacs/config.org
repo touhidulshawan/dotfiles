@@ -417,6 +417,7 @@ my org directory
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
             (concat org-directory "journal.org")))
+(setq org-agenda-window-setup 'only-window) 
 #+end_src
 ** Capture
 from DT
