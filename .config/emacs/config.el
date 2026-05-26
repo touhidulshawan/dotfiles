@@ -273,7 +273,13 @@ The DWIM behaviour of this command is as follows:
 (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
 (setq dashboard-items '((agenda    . 8)))
 
-(setq org-directory "~/shawan-org/")
+(use-package org
+  :ensure nil
+  :config
+  (setq org-insert-heading-respect-content t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-directory "~/shawan-org/"))
 
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
@@ -363,11 +369,11 @@ The DWIM behaviour of this command is as follows:
    org-modern-block-fringe nil))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "FAILED(f)" "|" "DONE(d)")
+      '((sequence "TODO(t!)" "FAILED(f!)" "|" "DONE(d!)")
         (sequence
-         "DROP(o)"
-         "WORK-IN-PROGRESS(w)"
-         "POSTPONE(p)")))
+         "DROP(o!)"
+         "WORK-IN-PROGRESS(w!)"
+         "POSTPONE(p!)")))
 
 (setq org-todo-keyword-faces
       '(("TODO"

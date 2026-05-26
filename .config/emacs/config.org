@@ -408,9 +408,14 @@ disable backup and lock file
   (setq dashboard-items '((agenda    . 8)))
 #+end_src
 * ORG mode
-my org directory
 #+begin_src emacs-lisp
-  (setq org-directory "~/shawan-org/")
+  (use-package org
+    :ensure nil
+    :config
+    (setq org-insert-heading-respect-content t)
+    (setq org-log-done 'time)
+    (setq org-log-into-drawer t)
+    (setq org-directory "~/shawan-org/"))
 #+end_src
 ** Agenda
 #+begin_src emacs-lisp
@@ -517,11 +522,11 @@ from DT
 ** todo keyword 
 #+begin_src emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "FAILED(f)" "|" "DONE(d)")
+        '((sequence "TODO(t!)" "FAILED(f!)" "|" "DONE(d!)")
           (sequence
-           "DROP(o)"
-           "WORK-IN-PROGRESS(w)"
-           "POSTPONE(p)")))
+           "DROP(o!)"
+           "WORK-IN-PROGRESS(w!)"
+           "POSTPONE(p!)")))
 
   (setq org-todo-keyword-faces
         '(("TODO"
