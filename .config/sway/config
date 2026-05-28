@@ -154,8 +154,8 @@ input "10429:2352:UGTABLET_4_inch_PenTablet_Keyboard" {
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    bindsym $mod+v splith
-    bindsym $mod+Shift+v splitv
+    bindsym $mod+slash splith
+    bindsym $mod+Shift+slash splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
