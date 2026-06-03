@@ -34,6 +34,9 @@ set $browser firefox
 set $ems emacsclient -c -a 'emacs'
 set $filemanager thunar
 
+# hide cursor
+seat * hide_cursor 5000
+seat * hide_cursor when-typing enable
 
 ### Output configuration
 #
