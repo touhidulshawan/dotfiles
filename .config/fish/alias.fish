@@ -106,5 +106,6 @@ alias ip="ip -c"
 # get keyname of keyboard
 alias whatkey="wev"
 
-# niri
-alias ns="niri-session"
+# only for my .dotfiles repo push
+alias cpush="config push -u github main && config push -u codeberg main"
+
