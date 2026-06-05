@@ -6,6 +6,7 @@ set fish_greeting
 fish_vi_key_bindings
 set TERM xterm-256color
 set BROWSER firefox
+set TERMINAL /usr/bin/alacritty
 set -x EDITOR /usr/bin/nvim
 set -x VISUAL /usr/bin/nvim
 set -x GIT_EDITOR /usr/bin/nvim
