@@ -21,16 +21,7 @@ return {
 	config = function()
 		-- transparency
 		require("rose-pine").setup({
-		        styles = {
-		          transparency = true,
-		        },
-		        highlight_groups = {
-		          Normal = { bg = "NONE" },
-		          NormalNC = { bg = "NONE" },
-		          SignColumn = { bg = "NONE" },
-		          NormalFloat = { bg = "NONE" },
-		          FloatBorder = { bg = "NONE" },
-		        },
+		        styles = {transparency = true,},
 		      })
 		vim.cmd("colorscheme rose-pine")
 	end
