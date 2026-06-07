@@ -273,6 +273,12 @@ The DWIM behaviour of this command is as follows:
 (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
 (setq dashboard-items '((agenda    . 8)))
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
+  (yas-global-mode 1))
+
 (use-package org
   :ensure nil
   :config

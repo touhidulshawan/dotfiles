@@ -34,6 +34,7 @@
   - [[#hl-todo][hl-todo]]
   - [[#modeline][modeline]]
   - [[#dashboard][dashboard]]
+  - [[#yasnippet][yasnippet]]
 - [[#org-mode][ORG mode]]
   - [[#agenda][Agenda]]
   - [[#capture][Capture]]
@@ -406,6 +407,15 @@ disable backup and lock file
   (setq initial-buffer-choice 'dashboard-open)
   (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
   (setq dashboard-items '((agenda    . 8)))
+#+end_src
+** yasnippet
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :config
+    (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
+    (yas-global-mode 1))
+
 #+end_src
 * ORG mode
 #+begin_src emacs-lisp
