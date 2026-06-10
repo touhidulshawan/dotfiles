@@ -1,6 +1,6 @@
 # [ Global Config ]
 # max no of notification in buffer
-max-history=5
+max-history=8
 
 # arrange notification ( +/- time or +/- priority )
 sort=+time
@@ -20,10 +20,9 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message-new-instant.oga
 font= JetBrainsMono Nerd Font 11
 
 # background color of notification( #RRGGBB | #RRGGBBAA )
-background-color=#1d2021
-
+background-color=#1c1a18
 # Text color inside the notification( #RRGGBB | #RRGGBBAA )
-text-color=#ebdbb2
+text-color=#f2c06b
 
 # Set width of notification popup.( value in px )
 width=380
@@ -37,13 +36,13 @@ outer-margin=6
 margin=2
 
 # Set padding on each side to the size specified by directional( value in px )
-padding=10
+padding=6
 
 #Set popup border size to px pixels.(value in px )
-border-size=2
+border-size=1
 
 # color of border of each notification( #RRGGBB | #RRGGBBAA )
-border-color=#458588
+border-color=#448984
 
 # bordear radious of each notification(value in px )
 border-radius=0
@@ -79,13 +78,13 @@ format= <b>%s</b>\n%b
 text-alignment=left
 
 # Set the default timeout to timeout in milliseconds.
-default-timeout=10000
+default-timeout=5000
 
 # If set, mako will ignore the expire timeout(value: 0|1 )
 ignore-timeout=false
 
 # Set maximum number of visible notifications 
-max-visible=5
+max-visible=7
 
 # Arrange mako at the specified layer, relative to normal windows.(value: background, bottom, top, overlay )
 layer=top

@@ -11,5 +11,5 @@ fisher install touhidulshawan/exthearchive
 # fisher install touhidulshawan/fish-gruvbox
 fisher install meaningful-ooo/sponge
 fisher install jorgebucaran/hydro
-fisher install rose-pine/fish
+fisher install jomik/fish-gruvbox
 fisher install FabioAntunes/fish-nvm edc/bass

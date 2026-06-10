@@ -26,6 +26,9 @@ set --export PIPENV_VENV_IN_PROJECT 1
 # ALT-c  = fzf cd
 fzf --fish | source
 
+# theme
+theme_gruvbox dark hard
+
 # sources
 source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/abbr.fish
