@@ -58,7 +58,6 @@ alias l.='eza -a | egrep "^\."'
 alias cp='uu-coreutils cp -rig'
 alias mv='uu-coreutils mv -fig'
 alias rm='uu-coreutils rm -irdv'
-alias rm='uu-coreutils rm -frdv'
 
 # aliash for feh
 alias fh='feh -g 1024x576 -. *'
