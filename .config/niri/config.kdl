@@ -260,7 +260,6 @@ spawn-at-startup "emacs" "--daemon"
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
 
-spawn-sh-at-startup "xrdb $HOME/.Xdefaults"
 spawn-sh-at-startup "setwallpaper random"
 
 environment {
@@ -380,7 +379,7 @@ binds {
     Mod+Shift+Semicolon allow-when-locked=true {spawn-sh "changebrightness down"; } 
 
     // overview
-    Mod+O repeat=false { toggle-overview; }
+    Mod+Shift+O repeat=false { toggle-overview; }
     
     Mod+Q repeat=false { close-window; }
 
@@ -573,8 +572,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Alt+Shift+M { toggle-window-floating;}
+    Mod+Space { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -593,12 +592,8 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // wallpaper
-
     // toggle waybar
     Mod+W  {spawn-sh " pkill -SIGUSR1 waybar || waybar";}
-    // restart waybar
-    Mod+Shift+M {spawn-sh "pkill waybar && waybar";}
     
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -628,7 +623,7 @@ binds {
     Mod+B {spawn "firefox";}
     Mod+Shift+B {spawn "firefox" "--private-window";}
     Mod+Shift+Period {spawn-sh "krita";}
-    Mod+Shift+O {spawn "emacsclient" "-c" "-a" "'emacs'";}
+    Mod+O {spawn "emacsclient" "-c" "-a" "'emacs'";}
     Mod+E {spawn "thunar";}
     Mod+A {spawn "copyq" "toggle";}
 }

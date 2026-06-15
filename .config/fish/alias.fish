@@ -108,3 +108,5 @@ alias whatkey="wev"
 # only for my .dotfiles repo push
 alias cpush="config push -u github main && config push -u codeberg main"
 
+# niri session
+alias ns="niri-session -l"

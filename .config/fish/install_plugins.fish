@@ -8,8 +8,7 @@ fisher install oh-my-fish/plugin-pbcopy
 fisher install jorgebucaran/replay.fish
 fisher install danhper/fish-ssh-agent
 fisher install touhidulshawan/exthearchive
-# fisher install touhidulshawan/fish-gruvbox
+fisher install touhidulshawan/fish-gruvbox
 fisher install meaningful-ooo/sponge
 fisher install jorgebucaran/hydro
-fisher install jomik/fish-gruvbox
 fisher install FabioAntunes/fish-nvm edc/bass

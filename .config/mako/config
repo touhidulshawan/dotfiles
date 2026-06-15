@@ -20,9 +20,9 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message-new-instant.oga
 font= JetBrainsMono Nerd Font 11
 
 # background color of notification( #RRGGBB | #RRGGBBAA )
-background-color=#1c1a18
+background-color=#282828
 # Text color inside the notification( #RRGGBB | #RRGGBBAA )
-text-color=#f2c06b
+text-color=#ebdbb2
 
 # Set width of notification popup.( value in px )
 width=380
