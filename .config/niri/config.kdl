@@ -78,8 +78,8 @@ output "LVDS-1" {
 }
 
 cursor {
-    xcursor-theme "Vanilla-DMZ"
-    xcursor-size 24 
+    xcursor-theme "Breeze_Light"
+    xcursor-size 24
     hide-when-typing
     hide-after-inactive-ms 1000
 }
