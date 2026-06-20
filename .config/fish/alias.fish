@@ -109,4 +109,4 @@ alias whatkey="wev"
 alias cpush="config push -u github main && config push -u codeberg main"
 
 # niri session
-alias ns="niri-session -l"
+alias ns="niri --session"
