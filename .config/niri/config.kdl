@@ -612,7 +612,7 @@ binds {
     // moving the mouse or pressing any other key.
     // Mod+Shift+P { power-off-monitors; }
     Mod+Shift+P { spawn-sh "poweroff"; }
-    Mod+Shift+Y { spawn-sh "reboot"; }
+    Mod+Shift+R { spawn-sh "reboot"; }
 
     // wallpaper
     Mod+Shift+W {spawn-sh "setwallpaper random";}
