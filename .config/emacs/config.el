@@ -266,12 +266,21 @@ The DWIM behaviour of this command is as follows:
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
 
 (use-package dashboard
-  :ensure t
+  :ensure t 
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  (setq initial-scratch-message nil)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  ;; (setq dashboard-startup-banner 'logo) 
+  (setq dashboard-center-content nil) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)))
+
+  :custom 
+  (dashboard-modify-heading-icons '((recents . "file-text")))
+
   :config
   (dashboard-setup-startup-hook))
-(setq initial-buffer-choice 'dashboard-open)
-(setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
-(setq dashboard-items '((agenda    . 8)))
 
 (use-package yasnippet
   :ensure t
@@ -304,7 +313,7 @@ The DWIM behaviour of this command is as follows:
         ;; Idea capture
         ("i" "idea" entry
          (file ,org-default-notes-file)
-         "* %? :idea:\n%U\n")
+         "* %? :idea: \n%U\n")
 
         ;; Journal entry
         ("j" "journal" entry
@@ -314,12 +323,12 @@ The DWIM behaviour of this command is as follows:
         ;; Note with link to source
         ("n" "note" entry
          (file ,org-default-notes-file)
-         "* %? :note:\n%^t\n%a\n")
+	 "* %? :note: \n%U\n")
 	
         ;; Todo with context
         ("t" "task" entry
-         ;; (file+headline ,(concat org-directory "tasks.org") "Tasks")
-         (file ,(concat org-directory "tasks.org"))
+         (file+olp+datetree ,(concat org-directory "tasks.org"))
+         ;; (file ,(concat org-directory "tasks.org"))
          "* TODO %?\n%^t\n%a\n")
 
         ))

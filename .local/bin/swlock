@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
 
-# wallpaer directory
-WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+# AUTHOR: Touhidul Shawan
+# Modified Date: Fri Jun 26 07:38:31 PM 
 
-# random image file 
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
+
+# Get a random wallpaper that is not the current one
+# WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+WALLPAPER=$(
+    find "$WALLPAPER_DIR" \
+        -path '*/.git' -prune -o \
+        -type f \
+        \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) \
+        ! -name "$(basename "$CURRENT_WALL")" \
+        -print |
+    shuf -n 1
+)
 
 # now lock with that iamge 
 swaylock -i "$WALLPAPER"

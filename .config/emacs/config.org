@@ -401,12 +401,21 @@ disable backup and lock file
 ** dashboard 
 #+begin_src emacs-lisp
   (use-package dashboard
-    :ensure t
+    :ensure t 
+    :init
+    (setq initial-buffer-choice 'dashboard-open)
+    (setq initial-scratch-message nil)
+    (setq dashboard-set-heading-icons t)
+    (setq dashboard-set-file-icons t)
+    ;; (setq dashboard-startup-banner 'logo) 
+    (setq dashboard-center-content nil) ;; set to 't' for centered content
+    (setq dashboard-items '((recents . 5)))
+
+    :custom 
+    (dashboard-modify-heading-icons '((recents . "file-text")))
+
     :config
     (dashboard-setup-startup-hook))
-  (setq initial-buffer-choice 'dashboard-open)
-  (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
-  (setq dashboard-items '((agenda    . 8)))
 #+end_src
 ** yasnippet
 #+begin_src emacs-lisp
@@ -449,7 +458,7 @@ from DT
           ;; Idea capture
           ("i" "idea" entry
            (file ,org-default-notes-file)
-           "* %? :idea:\n%U\n")
+           "* %? :idea: \n%U\n")
 
           ;; Journal entry
           ("j" "journal" entry
@@ -459,12 +468,12 @@ from DT
           ;; Note with link to source
           ("n" "note" entry
            (file ,org-default-notes-file)
-           "* %? :note:\n%^t\n%a\n")
+  	 "* %? :note: \n%U\n")
   	
           ;; Todo with context
           ("t" "task" entry
-           ;; (file+headline ,(concat org-directory "tasks.org") "Tasks")
-           (file ,(concat org-directory "tasks.org"))
+           (file+olp+datetree ,(concat org-directory "tasks.org"))
+           ;; (file ,(concat org-directory "tasks.org"))
            "* TODO %?\n%^t\n%a\n")
 
           ))
