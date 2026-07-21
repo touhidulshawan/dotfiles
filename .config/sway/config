@@ -42,7 +42,7 @@ seat * hide_cursor when-typing enable
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+# output LVDS-1 mode 1366x768@60.003Hz position 0,0 scale 1
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -249,9 +249,11 @@ bindsym $mod+r mode "resize"
     # browser
     bindsym $mod+b        exec    TZ=UTC $browser
     bindsym $mod+Shift+i  exec    TZ=UTC $browser --private-window
+    bindsym $mod+Shift+b  exec    brave-origin
     
     #others application
     bindsym $mod+Shift+period    exec   krita 
+    bindsym $mod+period          exec   krita5
     bindsym $mod+o               exec   $ems
     bindsym $mod+e               exec   $filemanager
     bindsym $mod+a               exec   copyq toggle
@@ -286,6 +288,7 @@ gaps outer 6
 
 # window rules
 for_window [app_id="firefox"] move container to workspace 2, workspace 2
+for_window [app_id="brave-origin"] move container to workspace 2, workspace 2
 for_window [class="krita"] move container to workspace 3, workspace 3
 for_window [app_id="emacs"] move container to workspace 4, workspace 4
 for_window [app_id="mpv"] move container to workspace 5, workspace 5
@@ -294,7 +297,7 @@ for_window [app_id="thunar"] move container to workspace 6, workspace 6
 for_window [app_id="org.qbittorrent.qBittorrent"] move container to workspace 7, workspace 7
 for_window [app_id="gimp"] move container to workspace 4, workspace 4
 for_window [app_id="com.github.hluk.copyq"] floating enable, resize set 760 480, move position center
-for_window [class="Nsxiv"] floating enable, resize set 1021 594, move position center
+for_window [class="Sxiv"] floating enable, resize set 1021 594, move position center
 for_window [app_id="swayimg"] floating enable, resize set 900 650, move position center
 for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, resize set 640 360
 for_window [app_id="org.pwmt.zathura"] move container to workspace 7, workspace 7

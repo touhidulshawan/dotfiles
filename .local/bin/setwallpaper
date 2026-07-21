@@ -15,6 +15,6 @@ WALLPAPER=$(
 )
 
 case "$1" in
-    "show") xrdb ~/.Xdefaults && nsxiv -g 1338x719 -tro "$WALLPAPER_DIR" | xargs swaybg -m fill -i || exit ;;
+    "show") sxiv -g 1338x719 -tro "$WALLPAPER_DIR" | xargs swaybg -m fill -i || exit ;;
     "random") swaybg -m fill -i"$WALLPAPER" ;;
 esac

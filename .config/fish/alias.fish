@@ -42,8 +42,8 @@ alias del="shred -f -n 3 -u"
 # feh
 alias fh='feh -g 1024x576 -. *'
 
-# nsxiv
-alias nn="xrdb ~/.Xdefaults && nsxiv"
+# sxiv
+alias ii="sxiv ." 
 
 # bat like cat
 alias cat='bat'

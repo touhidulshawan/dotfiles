@@ -327,9 +327,9 @@ The DWIM behaviour of this command is as follows:
 	
         ;; Todo with context
         ("t" "task" entry
-         ;; (file+olp+datetree ,(concat org-directory "tasks.org"))
-	 (file ,(concat org-directory "tasks.org"))
-         "* %?")
+         (file+olp+datetree ,(concat org-directory "tasks.org"))
+	 ;; (file ,(concat org-directory "tasks.org"))
+         "* TODO  %?")
 
         ))
 

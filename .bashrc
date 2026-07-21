@@ -66,7 +66,7 @@ alias fh='feh -g 1024x576 -. *'
 alias sx="sxiv -t -g 1338x719 *"
 
 # nsxiv
-alias nn="xrdb ~/.Xdefaults && nsxiv"
+alias ii="sxiv ."
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -155,3 +155,5 @@ eval "$(zoxide init bash)"
 source "$HOME/.git-prompt.sh"
 
 colorscript -r
+
+source /home/shawan/.config/broot/launcher/bash/br
