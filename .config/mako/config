@@ -81,10 +81,10 @@ text-alignment=left
 default-timeout=5000
 
 # If set, mako will ignore the expire timeout(value: 0|1 )
-ignore-timeout=false
+ignore-timeout=1
 
 # Set maximum number of visible notifications 
-max-visible=7
+max-visible=4
 
 # Arrange mako at the specified layer, relative to normal windows.(value: background, bottom, top, overlay )
 layer=top
