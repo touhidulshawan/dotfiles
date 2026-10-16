@@ -298,6 +298,7 @@ The DWIM behaviour of this command is as follows:
 
 (setq org-agenda-files 
       (list (concat org-directory "tasks.org")
+	    (concat org-directory "notes.org")
             (concat org-directory "journal.org")))
 (setq org-agenda-window-setup 'only-window)
 
@@ -330,7 +331,6 @@ The DWIM behaviour of this command is as follows:
          (file+olp+datetree ,(concat org-directory "tasks.org"))
 	 ;; (file ,(concat org-directory "tasks.org"))
          "* TODO  %?")
-
         ))
 
 (use-package toc-org

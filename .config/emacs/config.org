@@ -438,13 +438,14 @@ disable backup and lock file
 #+end_src
 ** Agenda
 #+begin_src emacs-lisp
-(setq org-agenda-files 
-      (list (concat org-directory "tasks.org")
-            (concat org-directory "journal.org")))
-(setq org-agenda-window-setup 'only-window) 
+  (setq org-agenda-files 
+        (list (concat org-directory "tasks.org")
+  	    (concat org-directory "notes.org")
+              (concat org-directory "journal.org")))
+  (setq org-agenda-window-setup 'only-window) 
 #+end_src
 ** Capture
-from DT
+from DT with some modefication
 #+begin_src emacs-lisp
   ;; Defines the global fallback destination for all your Org notes.
   (setq org-default-notes-file (concat org-directory "notes.org"))
@@ -475,7 +476,6 @@ from DT
            (file+olp+datetree ,(concat org-directory "tasks.org"))
   	 ;; (file ,(concat org-directory "tasks.org"))
            "* TODO  %?")
-
           ))
 #+end_src
 ** toc
