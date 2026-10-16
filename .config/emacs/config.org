@@ -475,7 +475,7 @@ from DT with some modefication
           ("t" "task" entry
            (file+olp+datetree ,(concat org-directory "tasks.org"))
   	 ;; (file ,(concat org-directory "tasks.org"))
-           "* TODO  %?")
+           "*  %?")
           ))
 #+end_src
 ** toc
@@ -528,8 +528,8 @@ from DT with some modefication
   :hook (org-mode . org-modern-mode)
   :config
   (setq
-   ;; org-modern-star '("●" "○" "✸" "✿")
-   org-modern-star '("⌾" "✸" "◈" "✿")
+   org-modern-star 'replace
+   org-modern-replace-stars '("⌾" "✸" "◈" "✿")
    org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
    org-modern-tag nil
    org-modern-priority nil
@@ -713,5 +713,3 @@ from DT with some modefication
   "x x" '(consult-fd :wk "consult find")
   ))
 #+end_src
-
-

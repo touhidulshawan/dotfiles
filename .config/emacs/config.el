@@ -330,7 +330,7 @@ The DWIM behaviour of this command is as follows:
         ("t" "task" entry
          (file+olp+datetree ,(concat org-directory "tasks.org"))
 	 ;; (file ,(concat org-directory "tasks.org"))
-         "* TODO  %?")
+         "*  %?")
         ))
 
 (use-package toc-org
@@ -373,8 +373,8 @@ The DWIM behaviour of this command is as follows:
   :hook (org-mode . org-modern-mode)
   :config
   (setq
-   ;; org-modern-star '("●" "○" "✸" "✿")
-   org-modern-star '("⌾" "✸" "◈" "✿")
+   org-modern-star 'replace
+   org-modern-replace-stars '("⌾" "✸" "◈" "✿")
    org-modern-list '((42 . "◦") (43 . "•") (45 . "–"))
    org-modern-tag nil
    org-modern-priority nil
