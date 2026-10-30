@@ -104,6 +104,12 @@ The DWIM behaviour of this command is as follows:
 
 (global-set-key [escape] 'keyboard-escape-quit)
 
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "en_US")
+
+(add-hook 'text-mode-hook #'flyspell-mode)
+(add-hook 'org-mode-hook #'flyspell-mode)
+
 (use-package evil
   :ensure t
   :demand t
@@ -287,6 +293,9 @@ The DWIM behaviour of this command is as follows:
   :config
   (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
   (yas-global-mode 1))
+
+(use-package writeroom-mode
+  :ensure t)
 
 (use-package org
   :ensure nil

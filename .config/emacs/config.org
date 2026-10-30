@@ -17,6 +17,7 @@
   - [[#match-paren--auto-pair][match paren & auto pair]]
   - [[#backup--lock-file][backup & lock file]]
   - [[#minibuffer-escape][minibuffer escape]]
+  - [[#spellcheck][spellcheck]]
 - [[#packages][Packages]]
   - [[#delsel][delsel]]
   - [[#evil-mode][evil mode]]
@@ -35,6 +36,7 @@
   - [[#modeline][modeline]]
   - [[#dashboard][dashboard]]
   - [[#yasnippet][yasnippet]]
+  - [[#writeroom][writeroom]]
 - [[#org-mode][ORG mode]]
   - [[#agenda][Agenda]]
   - [[#capture][Capture]]
@@ -191,6 +193,14 @@ disable backup and lock file
 ** minibuffer escape 
 #+begin_src emacs-lisp
 (global-set-key [escape] 'keyboard-escape-quit)
+#+end_src
+** spellcheck
+#+begin_src emacs-lisp
+  (setq ispell-program-name "aspell")
+  (setq ispell-dictionary "en_US")
+
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'org-mode-hook #'flyspell-mode)
 #+end_src
 * Packages
 ** delsel
@@ -425,6 +435,11 @@ disable backup and lock file
     (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
     (yas-global-mode 1))
 
+#+end_src
+** writeroom
+#+begin_src emacs-lisp
+  (use-package writeroom-mode
+    :ensure t)
 #+end_src
 * ORG mode
 #+begin_src emacs-lisp
@@ -713,3 +728,4 @@ from DT with some modefication
   "x x" '(consult-fd :wk "consult find")
   ))
 #+end_src
+
