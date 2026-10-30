@@ -1,112 +1,154 @@
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-# setup dotbare to make manage bare repo easy
-alias dotbare="$HOME/.dotbare/dotbare"
-alias config=dotbare
+# Author: Touhidul Shawan
 
-# pacman 
-# search and install packages from archlinux repository(not AUR)
-alias pack="doas pacman -S (pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse)"
-# uninstall packages
-alias remove="doas pacman -Rns (pacman -Qq |  fzf -m --preview 'pacman -Qi {}')"
-# unlock pacman db
-alias unlock="doas rm /var/lib/pacman/db.lck"
+# ==========================================
+# DOTFILES (BARE GIT)
+# ==========================================
+alias config="$HOME/.dotbare/dotbare"
 
-# list install native packages [not from aur]
-alias archpack="pacman -Qenq"
-#list install aur packages
-alias aurpack="pacman -Qemq"
-
-# navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../..'
-alias .5='cd ../../../..'
-alias .6='cd ../../../../..'
-
-# eza like ls
-alias la='eza -al --total-size --icons --sort=name --color=always --group-directories-first'
-alias ls='eza -a --icons --sort=name --group-directories-first'
-alias l='eza --icons --color=always --group-directories-first'
-alias lt='eza -aT --icons --color=always --group-directories-first'
-
-# copy, move, remove 
-alias cp='uu-coreutils cp -rig'
-alias mv='uu-coreutils mv -fig'
-alias rm='uu-coreutils rm -irdg'
-
-# delete from disk forever
-alias del="shred -f -n 3 -u"
-
-# feh
-alias fh='feh -g 1024x576 -. *'
-
-# sxiv
-alias ii="sxiv ." 
-
-# bat like cat
-alias cat='bat'
-
-# batgrep like ripgrep 
-alias rg='batgrep'
-
-# Colorize grep output (good for log files)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
-# storage
-alias du='du -sh'
-alias ncdu='ncdu --color dark'
-
-# get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4'
-alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-
-## get top process eating cpu
-alias pscpu='ps auxf | sort -nr -k 3'
-alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
-
-# get error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
-
-# search & open with neovim
-alias nf='fd -Ht f | fzf | xargs nvim'
-
-# nvim as MANPAGER
-export MANPAGER="nvim +Man!"
-
-# getpath
-alias getpath="fd . -aHt f | fzf | xclip -selection c"
-
-# active virtual environment with uv
-alias uva="source .venv/bin/activate.fish"
-
-# yt-dlp
-alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply"'
-alias ytv='yt-dlp  -S "res:1440" --embed-subs --merge-output-format mp4 --extractor-args "youtube:player-client=default,-tv_simply"'
-
-# fzf
-fzf_configure_bindings --directory=\cf
-set fzf_preview_dir_cmd eza --all --color=always --icons
-set fzf_fd_opts --hidden --exclude=.git
-export FZF_DEFAULT_COMMAND="fd --type file"
-export FZF_DEFAULT_OPTS="--layout=reverse --exact --border=bold --border=rounded --margin=3% --color=dark --ansi"
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#ebdbb2,bg:#282828,hl:#b16286 --color=fg+:#689d6a,bg+:#32302f,hl+:#d3869b --color=info:#d65d0e,prompt:#458588,pointer:#fe8019 --color=marker:#8ec07c,spinner:#cc241d,header:#fabd2f'
-
-# alias for wifi on/OFF
-alias start_wifi='nmcli radio wifi on'
-alias stop_wifi='nmcli radio wifi off'
-
-# ip with colors
-alias ip="ip -c"
-
-# get keyname of keyboard
-alias whatkey="wev"
-
-# only for my .dotfiles repo push
+# Push dotfiles to GitHub and Codeberg
 alias cpush="config push -u github main && config push -u codeberg main"
 
-# niri session
-alias ns="niri --session"
+
+# ==========================================
+# PACMAN
+# ==========================================
+# Search and install official repository packages
+alias pack="doas pacman -S (pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse)"
+
+# Uninstall installed packages
+alias remove="doas pacman -Rns (pacman -Qq | fzf -m --preview 'pacman -Qi {}')"
+
+# Unlock pacman database
+alias unlock="doas rm /var/lib/pacman/db.lck"
+
+# List installed native packages
+alias archpack="pacman -Qenq"
+
+# List installed AUR packages
+alias aurpack="pacman -Qemq"
+
+
+# ==========================================
+# SSH
+# ==========================================
+alias sk="ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_ed25519_codeberg"
+
+
+# ==========================================
+# NAVIGATION
+# ==========================================
+alias ..="cd .."
+alias ...="cd ../.."
+alias .3="cd ../../.."
+alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
+alias .6="cd ../../../../../.."
+
+
+# ==========================================
+# EZA (LS REPLACEMENT)
+# ==========================================
+alias ls="eza -a --icons --sort=name --group-directories-first"
+alias l="eza --icons --color=always --group-directories-first"
+alias la="eza -al --total-size --icons --sort=name --color=always --group-directories-first"
+alias lt="eza -aT --icons --color=always --group-directories-first"
+
+
+# ==========================================
+# COREUTILS
+# ==========================================
+
+# Safe operations
+alias cp="uu-coreutils cp -rig"
+alias mv="uu-coreutils mv -ig"
+alias rm="uu-coreutils rm -irg"
+
+# Force operations 
+alias cpr="uu-coreutils cp -rfg"
+alias mvr="uu-coreutils mv -fg"
+alias rmr="uu-coreutils rm -rfg"
+
+# ==========================================
+# FILE VIEWERS
+# ==========================================
+# Feh
+alias fh="feh -g 1024x576 -. *"
+
+# Sxiv
+alias ii="sxiv ."
+
+# Bat
+alias cat="bat"
+
+# Batgrep
+alias rg="batgrep"
+
+
+# ==========================================
+# GREP
+# ==========================================
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+
+# ==========================================
+# STORAGE
+# ==========================================
+alias du="du -sh"
+alias ncdu="ncdu --color dark"
+
+
+# ==========================================
+# PROCESS MONITORING
+# ==========================================
+# Top memory-consuming processes
+alias psmem="ps auxf | sort -nr -k 4"
+alias psmem10="ps auxf | sort -nr -k 4 | head -10"
+
+# Top CPU-consuming processes
+alias pscpu="ps auxf | sort -nr -k 3"
+alias pscpu10="ps auxf | sort -nr -k 3 | head -10"
+
+
+# ==========================================
+# SYSTEM
+# ==========================================
+# Show journal errors
+alias jctl="journalctl -p 3 -xb"
+
+# Wi-Fi
+alias start_wifi="nmcli radio wifi on"
+alias stop_wifi="nmcli radio wifi off"
+
+# IP with colors
+alias ip="ip -c"
+
+# Keyboard key detection
+alias whatkey="wev"
+
+# ==========================================
+# FILE SEARCH
+# ==========================================
+# Search and open files in Neovim
+alias nf="fd -Ht f | fzf | xargs -r nvim"
+
+# Search and copy file path
+alias getpath="fd . -aHt f | fzf | xclip -selection c"
+
+
+# ==========================================
+# PYTHON / UV
+# ==========================================
+# Activate project virtual environment
+alias uva="source .venv/bin/activate.fish"
+
+
+# ==========================================
+# YOUTUBE-DL
+# ==========================================
+# Download audio as MP3
+alias yta='yt-dlp --extract-audio --audio-quality 0 --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply"'
+
+# Download video
+alias ytv='yt-dlp -S "res:1440" --embed-subs --merge-output-format mp4 --extractor-args "youtube:player-client=default,-tv_simply"'

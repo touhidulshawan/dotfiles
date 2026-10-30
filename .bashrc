@@ -111,9 +111,15 @@ alias l.='eza -a | grep "^\."'
 # UU-COREUTILS
 # ============================================================
 
-alias cp='uu-coreutils cp -rig'
-alias mv='uu-coreutils mv -fig'
-alias rm='uu-coreutils rm -irdg'
+# Safe operations
+alias cp="uu-coreutils cp -rig"
+alias mv="uu-coreutils mv -ig"
+alias rm="uu-coreutils rm -irg"
+
+# Force operations 
+alias cpr="uu-coreutils cp -rfg"
+alias mvr="uu-coreutils mv -fg"
+alias rmr="uu-coreutils rm -rfg"
 
 
 # ============================================================
@@ -145,13 +151,12 @@ export MANPAGER="nvim +Man!"
 
 alias e='exit'
 alias cl='clear'
+alias n='nvim'
 
-# Open files using fd, fzf and Neovim
-nv() {
-    local file
-    file="$(fd -t f | fzf)" || return
-    [[ -n "$file" ]] && nvim -- "$file"
-}
+# System
+alias bl='bluetoothctl'
+alias bm='bashmount'
+alias bt='btop'
 
 
 # ============================================================
@@ -209,7 +214,7 @@ alias ns='niri --session'
 # GITNOW 
 # ============================================================
 
-source "$HOME/.local/bin/gitnow"
+source "$HOME/.local/bin/gitnx"
 
 # ============================================================
 # DOTFILES MANAGEMENT
@@ -224,6 +229,8 @@ alias cn='dotbare'
 # Push dotfiles to GitHub and Codeberg
 alias cpush='config push -u github main && config push -u codeberg main'
 
+# SSH keys
+alias sk='ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_ed25519_codeberg'
 
 # ============================================================
 # PACMAN
@@ -267,3 +274,39 @@ command -v zoxide >/dev/null 2>&1 && \
 # ============================================================
 
 command -v colorscript >/dev/null 2>&1 && colorscript -r
+
+
+
+# ============================================================
+# ARCHIVE EXTRACTION
+# ============================================================
+
+ex() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: ex <archive>"
+        return 1
+    fi
+
+    if [[ ! -f "$1" ]]; then
+        echo "'$1' is not a valid file"
+        return 1
+    fi
+
+    case "$1" in
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz)  tar xzf "$1" ;;
+        *.bz2)     bunzip2 "$1" ;;
+        *.rar)     unrar x "$1" ;;
+        *.gz)      gunzip "$1" ;;
+        *.tar)     tar xf "$1" ;;
+        *.tbz2)    tar xjf "$1" ;;
+        *.tgz)     tar xzf "$1" ;;
+        *.zip)     unzip "$1" ;;
+        *.Z)       uncompress "$1" ;;
+        *.7z)      7z x "$1" ;;
+        *.deb)     ar x "$1" ;;
+        *.tar.xz)  tar xf "$1" ;;
+        *.tar.zst) unzstd "$1" ;;
+        *)         echo "'$1' cannot be extracted via ex()"; return 1 ;;
+    esac
+}
