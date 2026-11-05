@@ -17,7 +17,7 @@ fish_add_path -U $HOME/.local/bin
 # SHELL
 # ==========================================
 set -g fish_greeting
-fish_vi_key_bindings
+# fish_vi_key_bindings
 
 
 # ==========================================

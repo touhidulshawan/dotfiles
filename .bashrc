@@ -102,7 +102,7 @@ alias .6='cd ../../../../../..'
 
 alias ls='eza -a --icons --sort=name --group-directories-first'
 alias la='eza -al --icons --sort=name --color=always --group-directories-first'
-alias ll='eza -l --icons --color=always --group-directories-first'
+alias ll='eza -lh --icons --color=always --group-directories-first'
 alias lt='eza -aT --icons --color=always --group-directories-first'
 alias l.='eza -a | grep "^\."'
 
